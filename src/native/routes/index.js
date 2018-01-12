@@ -5,6 +5,9 @@ import { Icon } from 'native-base';
 import DefaultProps from '../constants/navigation';
 import AppConfig from '../../constants/config';
 
+import NoticiasContainer from '../../containers/NoticiasContainer';
+import NoticiasComponent from '../components/Noticias';
+
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
 import RecipeViewComponent from '../components/Recipe';
@@ -43,6 +46,15 @@ const Index = (
           {...DefaultProps.navbarProps}
         >
           <Scene key="home" component={AboutComponent} />
+        </Stack>
+
+        <Stack
+          key="noticias"
+          title="NOTICIAS"
+          icon={() => <Icon name="book" {...DefaultProps.icons} />}
+          {...DefaultProps.navbarProps}
+        >
+          <Scene key="noticias" component={NoticiasContainer} Layout={NoticiasComponent} />
         </Stack>
 
         <Stack
