@@ -17,10 +17,11 @@ if (Platform.OS === 'android') StatusBar.setHidden(true);
 
 const Root = ({ store, persistor }) => (
   <Provider store={store}>
+  {/*
     <PersistGate
       loading={<Loading />}
-      persistor={persistor}
     >
+    */}
       <StyleProvider style={getTheme(theme)}>
         <Router>
           <Stack key="root">
@@ -28,7 +29,9 @@ const Root = ({ store, persistor }) => (
           </Stack>
         </Router>
       </StyleProvider>
+  {/*
     </PersistGate>
+    */}
   </Provider>
 );
 
