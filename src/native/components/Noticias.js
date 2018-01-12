@@ -8,6 +8,8 @@ import Error from './Error';
 import Header from './Header';
 import Spacer from './Spacer';
 
+import { distanceInWordsToNow } from 'date-fns';
+
 const NoticiaListing = ({
   error,
   loading,
@@ -28,19 +30,18 @@ const NoticiaListing = ({
     <Container>
       <Content padder>
         <Header
-          title="Top Noticias"
-          content="This is here to show how you can read and display data from a data source (in our case, Firebase)."
+          title="Noticias"
         />
 
         <FlatList
-          numColumns={2}
+          numColumns={1}
           data={noticias}
           renderItem={({ item }) => (
             <Card transparent style={{ paddingHorizontal: 6 }}>
               <CardItem cardBody>
                 <Body>
                   <Spacer size={10} />
-                  <Text style={{ fontWeight: '800' }}>{item.title}</Text>
+                  <Text style={{ fontWeight: '800' }}>{item.title} • {distanceInWordsToNow(item.publishDate)}</Text>
                   <Spacer size={15} />
                   <Button
                     block
