@@ -11,17 +11,12 @@ export default function noticiaReducer(state = initialState, action) {
       };
     }
     case 'NOTICIAS_REPLACE': {
-      console.log('REDUCER', action.data);
       let noticias = [];
 
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        console.log('NOTICIAS_REPLACE', action.data);
         noticias = Object.keys(action.data).map((key,index) => {
           var item = action.data[key];
-
-          console.log('KEY', key);
-          console.log('ITEM', item);
 
           return ({
             id: key,
@@ -29,8 +24,6 @@ export default function noticiaReducer(state = initialState, action) {
           })
         });
       }
-
-      console.log('STATE',state);
 
       return {
         ...state,

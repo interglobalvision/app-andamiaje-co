@@ -17,10 +17,8 @@ export function getNoticias() {
   if (Firebase === null) return () => new Promise(resolve => resolve());
 
   console.log('getNoticias is running');
-  return dispatch => new Promise(resolve => FirebaseRef.child('noticias')
+  return dispatch => new Promise(resolve => FirebaseRef.child('noticias').orderByChild('published').equalTo(true)
     .on('value', (snapshot) => {
-      console.log('snapshot', snapshot);
-
       const noticias = snapshot.val() || {};
 
       return resolve(dispatch({
