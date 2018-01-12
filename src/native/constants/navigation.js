@@ -17,6 +17,7 @@ export default {
     activeBackgroundColor: 'rgba(255,255,255,0.1)',
     inactiveBackgroundColor: Colors.brandPrimary,
     tabBarStyle: { backgroundColor: Colors.brandPrimary },
+    tabBarPosition: 'bottom',
   },
 
   icons: {
