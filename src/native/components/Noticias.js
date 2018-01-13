@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, TouchableOpacity, RefreshControl, Image } from 'react-native';
+import { FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import getRNDraftJSBlocks from 'react-native-draftjs-render';
+import { distanceInWordsToNow } from 'date-fns';
+
 import Loading from './Loading';
 import Error from './Error';
 import Header from './Header';
 import Spacer from './Spacer';
-
-import { distanceInWordsToNow } from 'date-fns';
 
 const NoticiaListing = ({
   error,
@@ -40,8 +41,10 @@ const NoticiaListing = ({
             <Card transparent style={{ paddingHorizontal: 6 }}>
               <CardItem cardBody>
                 <Body>
-                  <Spacer size={10} />
+                  <Spacer size={15} />
                   <Text style={{ fontWeight: '800' }}>{item.title} • {distanceInWordsToNow(item.publishDate)}</Text>
+                  <Spacer size={15} />
+                  <View>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
                   <Spacer size={15} />
                   <Button
                     block
