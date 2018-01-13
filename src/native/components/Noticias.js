@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import getRNDraftJSBlocks from 'react-native-draftjs-render';
@@ -27,6 +27,14 @@ const NoticiaListing = ({
 
   const onPress = item => Actions.noticia({ match: { params: { id: String(item.id) } } });
 
+  const styles = StyleSheet.create({
+    bordered: {
+      borderBottomWidth: 1,
+      borderStyle: 'solid',
+      borderBottomColor: 'black',
+    }
+  });
+
   return (
     <Container>
       <Content padder>
@@ -38,26 +46,19 @@ const NoticiaListing = ({
           numColumns={1}
           data={noticias}
           renderItem={({ item }) => (
-            <Card transparent style={{ paddingHorizontal: 6 }}>
-              <CardItem cardBody>
-                <Body>
-                  <Spacer size={15} />
-                  <Text style={{ fontWeight: '800' }}>{item.title} • {distanceInWordsToNow(item.publishDate)}</Text>
-                  <Spacer size={15} />
-                  <View>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
-                  <Spacer size={15} />
-                  <Button
-                    block
-                    bordered
-                    small
-                    onPress={() => onPress(item)}
-                  >
-                    <Text>View Noticia</Text>
-                  </Button>
-                  <Spacer size={5} />
-                </Body>
-              </CardItem>
-            </Card>
+            <View style={styles.bordered}>
+              <Card transparent style={{ paddingHorizontal: 6 }}>
+                <CardItem cardBody>
+                  <Body>
+                    <Spacer size={15} />
+                    <Text style={{ fontWeight: '800' }}>{item.title} • {distanceInWordsToNow(item.publishDate)}</Text>
+                    <Spacer size={15} />
+                    <View>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
+                    <Spacer size={15} />
+                  </Body>
+                </CardItem>
+              </Card>
+            </View>
           )}
           keyExtractor={keyExtractor}
           refreshControl={
