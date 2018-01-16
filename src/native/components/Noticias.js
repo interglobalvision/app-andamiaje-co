@@ -78,7 +78,7 @@ const NoticiaListing = ({
 NoticiaListing.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  //noticias: PropTypes.object.isRequired,
+  noticias: PropTypes.array.isRequired,
   reFetch: PropTypes.func,
 };
 

@@ -1,10 +1,10 @@
 export default {
   loading: true,
   error: null,
-  noticias: {
-    anId: {
+  noticias: [
+    {
       placeholder: true,
       title: '---- --- -- ------',
     },
-  },
+  ],
 };

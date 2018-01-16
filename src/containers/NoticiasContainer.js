@@ -7,13 +7,11 @@ import { getNoticias, setError } from '../actions/noticiasActions';
 class NoticiaListing extends Component {
   static propTypes = {
     Layout: PropTypes.func.isRequired,
-    /*
     noticias: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
-      noticias: PropTypes.object.isRequired,
+      noticias: PropTypes.array.isRequired,
     }).isRequired,
-    */
     match: PropTypes.shape({
       params: PropTypes.shape({}),
     }),
@@ -30,18 +28,14 @@ class NoticiaListing extends Component {
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchNoticias = (reFetch = false) => {
-    console.log('fetchNoticias', this.props.noticias.noticias.anId);
-    if (reFetch || this.props.noticias.noticias.anId.placeholder) {
-      console.log('CONTAINER', this.props);
-      return this.props.getNoticias()
-        .catch((err) => {
-          console.log(`Error: ${err}`);
-          return this.props.setError(err);
-        });
-    }
+  fetchNoticias = () => {
+    console.log('CONTAINER', this.props);
+    return this.props.getNoticias()
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        return this.props.setError(err);
+      });
 
-    return false;
   }
 
   render = () => {
@@ -54,7 +48,7 @@ class NoticiaListing extends Component {
         error={noticias.error}
         loading={noticias.loading}
         noticias={noticias.noticias}
-        reFetch={() => this.fetchNoticias(true)}
+        reFetch={() => this.fetchNoticias()}
       />
     );
   }
