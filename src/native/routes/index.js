@@ -29,8 +29,6 @@ import ProfileComponent from '../components/Profile';
 
 import AboutComponent from '../components/About';
 
-console.log(DefaultProps.tabProps);
-
 const Index = (
   <Scene key="root">
     <Scene key='login' title='LOGIN' component={LoginContainer} Layout={LoginComponent} hideNavBar initial />
@@ -50,7 +48,7 @@ const Index = (
             icon={() => <Icon name='book' {...DefaultProps.icons} />}
             {...DefaultProps.navbarProps}
           >
-            <Scene key='noticias' component={NoticiasContainer} Layout={NoticiasComponent} />
+            <Scene key='noticias' component={NoticiasContainer} Layout={NoticiasComponent}/>
           </Stack>
         </Tabs>
       </Scene>
