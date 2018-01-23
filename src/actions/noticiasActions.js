@@ -14,7 +14,9 @@ export function setError(message) {
  * Get Noticias
  */
 export function getNoticias() {
-  if (Firebase === null) return () => new Promise(resolve => resolve());
+  if (Firebase === null) {
+    return () => new Promise(resolve => resolve());
+  }
 
   return dispatch => new Promise(resolve => FirebaseRef.child('noticias').orderByChild('publishDate')
     .on('value', (snapshot) => {

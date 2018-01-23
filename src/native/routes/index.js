@@ -6,7 +6,7 @@ import DefaultProps from '../constants/navigation';
 import AppConfig from '../../constants/config';
 
 import NoticiasContainer from '../../containers/NoticiasContainer';
-import NoticiasComponent from '../components/Noticias';
+import NoticiasList from '../components/Noticias';
 
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
@@ -48,100 +48,12 @@ const Index = (
             icon={() => <Icon name='book' {...DefaultProps.icons} />}
             {...DefaultProps.navbarProps}
           >
-            <Scene key='noticias' component={NoticiasContainer} Layout={NoticiasComponent}/>
+            <Scene key='noticias' component={NoticiasContainer} Layout={NoticiasList}/>
           </Stack>
         </Tabs>
       </Scene>
     </Stack>
   </Scene>
 );
-
-/*
-<Stack
-  {...DefaultProps.tabProps}
-  key='main'
-  >
-  <Scene hideNavBar>
-    <Tabs
-      key='tabbar'
-      swipeEnabled
-      type='replace'
-      showLabel={false}
-      {...DefaultProps.tabProps}
-    >
-      <Stack
-        key='noticias'
-        title='NOTICIAS'
-        icon={() => <Icon name='book' {...DefaultProps.icons} />}
-        {...DefaultProps.navbarProps}
-      >
-        <Scene key='noticias' component={NoticiasContainer} Layout={NoticiasComponent} />
-      </Stack>
-
-      <Stack
-        key='home'
-        title={AppConfig.appName.toUpperCase()}
-        icon={() => <Icon name='planet' {...DefaultProps.icons} />}
-        {...DefaultProps.navbarProps}
-      >
-        <Scene key='home' component={AboutComponent} />
-      </Stack>
-
-      <Stack
-        key='recipes'
-        title='RECIPES'
-        icon={() => <Icon name='book' {...DefaultProps.icons} />}
-        {...DefaultProps.navbarProps}
-      >
-        <Scene key='recipes' component={RecipesContainer} Layout={RecipesComponent} />
-      </Stack>
-
-      <Stack
-        key='profile'
-        title='PROFILE'
-        icon={() => <Icon name='contact' {...DefaultProps.icons} />}
-        {...DefaultProps.navbarProps}
-      >
-        <Scene key='profileHome' component={AppContainer} Layout={ProfileComponent} />
-        <Scene
-          back
-          key='signUp'
-          title='SIGN UP'
-          {...DefaultProps.navbarProps}
-          component={SignUpContainer}
-          Layout={SignUpComponent}
-        />
-        <Scene
-          back
-          key='forgotPassword'
-          title='FORGOT PASSWORD'
-          {...DefaultProps.navbarProps}
-          component={ForgotPasswordContainer}
-          Layout={ForgotPasswordComponent}
-        />
-        <Scene
-          back
-          key='updateProfile'
-          title='UPDATE PROFILE'
-          {...DefaultProps.navbarProps}
-          component={UpdateProfileContainer}
-          Layout={UpdateProfileComponent}
-        />
-      </Stack>
-    </Tabs>
-  </Scene>
-
-  <Scene
-    back
-    clone
-    key='recipe'
-    title='RECIPE'
-    {...DefaultProps.navbarProps}
-    component={RecipesContainer}
-    Layout={RecipeViewComponent}
-  />
-</Stack>
-);
-*/
 
 export default Index;

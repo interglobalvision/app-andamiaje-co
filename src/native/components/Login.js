@@ -43,7 +43,8 @@ class Login extends React.Component {
   handleSubmit = () => {
     this.props.onFormSubmit(this.state)
       .then(() => {
-        Actions.push('main');
+        // Redirect to `main` and reset navigation stack so user can't "back" to login
+        Actions.reset('main');
       })
       .catch(e => console.log(`Error: ${e}`));
   }
@@ -51,7 +52,8 @@ class Login extends React.Component {
   checkIfLogged(member) {
     // Redirect if already logged in
     if (member !== undefined && member.uid) {
-      Actions.push('main', this.props);
+      // Redirect to `main` and reset navigation stack so user can't "back" to login
+      Actions.reset('main', this.props);
     }
   }
 

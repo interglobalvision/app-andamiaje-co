@@ -11,7 +11,7 @@ import Error from './Error';
 import Header from './Header';
 import Spacer from './Spacer';
 
-const NoticiaListing = ({
+const NoticiasList = ({
   error,
   loading,
   noticias,
@@ -75,16 +75,16 @@ const NoticiaListing = ({
   );
 };
 
-NoticiaListing.propTypes = {
+NoticiasList.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   noticias: PropTypes.array.isRequired,
   reFetch: PropTypes.func,
 };
 
-NoticiaListing.defaultProps = {
+NoticiasList.defaultProps = {
   error: null,
   reFetch: null,
 };
 
-export default NoticiaListing;
+export default NoticiasList;
