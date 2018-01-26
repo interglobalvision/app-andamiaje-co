@@ -42,9 +42,30 @@ class Login extends React.Component {
 
   handleSubmit = () => {
     this.props.onFormSubmit(this.state)
-      .then(() => Actions.tabbar())
+      .then(() => {
+        // Redirect to `main` and reset navigation stack so user can't "back" to login
+        Actions.reset('main');
+      })
       .catch(e => console.log(`Error: ${e}`));
   }
+
+  checkIfLogged(member) {
+    // Redirect if already logged in
+    if (member !== undefined && member.uid) {
+      // Redirect to `main` and reset navigation stack so user can't "back" to login
+      Actions.reset('main', this.props);
+    }
+  }
+
+  componentDidMount() {
+    const { member } = this.props;
+    this.checkIfLogged(member);
+  }
+
+  componentWillUpdate({ member }) {
+    this.checkIfLogged(member);
+  }
+
 
   render() {
     const { loading, error } = this.props;
