@@ -24,19 +24,16 @@ class Root extends Component {
 
     return(
       <Provider store={store}>
-      {/*
         <PersistGate
           loading={<Loading />}
-        >
-        */}
+          persistor={persistor}
+      >
           <StyleProvider style={getTheme(theme)}>
             <Router>
               {Routes}
             </Router>
           </StyleProvider>
-      {/*
         </PersistGate>
-        */}
       </Provider>
     );
   }

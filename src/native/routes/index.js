@@ -6,7 +6,7 @@ import DefaultProps from '../constants/navigation';
 import AppConfig from '../../constants/config';
 
 import NoticiasContainer from '../../containers/NoticiasContainer';
-import NoticiasList from '../components/Noticias';
+import Noticias from '../components/noticias/Noticias';
 
 import CatalogosContainer from '../../containers/CatalogosContainer';
 import CatalogosList from '../components/Catalogos';
@@ -57,7 +57,7 @@ const Index = (
           title='NOTICIAS'
           initial
           component={NoticiasContainer}
-          Layout={NoticiasList}
+          Layout={Noticias}
         />
       </Stack>
       <Stack
