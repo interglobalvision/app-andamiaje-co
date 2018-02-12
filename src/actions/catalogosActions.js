@@ -18,7 +18,7 @@ export function getCatalogos() {
     return () => new Promise(resolve => resolve());
   }
 
-  return dispatch => new Promise(resolve => FirebaseRef.child('catalogos').orderByChild('title')
+  return dispatch => new Promise(resolve => FirebaseRef.child('catalogos').orderByChild('startDate')
     .on('value', (snapshot) => {
       const catalogos = snapshot.val() || {};
 
