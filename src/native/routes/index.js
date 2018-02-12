@@ -48,7 +48,7 @@ const Index = (
           <Stack
             key='noticias'
             title='NOTICIAS'
-            icon={() => <Icon name='book' {...DefaultProps.icons} />}
+            icon={() => <Icon name='ios-flower' {...DefaultProps.icons} />}
             {...DefaultProps.navbarProps}
           >
             <Scene key='noticias' component={NoticiasContainer} Layout={NoticiasList}/>
