@@ -1,7 +1,11 @@
 export default {
   loading: true,
   error: null,
-  catalogos: [
+  activeCatalogo: {
+    placeholder: true,
+    title: '---- --- -- ------',
+  },
+  pastCatalogos: [
     {
       placeholder: true,
       title: '---- --- -- ------',
