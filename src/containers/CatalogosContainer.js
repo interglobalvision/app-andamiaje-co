@@ -10,7 +10,8 @@ class CatalogosContainer extends Component {
     catalogos: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
-      catalogos: PropTypes.array.isRequired,
+      activeCatalogo: PropTypes.object.isRequired,
+      pastCatalogos: PropTypes.array.isRequired,
     }).isRequired,
     getCatalogos: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
@@ -37,7 +38,8 @@ class CatalogosContainer extends Component {
       <Layout
         error={catalogos.error}
         loading={catalogos.loading}
-        catalogos={catalogos.catalogos}
+        activeCatalogo={catalogos.activeCatalogo}
+        pastCatalogos={catalogos.pastCatalogos}
         reFetch={() => this.fetchCatalogos()}
       />
     );
