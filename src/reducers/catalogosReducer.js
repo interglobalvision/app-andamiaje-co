@@ -11,13 +11,13 @@ export default function catalogoReducer(state = initialState, action) {
       };
     }
     case 'CATALOGOS_REPLACE': {
-      let catalogos = [];
+      let pastCatalogos = [];
+      let activeCatalogo = {};
 
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        catalogos = Object.keys(action.data).
-          filter(key => action.data[key].published).  // Only published Catalogos
-          reverse(). // Reverse data becasue it comes sort by publishedDate ASC
+        pastCatalogos = Object.keys(action.data).
+          filter(key => action.data[key].startDate <= Date.now()).  // Only current & past Catalogos
           map(id => {
             let { title, startDate, endDate } = action.data[id];
 
@@ -28,13 +28,16 @@ export default function catalogoReducer(state = initialState, action) {
               endDate,
             })
           });
+
+        activeCatalogo = pastCatalogos.shift();
       }
 
       return {
         ...state,
         error: null,
         loading: false,
-        catalogos,
+        activeCatalogo,
+        pastCatalogos,
       };
     }
     default:
