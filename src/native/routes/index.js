@@ -8,6 +8,9 @@ import AppConfig from '../../constants/config';
 import NoticiasContainer from '../../containers/NoticiasContainer';
 import NoticiasList from '../components/Noticias';
 
+import CatalogosContainer from '../../containers/CatalogosContainer';
+import CatalogosList from '../components/Catalogos';
+
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
 import RecipeViewComponent from '../components/Recipe';
@@ -49,6 +52,14 @@ const Index = (
             {...DefaultProps.navbarProps}
           >
             <Scene key='noticias' component={NoticiasContainer} Layout={NoticiasList}/>
+          </Stack>
+          <Stack
+            key='catalogos'
+            title='CATALOGOS'
+            icon={() => <Icon name='book' {...DefaultProps.icons} />}
+            {...DefaultProps.navbarProps}
+          >
+            <Scene key='catalogos' component={CatalogosContainer} Layout={CatalogosList}/>
           </Stack>
         </Tabs>
       </Scene>
