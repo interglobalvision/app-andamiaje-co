@@ -1,24 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, SectionList, ListItem, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Card, CardItem, Body, Text, Button } from 'native-base';
-import { Actions } from 'react-native-router-flux';
 
-import Loading from './Loading';
-import Error from './Error';
-import Spacer from './Spacer';
+import Spacer from '../Spacer';
 
-const LotesList = ({
-  error,
-  loading,
-  lotes,
-  reFetch,
+import LotesListItemObra from './LotesListItemObra';
+
+const LotesListItem = ({
+  item,
 }) => {
-  // Loading
-  if (loading) return <Loading />;
-
-  // Error
-  if (error) return <Error content={error} />;
 
   const keyExtractor = item => item.id;
 
@@ -40,8 +31,7 @@ const LotesList = ({
     </View>
   );
 
-  // return Lote list item
-  _renderLote = ({ item }) => (
+  return (
     <View style={styles.bordered}>
       <Card transparent style={{ paddingHorizontal: 6 }}>
         <CardItem cardBody>
@@ -52,7 +42,7 @@ const LotesList = ({
             <FlatList
               numColumns={1}
               data={item.obras}
-              renderItem={this._renderObra}
+              renderItem={LotesListItemObra}
               keyExtractor={keyExtractor}
             />
             <Spacer size={15} />
@@ -61,33 +51,11 @@ const LotesList = ({
       </Card>
     </View>
   );
-
-  return (
-    <FlatList
-      numColumns={1}
-      data={lotes}
-      renderItem={this._renderLote}
-      keyExtractor={keyExtractor}
-      refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          onRefresh={reFetch}
-        />
-      }
-    />
-  );
 };
 
-LotesList.propTypes = {
-  error: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  lotes: PropTypes.array.isRequired,
-  reFetch: PropTypes.func,
+
+LotesListItem.propTypes = {
+  item: PropTypes.object.isRequired,
 };
 
-LotesList.defaultProps = {
-  error: null,
-  reFetch: null,
-};
-
-export default LotesList;
+export default LotesListItem;
