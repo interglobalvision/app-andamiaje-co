@@ -16,8 +16,6 @@ export default function loteReducer(state = initialState, action) {
       // get active Catalogo Lotes from state
       let activeLotes = state.lotes;
 
-      console.log(state);
-
       if (action.data && typeof action.data === 'object' && activeLotes !== undefined || activeLotes !== '') {
         // action.data is Object, and activeLotes arg is not empty
         lotes = Object.keys(action.data).
