@@ -12,8 +12,11 @@ import theme from '../../native-base-theme/variables/commonColor';
 import Routes from './routes/index';
 import Loading from './components/Loading';
 
+if (Platform.OS === 'android') console.disableYellowBox = true;
+
 // Hide StatusBar on Android as it overlaps tabs
 if (Platform.OS === 'android') StatusBar.setHidden(true);
+
 
 class Root extends Component {
   render() {
