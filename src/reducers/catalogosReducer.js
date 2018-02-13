@@ -19,7 +19,7 @@ export default function catalogoReducer(state = initialState, action) {
         pastCatalogos = Object.keys(action.data).
           filter(key => action.data[key].startDate <= Date.now()).  // Only current & past Catalogos
           map(id => {
-            let { title, startDate, saleDate, endDate, lotes } = action.data[id];
+            const { title, startDate, saleDate, endDate, lotes } = action.data[id];
 
             return ({
               id,
