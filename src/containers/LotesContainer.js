@@ -26,8 +26,7 @@ class LotesContainer extends Component {
     * Fetch Data from API, saving to Redux
     */
   fetchLotes = () => {
-    // pass activeLotes to loteReducer via getLotes action
-    return this.props.getLotes(this.props.activeLotes)
+    return this.props.getLotes()
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setError(err);
