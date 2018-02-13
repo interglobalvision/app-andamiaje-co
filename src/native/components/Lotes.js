@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
+import { StyleSheet, SectionList, ListItem, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Card, CardItem, Body, Text, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -32,23 +32,39 @@ const LotesList = ({
     }
   });
 
+  _renderObra = ({ item }) => (
+    <View>
+      <Text>{item.title}, {item.year}</Text>
+      <Text>{item.medium}</Text>
+    </View>
+  );
+
+  _renderLote = ({ item }) => (
+    <View style={styles.bordered}>
+      <Card transparent style={{ paddingHorizontal: 6 }}>
+        <CardItem cardBody>
+          <Body>
+            <Spacer size={15} />
+            <Text style={{ fontWeight: '800' }}>{item.artista.name}</Text>
+            <Spacer size={15} />
+            <FlatList
+              numColumns={1}
+              data={item.obras}
+              renderItem={this._renderObra}
+              keyExtractor={keyExtractor}
+            />
+            <Spacer size={15} />
+          </Body>
+        </CardItem>
+      </Card>
+    </View>
+  );
+
   return (
     <FlatList
       numColumns={1}
       data={lotes}
-      renderItem={({ item }) => (
-        <View style={styles.bordered}>
-          <Card transparent style={{ paddingHorizontal: 6 }}>
-            <CardItem cardBody>
-              <Body>
-                <Spacer size={15} />
-                <Text style={{ fontWeight: '800' }}>{item.artista.name}</Text>
-                <Spacer size={15} />
-              </Body>
-            </CardItem>
-          </Card>
-        </View>
-      )}
+      renderItem={this._renderLote}
       keyExtractor={keyExtractor}
       refreshControl={
         <RefreshControl
