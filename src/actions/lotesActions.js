@@ -13,7 +13,7 @@ export function setError(message) {
 /**
  * Get Lotes
  */
-export function getLotes() {
+export function getLotes(activeLotes) {
   if (Firebase === null) {
     return () => new Promise(resolve => resolve());
   }
@@ -24,7 +24,8 @@ export function getLotes() {
 
       return resolve(dispatch({
         type: 'LOTES_REPLACE',
-        data: lotes
+        data: lotes,
+        activeLotes // pass activeLotes to loteReducer as action.activeLotes
       }));
     })).catch(e => console.log(e));
 }

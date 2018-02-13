@@ -13,15 +13,12 @@ export default function loteReducer(state = initialState, action) {
     case 'LOTES_REPLACE': {
       let lotes = [];
 
-      // get active Catalogo Lotes from state
-      let activeLotes = state.lotes;
-
-      if (action.data && typeof action.data === 'object' && activeLotes !== undefined || activeLotes !== '') {
+      if (action.data && typeof action.data === 'object' && action.activeLotes !== undefined || action.activeLotes !== '') {
         // action.data is Object, and activeLotes arg is not empty
         lotes = Object.keys(action.data).
           filter(key => {
             // Filter by activeLotes
-            return activeLotes.find( lote => lote.id === key) === undefined ? false : true;
+            return action.activeLotes.find( lote => lote.id === key) === undefined ? false : true;
           }).  // Only lotes in catalogo
           map(id => {
             let { title, artista, obras, price } = action.data[id];
