@@ -31,6 +31,8 @@ export default function catalogoReducer(state = initialState, action) {
             })
           });
 
+        // remove the first Catalogo from pastCatalogos array,
+        // and assign it to activeCatalogo
         activeCatalogo = pastCatalogos.shift();
       }
 

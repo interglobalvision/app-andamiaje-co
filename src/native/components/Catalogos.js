@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { distanceInWordsToNow } from 'date-fns';
 
 import LotesContainer from '../../containers/LotesContainer';
 
@@ -37,6 +36,11 @@ const CatalogosList = ({
     }
   });
 
+  /**
+    * pass activeCatalogo Lotes into LotesContainer
+    * list pastCatalogos below
+    */
+
   return (
     <Container>
       <Content padder>
@@ -55,7 +59,7 @@ const CatalogosList = ({
                 <CardItem cardBody>
                   <Body>
                     <Spacer size={15} />
-                    <Text style={{ fontWeight: '800' }}>{item.title} • {distanceInWordsToNow(item.startDate)}</Text>
+                    <Text style={{ fontWeight: '800' }}>{item.title}</Text>
                     <Spacer size={15} />
                   </Body>
                 </CardItem>
