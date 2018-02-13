@@ -35,8 +35,6 @@ class LotesContainer extends Component {
   render = () => {
     const { lotes } = this.props;
 
-    console.log(this.props);
-
     return (
       <LotesList
         error={lotes.error}
