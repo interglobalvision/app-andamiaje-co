@@ -3,6 +3,7 @@ import member from './member';
 import recipes from './recipes';
 import noticias from './noticiasReducer';
 import catalogos from './catalogosReducer';
+import lotes from './lotesReducer';
 
 const rehydrated = (state = false, action) => {
   switch (action.type) {
@@ -20,4 +21,5 @@ export default {
   recipes,
   noticias,
   catalogos,
+  lotes,
 };
