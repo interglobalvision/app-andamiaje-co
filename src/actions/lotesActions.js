@@ -25,7 +25,7 @@ export function getLotes(activeLotes) {
       return resolve(dispatch({
         type: 'LOTES_REPLACE',
         data: lotes,
-        activeLotes
+        activeLotes // pass activeLotes to loteReducer as action.activeLotes
       }));
     })).catch(e => console.log(e));
 }

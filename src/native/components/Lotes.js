@@ -32,6 +32,7 @@ const LotesList = ({
     }
   });
 
+  // return Obra details in list item
   _renderObra = ({ item }) => (
     <View>
       <Text>{item.title}, {item.year}</Text>
@@ -39,6 +40,7 @@ const LotesList = ({
     </View>
   );
 
+  // return Lote list item
   _renderLote = ({ item }) => (
     <View style={styles.bordered}>
       <Card transparent style={{ paddingHorizontal: 6 }}>

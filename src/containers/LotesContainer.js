@@ -16,6 +16,8 @@ class LotesContainer extends Component {
     getLotes: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
     activeLotes: PropTypes.array,
+    // activeLotes prop passed from CatalogosContainer
+    // to filter Lotes by Catalog in loteReducer
   }
 
   componentDidMount = () => this.fetchLotes();
@@ -24,6 +26,7 @@ class LotesContainer extends Component {
     * Fetch Data from API, saving to Redux
     */
   fetchLotes = () => {
+    // pass activeLotes to loteReducer via getLotes action
     return this.props.getLotes(this.props.activeLotes)
       .catch((err) => {
         console.log(`Error: ${err}`);

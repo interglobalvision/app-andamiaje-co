@@ -13,20 +13,17 @@ export default function loteReducer(state = initialState, action) {
     case 'LOTES_REPLACE': {
       let lotes = [];
 
-      // Pick out the props I need
-      if (action.data && typeof action.data === 'object') {
+      if (action.data && typeof action.data === 'object' && action.activeLotes !== undefined || action.activeLotes !== '') {
+        // action.data is Object, and activeLotes arg is not empty
         lotes = Object.keys(action.data).
           filter(key => {
-            if (action.activeLotes !== undefined || action.activeLotes !== '') {
-              // Find if the obra is in addedObras
-              return action.activeLotes.find( lote => lote.id === key) === undefined ? false : true;
-            } else {
-              return true;
-            }
+            // Filter by activeLotes
+            return action.activeLotes.find( lote => lote.id === key) === undefined ? false : true;
           }).  // Only lotes in catalogo
           map(id => {
             let { title, artista, obras, price } = action.data[id];
 
+            // Pick out the props I need
             return ({
               id,
               title,
