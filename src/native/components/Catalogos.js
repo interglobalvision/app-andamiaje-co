@@ -48,7 +48,7 @@ const CatalogosList = ({
           title="Catalogos"
         />
 
-        <LotesContainer activeLotes={activeCatalogo.lotes} />
+        <LotesContainer />
 
         <FlatList
           numColumns={1}
