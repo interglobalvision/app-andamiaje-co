@@ -1,32 +1,48 @@
-import Colors from '../../../native-base-theme/variables/commonColor';
+import Colors from './colors';
 
 export default {
   navbarProps: {
-    navigationBarStyle: { backgroundColor: 'rgba(255,255,255,1)' },
+    navigationBarStyle: {
+      backgroundColor: Colors.white,
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 1,
+      borderColor: Colors.black,
+    },
     titleStyle: {
       alignSelf: 'center',
       letterSpacing: 2,
-      fontSize: Colors.fontSizeBase,
+      fontSize: 15,
     },
-    backButtonTintColor: Colors.textColor,
+    backButtonTintColor: Colors.black,
   },
 
   tabProps: {
     swipeEnabled: true,
     tabBarPosition: 'bottom',
-    activeTintColor: 'black',
+    activeTintColor: Colors.black,
   },
 
   topTabProps: {
     tabBarPosition: 'top',
-    activeTintColor: 'black',
-    inactiveTintColor: 'black',
+    activeTintColor: Colors.white,
+    inactiveTintColor: Colors.black,
     style: {
-      backgroundColor: 'white',
+      backgroundColor: Colors.white,
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 1,
+      borderColor: Colors.black,
     },
+    indicatorStyle: {
+      backgroundColor: Colors.black,
+      height: 100
+    }
   },
 
   icons: {
-    style: { color: 'black' },
+    style: {
+      color: Colors.black,
+    },
   },
 };
