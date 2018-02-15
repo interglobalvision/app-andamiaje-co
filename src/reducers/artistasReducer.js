@@ -1,5 +1,7 @@
 import Store from '../store/artistas';
 
+import { orderBy } from 'lodash';
+
 export const initialState = Store;
 
 export default function artistaReducer(state = initialState, action) {
@@ -16,7 +18,7 @@ export default function artistaReducer(state = initialState, action) {
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
         artistas = Object.keys(action.data).
-          filter(key => action.data[key].active).  // Only published Noticias
+          filter(key => action.data[key].active).  // Only active Artistas
           map(id => {
             const { name, gallery, galleryUrl, websiteUrl, country, bioRawContent, cvRawContent, images, portfolio, video } = action.data[id];
 
@@ -34,6 +36,8 @@ export default function artistaReducer(state = initialState, action) {
               video,
             })
           });
+
+        artistas = orderBy(artistas, ['name'], ['asc']);
       }
 
       return {

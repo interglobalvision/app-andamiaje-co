@@ -14,6 +14,9 @@ import CatalogosList from '../components/Catalogos';
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/Artistas';
 
+import MiembrosContainer from '../../containers/MiembrosContainer';
+import MiembrosList from '../components/Miembros';
+
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
 import RecipeViewComponent from '../components/Recipe';
@@ -48,58 +51,58 @@ const Index = (
       hideNavBar
     >
       <Stack
-        title='NOTICIAS'
+        title='Noticias'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
       >
         <Scene
           key='noticias'
-          title='NOTICIAS'
+          title='Noticias'
           initial
           component={NoticiasContainer}
           Layout={Noticias}
         />
       </Stack>
       <Stack
-        title='CATALOGOS'
+        title='Catalogos'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
       >
         <Scene
           key='catalogos'
-          title='CATALOGOS'
+          title='Catalogos'
           component={CatalogosContainer}
           Layout={CatalogosList}
         />
       </Stack>
       <Stack
-        title='DIRECTORIO'
+        title='Directorio'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
       >
         <Tabs
           key="directory"
-          title='DIRECTORIO'
+          title='Artistas'
           {...DefaultProps.topTabProps}
           headerMode='none'
         >
           <Stack
-            title='MIEMBROS'
+            title='Miembros'
           >
             <Scene
               key='miembros'
-              title='MIEMBROS'
+              title='Miembros'
               initial
-              component={ArtistasContainer}
-              Layout={ArtistasList}
+              component={MiembrosContainer}
+              Layout={MiembrosList}
             />
           </Stack>
           <Stack
-            title='ARTISTAS'
+            title='Artistas'
           >
             <Scene
               key='artistas'
-              title='ARTISTAS'
+              title='Artistas'
               initial
               component={ArtistasContainer}
               Layout={ArtistasList}
