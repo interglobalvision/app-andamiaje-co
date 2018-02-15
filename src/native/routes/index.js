@@ -8,6 +8,9 @@ import AppConfig from '../../constants/config';
 import NoticiasContainer from '../../containers/NoticiasContainer';
 import NoticiasList from '../components/Noticias';
 
+import CatalogosContainer from '../../containers/CatalogosContainer';
+import CatalogosList from '../components/Catalogos';
+
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/Artistas';
 
@@ -58,6 +61,18 @@ const Index = (
         />
       </Stack>
       <Stack
+        title='CATALOGOS'
+        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        {...DefaultProps.navbarProps}
+      >
+        <Scene
+          key='catalogos'
+          title='CATALOGOS'
+          component={CatalogosContainer}
+          Layout={CatalogosList}
+        />
+      </Stack>
+      <Stack
         title='DIRECTORIO'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
@@ -70,7 +85,6 @@ const Index = (
         >
           <Stack
             title='MIEMBROS'
-            icon={() => <Icon name='book' {...DefaultProps.icons} />}
           >
             <Scene
               key='miembros'
@@ -82,7 +96,6 @@ const Index = (
           </Stack>
           <Stack
             title='ARTISTAS'
-            icon={() => <Icon name='book' {...DefaultProps.icons} />}
           >
             <Scene
               key='artistas'

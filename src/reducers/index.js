@@ -2,6 +2,8 @@ import status from './status';
 import member from './member';
 import recipes from './recipes';
 import noticias from './noticiasReducer';
+import catalogos from './catalogosReducer';
+import lotes from './lotesReducer';
 import artistas from './artistasReducer';
 
 const rehydrated = (state = false, action) => {
@@ -19,5 +21,7 @@ export default {
   member,
   recipes,
   noticias,
+  catalogos,
+  lotes,
   artistas,
 };

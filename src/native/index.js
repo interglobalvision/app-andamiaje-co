@@ -17,6 +17,7 @@ if (Platform.OS === 'android') console.disableYellowBox = true;
 // Hide StatusBar on Android as it overlaps tabs
 if (Platform.OS === 'android') StatusBar.setHidden(true);
 
+
 class Root extends Component {
   render() {
     const { store, persistor } = this.props;
