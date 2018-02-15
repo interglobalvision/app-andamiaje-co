@@ -7824,6 +7824,10 @@ react-native-maps@0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.17.0.tgz#d10fa94a049432c46b6ee03fe9db84c83da65c8b"
 
+react-native-responsive-image-view@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-responsive-image-view/-/react-native-responsive-image-view-1.1.0.tgz#ca1b1a817deb381416f7af758f17c9e6b8f0ad5e"
+
 react-native-router-flux@^4.0.0-beta.24:
   version "4.0.0-beta.28"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-4.0.0-beta.28.tgz#1d39cf176c88d0658af03cfa80dfb4a8eb284619"
