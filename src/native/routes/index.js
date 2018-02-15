@@ -44,34 +44,35 @@ const Index = (
       tabBarPosition='bottom'
       hideNavBar
     >
-      <Stack title='noticias'>
+      <Stack title='NOTICIAS'>
         <Scene
           key='noticias'
-          title='noticias'
+          title='NOTICIAS'
           initial
           component={NoticiasContainer}
           Layout={NoticiasList}
         />
       </Stack>
-      <Stack title='directory'>
+      <Stack title='DIRECTORIO'>
         <Tabs
           key="directory"
-          title='directory'
+          title='DIRECTORIO'
           tabBarPosition='top'
+          headerMode='none'
         >
-          <Stack title='miembros'>
+          <Stack title='MIEMBROS'>
             <Scene
               key='miembros'
-              title='miembros'
+              title='MIEMBROS'
               initial
               component={ArtistasContainer}
               Layout={ArtistasList}
             />
           </Stack>
-          <Stack title='artistas'>
+          <Stack title='ARTISTAS'>
             <Scene
               key='artistas'
-              title='artistas'
+              title='ARTISTAS'
               initial
               component={ArtistasContainer}
               Layout={ArtistasList}
