@@ -41,10 +41,14 @@ const Index = (
     <Tabs
       key='main'
       lazy={true}
-      tabBarPosition='bottom'
+      {...DefaultProps.tabProps}
       hideNavBar
     >
-      <Stack title='NOTICIAS'>
+      <Stack
+        title='NOTICIAS'
+        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        {...DefaultProps.navbarProps}
+      >
         <Scene
           key='noticias'
           title='NOTICIAS'
@@ -53,14 +57,21 @@ const Index = (
           Layout={NoticiasList}
         />
       </Stack>
-      <Stack title='DIRECTORIO'>
+      <Stack
+        title='DIRECTORIO'
+        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        {...DefaultProps.navbarProps}
+      >
         <Tabs
           key="directory"
           title='DIRECTORIO'
-          tabBarPosition='top'
+          {...DefaultProps.topTabProps}
           headerMode='none'
         >
-          <Stack title='MIEMBROS'>
+          <Stack
+            title='MIEMBROS'
+            icon={() => <Icon name='book' {...DefaultProps.icons} />}
+          >
             <Scene
               key='miembros'
               title='MIEMBROS'
@@ -69,7 +80,10 @@ const Index = (
               Layout={ArtistasList}
             />
           </Stack>
-          <Stack title='ARTISTAS'>
+          <Stack
+            title='ARTISTAS'
+            icon={() => <Icon name='book' {...DefaultProps.icons} />}
+          >
             <Scene
               key='artistas'
               title='ARTISTAS'
