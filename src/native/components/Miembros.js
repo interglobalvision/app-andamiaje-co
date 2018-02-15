@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
 import { Container, Content } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import Loading from './Loading';
 import Error from './Error';
+import Header from './Header';
 import Spacer from './Spacer';
 import DirectoryListItem from './DirectoryListItem';
 
-const ArtistasList = ({
+const MiembrosList = ({
   error,
   loading,
-  artistas,
+  miembros,
   reFetch,
 }) => {
   // Loading
@@ -23,7 +24,7 @@ const ArtistasList = ({
 
   const keyExtractor = item => item.id;
 
-  const onPress = item => Actions.artista({ match: { params: { id: String(item.id) } } });
+  const onPress = item => Actions.miembro({ match: { params: { id: String(item.id) } } });
 
   const styles = StyleSheet.create({
     bordered: {
@@ -38,9 +39,9 @@ const ArtistasList = ({
       <Content padder>
         <FlatList
           numColumns={1}
-          data={artistas}
+          data={miembros}
           renderItem={({ item }) => (
-            <DirectoryListItem name={item.name} images={item.images} />
+            <DirectoryListItem name={item.displayName} images={item.images} />
           )}
           keyExtractor={keyExtractor}
           refreshControl={
@@ -57,16 +58,16 @@ const ArtistasList = ({
   );
 };
 
-ArtistasList.propTypes = {
+MiembrosList.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  artistas: PropTypes.array.isRequired,
+  miembros: PropTypes.array.isRequired,
   reFetch: PropTypes.func,
 };
 
-ArtistasList.defaultProps = {
+MiembrosList.defaultProps = {
   error: null,
   reFetch: null,
 };
 
-export default ArtistasList;
+export default MiembrosList;

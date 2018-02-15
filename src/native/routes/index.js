@@ -14,6 +14,9 @@ import CatalogosList from '../components/Catalogos';
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/Artistas';
 
+import MiembrosContainer from '../../containers/MiembrosContainer';
+import MiembrosList from '../components/Miembros';
+
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
 import RecipeViewComponent from '../components/Recipe';
@@ -90,8 +93,8 @@ const Index = (
               key='miembros'
               title='MIEMBROS'
               initial
-              component={ArtistasContainer}
-              Layout={ArtistasList}
+              component={MiembrosContainer}
+              Layout={MiembrosList}
             />
           </Stack>
           <Stack
