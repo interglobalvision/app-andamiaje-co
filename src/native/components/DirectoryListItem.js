@@ -2,11 +2,12 @@ import React from 'react';
 import { View, ActivityIndicator, Image } from 'react-native';
 import Colors from '../../../native-base-theme/variables/commonColor';
 import { Text } from 'native-base';
+import { getResizedImageUrl } from '../../lib/utilities';
 
 const DirectoryListItem = ({ name, images }) => {
   const placeholder = 'http://via.placeholder.com/50x50';
   // TODO: Need a placeholder image for missing avatars
-  const imageSrc = images !== undefined ? images[0].downloadURL : placeholder;
+  const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
 
   return (
     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingTop: 10, paddingBottom: 10 }}>
