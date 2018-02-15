@@ -29,6 +29,9 @@ const configureStore = () => {
     () => { store.getState(); },
   );
 
+  // run the app once with this line uncommented to purge persistant state
+  // persistor.purge();
+
   return { persistor, store };
 };
 
