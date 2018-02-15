@@ -24,7 +24,7 @@ const NoticiaItem = ({item}) => (
     <Spacer size={15} />
     <View>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
     <Spacer size={15} />
-    { item.images !== undefined ?
+    { item.images !== undefined && item.images.length ?
       <ResponsiveImageView
         source={{ uri: item.images[0].downloadURL}}
         render={({ getViewProps, getImageProps }) => (
