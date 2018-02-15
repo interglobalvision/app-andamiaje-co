@@ -29,6 +29,8 @@ const configureStore = () => {
     () => { store.getState(); },
   );
 
+  //persistor.purge();
+
   return { persistor, store };
 };
 
