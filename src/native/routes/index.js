@@ -51,58 +51,58 @@ const Index = (
       hideNavBar
     >
       <Stack
-        title='NOTICIAS'
+        title='Noticias'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
       >
         <Scene
           key='noticias'
-          title='NOTICIAS'
+          title='Noticias'
           initial
           component={NoticiasContainer}
           Layout={NoticiasList}
         />
       </Stack>
       <Stack
-        title='CATALOGOS'
+        title='Catalogos'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
       >
         <Scene
           key='catalogos'
-          title='CATALOGOS'
+          title='Catalogos'
           component={CatalogosContainer}
           Layout={CatalogosList}
         />
       </Stack>
       <Stack
-        title='DIRECTORIO'
+        title='Directorio'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
       >
         <Tabs
           key="directory"
-          title='DIRECTORIO'
+          title='Artistas'
           {...DefaultProps.topTabProps}
           headerMode='none'
         >
           <Stack
-            title='MIEMBROS'
+            title='Miembros'
           >
             <Scene
               key='miembros'
-              title='MIEMBROS'
+              title='Miembros'
               initial
               component={MiembrosContainer}
               Layout={MiembrosList}
             />
           </Stack>
           <Stack
-            title='ARTISTAS'
+            title='Artistas'
           >
             <Scene
               key='artistas'
-              title='ARTISTAS'
+              title='Artistas'
               initial
               component={ArtistasContainer}
               Layout={ArtistasList}
