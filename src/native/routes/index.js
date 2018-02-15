@@ -61,6 +61,18 @@ const Index = (
         />
       </Stack>
       <Stack
+        title='CATALOGOS'
+        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        {...DefaultProps.navbarProps}
+      >
+        <Scene
+          key='catalogos'
+          title='CATALOGOS'
+          component={CatalogosContainer}
+          Layout={CatalogosList}
+        />
+      </Stack>
+      <Stack
         title='DIRECTORIO'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
@@ -92,14 +104,6 @@ const Index = (
               component={ArtistasContainer}
               Layout={ArtistasList}
             />
-          </Stack>
-          <Stack
-            key='catalogos'
-            title='CATALOGOS'
-            icon={() => <Icon name='book' {...DefaultProps.icons} />}
-            {...DefaultProps.navbarProps}
-          >
-            <Scene key='catalogos' component={CatalogosContainer} Layout={CatalogosList}/>
           </Stack>
         </Tabs>
       </Stack>
