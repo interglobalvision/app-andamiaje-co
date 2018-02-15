@@ -38,43 +38,48 @@ import AboutComponent from '../components/About';
 const Index = (
   <Scene key="root">
     <Scene key='login' title='LOGIN' component={LoginContainer} Layout={LoginComponent} hideNavBar initial />
-    <Stack key="main" {...DefaultProps.navbarProps}>
-      <Tabs
-        hideNavBar
-        swipeEnabled
-        type="replace"
-        {...DefaultProps.tabProps}
-      >
-        <Stack key='noticias' title='NOTICIAS'>
-          <Scene
-            tabBarLabel='NOTICIAS'
-            key='noticias'
-            icon={() => <Icon name='book' {...DefaultProps.icons} />}
-            component={NoticiasContainer}
-            Layout={NoticiasList}
-          />
-        </Stack>
-        <Stack key='directory' title='DIRECTORIO'>
-          <Tabs
-            key="directory"
-            swipeEnabled
-            type="replace"
-            tabBarPosition='top'
-            tabBarLabel='DIRECTORIO'
-          >
-            <Stack key='artistas' title='ARTISTAS'>
-              <Scene
-                key='artistas'
-                tabBarLabel='ARTISTAS'
-                component={ArtistasContainer}
-                Layout={ArtistasList}
-                icon={() => <Icon name='book' {...DefaultProps.icons} />}
-              />
-            </Stack>
-          </Tabs>
-        </Stack>
-      </Tabs>
-    </Stack>
+    <Tabs
+      key='main'
+      lazy={true}
+      tabBarPosition='bottom'
+      hideNavBar
+    >
+      <Stack title='noticias'>
+        <Scene
+          key='noticias'
+          title='noticias'
+          initial
+          component={NoticiasContainer}
+          Layout={NoticiasList}
+        />
+      </Stack>
+      <Stack title='directory'>
+        <Tabs
+          key="directory"
+          title='directory'
+          tabBarPosition='top'
+        >
+          <Stack title='miembros'>
+            <Scene
+              key='miembros'
+              title='miembros'
+              initial
+              component={ArtistasContainer}
+              Layout={ArtistasList}
+            />
+          </Stack>
+          <Stack title='artistas'>
+            <Scene
+              key='artistas'
+              title='artistas'
+              initial
+              component={ArtistasContainer}
+              Layout={ArtistasList}
+            />
+          </Stack>
+        </Tabs>
+      </Stack>
+    </Tabs>
   </Scene>
 );
 
