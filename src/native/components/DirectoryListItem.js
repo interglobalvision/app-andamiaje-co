@@ -11,7 +11,7 @@ const DirectoryListItem = ({ name, images }) => {
   return (
     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', paddingTop: 10, paddingBottom: 10 }}>
       <View style={{ flexBasis: 50, minHeight: 50 }}>
-        <Image source={{ uri: imageSrc }} style={{ width: 50, height: 50, borderRadius: 50 }} />
+        <Image source={{ uri: imageSrc }} style={{ width: 50, height: 50, borderRadius: 25 }} />
       </View>
       <View style={{ paddingLeft: 10 }}>
         <Text>{ name }</Text>
