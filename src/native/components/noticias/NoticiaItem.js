@@ -5,6 +5,8 @@ import { Card, CardItem, Body, Text, Button } from 'native-base';
 import { distanceInWordsToNow } from 'date-fns';
 import getRNDraftJSBlocks from 'react-native-draftjs-render';
 
+import ResponsiveImageView from 'react-native-responsive-image-view';
+
 import Spacer from '../Spacer';
 
 const styles = StyleSheet.create({
@@ -17,17 +19,21 @@ const styles = StyleSheet.create({
 
 const NoticiaItem = ({item}) => (
   <View style={styles.bordered}>
-    <Card transparent style={{ paddingHorizontal: 6 }}>
-      <CardItem cardBody>
-        <Body>
-          <Spacer size={15} />
-          <Text style={{ fontWeight: '800' }}>{item.title} • {distanceInWordsToNow(item.publishDate)}</Text>
-          <Spacer size={15} />
-          <View>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
-          <Spacer size={15} />
-        </Body>
-      </CardItem>
-    </Card>
+    <Spacer size={15} />
+    <Text style={{ fontWeight: '800' }}>{item.title} • {distanceInWordsToNow(item.publishDate)}</Text>
+    <Spacer size={15} />
+    <View>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
+    <Spacer size={15} />
+    { item.images !== undefined ?
+      <ResponsiveImageView
+        source={{ uri: item.images[0].downloadURL}}
+        render={({ getViewProps, getImageProps }) => (
+          <View {...getViewProps()}>
+            <Image {...getImageProps()} />
+          </View>
+        )}
+      /> : '' }
+    <Spacer size={15} />
   </View>
 );
 
