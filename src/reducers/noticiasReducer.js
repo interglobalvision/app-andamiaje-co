@@ -19,13 +19,21 @@ export default function noticiaReducer(state = initialState, action) {
           filter(key => action.data[key].published).  // Only published Noticias
           reverse(). // Reverse data becasue it comes sort by publishedDate ASC
           map(id => {
-            const { title, rawContent, publishDate } = action.data[id];
+            const {
+              title,
+              rawContent,
+              publishDate,
+              images,
+              video,
+            } = action.data[id];
 
             return ({
               id,
               title,
               rawContent,
               publishDate,
+              images,
+              video,
             })
           });
       }
