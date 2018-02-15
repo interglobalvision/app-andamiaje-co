@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, Scene, Tabs, Stack } from 'react-native-router-flux';
+import { Scene, Tabs, Stack } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 
 import DefaultProps from '../constants/navigation';
@@ -38,41 +38,42 @@ import AboutComponent from '../components/About';
 const Index = (
   <Scene key="root">
     <Scene key='login' title='LOGIN' component={LoginContainer} Layout={LoginComponent} hideNavBar initial />
-
-    <Stack key="main">
-      <Scene hideNavBar>
-        <Tabs
-          key="tabbar"
-          swipeEnabled
-          type="replace"
-          showLabel={false}
-          {...DefaultProps.tabProps}
-        >
-          <Stack
+    <Stack key="main" {...DefaultProps.navbarProps}>
+      <Tabs
+        hideNavBar
+        swipeEnabled
+        type="replace"
+        {...DefaultProps.tabProps}
+      >
+        <Stack key='noticias' title='NOTICIAS'>
+          <Scene
+            tabBarLabel='NOTICIAS'
             key='noticias'
-            title='NOTICIAS'
             icon={() => <Icon name='book' {...DefaultProps.icons} />}
-            {...DefaultProps.navbarProps}
+            component={NoticiasContainer}
+            Layout={NoticiasList}
+          />
+        </Stack>
+        <Stack key='directory' title='DIRECTORIO'>
+          <Tabs
+            key="directory"
+            swipeEnabled
+            type="replace"
+            tabBarPosition='top'
+            tabBarLabel='DIRECTORIO'
           >
-            <Scene key='noticias' component={NoticiasContainer} Layout={NoticiasList}/>
-          </Stack>
-          <Stack
-            key='directorio'
-            title='DIRECTORIO'
-            icon={() => <Icon name='book' {...DefaultProps.icons} />}
-            {...DefaultProps.navbarProps}
-          >
-            <Tabs
-              key="directoriotabs"
-              swipeEnabled
-              tabBarPosition="top"
-              showLabel={true}
-            >
-              <Scene tabBarLabel='ARTISTAS' key='artistas' component={ArtistasContainer} Layout={ArtistasList}/>
-            </Tabs>
-          </Stack>
-        </Tabs>
-      </Scene>
+            <Stack key='artistas' title='ARTISTAS'>
+              <Scene
+                key='artistas'
+                tabBarLabel='ARTISTAS'
+                component={ArtistasContainer}
+                Layout={ArtistasList}
+                icon={() => <Icon name='book' {...DefaultProps.icons} />}
+              />
+            </Stack>
+          </Tabs>
+        </Stack>
+      </Tabs>
     </Stack>
   </Scene>
 );
