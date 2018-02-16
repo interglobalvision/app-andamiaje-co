@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
-import { Card, CardItem, Body, Text, Button } from 'native-base';
+import { Text, Button, List } from 'native-base';
 
 import Spacer from '../Spacer';
 
+import LotesCarousel from './LotesCarousel';
 import LotesListItemObra from './LotesListItemObra';
+//import SwiperItem from '../SwiperItem';
 
 const LotesListItem = ({
   item,
@@ -23,32 +25,17 @@ const LotesListItem = ({
     }
   });
 
-  // return Obra details in list item
-  _renderObra = ({ item }) => (
-    <View>
-      <Text>{item.title}, {item.year}</Text>
-      <Text>{item.medium}</Text>
-    </View>
-  );
-
   return (
     <View style={styles.bordered}>
-      <Card transparent style={{ paddingHorizontal: 6 }}>
-        <CardItem cardBody>
-          <Body>
-            <Spacer size={15} />
-            <Text style={{ fontWeight: '800' }}>{item.artista.name}</Text>
-            <Spacer size={15} />
-            <FlatList
-              numColumns={1}
-              data={item.obras}
-              renderItem={LotesListItemObra}
-              keyExtractor={keyExtractor}
-            />
-            <Spacer size={15} />
-          </Body>
-        </CardItem>
-      </Card>
+      <Spacer size={15} />
+      <LotesCarousel obras={item.obras} />
+      <Spacer size={15} />
+      <Text style={{ fontWeight: '800' }}>{item.artista.name}</Text>
+      <Spacer size={15} />
+      <List>
+        {item.obras.map(obra => <LotesListItemObra item={obra} key={keyExtractor(obra)} />)}
+      </List>
+      <Spacer size={15} />
     </View>
   );
 };
