@@ -58,7 +58,6 @@ const Index = (
         <Scene
           key='noticias'
           title='Noticias'
-          initial
           component={NoticiasContainer}
           Layout={Noticias}
         />
@@ -67,6 +66,7 @@ const Index = (
         title='Catalogos'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
+        initial
       >
         <Scene
           key='catalogos'
@@ -103,7 +103,6 @@ const Index = (
             <Scene
               key='artistas'
               title='Artistas'
-              initial
               component={ArtistasContainer}
               Layout={ArtistasList}
             />
