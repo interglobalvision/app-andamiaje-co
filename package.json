@@ -69,6 +69,7 @@
     "react-dom": "^16.2.0",
     "react-native": "^0.49.5",
     "react-native-draftjs-render": "^2.3.0",
+    "react-native-looped-carousel-improved": "^1.0.1",
     "react-native-responsive-image-view": "^1.1.0",
     "react-native-router-flux": "^4.0.0-beta.24",
     "react-redux": "^5.0.6",
