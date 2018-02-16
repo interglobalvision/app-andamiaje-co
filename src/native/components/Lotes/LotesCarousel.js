@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View } from 'react-native';
-import { Text } from 'native-base';
 import Carousel from 'react-native-looped-carousel-improved';
 
 import Spacer from '../Spacer';
