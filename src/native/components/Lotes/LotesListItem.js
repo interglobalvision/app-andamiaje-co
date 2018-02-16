@@ -7,7 +7,7 @@ import Spacer from '../Spacer';
 
 import LotesCarousel from './LotesCarousel';
 import LotesListItemObra from './LotesListItemObra';
-//import SwiperItem from '../SwiperItem';
+import LoteHeader from './LoteHeader';
 
 const LotesListItem = ({
   item,
@@ -27,15 +27,17 @@ const LotesListItem = ({
 
   return (
     <View style={styles.bordered}>
-      <Spacer size={15} />
+      <LoteHeader obrasLength={item.obras.length} price={item.price} wishlist={false}/>
       <LotesCarousel obras={item.obras} />
-      <Spacer size={15} />
+      <Spacer />
       <Text style={{ fontWeight: '800' }}>{item.artista.name}</Text>
-      <Spacer size={15} />
+      <Spacer />
       <List>
         {item.obras.map(obra => <LotesListItemObra item={obra} key={keyExtractor(obra)} />)}
       </List>
-      <Spacer size={15} />
+      <Spacer />
+      <Text>Ver más</Text>
+      <Spacer />
     </View>
   );
 };
