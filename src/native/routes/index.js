@@ -54,13 +54,13 @@ const Index = (
         title='Noticias'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
-        initial
       >
         <Scene
           key='noticias'
           title='Noticias'
           component={NoticiasContainer}
           Layout={Noticias}
+          initial
         />
       </Stack>
       <Stack
