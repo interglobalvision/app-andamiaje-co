@@ -54,6 +54,7 @@ const Index = (
         title='Noticias'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
+        initial
       >
         <Scene
           key='noticias'
@@ -66,7 +67,6 @@ const Index = (
         title='Catalogos'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
-        initial
       >
         <Scene
           key='catalogos'
