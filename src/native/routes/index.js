@@ -59,6 +59,7 @@ const Index = (
         <Scene
           key='noticias'
           title='Noticias'
+          initial
           component={NoticiasContainer}
           Layout={Noticias}
         />
