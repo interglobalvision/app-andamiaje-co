@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
-import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
+import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View, ScrollView, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import LotesContainer from '../../containers/LotesContainer';
@@ -42,42 +41,29 @@ const CatalogosList = ({
     */
 
   return (
-    <Container>
-      <Content padder>
-        <Header
-          title="Catalogos"
-        />
+    <ScrollView>
+      <LotesContainer />
+      <FlatList
+        numColumns={1}
+        data={pastCatalogos}
+        renderItem={({ item }) => (
+          <View style={styles.bordered}>
+            <Spacer size={15} />
+            <Text style={{ fontWeight: '800' }}>{item.title}</Text>
+            <Spacer size={15} />
+          </View>
+        )}
+        keyExtractor={keyExtractor}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={reFetch}
+          />
+        }
+      />
 
-        <LotesContainer />
-
-        <FlatList
-          numColumns={1}
-          data={pastCatalogos}
-          renderItem={({ item }) => (
-            <View style={styles.bordered}>
-              <Card transparent style={{ paddingHorizontal: 6 }}>
-                <CardItem cardBody>
-                  <Body>
-                    <Spacer size={15} />
-                    <Text style={{ fontWeight: '800' }}>{item.title}</Text>
-                    <Spacer size={15} />
-                  </Body>
-                </CardItem>
-              </Card>
-            </View>
-          )}
-          keyExtractor={keyExtractor}
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={reFetch}
-            />
-          }
-        />
-
-        <Spacer size={20} />
-      </Content>
-    </Container>
+      <Spacer size={20} />
+    </ScrollView>
   );
 };
 
