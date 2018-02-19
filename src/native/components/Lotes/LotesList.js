@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, SectionList, ListItem, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
-import { Card, CardItem, Body, Text, Button } from 'native-base';
+import { StyleSheet, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';
 import Error from '../Error';
-import Spacer from '../Spacer';
 
 import LotesListItem from './LotesListItem';
 

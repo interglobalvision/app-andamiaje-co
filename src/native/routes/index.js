@@ -103,7 +103,6 @@ const Index = (
             <Scene
               key='artistas'
               title='Artistas'
-              initial
               component={ArtistasContainer}
               Layout={ArtistasList}
             />
