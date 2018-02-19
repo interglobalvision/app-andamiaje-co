@@ -59,7 +59,6 @@ const Index = (
         <Scene
           key='noticias'
           title='Noticias'
-          initial
           component={NoticiasContainer}
           Layout={Noticias}
         />
@@ -89,11 +88,11 @@ const Index = (
         >
           <Stack
             title='Miembros'
+            initial
           >
             <Scene
               key='miembros'
               title='Miembros'
-              initial
               component={MiembrosContainer}
               Layout={MiembrosList}
             />
