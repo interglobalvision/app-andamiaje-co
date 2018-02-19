@@ -21,6 +21,7 @@ export function getLotes() {
   return (dispatch, getState) => {
     // Get active lotes from store state
     const activeLotes = getState().catalogos.activeCatalogo.lotes;
+    const wishlistLotes = getState().member.wishlist;
 
     if(activeLotes === undefined) {
       resolve => resolve();
@@ -34,6 +35,7 @@ export function getLotes() {
           type: 'LOTES_REPLACE',
           data: lotes,
           activeLotes, // pass activeLotes to loteReducer as action.activeLotes
+          wishlistLotes,
         }));
       })).catch(e => console.log(e));
   }
