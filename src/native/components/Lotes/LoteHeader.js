@@ -8,8 +8,15 @@ import Spacer from '../Spacer';
 const LoteHeader = ({
   obrasLength,
   price,
-  wishlist,
+  isWishlist,
 }) => {
+
+  const addToWishlist = item => {
+    console.log('add');
+  };
+  const removeFromWishlist = item => {
+    console.log('remove');
+  };
 
   return (
     <View>
@@ -28,7 +35,8 @@ const LoteHeader = ({
           <Text>ŧ { price }</Text>
         </View>
         <View>
-          <Text>{ wishlist ? '√' : 'X' }</Text>
+          { isWishlist ? <Text onPress={ () => removeFromWishlist() }>Remove from wishlist</Text>
+            : <Text onPress={ () => addToWishlist() }>Add to wishlist</Text> }
         </View>
       </View>
       <Spacer />
@@ -39,7 +47,7 @@ const LoteHeader = ({
 LoteHeader.propTypes = {
   obrasLength: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
-  wishlist: PropTypes.bool.isRequired,
+  isWishlist: PropTypes.bool.isRequired,
 };
 
 export default LoteHeader;
