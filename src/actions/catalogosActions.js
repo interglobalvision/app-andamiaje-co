@@ -50,17 +50,23 @@ export function changeCatalogoLayout(setting) {
  * Change Catalogo Ordering
  */
 export function changeCatalogoOrder(order) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+
+    const state = getState();
+
     switch (order) {
       case 'artist-az': {
         return dispatch({
-          type: 'CATALOG_ORDERING_ARTISTA_AZ',
+          type: 'LOTES_ORDERING_ARTISTA_AZ',
         });
       }
       case 'artist-za': {
         return dispatch({
-          type: 'CATALOG_ORDERING_ARTISTA_ZA',
+          type: 'LOTES_ORDERING_ARTISTA_ZA',
         });
+      }
+      default: {
+        getCatalogos();
       }
     }
   }

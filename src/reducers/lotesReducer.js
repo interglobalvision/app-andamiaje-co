@@ -1,5 +1,5 @@
 import Store from '../store/lotes';
-
+import { orderBy } from 'lodash';
 export const initialState = Store;
 
 export default function loteReducer(state = initialState, action) {
@@ -10,6 +10,7 @@ export default function loteReducer(state = initialState, action) {
         error: action.data,
       };
     }
+
     case 'LOTES_REPLACE': {
       let lotes = [];
 
@@ -41,6 +42,25 @@ export default function loteReducer(state = initialState, action) {
         lotes,
       };
     }
+
+    case 'LOTES_ORDERING_ARTISTA_AZ': {
+      const lotes = orderBy(state.lotes, lote => lote.artista.name, 'asc');
+
+      return {
+        ...state,
+        lotes,
+      };
+    }
+
+    case 'LOTES_ORDERING_ARTISTA_ZA': {
+      const lotes = orderBy(state.lotes, lote => lote.artista.name, 'desc');
+
+      return {
+        ...state,
+        lotes,
+      };
+    }
+
     default:
       return state;
   }
