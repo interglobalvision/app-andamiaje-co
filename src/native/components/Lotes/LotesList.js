@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
+import { FlatList, RefreshControl, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';
@@ -8,56 +8,49 @@ import Error from '../Error';
 
 import LotesListItem from './LotesListItem';
 
-const LotesList = ({
-  error,
-  loading,
-  lotes,
-  reFetch,
-}) => {
-  // Loading
-  if (loading) return <Loading />;
+export default class LotesList extends React.Component {
+  static propTypes = {
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
+    lotes: PropTypes.array.isRequired,
+    reFetch: PropTypes.func,
+  };
 
-  // Error
-  if (error) return <Error content={error} />;
+  static defaultProps = {
+    error: null,
+    reFetch: null,
+  };
 
-  const keyExtractor = item => item.id;
+  constructor(props) {
+    super(props);
+  }
 
-  const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
+  keyExtractor = item => item.id;
 
-  const styles = StyleSheet.create({
-    bordered: {
-      borderBottomWidth: 1,
-      borderStyle: 'solid',
-      borderBottomColor: 'black',
-    }
-  });
+  onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
-  return (
-    <FlatList
-      numColumns={1}
-      data={lotes}
-      renderItem={LotesListItem}
-      keyExtractor={keyExtractor}
-      refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          onRefresh={reFetch}
-        />
-      }
-    />
-  );
-};
+  render() {
+    const { loading, error, reFetch, lotes } = this.props;
 
-LotesList.propTypes = {
-  error: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  lotes: PropTypes.array.isRequired,
-  reFetch: PropTypes.func,
-};
+    // Loading
+    if (loading) return <Loading />;
 
-LotesList.defaultProps = {
-  error: null,
-  reFetch: null,
-};
+    // Error
+    if (error) return <Error content={error} />;
 
-export default LotesList;
+    return (
+      <FlatList
+        numColumns={1}
+        data={lotes}
+        renderItem={LotesListItem}
+        keyExtractor={this.keyExtractor}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={reFetch}
+          />
+        }
+      />
+    );
+  }
+}
