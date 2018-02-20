@@ -1,6 +1,7 @@
 import ErrorMessages from '../constants/errors';
 import statusMessage from './status';
 import { Firebase, FirebaseRef } from '../lib/firebase';
+import { remove } from 'lodash';
 
 /**
   * Sign Up to Firebase
@@ -209,16 +210,61 @@ export function logout() {
 /**
   * Wishlist
   */
-const CloudFunctionsUrl = '?'; // TODO set this from ???
+export function addToWishlist(loteId) {
 
-export function addToWishlist() {
+  if (Firebase === null) {
+    return () => new Promise(resolve => resolve());
+  }
 
-  return fetch(CloudFunctionsUrl + '/addToWishlist')
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  return (dispatch) => {
+    // Get user ID
+    const UID = Firebase.auth().currentUser.uid;
+    if (!UID) return reject({ message: 'Not logged in' });
+
+    return new Promise(resolve => FirebaseRef.child(`users/${UID}/wishlist`)
+      .push(loteId).then(() => {
+        return resolve(dispatch({
+          type: 'USER_WISHLIST_ADD',
+          addLote: loteId,
+        }));
+      })).catch((e) => {
+        console.log(e);
+      });
+  }
+}
+
+export function removeFromWishlist(loteId) {
+
+  if (Firebase === null) {
+    return () => new Promise(resolve => resolve());
+  }
+
+  return (dispatch) => {
+    // Get user ID
+    const UID = Firebase.auth().currentUser.uid;
+    if (!UID) return reject({ message: 'Not logged in' });
+
+    return new Promise((resolve) => FirebaseRef.child(`users/${UID}/wishlist`)
+      .once('value')
+      .then((snapshot) => {
+        let wishlist = snapshot.val() || [];
+
+        for(var lote in wishlist) {
+          if(wishlist[lote] == loteId) {
+            delete wishlist[lote];
+          }
+        }
+
+        FirebaseRef.child(`users/${UID}`).update({wishlist: wishlist});
+      })
+      .then(() => {
+        return resolve(dispatch({
+          type: 'USER_WISHLIST_REMOVE',
+          removeLote: loteId,
+        }));
+      })).catch((e) => {
+        console.log(e);
+      });
+  }
 
 }
