@@ -9,7 +9,7 @@ import NoticiasContainer from '../../containers/NoticiasContainer';
 import Noticias from '../components/noticias/Noticias';
 
 import CatalogosContainer from '../../containers/CatalogosContainer';
-import CatalogosList from '../components/Catalogos';
+import CatalogosList from '../components/catalogos/Catalogos';
 
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/Artistas';
@@ -55,11 +55,11 @@ const Index = (
         title='Noticias'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
+        initial
       >
         <Scene
           key='noticias'
           title='Noticias'
-          initial
           component={NoticiasContainer}
           Layout={Noticias}
         />
@@ -89,11 +89,11 @@ const Index = (
         >
           <Stack
             title='Artistas'
+            initial
           >
             <Scene
               key='artistas'
               title='Artistas'
-              initial
               component={ArtistasContainer}
               Layout={ArtistasList}
             />
@@ -104,7 +104,6 @@ const Index = (
             <Scene
               key='miembros'
               title='Miembros'
-              initial
               component={MiembrosContainer}
               Layout={MiembrosList}
             />

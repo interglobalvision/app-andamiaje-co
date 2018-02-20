@@ -12,11 +12,11 @@ const LotesListItemObra = ({
   return (
     <View>
       <Text>{item.title}, {item.year}</Text>
-      <Text>{item.medium}</Text>
+      <Text>{item.materials}</Text>
+      <Spacer size={5} />
     </View>
   );
 };
-
 
 LotesListItemObra.propTypes = {
   item: PropTypes.object.isRequired,
