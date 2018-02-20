@@ -221,12 +221,16 @@ export function addToWishlist(loteId) {
     const UID = Firebase.auth().currentUser.uid;
     if (!UID) return reject({ message: 'Not logged in' });
 
+    // push lote to wishlist on firebase
     return new Promise(resolve => FirebaseRef.child(`users/${UID}/wishlist`)
       .push(loteId).then(() => {
+
+        // dispatch action to add lote to wishlist on state
         return resolve(dispatch({
           type: 'USER_WISHLIST_ADD',
           addLote: loteId,
         }));
+
       })).catch((e) => {
         console.log(e);
       });
@@ -249,19 +253,24 @@ export function removeFromWishlist(loteId) {
       .then((snapshot) => {
         let wishlist = snapshot.val() || [];
 
+        // delete lote from object
         for(var lote in wishlist) {
           if(wishlist[lote] == loteId) {
             delete wishlist[lote];
           }
         }
 
+        // update wishlish object in firebase
         FirebaseRef.child(`users/${UID}`).update({wishlist: wishlist});
       })
       .then(() => {
+
+        // dispatch action to remove lote from wishlist on state
         return resolve(dispatch({
           type: 'USER_WISHLIST_REMOVE',
           removeLote: loteId,
         }));
+        
       })).catch((e) => {
         console.log(e);
       });

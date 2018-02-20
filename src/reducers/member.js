@@ -22,6 +22,7 @@ export default function userReducer(state = initialState, action) {
       if (action.removeLote) {
         const wishlist = state.wishlist;
 
+        // lodash func removes from array by value
         const newWishlist = remove(wishlist, (lote) => {
           return lote !== action.removeLote;
         });
@@ -37,8 +38,9 @@ export default function userReducer(state = initialState, action) {
       if (action.addLote) {
         let wishlist = state.wishlist;
 
+        // push new lote id into wishlist
         wishlist.push(action.addLote);
-
+        // lodash func removes duplicates
         wishlist = uniq(wishlist);
 
         return {

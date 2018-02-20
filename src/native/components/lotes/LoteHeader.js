@@ -40,9 +40,11 @@ class LoteHeader extends Component {
   returnWishlistButton = () => {
     const { wishlist, loteId } = this.props;
 
+    // true if wishlist array contains lote ID
     const isWishlist = wishlist.includes(loteId);
 
     if (isWishlist) {
+      // show remove button
       return (
         <TouchableOpacity onPress={ () => {this.removeWishlistLote()} }>
           <Spacer />
@@ -52,6 +54,7 @@ class LoteHeader extends Component {
       );
     }
     return (
+      // show add button
       <TouchableOpacity onPress={ () => {this.addWishlistLote()} }>
         <Spacer />
         <Text>Add</Text>
