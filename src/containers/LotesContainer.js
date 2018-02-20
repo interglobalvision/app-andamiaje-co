@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import LotesList from '../native/components/Lotes/LotesList';
+import LotesList from '../native/components/lotes/LotesList';
 
 import { getLotes, setError } from '../actions/lotesActions';
 
