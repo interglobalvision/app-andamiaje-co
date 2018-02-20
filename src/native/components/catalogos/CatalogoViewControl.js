@@ -17,11 +17,6 @@ class CatalogoViewControl extends Component {
   constructor(props) {
     super(props)
 
-    this.state={
-      grid: props.viewSettings.grid,
-      filterBy: props.viewSettings.filterBy,
-      orderBy: props.viewSettings.orderBy,
-    };
   }
 
   handleLayoutChange = (setting) => {
