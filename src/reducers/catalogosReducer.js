@@ -1,4 +1,5 @@
 import Store from '../store/catalogos';
+import { clone, orderBy, reverse } from 'lodash';
 
 export const initialState = Store;
 
@@ -66,6 +67,27 @@ export default function catalogoReducer(state = initialState, action) {
       return {
         ...state,
         viewSettings,
+      };
+    }
+    case 'CATALOG_ORDERING_ARTISTA_AZ': {
+      const { lotes, activeCatalogo } = state;
+      const sortLotes = orderBy(activeCatalogo.lotes, lote => lote.artista.name, 'desc');
+
+      // TODO: pass these lotes
+
+      return {
+        ...state,
+      };
+    }
+    case 'CATALOG_ORDERING_ARTISTA_ZA': {
+      const { lotes, activeCatalogo } = state;
+
+      const sortLotes = orderBy(activeCatalogo.lotes, lote => lote.artista.name, 'asc');
+
+      // TODO: pass these lotes
+
+      return {
+        ...state,
       };
     }
     default:
