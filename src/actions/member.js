@@ -205,3 +205,20 @@ export function logout() {
       }).catch(reject);
   }).catch(async (err) => { await statusMessage(dispatch, 'error', err.message); throw err.message; });
 }
+
+/**
+  * Wishlist
+  */
+const CloudFunctionsUrl = '?'; // TODO set this from ???
+
+export function addToWishlist() {
+
+  return fetch(CloudFunctionsUrl + '/addToWishlist')
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+}
