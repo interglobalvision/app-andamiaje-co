@@ -31,13 +31,15 @@ class ArtistasContainer extends Component {
   }
 
   render = () => {
-    const { Layout, artistas } = this.props;
+    const { Layout, artistas, match } = this.props;
+    const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
       <Layout
+        artistaId={id}
+        artistas={artistas.artistas}
         error={artistas.error}
         loading={artistas.loading}
-        artistas={artistas.artistas}
         reFetch={() => this.fetchArtistas()}
       />
     );
