@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView } from 'react-native';
+import { FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Text, Button, List } from 'native-base';
 
 import Spacer from '../Spacer';

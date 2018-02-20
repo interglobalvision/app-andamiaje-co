@@ -9,7 +9,7 @@ import NoticiasContainer from '../../containers/NoticiasContainer';
 import Noticias from '../components/noticias/Noticias';
 
 import CatalogosContainer from '../../containers/CatalogosContainer';
-import CatalogosList from '../components/Catalogos';
+import CatalogosList from '../components/catalogos/Catalogos';
 
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/Artistas';

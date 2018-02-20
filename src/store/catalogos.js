@@ -1,6 +1,11 @@
 export default {
   loading: true,
   error: null,
+  viewSettings: {
+    grid: false,
+    filterBy: null,
+    orderBy: null,
+  },
   activeCatalogo: {
     placeholder: true,
     title: '---- --- -- ------',
