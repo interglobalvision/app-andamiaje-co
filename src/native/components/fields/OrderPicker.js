@@ -14,7 +14,7 @@ class OrderPicker extends Component {
         >
         <Picker.Item
           label='Ordernar'
-          value=''
+          value='default'
         />
         <Picker.Item
           label='Artista A-Z'
@@ -23,6 +23,14 @@ class OrderPicker extends Component {
         <Picker.Item
           label='Artista Z-A'
           value='artist-za'
+        />
+        <Picker.Item
+          label='Precio ↑'
+          value='price-asc'
+        />
+        <Picker.Item
+          label='Precio ↓'
+          value='price-desc'
         />
       </Picker>
     )

@@ -61,6 +61,24 @@ export default function loteReducer(state = initialState, action) {
       };
     }
 
+    case 'LOTES_ORDERING_PRICE_ASC': {
+      const lotes = orderBy(state.lotes, lote => lote.price, 'asc');
+
+      return {
+        ...state,
+        lotes,
+      };
+    }
+
+    case 'LOTES_ORDERING_PRICE_DESC': {
+      const lotes = orderBy(state.lotes, lote => lote.price, 'desc');
+
+      return {
+        ...state,
+        lotes,
+      };
+    }
+
     default:
       return state;
   }
