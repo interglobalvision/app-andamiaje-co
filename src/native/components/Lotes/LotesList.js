@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, TouchableOpacity, RefreshControl, View, Text } from 'react-native';
+import { FlatList, RefreshControl, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';
