@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
+import { FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Text, Button, List } from 'native-base';
 
 import Spacer from '../Spacer';
@@ -17,16 +17,8 @@ const LotesListItem = ({
 
   const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
-  const styles = StyleSheet.create({
-    bordered: {
-      borderBottomWidth: 1,
-      borderStyle: 'solid',
-      borderBottomColor: 'black',
-    }
-  });
-
   return (
-    <View style={styles.bordered}>
+    <View>
       <LoteHeader obrasLength={item.obras.length} price={item.price} wishlist={false}/>
       <LotesCarousel obras={item.obras} />
       <Spacer />

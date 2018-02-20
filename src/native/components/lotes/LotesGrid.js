@@ -6,9 +6,9 @@ import { Actions } from 'react-native-router-flux';
 import Loading from '../Loading';
 import Error from '../Error';
 
-import LotesListItem from './LotesListItem';
+import LotesGridItem from './LotesGridItem';
 
-const LotesList = ({
+const LotesGrid = ({
   loading,
   error,
   lotes,
@@ -28,9 +28,9 @@ const LotesList = ({
 
   return (
     <FlatList
-      numColumns={1}
+      numColumns={3}
       data={lotes}
-      renderItem={LotesListItem}
+      renderItem={LotesGridItem}
       keyExtractor={keyExtractor}
       refreshControl={
         <RefreshControl
@@ -42,7 +42,7 @@ const LotesList = ({
   );
 };
 
-LotesList.propTypes = {
+LotesGrid.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   lotes: PropTypes.array.isRequired,
@@ -51,9 +51,9 @@ LotesList.propTypes = {
   reFetch: PropTypes.func,
 };
 
-LotesList.defaultProps = {
+LotesGrid.defaultProps = {
   error: null,
   reFetch: null,
 };
 
-export default LotesList;
+export default LotesGrid;
