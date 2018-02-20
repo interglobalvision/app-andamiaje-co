@@ -1,7 +1,6 @@
 import ErrorMessages from '../constants/errors';
 import statusMessage from './status';
 import { Firebase, FirebaseRef } from '../lib/firebase';
-import { remove } from 'lodash';
 
 /**
   * Sign Up to Firebase
@@ -270,7 +269,7 @@ export function removeFromWishlist(loteId) {
           type: 'USER_WISHLIST_REMOVE',
           removeLote: loteId,
         }));
-        
+
       })).catch((e) => {
         console.log(e);
       });
