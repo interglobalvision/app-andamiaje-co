@@ -6,6 +6,8 @@ import DraftContentRenderer from '../DraftContentRenderer';
 
 import { getResizedImageUrl } from '../../../lib/utilities';
 
+import Spacer from '../Spacer';
+
 const ArtistProfile = ({
 	error,
 	artistas,
@@ -40,14 +42,18 @@ const ArtistProfile = ({
 
 	return (
     <ScrollView>
-      <View style={{ flex: 1, flexDirection: 'row'}}>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
         <View>
+          <Spacer />
           <Image source={{ uri: imageSrc }} style={{ width: 100, height: 100, borderRadius: 50 }} />
+          <Spacer />
         </View>
         <View style={{ paddingLeft: 10 }}>
+          <Spacer />
           { name !== 'undefined' ? <Text>{name}</Text>  : '' }
           { country !== 'undefined' ? <Text>{country}</Text>  : '' }
           { gallery !== 'undefined' ? <Text>{gallery}</Text>  : '' }
+          <Spacer />
         </View>
       </View>
       <DraftContentRenderer rawContent={bioRawContent} />
