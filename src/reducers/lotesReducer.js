@@ -23,14 +23,6 @@ export default function loteReducer(state = initialState, action) {
           map(id => {
             const { title, artista, obras, price } = action.data[id];
 
-            let isWishlist = false;
-
-            if (action.wishlistLotes !== undefined) {
-              if (action.wishlistLotes.indexOf(id)) {
-                isWishlist = true;
-              }
-            }
-
             // Pick out the props I need
             return ({
               id,
@@ -38,7 +30,6 @@ export default function loteReducer(state = initialState, action) {
               artista,
               obras,
               price,
-              isWishlist,
             })
           });
       }
