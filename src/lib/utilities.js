@@ -4,7 +4,7 @@ export const getResizedImageUrl = (file, size, square) => {
     return;
   }
 
-  const name = file.name.replace(/\.[^/.]+$/, '');
+  let name = file.name.replace(/\.[^/.]+$/, '');
 
   let thumbSuffixfix = '_' + size;
 
@@ -13,6 +13,10 @@ export const getResizedImageUrl = (file, size, square) => {
   }
 
   thumbSuffixfix += '_thumb';
+
+  // Encode string
+  name = encodeURIComponent(name);
+  thumbSuffixfix = encodeURIComponent(thumbSuffixfix);
 
   return file.downloadURL.replace(name, name + thumbSuffixfix);
 };
