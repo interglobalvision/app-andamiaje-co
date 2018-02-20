@@ -13,6 +13,7 @@ import CatalogosList from '../components/Catalogos';
 
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/Artistas';
+import ArtistaProfile from '../components/artistas/ArtistaProfile';
 
 import MiembrosContainer from '../../containers/MiembrosContainer';
 import MiembrosList from '../components/Miembros';
@@ -87,17 +88,6 @@ const Index = (
           headerMode='none'
         >
           <Stack
-            title='Miembros'
-          >
-            <Scene
-              key='miembros'
-              title='Miembros'
-              initial
-              component={MiembrosContainer}
-              Layout={MiembrosList}
-            />
-          </Stack>
-          <Stack
             title='Artistas'
           >
             <Scene
@@ -108,9 +98,28 @@ const Index = (
               Layout={ArtistasList}
             />
           </Stack>
+          <Stack
+            title='Miembros'
+          >
+            <Scene
+              key='miembros'
+              title='Miembros'
+              initial
+              component={MiembrosContainer}
+              Layout={MiembrosList}
+            />
+          </Stack>
         </Tabs>
+            <Scene
+              key='artista'
+              title='Artista'
+              component={ArtistasContainer}
+              Layout={ArtistaProfile}
+            />
+
       </Stack>
     </Tabs>
+
   </Scene>
 );
 

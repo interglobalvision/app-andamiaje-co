@@ -16,6 +16,10 @@ class ArtistasContainer extends Component {
     setError: PropTypes.func.isRequired,
   }
 
+  static defaultProps = {
+    match: null,
+  }
+
   componentDidMount = () => this.fetchArtistas();
 
   /**
@@ -37,9 +41,9 @@ class ArtistasContainer extends Component {
     return (
       <Layout
         artistaId={id}
-        artistas={artistas.artistas}
         error={artistas.error}
         loading={artistas.loading}
+        artistas={artistas.artistas}
         reFetch={() => this.fetchArtistas()}
       />
     );
