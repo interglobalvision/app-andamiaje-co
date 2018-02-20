@@ -1,53 +1,100 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
-import { Text } from 'native-base';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+
+import { addToWishlist, removeFromWishlist } from '../../../actions/member';
 
 import Spacer from '../Spacer';
 
-const LoteHeader = ({
-  obrasLength,
-  price,
-  isWishlist,
-}) => {
+class LoteHeader extends Component {
+  static propTypes = {
+    loteId: PropTypes.string.isRequired,
+    obrasLength: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    addToWishlist: PropTypes.func.isRequired,
+    removeFromWishlist: PropTypes.func.isRequired,
+    wishlist: PropTypes.array.isRequired,
+  }
 
-  const addToWishlist = item => {
-    console.log('add');
-  };
-  const removeFromWishlist = item => {
-    console.log('remove');
-  };
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <View>
-      <Spacer />
+  addWishlistLote = () => {
+    return this.props.addToWishlist(this.props.loteId)
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        return this.props.setError(err);
+      });
+  }
+
+  removeWishlistLote = () => {
+    return this.props.removeFromWishlist(this.props.loteId)
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        return this.props.setError(err);
+      });
+  }
+
+  returnWishlistButton = () => {
+    const { wishlist, loteId } = this.props;
+
+    const isWishlist = wishlist.includes(loteId);
+
+    if (isWishlist) {
+      return (
+        <TouchableOpacity onPress={ () => {this.removeWishlistLote()} }>
+          <Spacer />
+          <Text >Remove</Text>
+          <Spacer />
+        </TouchableOpacity>
+      );
+    }
+    return (
+      <TouchableOpacity onPress={ () => {this.addWishlistLote()} }>
+        <Spacer />
+        <Text>Add</Text>
+        <Spacer />
+      </TouchableOpacity>
+    );
+  }
+
+  render() {
+    const { obrasLength, price } = this.props;
+
+    return (
       <View style={{
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
       }}>
-        <View style={{
-          display: 'flex',
-          flexDirection: 'row',
-        }}>
-          <Text>{ obrasLength }</Text>
-          <Text>  •  </Text>
-          <Text>ŧ { price }</Text>
-        </View>
         <View>
-          { isWishlist ? <Text onPress={ () => removeFromWishlist() }>Remove from wishlist</Text>
-            : <Text onPress={ () => addToWishlist() }>Add to wishlist</Text> }
+          <Spacer />
+          <View style={{
+            display: 'flex',
+            flexDirection: 'row',
+          }}>
+            <Text>{ obrasLength }</Text>
+            <Text>  •  </Text>
+            <Text>ŧ { price }</Text>
+            <Spacer />
+          </View>
+          <Spacer />
         </View>
+        {this.returnWishlistButton()}
       </View>
-      <Spacer />
-    </View>
-  );
+    );
+  }
 };
 
-LoteHeader.propTypes = {
-  obrasLength: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  isWishlist: PropTypes.bool.isRequired,
+const mapDispatchToProps = {
+  removeFromWishlist,
+  addToWishlist,
 };
 
-export default LoteHeader;
+const mapStateToProps = state => ({
+  wishlist: state.member.wishlist || [],
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoteHeader);
