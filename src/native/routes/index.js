@@ -110,16 +110,14 @@ const Index = (
             />
           </Stack>
         </Tabs>
-            <Scene
-              key='artista'
-              title='Artista'
-              component={ArtistasContainer}
-              Layout={ArtistaProfile}
-            />
-
+        <Scene
+          key='artista'
+          title='Artista'
+          component={ArtistasContainer}
+          Layout={ArtistaProfile}
+        />
       </Stack>
     </Tabs>
-
   </Scene>
 );
 
