@@ -85,7 +85,7 @@ const Index = (
       >
         <Tabs
           key="directory"
-          title='Directory'
+          title='Directorio'
           {...DefaultProps.topTabProps}
           headerMode='none'
         >
