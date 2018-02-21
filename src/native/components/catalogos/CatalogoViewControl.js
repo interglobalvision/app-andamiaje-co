@@ -15,19 +15,19 @@ class CatalogoViewControl extends Component {
     viewSettings: PropTypes.object.isRequired,
     changeCatalogoLayout: PropTypes.func.isRequired,
     changeCatalogoOrder: PropTypes.func.isRequired,
+    changeCatalogoFilter: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props)
   }
 
-  handleLayoutChange = (setting) => {
-    return this.props.changeCatalogoLayout(setting);
-  }
-
   render() {
+    const { grid, orderBy, filterBy } = this.props.viewSettings;
+
     return (
       <View>
+        <Spacer />
         <View style={{
           display: 'flex',
           flexDirection: 'row',
@@ -36,7 +36,7 @@ class CatalogoViewControl extends Component {
             style={{
               flexBasis: '20%',
             }}
-            onPress={() => {this.handleLayoutChange('grid')}}
+            onPress={() => {this.props.changeCatalogoLayout(true)}}
           >
             <Spacer />
             <Text style={{
@@ -48,7 +48,7 @@ class CatalogoViewControl extends Component {
             style={{
               flexBasis: '20%',
             }}
-            onPress={() => {this.handleLayoutChange('list')}}
+            onPress={() => {this.props.changeCatalogoLayout(false)}}
           >
             <Spacer />
             <Text style={{
@@ -62,7 +62,7 @@ class CatalogoViewControl extends Component {
             }}
           >
             <Spacer />
-            <OrderPicker onValueChange={this.props.changeCatalogoOrder} />
+            <OrderPicker onValueChange={this.props.changeCatalogoOrder} initValue={orderBy} />
             <Spacer />
           </TouchableOpacity>
           <TouchableOpacity
@@ -71,18 +71,24 @@ class CatalogoViewControl extends Component {
             }}
           >
             <Spacer />
-            <FilterPicker onValueChange={this.props.changeCatalogoFilter} />
+            <FilterPicker onValueChange={this.props.changeCatalogoFilter} initValue={filterBy} />
             <Spacer />
           </TouchableOpacity>
         </View>
+        <Spacer />
       </View>
     );
   }
 };
 
+const mapStateToProps = state => ({
+  viewSettings: state.catalogos.viewSettings || {},
+});
+
 const mapDispatchToProps = {
   changeCatalogoLayout,
   changeCatalogoOrder,
+  changeCatalogoFilter,
 };
 
-export default connect(null, mapDispatchToProps)(CatalogoViewControl);
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogoViewControl);

@@ -1,32 +1,51 @@
 import React, {Component} from 'react';
-import { Image, View, Text, TouchableOpacity, Picker } from 'react-native';
+import { TextInput } from 'react-native';
 import ModalSelector from 'react-native-modal-selector';
 
 class OrderPicker extends Component {
   constructor(props) {
     super(props)
 
+    let index = 0;
+    this.data = [
+      { key: index++, section: true, label: 'Ordenar' },
+      { key: index++, label: 'Artista A-Z', value: 'artist-az', display: 'Artista A-Z' },
+      { key: index++, label: 'Artista Z-A', value: 'artist-za', display: 'Artista Z-A' },
+      { key: index++, label: 'Precio ↑', value: 'price-asc', display: 'Precio ↑' },
+      { key: index++, label: 'Precio ↓', value: 'price-desc', display: 'Precio ↓' },
+      { key: index++, label: 'Ninguno', value: '', display: 'Ordenar' },
+    ];
+
+    const initLabel = this.data.find(item => item.value === props.initValue).display;
+
+    this.state = {
+      textInputValue: initLabel
+    }
   }
 
   render() {
-    let index = 0;
-    const data = [
-      { key: index++, section: true, label: 'Ordenar' },
-      { key: index++, label: 'Artista A-Z', value: 'artist-az' },
-      { key: index++, label: 'Artista Z-A', value: 'artist-za' },
-      { key: index++, label: 'Precio ↑', value: 'price-asc' },
-      { key: index++, label: 'Precio ↓', value: 'price-desc' }
-    ];
+
+
 
     return(
       <ModalSelector
-        data={data}
-        initValue="Ordenar"
-        onChange={(option) => {this.props.onValueChange(option.value)}}
-      />
+        data={this.data}
+        initValue={this.props.initValue}
+        onChange={(option) => {
+          this.props.onValueChange(option.value);
+          this.setState({textInputValue:option.display});
+        }}
+        cancelText='Cancelar'
+      >
+        <TextInput
+          style={{borderWidth:0, textAlign: 'center'}}
+          editable={false}
+          placeholder='Ordenar'
+          value={this.state.textInputValue}
+        />
+      </ModalSelector>
     )
   }
-
 
 }
 export default OrderPicker;
