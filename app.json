@@ -1,15 +1,24 @@
 {
   "expo": {
     "sdkVersion": "22.0.0",
-    "name": "Andamiaje.co",
+    "name": "Andamiaje",
     "slug": "andamiaje-co",
     "icon": "src/images/app-icon.png",
     "privacy": "public",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "primaryColor": "#FFFFFF",
+    "splash": {
+      "backgroundColor": "#FFFFFF",
+      "resizeMode": "contain",
+      "image": "src/images/app-icon.png"
+    },
     "ios": {
       "bundleIdentifier": "co.andamiaje"
     },
     "android": {
-      "package": "co.andamiaje"
+      "package": "co.andamiaje",
+      "permissions" : ["VIBRATE"]
     }
   }
 }
