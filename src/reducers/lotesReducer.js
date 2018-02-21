@@ -1,5 +1,6 @@
 import Store from '../store/lotes';
 import { orderBy } from 'lodash';
+import _filter from 'lodash/filter';
 export const initialState = Store;
 
 export default function loteReducer(state = initialState, action) {
@@ -72,6 +73,33 @@ export default function loteReducer(state = initialState, action) {
 
     case 'LOTES_ORDERING_PRICE_DESC': {
       const lotes = orderBy(state.lotes, lote => lote.price, 'desc');
+
+      return {
+        ...state,
+        lotes,
+      };
+    }
+
+    case 'LOTES_FILTERING_PINTURA': {
+      const lotes = _filter(state.lotes, lote => lote.tecnica.includes('pintura') );
+
+      return {
+        ...state,
+        lotes,
+      };
+    }
+
+    case 'LOTES_FILTERING_ESCULTURA': {
+      const lotes = _filter(state.lotes, lote => lote.tecnica.includes('escultura') );
+
+      return {
+        ...state,
+        lotes,
+      };
+    }
+
+    case 'LOTES_FILTERING_DIBUJO': {
+      const lotes = _filter(state.lotes, lote => lote.tecnica.includes('dibujo') );
 
       return {
         ...state,

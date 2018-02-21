@@ -89,3 +89,65 @@ export function changeCatalogoOrder(order) {
     }
   }
 }
+
+/*
+ * Change Catalogo Filtering
+ */
+export function changeCatalogoFilter(tecnica) {
+  return (dispatch, getState) => {
+
+    const state = getState();
+
+    switch (tecnica) {
+      case 'pintura': {
+        return dispatch({
+          type: 'LOTES_FILTERING_PINTURA',
+        });
+      }
+
+      case 'escultura': {
+        return dispatch({
+          type: 'LOTES_FILTERING_ESCULTURA',
+        });
+      }
+
+      case 'dibujo': {
+        return dispatch({
+          type: 'LOTES_FILTERING_DIBUJO',
+        });
+      }
+
+      case 'instalacion': {
+        return dispatch({
+          type: 'LOTES_FILTERING_INSTALACION',
+        });
+      }
+
+      case 'foto': {
+        return dispatch({
+          type: 'LOTES_FILTERING_FOTO',
+        });
+      }
+
+      case 'video': {
+        return dispatch({
+          type: 'LOTES_FILTERING_VIDEO',
+        });
+      }
+
+      case 'all': {
+        return dispatch({
+          type: 'LOTES_FILTERING_ALL',
+        });
+      }
+
+      case 'reset': {
+        getCatalogos();
+      }
+
+      default: {
+        getCatalogos();
+      }
+    }
+  }
+}

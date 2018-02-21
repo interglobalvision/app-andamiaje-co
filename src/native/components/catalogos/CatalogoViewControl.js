@@ -4,8 +4,9 @@ import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import OrderPicker from '../../components/fields/OrderPicker';
+import FilterPicker from '../../components/fields/FilterPicker';
 
-import { changeCatalogoLayout, changeCatalogoOrder } from '../../../actions/catalogosActions';
+import { changeCatalogoLayout, changeCatalogoOrder, changeCatalogoFilter } from '../../../actions/catalogosActions';
 
 import Spacer from '../Spacer';
 
@@ -70,9 +71,7 @@ class CatalogoViewControl extends Component {
             }}
           >
             <Spacer />
-            <Text style={{
-              textAlign: 'center',
-            }}>Filtrar</Text>
+            <FilterPicker onValueChange={this.props.changeCatalogoFilter} />
             <Spacer />
           </TouchableOpacity>
         </View>
