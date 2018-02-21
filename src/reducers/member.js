@@ -1,4 +1,5 @@
 import Store from '../store/member';
+import { uniq, remove } from 'lodash';
 
 export const initialState = Store;
 
@@ -17,16 +18,34 @@ export default function userReducer(state = initialState, action) {
       }
       return initialState;
     }
-    case 'USER_DETAILS_UPDATE': {
-      if (action.data) {
+    case 'USER_WISHLIST_REMOVE': {
+      if (action.removeLote) {
+        const wishlist = state.wishlist;
+
+        // lodash func removes from array by value
+        const newWishlist = remove(wishlist, (lote) => {
+          return lote !== action.removeLote;
+        });
+
         return {
           ...state,
-          loading: false,
-          error: null,
-          firstName: action.data.firstName,
-          lastName: action.data.lastName,
-          signedUp: action.data.signedUp,
-          role: action.data.role,
+          wishlist: newWishlist,
+        };
+      }
+      return initialState;
+    }
+    case 'USER_WISHLIST_ADD': {
+      if (action.addLote) {
+        let wishlist = state.wishlist;
+
+        // push new lote id into wishlist
+        wishlist.push(action.addLote);
+        // lodash func removes duplicates
+        wishlist = uniq(wishlist);
+
+        return {
+          ...state,
+          wishlist
         };
       }
       return initialState;

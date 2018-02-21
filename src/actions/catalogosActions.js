@@ -45,3 +45,47 @@ export function changeCatalogoLayout(setting) {
     }
   }
 }
+
+/*
+ * Change Catalogo Ordering
+ */
+export function changeCatalogoOrder(order) {
+  return (dispatch, getState) => {
+
+    const state = getState();
+
+    switch (order) {
+      case 'price-asc': {
+        return dispatch({
+          type: 'LOTES_ORDERING_PRICE_ASC',
+        });
+      }
+
+      case 'price-desc': {
+        return dispatch({
+          type: 'LOTES_ORDERING_PRICE_DESC',
+        });
+      }
+
+      case 'artist-az': {
+        return dispatch({
+          type: 'LOTES_ORDERING_ARTISTA_AZ',
+        });
+      }
+
+      case 'artist-za': {
+        return dispatch({
+          type: 'LOTES_ORDERING_ARTISTA_ZA',
+        });
+      }
+
+      case 'reset': {
+        getCatalogos();
+      }
+
+      default: {
+        getCatalogos();
+      }
+    }
+  }
+}
