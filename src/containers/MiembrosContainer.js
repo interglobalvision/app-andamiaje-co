@@ -12,6 +12,7 @@ class MiembrosContainer extends Component {
       error: PropTypes.string,
       miembros: PropTypes.array.isRequired,
     }).isRequired,
+    member: PropTypes.object.isRequired,
     getMiembros: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
   }
@@ -31,13 +32,16 @@ class MiembrosContainer extends Component {
   }
 
   render = () => {
-    const { Layout, miembros } = this.props;
+    const { Layout, miembros, member, match } = this.props;
+    const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
       <Layout
+        miembroId={id}
+        miembros={miembros.miembros}
+        member={member}
         error={miembros.error}
         loading={miembros.loading}
-        miembros={miembros.miembros}
         reFetch={() => this.fetchMiembros()}
       />
     );
@@ -46,6 +50,7 @@ class MiembrosContainer extends Component {
 
 const mapStateToProps = state => ({
   miembros: state.miembros || {},
+  member: state.member || {},
 });
 
 const mapDispatchToProps = {

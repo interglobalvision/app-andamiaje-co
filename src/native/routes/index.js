@@ -12,11 +12,12 @@ import CatalogosContainer from '../../containers/CatalogosContainer';
 import CatalogosList from '../components/catalogos/Catalogos';
 
 import ArtistasContainer from '../../containers/ArtistasContainer';
-import ArtistasList from '../components/Artistas';
+import ArtistasList from '../components/artistas/ArtistasList';
 import ArtistaProfile from '../components/artistas/ArtistaProfile';
 
 import MiembrosContainer from '../../containers/MiembrosContainer';
-import MiembrosList from '../components/Miembros';
+import MiembrosList from '../components/miembros/MiembrosList';
+import MiembroProfile from '../components/miembros/MiembroProfile';
 
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
@@ -55,7 +56,7 @@ const Index = (
         title='Noticias'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
-        initial
+
       >
         <Scene
           key='noticias'
@@ -80,10 +81,11 @@ const Index = (
         title='Directorio'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
+        initial
       >
         <Tabs
           key="directory"
-          title='Artistas'
+          title='Directorio'
           {...DefaultProps.topTabProps}
           headerMode='none'
         >
@@ -114,6 +116,12 @@ const Index = (
           title='Artista'
           component={ArtistasContainer}
           Layout={ArtistaProfile}
+        />
+        <Scene
+          key='miembro'
+          title='Miembro'
+          component={MiembrosContainer}
+          Layout={MiembroProfile}
         />
       </Stack>
     </Tabs>
