@@ -18,10 +18,11 @@ class FilterPicker extends Component {
       { key: index++, label: 'Dibujo', value: 'dibujo', display: 'Dibujo' },
     ];
 
-    const initLabel = this.data.find(item => item.value === props.initValue).display;
+    // find display string in data array by initial value from state
+    const initDisplay = this.data.find(item => item.value === props.initValue).display;
 
     this.state = {
-      textInputValue: initLabel
+      textInputValue: initDisplay
     }
   }
 
