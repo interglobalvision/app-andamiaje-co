@@ -32,17 +32,12 @@ export function getCatalogos() {
 /**
  * Change Catalogo Layout Setting
  */
-export function changeCatalogoLayout(setting) {
+export function changeCatalogoLayout(grid) {
   return (dispatch) => {
-    if (setting === 'grid') {
-      return dispatch({
-        type: 'LAYOUT_CATALOGO_GRID',
-      });
-    } else if (setting === 'list') {
-      return dispatch({
-        type: 'LAYOUT_CATALOGO_LIST',
-      });
-    }
+    return dispatch({
+      type: 'CHANGE_CATALOGO_LAYOUT',
+      grid
+    });
   }
 }
 
@@ -50,43 +45,13 @@ export function changeCatalogoLayout(setting) {
  * Change Catalogo Ordering
  */
 export function changeCatalogoOrder(order) {
-  return (dispatch, getState) => {
+  //console.log(order);
+  return (dispatch) => {
 
-    const state = getState();
-
-    switch (order) {
-      case 'price-asc': {
-        return dispatch({
-          type: 'LOTES_ORDERING_PRICE_ASC',
-        });
-      }
-
-      case 'price-desc': {
-        return dispatch({
-          type: 'LOTES_ORDERING_PRICE_DESC',
-        });
-      }
-
-      case 'artist-az': {
-        return dispatch({
-          type: 'LOTES_ORDERING_ARTISTA_AZ',
-        });
-      }
-
-      case 'artist-za': {
-        return dispatch({
-          type: 'LOTES_ORDERING_ARTISTA_ZA',
-        });
-      }
-
-      case 'reset': {
-        getCatalogos();
-      }
-
-      default: {
-        getCatalogos();
-      }
-    }
+    return dispatch({
+      type: 'CHANGE_CATALOGO_ORDER',
+      order
+    });
   }
 }
 
@@ -94,60 +59,12 @@ export function changeCatalogoOrder(order) {
  * Change Catalogo Filtering
  */
 export function changeCatalogoFilter(tecnica) {
-  return (dispatch, getState) => {
+  //console.log(tecnica);
+  return (dispatch) => {
 
-    const state = getState();
-
-    switch (tecnica) {
-      case 'pintura': {
-        return dispatch({
-          type: 'LOTES_FILTERING_PINTURA',
-        });
-      }
-
-      case 'escultura': {
-        return dispatch({
-          type: 'LOTES_FILTERING_ESCULTURA',
-        });
-      }
-
-      case 'dibujo': {
-        return dispatch({
-          type: 'LOTES_FILTERING_DIBUJO',
-        });
-      }
-
-      case 'instalacion': {
-        return dispatch({
-          type: 'LOTES_FILTERING_INSTALACION',
-        });
-      }
-
-      case 'foto': {
-        return dispatch({
-          type: 'LOTES_FILTERING_FOTO',
-        });
-      }
-
-      case 'video': {
-        return dispatch({
-          type: 'LOTES_FILTERING_VIDEO',
-        });
-      }
-
-      case 'all': {
-        return dispatch({
-          type: 'LOTES_FILTERING_ALL',
-        });
-      }
-
-      case 'reset': {
-        getCatalogos();
-      }
-
-      default: {
-        getCatalogos();
-      }
-    }
+    return dispatch({
+      type: 'CHANGE_CATALOGO_FILTER',
+      tecnica
+    });
   }
 }
