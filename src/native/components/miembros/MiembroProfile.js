@@ -13,7 +13,6 @@ const MiembroProfile = ({
 	error,
 	miembros,
 	miembroId,
-  member,
 }) => {
 
   // Get this miembro from all miembros
@@ -35,15 +34,6 @@ const MiembroProfile = ({
 
   const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
 
-  const renderWishlist = () => {
-    if (miembroId === member.uid) {
-      return (
-        <Wishlist wishlist={member.wishlist} />
-      )
-    }
-    return null;
-  }
-
 	return (
     <ScrollView>
       <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -58,7 +48,6 @@ const MiembroProfile = ({
           <Spacer />
         </View>
       </View>
-      {renderWishlist()}
     </ScrollView>
 	);
 };
@@ -67,7 +56,6 @@ MiembroProfile.propTypes = {
 	error: PropTypes.string,
 	miembroId: PropTypes.string.isRequired,
 	miembros: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  member: PropTypes.object.isRequired,
 };
 
 MiembroProfile.defaultProps = {
