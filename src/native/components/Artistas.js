@@ -23,8 +23,6 @@ const ArtistasList = ({
 
   const keyExtractor = item => item.id;
 
-  const onPress = item => Actions.artista({ match: { params: { id: String(item.id) } } });
-
   const styles = StyleSheet.create({
     bordered: {
       borderBottomWidth: 1,
@@ -40,7 +38,7 @@ const ArtistasList = ({
           numColumns={1}
           data={artistas}
           renderItem={({ item }) => (
-            <DirectoryListItem name={item.name} images={item.images} />
+            <DirectoryListItem id={item.id} name={item.name} images={item.images} />
           )}
           keyExtractor={keyExtractor}
           refreshControl={

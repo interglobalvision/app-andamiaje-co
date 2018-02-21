@@ -28,3 +28,20 @@ export function getCatalogos() {
       }));
     })).catch(e => console.log(e));
 }
+
+/**
+ * Change Catalogo Layout Setting
+ */
+export function changeCatalogoLayout(setting) {
+  return (dispatch) => {
+    if (setting === 'grid') {
+      return dispatch({
+        type: 'LAYOUT_CATALOGO_GRID',
+      });
+    } else if (setting === 'list') {
+      return dispatch({
+        type: 'LAYOUT_CATALOGO_LIST',
+      });
+    }
+  }
+}

@@ -44,6 +44,30 @@ export default function catalogoReducer(state = initialState, action) {
         pastCatalogos,
       };
     }
+    case 'LAYOUT_CATALOGO_GRID': {
+      const viewSettings = {
+        grid: true,
+        filterBy: state.viewSettings.filterBy,
+        orderBy: state.viewSettings.orderBy,
+      }
+
+      return {
+        ...state,
+        viewSettings,
+      };
+    }
+    case 'LAYOUT_CATALOGO_LIST': {
+      const viewSettings = {
+        grid: false,
+        filterBy: state.viewSettings.filterBy,
+        orderBy: state.viewSettings.orderBy,
+      }
+
+      return {
+        ...state,
+        viewSettings,
+      };
+    }
     default:
       return state;
   }

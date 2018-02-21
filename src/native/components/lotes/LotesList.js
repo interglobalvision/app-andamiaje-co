@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
+import { FlatList, RefreshControl, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';
@@ -9,9 +9,11 @@ import Error from '../Error';
 import LotesListItem from './LotesListItem';
 
 const LotesList = ({
-  error,
   loading,
+  error,
   lotes,
+  filterBy,
+  orderBy,
   reFetch,
 }) => {
   // Loading
@@ -23,14 +25,6 @@ const LotesList = ({
   const keyExtractor = item => item.id;
 
   const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
-
-  const styles = StyleSheet.create({
-    bordered: {
-      borderBottomWidth: 1,
-      borderStyle: 'solid',
-      borderBottomColor: 'black',
-    }
-  });
 
   return (
     <FlatList
@@ -52,6 +46,8 @@ LotesList.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   lotes: PropTypes.array.isRequired,
+  filterBy: PropTypes.string,
+  orderBy: PropTypes.string,
   reFetch: PropTypes.func,
 };
 
