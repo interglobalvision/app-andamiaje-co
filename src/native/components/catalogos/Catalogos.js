@@ -41,9 +41,9 @@ const CatalogosList = ({
         data={pastCatalogos}
         renderItem={({ item }) => (
           <View>
-            <Spacer size={15} />
+            <Spacer />
             <Text style={{ fontWeight: '800' }}>{item.title}</Text>
-            <Spacer size={15} />
+            <Spacer />
           </View>
         )}
         keyExtractor={keyExtractor}
@@ -54,8 +54,6 @@ const CatalogosList = ({
           />
         }
       />
-
-      <Spacer size={20} />
     </ScrollView>
   );
 };
