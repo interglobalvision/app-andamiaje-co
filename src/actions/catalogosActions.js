@@ -45,9 +45,7 @@ export function changeCatalogoLayout(grid) {
  * Change Catalogo Ordering
  */
 export function changeCatalogoOrder(order) {
-  //console.log(order);
   return (dispatch) => {
-
     return dispatch({
       type: 'CHANGE_CATALOGO_ORDER',
       order
@@ -59,9 +57,7 @@ export function changeCatalogoOrder(order) {
  * Change Catalogo Filtering
  */
 export function changeCatalogoFilter(tecnica) {
-  //console.log(tecnica);
   return (dispatch) => {
-
     return dispatch({
       type: 'CHANGE_CATALOGO_FILTER',
       tecnica
