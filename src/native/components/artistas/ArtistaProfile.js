@@ -8,12 +8,11 @@ import { getResizedImageUrl } from '../../../lib/utilities';
 
 import Spacer from '../Spacer';
 
-const ArtistProfile = ({
+const ArtistaProfile = ({
 	error,
 	artistas,
 	artistaId,
 }) => {
-  console.log(artistaId);
 
   // Get this artista from all artistas
   let artista = null;
@@ -61,14 +60,14 @@ const ArtistProfile = ({
 	);
 };
 
-ArtistProfile.propTypes = {
+ArtistaProfile.propTypes = {
 	error: PropTypes.string,
 	artistaId: PropTypes.string.isRequired,
 	artistas: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-ArtistProfile.defaultProps = {
+ArtistaProfile.defaultProps = {
 	error: null,
 };
 
-export default ArtistProfile;
+export default ArtistaProfile;
