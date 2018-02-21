@@ -5,7 +5,7 @@ import { List } from 'native-base';
 
 import Spacer from '../Spacer';
 
-import LotesCarousel from './LotesCarousel';
+import CarouselHolder from '../carousel/CarouselHolder';
 import LotesListItemObra from './LotesListItemObra';
 import LoteHeader from './LoteHeader';
 
@@ -20,7 +20,7 @@ const LotesListItem = ({
   return (
     <View>
       <LoteHeader loteId={item.id} obrasLength={item.obras.length} price={item.price} />
-      <LotesCarousel obras={item.obras} />
+      <CarouselHolder obras={item.obras} />
       <Spacer />
       <Text style={{ fontWeight: '800' }}>{item.artista.name}</Text>
       <Spacer />
