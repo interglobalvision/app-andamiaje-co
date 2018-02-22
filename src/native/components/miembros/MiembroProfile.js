@@ -15,7 +15,6 @@ const MiembroProfile = ({
 	miembroId,
   member,
 }) => {
-
   // Get this miembro from all miembros
   let miembro = null;
 
@@ -49,7 +48,7 @@ const MiembroProfile = ({
           <Spacer />
         </View>
       </View>
-      <MiembroCollection miembroId={miembroId} memberId={member.id} collection={collection}/>
+      <MiembroCollection miembroId={miembroId} memberId={member.uid} collection={collection}/>
     </ScrollView>
 	);
 };
