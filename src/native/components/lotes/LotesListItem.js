@@ -19,7 +19,7 @@ const LotesListItem = ({
 
   return (
     <View>
-      <LoteHeader loteId={item.id} obrasLength={item.obras.length} price={item.price} />
+      <LoteHeader obrasLength={item.obras.length} price={item.price} lote={item} />
       <CarouselHolder obras={item.obras} />
       <Spacer />
       <Text style={{ fontWeight: '800' }}>{item.artista.name}</Text>
