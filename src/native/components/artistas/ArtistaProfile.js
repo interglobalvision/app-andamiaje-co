@@ -3,6 +3,8 @@ import { ScrollView, View, Image, Dimensions, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import DraftContentRenderer from '../DraftContentRenderer';
 
+import ArtistaPortfolio from './ArtistaPortfolio';
+
 import { getResizedImageUrl } from '../../../lib/utilities';
 
 import Spacer from '../Spacer';
@@ -55,6 +57,7 @@ const ArtistaProfile = ({
         </View>
       </View>
       <DraftContentRenderer rawContent={bioRawContent} />
+      <ArtistaPortfolio portfolio={portfolio} />
     </ScrollView>
 	);
 };
