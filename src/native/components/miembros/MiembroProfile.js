@@ -5,12 +5,15 @@ import DraftContentRenderer from '../DraftContentRenderer';
 
 import { getResizedImageUrl } from '../../../lib/utilities';
 
+import MiembroCollection from './MiembroCollection';
+
 import Spacer from '../Spacer';
 
 const MiembroProfile = ({
 	error,
 	miembros,
 	miembroId,
+  member,
 }) => {
 
   // Get this miembro from all miembros
@@ -46,6 +49,7 @@ const MiembroProfile = ({
           <Spacer />
         </View>
       </View>
+      <MiembroCollection miembroId={miembroId} memberId={member.id} collection={collection}/>
     </ScrollView>
 	);
 };
@@ -54,6 +58,7 @@ MiembroProfile.propTypes = {
 	error: PropTypes.string,
 	miembroId: PropTypes.string.isRequired,
 	miembros: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  member: PropTypes.object.isRequired,
 };
 
 MiembroProfile.defaultProps = {
