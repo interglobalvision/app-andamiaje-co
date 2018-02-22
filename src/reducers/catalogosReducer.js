@@ -40,7 +40,7 @@ export default function catalogoReducer(state = initialState, action) {
       // Get Future Catalogos. Pick out the props I need
       if (action.data && typeof action.data === 'object') {
         futureCatalogos = Object.keys(action.data).
-          filter(key => action.data[key].startDate > Date.now()).  // Only current & past Catalogos
+          filter(key => action.data[key].startDate > Date.now()).  // Only future Catalogos
           map(id => {
             const { title, startDate, saleDate, endDate, lotes } = action.data[id];
 
@@ -54,7 +54,7 @@ export default function catalogoReducer(state = initialState, action) {
             })
           });
 
-        // Remove activeCatalogo from futureCatalogos just in case
+        // Remove activeCatalogo from futureCatalogos just in case the activeCatalogo sneaks into the futureCatalogos
         futureCatalogos = futureCatalogos.filter( catalogo => catalogo.id !== activeCatalogo.id );
       }
 
