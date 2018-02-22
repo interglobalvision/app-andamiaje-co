@@ -1,3 +1,11 @@
+## Expo Deploy
+
+### dev
+`exp publish`
+
+### prod-v1
+`exp publish --release-channel prod-v1`
+
 <img src="/docs/rnsk-logo.jpg" alt="React Native Starter Kit" width="400" />
 
 [![GitHub tag](https://img.shields.io/github/tag/mcnamee/react-native-starter-kit.svg?style=flat-square)](https://github.com/mcnamee/react-native-starter-kit/tags)
