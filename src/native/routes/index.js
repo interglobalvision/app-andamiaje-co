@@ -11,6 +11,9 @@ import Noticias from '../components/noticias/Noticias';
 import CatalogosContainer from '../../containers/CatalogosContainer';
 import CatalogosList from '../components/catalogos/Catalogos';
 
+import LotesContainer from '../../containers/LotesContainer';
+import LoteSingle from '../components/lotes/LoteSingle';
+
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/artistas/ArtistasList';
 import ArtistaProfile from '../components/artistas/ArtistaProfile';
@@ -69,6 +72,7 @@ const Index = (
         title='Catalogos'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
+        initial
       >
         <Scene
           key='catalogos'
@@ -76,12 +80,18 @@ const Index = (
           component={CatalogosContainer}
           Layout={CatalogosList}
         />
+        <Scene
+          key='lote'
+          title='Obra'
+          component={LotesContainer}
+          Layout={LoteSingle}
+          includeObras={true}
+        />
       </Stack>
       <Stack
         title='Directorio'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
-        initial
       >
         <Tabs
           key="directory"
