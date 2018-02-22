@@ -4,6 +4,8 @@ import { StyleSheet, Image, View, TouchableOpacity, Text } from 'react-native';
 import { distanceInWordsToNow } from 'date-fns';
 import getRNDraftJSBlocks from 'react-native-draftjs-render';
 import { Actions } from 'react-native-router-flux';
+import styles from '../../constants/styles';
+import TextBullet from '../TextBullet';
 
 import ResponsiveImageView from 'react-native-responsive-image-view';
 
@@ -14,7 +16,7 @@ const onPress = id => Actions.artista({ match: { params: { id: String(id) } } })
 const renderArtista = (item) => {
   if (item.artista !== undefined) {
     return (
-      <TouchableOpacity onPress={() => onPress(item.artista.id)}>
+      <TouchableOpacity onPress={() => onPress(item.artista.id)}  style={styles.paddingBottomMid}>
         <Text>Ver el bio de {item.artista.name}</Text>
       </TouchableOpacity>
     );
@@ -24,14 +26,23 @@ const renderArtista = (item) => {
 
 const NoticiaItem = ({item}) => {
   return (
-    <View>
-      <Spacer />
-      <Text style={{ fontWeight: '800' }}>{item.title} • {distanceInWordsToNow(item.publishDate)}</Text>
-      <Spacer />
-      <View>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
-      <Spacer />
+    <View style={[
+      styles.container,
+      styles.bordered,
+      styles.paddingTopMid,
+      styles.paddingBottomLarge
+    ]}>
+      <View style={styles.paddingBottomBasic}>
+        <Text>
+          <Text style={[styles.fontBold, styles.fontSizeMid ]}>{item.title}</Text>          <TextBullet />
+          <Text>{distanceInWordsToNow(item.publishDate)}</Text>
+        </Text>
+      </View>
+
+      <View style={styles.paddingBottomMid}>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
+
       {renderArtista(item)}
-      <Spacer />
+
       { item.images !== undefined && item.images.length ?
         <ResponsiveImageView
           source={{ uri: item.images[0].downloadURL}}
@@ -41,7 +52,6 @@ const NoticiaItem = ({item}) => {
             </View>
           )}
         /> : '' }
-      <Spacer />
     </View>
   );
 }

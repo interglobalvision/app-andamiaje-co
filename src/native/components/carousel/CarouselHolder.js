@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Dimensions } from 'react-native';
 import Carousel from 'react-native-looped-carousel-improved';
-
-import Spacer from '../Spacer';
+import styles from '../../constants/styles';
 
 import CarouselItem from './CarouselItem';
 

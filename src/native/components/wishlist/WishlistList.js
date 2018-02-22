@@ -8,6 +8,8 @@ import Error from '../Error';
 
 import WishlistItem from './WishlistItem';
 
+import styles from '../../constants/styles';
+
 const WishlistList = ({
   loading,
   error,
@@ -27,7 +29,7 @@ const WishlistList = ({
 
   if (currentWishlist.length) {
     return (
-      <ScrollView>
+      <ScrollView style={styles.backgroundWhite}>
         <FlatList
           numColumns={1}
           data={currentWishlist}
@@ -44,7 +46,7 @@ const WishlistList = ({
     );
   } else {
     return (
-      <View style={{ justifyContent: 'center', alignItems: 'center', height: 300 }}>
+      <View style={[styles.flexCenter, styles.paddingTopLarge, styles.paddingBottomLarge]}>
         <Text>Parece que tu Wishlist está vacio</Text>
         <Text>Agrega Obras para guardar las que te gusta</Text>
       </View>

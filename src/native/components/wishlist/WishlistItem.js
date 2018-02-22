@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { getResizedImageUrl } from '../../../lib/utilities';
 
 import LoteHeader from '../lotes/LoteHeader'
+import styles from '../../constants/styles';
 
 export default class WishlistItem extends Component {
   static propTypes = {
@@ -23,6 +24,7 @@ export default class WishlistItem extends Component {
     // TODO: Need a placeholder image for missing images
     const imageSrc = lote.obras[0].images !== undefined ? getResizedImageUrl(lote.obras[0].images[0], 350, true) : placeholder;
 
+    /*
     const styles = StyleSheet.create({
       container: {
         flex: 1,
@@ -40,10 +42,11 @@ export default class WishlistItem extends Component {
         flex: 1
       },
     });
+    */
 
     returnObra = (obra) => {
       return (
-        <View style={{flexDirection:'row'}}>
+        <View style={styles.flexRow}>
           <Text style={{flex: 1, flexWrap: 'wrap'}}>{obra.title}</Text>
         </View>
       );
@@ -54,14 +57,20 @@ export default class WishlistItem extends Component {
     const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
     return (
-      <View>
-        <LoteHeader lote={lote} />
-        <TouchableOpacity onPress={onPress} style={styles.container}>
-          <View style={styles.imageHolder}>
-            <Image style={styles.image} source={{ uri: imageSrc }} />
+      <View style={styles.bordered}>
+        <LoteHeader lote={lote} bordered={false} />
+        <TouchableOpacity onPress={onPress} style={[
+          styles.container,
+          styles.flexRow,
+          styles.paddingBottomMid
+        ]}>
+          <View style={styles.wishlistImageHolder}>
+            <Image style={styles.wishlistImage} source={{ uri: imageSrc }} />
           </View>
-          <View style={styles.textHolder}>
-            <Text style={{ fontWeight: '800' }}>{lote.artista.name}</Text>
+          <View style={styles.wishlistTextHolder}>
+            <View style={styles.paddingBottomSmall}>
+              <Text style={styles.fontBold}>{lote.artista.name}</Text>
+            </View>
             <FlatList
               numColumns={1}
               data={lote.obras}

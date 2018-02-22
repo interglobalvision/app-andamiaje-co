@@ -5,10 +5,9 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import OrderPicker from '../../components/fields/OrderPicker';
 import FilterPicker from '../../components/fields/FilterPicker';
+import styles from '../../constants/styles';
 
 import { changeCatalogoLayout, changeCatalogoOrder, changeCatalogoFilter } from '../../../actions/catalogosActions';
-
-import Spacer from '../Spacer';
 
 class CatalogoViewControl extends Component {
   static propTypes = {
@@ -26,8 +25,7 @@ class CatalogoViewControl extends Component {
     const { grid, orderBy, filterBy } = this.props.viewSettings;
 
     return (
-      <View>
-        <Spacer />
+      <View style={[styles.container, styles.paddingTopBasic, styles.paddingBottomBasic, styles.bordered, { alignItems: 'center', justifyContent: 'center' }]}>
         <View style={{
           display: 'flex',
           flexDirection: 'row',
@@ -38,11 +36,9 @@ class CatalogoViewControl extends Component {
             }}
             onPress={() => {this.props.changeCatalogoLayout(true)}}
           >
-            <Spacer />
             <Text style={{
               textAlign: 'center',
             }}>Grid</Text>
-            <Spacer />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -50,32 +46,25 @@ class CatalogoViewControl extends Component {
             }}
             onPress={() => {this.props.changeCatalogoLayout(false)}}
           >
-            <Spacer />
             <Text style={{
               textAlign: 'center',
             }}>List</Text>
-            <Spacer />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               flexBasis: '30%',
             }}
           >
-            <Spacer />
             <OrderPicker onValueChange={this.props.changeCatalogoOrder} initValue={orderBy} />
-            <Spacer />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
               flexBasis: '30%',
             }}
           >
-            <Spacer />
             <FilterPicker onValueChange={this.props.changeCatalogoFilter} initValue={filterBy} />
-            <Spacer />
           </TouchableOpacity>
         </View>
-        <Spacer />
       </View>
     );
   }

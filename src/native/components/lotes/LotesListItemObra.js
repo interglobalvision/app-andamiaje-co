@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Text } from 'native-base';
 
-import Spacer from '../Spacer';
+import styles from '../../constants/styles';
 
 const LotesListItemObra = ({
   obra,
 }) => {
 
   return (
-    <View>
+    <View style={styles.paddingBottomSmall}>
       <Text>{obra.title}, {obra.year}</Text>
       <Text>{obra.materials}</Text>
-      <Spacer size={5} />
     </View>
   );
 };

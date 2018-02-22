@@ -4,11 +4,11 @@ import { FlatList, TouchableOpacity, RefreshControl, Image, View, Text } from 'r
 import { List } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-import Spacer from '../Spacer';
-
 import CarouselHolder from '../carousel/CarouselHolder';
 import LotesListItemObra from './LotesListItemObra';
 import LoteHeader from './LoteHeader';
+
+import styles from '../../constants/styles';
 
 const LotesListItem = ({
   lote,
@@ -19,22 +19,22 @@ const LotesListItem = ({
   const onPress = id => Actions.lote({ match: { params: { id: String(id) } } });
 
   return (
-    <View>
-      <LoteHeader lote={lote} />
+    <View style={[styles.bordered]}>
+      <LoteHeader lote={lote} bordered={true} />
       <CarouselHolder obras={lote.obras} />
-      <Spacer />
-      <TouchableOpacity onPress={() => onPress(lote.id)}>
-        <Text style={{ fontWeight: '800' }}>{lote.artista.name}</Text>
-        <Spacer />
+      <TouchableOpacity style={styles.container} onPress={() => onPress(lote.id)}>
+        <View style={[styles.paddingTopBasic, styles.paddingBottomSmall]}>
+          <Text style={styles.fontBold}>{lote.artista.name}</Text>
+        </View>
         <FlatList
           numColumns={1}
           data={lote.obras}
           renderItem={({item}) => (<LotesListItemObra obra={item} />)}
           keyExtractor={keyExtractor}
         />
-        <Spacer />
-        <Text>Ver más</Text>
-        <Spacer />
+        <View style={[styles.paddingTopSmall, styles.paddingBottomLarge]}>
+          <Text>Ver más</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
