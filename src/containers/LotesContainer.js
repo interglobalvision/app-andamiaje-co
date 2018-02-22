@@ -157,7 +157,16 @@ class LotesContainer extends Component {
       const { lotes } = this.props.lotes;
 
       const loading = this.props.lotes.loading || this.props.obras.loading ? true : false;
-      const error = this.props.lotes.error + this.props.obras.error;
+
+      let error = null;
+
+      if(this.props.lotes.error !== null) {
+        error = this.props.lotes.error;
+      }
+
+      if(this.props.obras.error !== null) {
+        error = this.props.obras.error;
+      }
 
       const lote = lotes.find(item => item.id === id);
 

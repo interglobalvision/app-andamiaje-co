@@ -75,7 +75,6 @@ const Index = (
         title='Catalogos'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
-        initial
       >
         <Scene
           key='catalogos'
