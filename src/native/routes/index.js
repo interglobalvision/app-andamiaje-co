@@ -61,6 +61,7 @@ const Index = (
       hideNavBar
     >
       <Stack
+        title='Noticias'
         navigationBarTitleImage={Logo}
         navigationBarTitleImageStyle={{height: 20, width: 81.4}}
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
@@ -69,6 +70,7 @@ const Index = (
       >
         <Scene
           key='noticias'
+          title='Noticias'
           navigationBarTitleImage={Logo}
           navigationBarTitleImageStyle={{height: 20, width: 81.4}}
           component={NoticiasContainer}
