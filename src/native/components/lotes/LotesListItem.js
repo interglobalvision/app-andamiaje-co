@@ -11,7 +11,7 @@ import LotesListItemObra from './LotesListItemObra';
 import LoteHeader from './LoteHeader';
 
 const LotesListItem = ({
-  item,
+  lote,
 }) => {
 
   const keyExtractor = item => item.id;
@@ -20,15 +20,18 @@ const LotesListItem = ({
 
   return (
     <View>
-      <LoteHeader obrasLength={item.obras.length} price={item.price} lote={item} />
-      <CarouselHolder obras={item.obras} />
+      <LoteHeader lote={lote} />
+      <CarouselHolder obras={lote.obras} />
       <Spacer />
-      <TouchableOpacity onPress={() => onPress(item.id)}>
-        <Text style={{ fontWeight: '800' }}>{item.artista.name}</Text>
+      <TouchableOpacity onPress={() => onPress(lote.id)}>
+        <Text style={{ fontWeight: '800' }}>{lote.artista.name}</Text>
         <Spacer />
-        <List>
-          {item.obras.map(obra => <LotesListItemObra item={obra} key={keyExtractor(obra)} />)}
-        </List>
+        <FlatList
+          numColumns={1}
+          data={lote.obras}
+          renderItem={({item}) => (<LotesListItemObra obra={item} />)}
+          keyExtractor={keyExtractor}
+        />
         <Spacer />
         <Text>Ver más</Text>
         <Spacer />
@@ -38,7 +41,7 @@ const LotesListItem = ({
 };
 
 LotesListItem.propTypes = {
-  item: PropTypes.object.isRequired,
+  lote: PropTypes.object.isRequired,
 };
 
 export default LotesListItem;

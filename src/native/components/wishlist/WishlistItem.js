@@ -55,7 +55,7 @@ export default class WishlistItem extends Component {
 
     return (
       <View>
-        <LoteHeader loteId={lote.id} obrasLength={lote.obras.length} price={lote.price} lote={lote} />
+        <LoteHeader lote={lote} />
         <TouchableOpacity onPress={onPress} style={styles.container}>
           <View style={styles.imageHolder}>
             <Image style={styles.image} source={{ uri: imageSrc }} />

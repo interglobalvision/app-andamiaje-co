@@ -1,7 +1,6 @@
 import React from 'react';
-import { ScrollView, View, Image, Dimensions } from 'react-native';
+import { ScrollView, View, Image, Dimensions, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { Container, Content, Card, CardItem, Body, H3, List, ListItem, Text } from 'native-base';
 import DraftContentRenderer from '../DraftContentRenderer';
 
 import { getResizedImageUrl } from '../../../lib/utilities';

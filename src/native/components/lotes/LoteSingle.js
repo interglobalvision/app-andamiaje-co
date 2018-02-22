@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, FlatList, TouchableOpacity, RefreshControl, Image, View, Text } from 'react-native';
-import { List } from 'native-base';
 
+import Loading from '../Loading';
+import Error from '../Error';
 import Spacer from '../Spacer';
 import Loading from '../Loading';
 import Error from '../Error';
@@ -36,7 +37,7 @@ const LoteSingle = ({
 
   return (
     <ScrollView>
-      <LoteHeader loteId={lote.id} obrasLength={lote.obras.length} price={lote.price} />
+      <LoteHeader lote={lote} />
       <FlatList
         numColumns={1}
         data={loteObras}

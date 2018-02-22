@@ -6,20 +6,20 @@ import { Text } from 'native-base';
 import Spacer from '../Spacer';
 
 const LotesListItemObra = ({
-  item,
+  obra,
 }) => {
 
   return (
     <View>
-      <Text>{item.title}, {item.year}</Text>
-      <Text>{item.materials}</Text>
+      <Text>{obra.title}, {obra.year}</Text>
+      <Text>{obra.materials}</Text>
       <Spacer size={5} />
     </View>
   );
 };
 
 LotesListItemObra.propTypes = {
-  item: PropTypes.object.isRequired,
+  obra: PropTypes.object.isRequired,
 };
 
 export default LotesListItemObra;

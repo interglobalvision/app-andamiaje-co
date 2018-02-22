@@ -9,8 +9,6 @@ import Spacer from '../Spacer';
 
 class LoteHeader extends Component {
   static propTypes = {
-    obrasLength: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
     addToWishlist: PropTypes.func.isRequired,
     removeFromWishlist: PropTypes.func.isRequired,
     wishlist: PropTypes.array.isRequired,
@@ -64,7 +62,7 @@ class LoteHeader extends Component {
   }
 
   render() {
-    const { obrasLength, price } = this.props;
+    const { lote } = this.props;
 
     return (
       <View style={{
@@ -78,9 +76,9 @@ class LoteHeader extends Component {
             display: 'flex',
             flexDirection: 'row',
           }}>
-            <Text>{ obrasLength }</Text>
+            <Text>{ lote.obras.length }</Text>
             <Text>  •  </Text>
-            <Text>ŧ { price }</Text>
+            <Text>ŧ { lote.price }</Text>
             <Spacer />
           </View>
           <Spacer />
