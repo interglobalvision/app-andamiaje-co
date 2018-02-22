@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, FlatList, RefreshControl } from 'react-native';
+import { ScrollView, FlatList, RefreshControl, View, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';
@@ -27,22 +27,31 @@ const WishlistList = ({
 
   const currentWishlist = lotes.filter(lote => wishlist.find(item => item.id === lote.id));
 
-  return (
-    <ScrollView>
-      <FlatList
-        numColumns={1}
-        data={currentWishlist}
-        renderItem={({item}) => (<WishlistItem lote={item} />)}
-        keyExtractor={keyExtractor}
-        refreshControl={
-          <RefreshControl
-            refreshing={loading}
-            onRefresh={reFetch}
-          />
-        }
-      />
-    </ScrollView>
-  );
+  if (currentWishlist.length) {
+    return (
+      <ScrollView>
+        <FlatList
+          numColumns={1}
+          data={currentWishlist}
+          renderItem={({item}) => (<WishlistItem lote={item} />)}
+          keyExtractor={keyExtractor}
+          refreshControl={
+            <RefreshControl
+              refreshing={loading}
+              onRefresh={reFetch}
+            />
+          }
+        />
+      </ScrollView>
+    );
+  } else {
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center', height: 300 }}>
+        <Text>Parece que tu Wishlist está vacio</Text>
+        <Text>Agrega Obras para guardar las que te gusta</Text>
+      </View>
+    )
+  }
 };
 
 WishlistList.propTypes = {
