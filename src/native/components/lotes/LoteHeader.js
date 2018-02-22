@@ -9,7 +9,6 @@ import Spacer from '../Spacer';
 
 class LoteHeader extends Component {
   static propTypes = {
-    loteId: PropTypes.string.isRequired,
     obrasLength: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     addToWishlist: PropTypes.func.isRequired,
@@ -39,10 +38,10 @@ class LoteHeader extends Component {
   }
 
   returnWishlistButton = () => {
-    const { wishlist, loteId } = this.props;
+    const { wishlist, lote } = this.props;
 
     // true if wishlist array contains lote ID
-    const isWishlist = wishlist.find(item => item.id === loteId);
+    const isWishlist = wishlist.find(item => item.id === lote.id);
 
     if (isWishlist) {
       // show remove button
