@@ -44,9 +44,9 @@ export default function catalogoReducer(state = initialState, action) {
         pastCatalogos,
       };
     }
-    case 'LAYOUT_CATALOGO_GRID': {
+    case 'CHANGE_CATALOGO_LAYOUT': {
       const viewSettings = {
-        grid: true,
+        grid: action.grid,
         filterBy: state.viewSettings.filterBy,
         orderBy: state.viewSettings.orderBy,
       }
@@ -56,10 +56,22 @@ export default function catalogoReducer(state = initialState, action) {
         viewSettings,
       };
     }
-    case 'LAYOUT_CATALOGO_LIST': {
+    case 'CHANGE_CATALOGO_ORDER': {
       const viewSettings = {
-        grid: false,
+        grid: state.viewSettings.grid,
         filterBy: state.viewSettings.filterBy,
+        orderBy: action.order,
+      }
+
+      return {
+        ...state,
+        viewSettings,
+      };
+    }
+    case 'CHANGE_CATALOGO_FILTER': {
+      const viewSettings = {
+        grid: state.viewSettings.grid,
+        filterBy: action.tecnica,
         orderBy: state.viewSettings.orderBy,
       }
 

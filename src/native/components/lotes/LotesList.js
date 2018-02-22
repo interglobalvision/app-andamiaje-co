@@ -12,8 +12,6 @@ const LotesList = ({
   loading,
   error,
   lotes,
-  filterBy,
-  orderBy,
   reFetch,
 }) => {
   // Loading
@@ -46,8 +44,6 @@ LotesList.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   lotes: PropTypes.array.isRequired,
-  filterBy: PropTypes.string,
-  orderBy: PropTypes.string,
   reFetch: PropTypes.func,
 };
 

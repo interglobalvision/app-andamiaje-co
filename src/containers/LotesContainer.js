@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { orderBy } from 'lodash';
+import _filter from 'lodash/filter';
 
 import LotesList from '../native/components/lotes/LotesList';
 import LotesGrid from '../native/components/lotes/LotesGrid';
@@ -19,9 +21,6 @@ class LotesContainer extends Component {
     viewSettings: PropTypes.object.isRequired,
     getLotes: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
-    activeLotes: PropTypes.array,
-    // activeLotes prop passed from CatalogosContainer
-    // to filter Lotes by Catalog in loteReducer
   }
 
   constructor(props) {
@@ -42,32 +41,81 @@ class LotesContainer extends Component {
 
   }
 
+  applyFilter = (lotes) => {
+    let filteredLotes = lotes;
+    const filterLotesBy = this.props.viewSettings.filterBy;
+
+    if (filterLotesBy !== '' && filterLotesBy !== undefined && filterLotesBy !== null) {
+      filteredLotes = _filter(lotes, lote => lote.tecnica.includes(filterLotesBy) );
+    }
+
+    return filteredLotes;
+  }
+
+  applyOrder = (lotes) => {
+    const orderLotesBy = this.props.viewSettings.orderBy;
+
+    switch (orderLotesBy) {
+      case 'artist-az': {
+        const orderedLotes = orderBy(lotes, lote => lote.artista.name, 'asc');
+        return orderedLotes;
+      }
+      case 'artist-za': {
+        const orderedLotes = orderBy(lotes, lote => lote.artista.name, 'desc');
+        return orderedLotes;
+      }
+      case 'price-asc': {
+        const orderedLotes = orderBy(lotes, lote => lote.price, 'asc');
+        return orderedLotes;
+      }
+      case 'price-desc': {
+        const orderedLotes = orderBy(lotes, lote => lote.price, 'desc');
+        return orderedLotes;
+      }
+      case '': {
+        return lotes;
+      }
+      default: {
+        return lotes;
+      }
+    }
+  }
+
   returnLotesLayout = () => {
     const { error, loading, lotes } = this.props.lotes;
-    const { filterBy, orderBy, grid } = this.props.viewSettings;
+    const { grid } = this.props.viewSettings;
 
-    if (grid) {
+    const orderedLotes = this.applyOrder(lotes);
+    const orderedFilteredLotes = this.applyFilter(orderedLotes);
+
+    if (orderedFilteredLotes.length) {
+      if (grid) {
+        return (
+          <LotesGrid
+            error={error}
+            loading={loading}
+            lotes={orderedFilteredLotes}
+            orderBy={orderBy}
+            reFetch={() => this.fetchLotes()}
+          />
+        );
+      }
       return (
-        <LotesGrid
+        <LotesList
           error={error}
           loading={loading}
-          lotes={lotes}
-          filterBy={filterBy}
+          lotes={orderedFilteredLotes}
           orderBy={orderBy}
           reFetch={() => this.fetchLotes()}
         />
       );
+    } else {
+      return (
+        <View style={{alignItems: 'center', justifyContent: 'center', height: 300}}>
+          <Text>No hay lotes con esa técnica</Text>
+        </View>
+      )
     }
-    return (
-      <LotesList
-        error={error}
-        loading={loading}
-        lotes={lotes}
-        filterBy={filterBy}
-        orderBy={orderBy}
-        reFetch={() => this.fetchLotes()}
-      />
-    );
   }
 
   render = () => {
