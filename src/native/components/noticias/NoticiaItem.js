@@ -23,7 +23,6 @@ const renderArtista = (item) => {
 }
 
 const NoticiaItem = ({item}) => {
-  console.log(item);
   return (
     <View>
       <Spacer />
