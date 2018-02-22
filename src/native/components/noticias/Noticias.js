@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
-import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
+import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, ScrollView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+
+import CatalogosContainer from '../../../containers/CatalogosContainer';
+import Calendar from '../calendar/Calendar';
 
 import Loading from '../Loading';
 import Error from '../Error';
@@ -28,30 +30,31 @@ const Noticias = ({
   const onPress = item => Actions.noticia({ match: { params: { id: String(item.id) } } });
 
   return (
-    <Container>
-      <Content padder>
-        <Header
-          title="Noticias"
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={reFetch}
         />
+      }
+    >
+      <CatalogosContainer Layout={Calendar} />
 
-        <FlatList
-          numColumns={1}
-          data={noticias}
-          renderItem={({ item }) => (
-           <NoticiaItem item={item} />
-          )}
-          keyExtractor={keyExtractor}
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={reFetch}
-            />
-          }
-        />
+      <Header
+        title="Noticias"
+      />
 
-        <Spacer size={20} />
-      </Content>
-    </Container>
+      <FlatList
+        numColumns={1}
+        data={noticias}
+        renderItem={({ item }) => (
+         <NoticiaItem item={item} />
+        )}
+        keyExtractor={keyExtractor}
+      />
+
+      <Spacer size={20} />
+    </ScrollView>
   );
 };
 

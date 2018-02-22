@@ -28,7 +28,6 @@ class CatalogosContainer extends Component {
         console.log(`Error: ${err}`);
         return this.props.setError(err);
       });
-
   }
 
   render = () => {
@@ -40,6 +39,7 @@ class CatalogosContainer extends Component {
         loading={catalogos.loading}
         activeCatalogo={catalogos.activeCatalogo}
         pastCatalogos={catalogos.pastCatalogos}
+        futureCatalogos={catalogos.futureCatalogos}
         reFetch={() => this.fetchCatalogos()}
       />
     );
