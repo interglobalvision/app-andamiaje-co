@@ -130,7 +130,20 @@ export default styles = StyleSheet.create({
     height: 100,
   },
   wishlistTextHolder: {
-    paddingLeft: 10,
+    paddingLeft: paddingSmall,
+    flex: 1,
+  },
+  // Directory
+  directoryImageHolder: {
+    flexBasis: 50,
+  },
+  directoryImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  directoryTextHolder: {
+    paddingLeft: paddingSmall,
     flex: 1,
   },
 });

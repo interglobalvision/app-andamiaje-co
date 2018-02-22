@@ -5,8 +5,9 @@ import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';
 import Error from '../Error';
-import Spacer from '../Spacer';
 import ArtistasListItem from './ArtistasListItem';
+
+import styles from '../../constants/styles';
 
 const ArtistasList = ({
   error,
@@ -23,7 +24,7 @@ const ArtistasList = ({
   const keyExtractor = item => item.id;
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.backgroundWhite}>
       <FlatList
         numColumns={1}
         data={artistas}
