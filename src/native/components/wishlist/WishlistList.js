@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, RefreshControl, Text } from 'react-native';
+import { ScrollView, FlatList, RefreshControl } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';
@@ -25,21 +25,23 @@ const WishlistList = ({
 
   const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
-  const currentWishlist = lotes.filter(lote => wishlist.includes(lote.id));
+  const currentWishlist = lotes.filter(lote => wishlist.find(item => item.id === lote.id));
 
   return (
-    <FlatList
-      numColumns={1}
-      data={currentWishlist}
-      renderItem={({item}) => (<WishlistItem item={item} />)}
-      keyExtractor={keyExtractor}
-      refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          onRefresh={reFetch}
-        />
-      }
-    />
+    <ScrollView>
+      <FlatList
+        numColumns={1}
+        data={currentWishlist}
+        renderItem={({item}) => (<WishlistItem lote={item} />)}
+        keyExtractor={keyExtractor}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={reFetch}
+          />
+        }
+      />
+    </ScrollView>
   );
 };
 
