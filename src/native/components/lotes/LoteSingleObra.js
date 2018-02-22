@@ -1,27 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import Spacer from '../Spacer';
 
 import CarouselHolder from '../carousel/CarouselHolder';
 
+import styles from '../../constants/styles';
+
 const LoteSingleObra = ({
   obra,
 }) => {
 
+  const onPress = () => Actions.artista({ match: { params: { id: String(obra.artista.id) } } });
+
   return (
-    <View>
+    <View style={[styles.paddingBottomLarge, styles.bordered]}>
       <CarouselHolder obras={[obra]} />
-      <Spacer />
-      <View>
-        <Text style={{ fontWeight: '800' }}>{obra.artista.name}</Text>
-        <Spacer />
-        <Text>{obra.title}, {obra.year}</Text>
-        <Text>{obra.materials}</Text>
-        <Text>{obra.dimensions}</Text>
+      <View style={[styles.container, styles.paddingTopBasic]}>
+        <TouchableOpacity
+          onPress={onPress}
+          style={[
+            styles.paddingBottomBasic,
+            styles.flexRow,
+            { justifyContent: 'space-between' }
+          ]}
+        >
+          <Text style={styles.fontBold}>{obra.artista.name}</Text>
+          <Text>Ver bio</Text>
+        </TouchableOpacity>
+        <View>
+          <Text>{obra.title}, {obra.year}</Text>
+          <Text>{obra.materials}</Text>
+          <Text>{obra.dimensions}</Text>
+        </View>
       </View>
-      <Spacer />
     </View>
   );
 };

@@ -34,7 +34,7 @@ const LoteSingle = ({
   });
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.backgroundWhite}>
       <LoteHeader lote={lote} />
       <FlatList
         numColumns={1}
