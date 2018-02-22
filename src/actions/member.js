@@ -209,7 +209,7 @@ export function logout() {
 /**
   * Wishlist
   */
-export function addToWishlist(loteId) {
+export function addToWishlist(addedLote) {
 
   if (Firebase === null) {
     return () => new Promise(resolve => resolve());
@@ -222,12 +222,12 @@ export function addToWishlist(loteId) {
 
     // push lote to wishlist on firebase
     return new Promise(resolve => FirebaseRef.child(`users/${UID}/wishlist`)
-      .push(loteId).then(() => {
+      .push(addedLote).then(() => {
 
         // dispatch action to add lote to wishlist on state
         return resolve(dispatch({
           type: 'USER_WISHLIST_ADD',
-          addLote: loteId,
+          addedLote,
         }));
 
       })).catch((e) => {
@@ -236,7 +236,7 @@ export function addToWishlist(loteId) {
   }
 }
 
-export function removeFromWishlist(loteId) {
+export function removeFromWishlist(removedLote) {
 
   if (Firebase === null) {
     return () => new Promise(resolve => resolve());
@@ -254,7 +254,7 @@ export function removeFromWishlist(loteId) {
 
         // delete lote from object
         for(var lote in wishlist) {
-          if(wishlist[lote] == loteId) {
+          if(wishlist[lote].id == removedLote.id) {
             delete wishlist[lote];
           }
         }
@@ -267,7 +267,7 @@ export function removeFromWishlist(loteId) {
         // dispatch action to remove lote from wishlist on state
         return resolve(dispatch({
           type: 'USER_WISHLIST_REMOVE',
-          removeLote: loteId,
+          removedLote,
         }));
 
       })).catch((e) => {

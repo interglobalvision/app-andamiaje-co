@@ -9,12 +9,12 @@ import Spacer from '../Spacer';
 
 class LoteHeader extends Component {
   static propTypes = {
-    loteId: PropTypes.string.isRequired,
     obrasLength: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     addToWishlist: PropTypes.func.isRequired,
     removeFromWishlist: PropTypes.func.isRequired,
     wishlist: PropTypes.array.isRequired,
+    lote: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -22,7 +22,7 @@ class LoteHeader extends Component {
   }
 
   addWishlistLote = () => {
-    return this.props.addToWishlist(this.props.loteId)
+    return this.props.addToWishlist(this.props.lote)
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setError(err);
@@ -30,7 +30,7 @@ class LoteHeader extends Component {
   }
 
   removeWishlistLote = () => {
-    return this.props.removeFromWishlist(this.props.loteId)
+    return this.props.removeFromWishlist(this.props.lote)
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setError(err);
@@ -38,10 +38,10 @@ class LoteHeader extends Component {
   }
 
   returnWishlistButton = () => {
-    const { wishlist, loteId } = this.props;
+    const { wishlist, lote } = this.props;
 
     // true if wishlist array contains lote ID
-    const isWishlist = wishlist.includes(loteId);
+    const isWishlist = wishlist.find(item => item.id === lote.id);
 
     if (isWishlist) {
       // show remove button

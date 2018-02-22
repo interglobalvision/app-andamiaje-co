@@ -11,6 +11,9 @@ import Noticias from '../components/noticias/Noticias';
 import CatalogosContainer from '../../containers/CatalogosContainer';
 import CatalogosList from '../components/catalogos/Catalogos';
 
+import WishlistContainer from '../../containers/WishlistContainer';
+import WishlistList from '../components/wishlist/WishlistList';
+
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/artistas/ArtistasList';
 import ArtistaProfile from '../components/artistas/ArtistaProfile';
@@ -56,7 +59,6 @@ const Index = (
         title='Noticias'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
-
       >
         <Scene
           key='noticias'
@@ -78,10 +80,22 @@ const Index = (
         />
       </Stack>
       <Stack
-        title='Directorio'
+        title='Wishlist'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
         initial
+      >
+        <Scene
+          key='wishlist'
+          title='Wishlist'
+          component={WishlistContainer}
+          Layout={WishlistList}
+        />
+      </Stack>
+      <Stack
+        title='Directorio'
+        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        {...DefaultProps.navbarProps}
       >
         <Tabs
           key="directory"
