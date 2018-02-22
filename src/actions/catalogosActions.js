@@ -32,17 +32,12 @@ export function getCatalogos() {
 /**
  * Change Catalogo Layout Setting
  */
-export function changeCatalogoLayout(setting) {
+export function changeCatalogoLayout(grid) {
   return (dispatch) => {
-    if (setting === 'grid') {
-      return dispatch({
-        type: 'LAYOUT_CATALOGO_GRID',
-      });
-    } else if (setting === 'list') {
-      return dispatch({
-        type: 'LAYOUT_CATALOGO_LIST',
-      });
-    }
+    return dispatch({
+      type: 'CHANGE_CATALOGO_LAYOUT',
+      grid
+    });
   }
 }
 
@@ -50,42 +45,22 @@ export function changeCatalogoLayout(setting) {
  * Change Catalogo Ordering
  */
 export function changeCatalogoOrder(order) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
+    return dispatch({
+      type: 'CHANGE_CATALOGO_ORDER',
+      order
+    });
+  }
+}
 
-    const state = getState();
-
-    switch (order) {
-      case 'price-asc': {
-        return dispatch({
-          type: 'LOTES_ORDERING_PRICE_ASC',
-        });
-      }
-
-      case 'price-desc': {
-        return dispatch({
-          type: 'LOTES_ORDERING_PRICE_DESC',
-        });
-      }
-
-      case 'artist-az': {
-        return dispatch({
-          type: 'LOTES_ORDERING_ARTISTA_AZ',
-        });
-      }
-
-      case 'artist-za': {
-        return dispatch({
-          type: 'LOTES_ORDERING_ARTISTA_ZA',
-        });
-      }
-
-      case 'reset': {
-        getCatalogos();
-      }
-
-      default: {
-        getCatalogos();
-      }
-    }
+/*
+ * Change Catalogo Filtering
+ */
+export function changeCatalogoFilter(tecnica) {
+  return (dispatch) => {
+    return dispatch({
+      type: 'CHANGE_CATALOGO_FILTER',
+      tecnica
+    });
   }
 }

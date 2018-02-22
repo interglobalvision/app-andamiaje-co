@@ -7835,6 +7835,12 @@ react-native-maps@0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.17.0.tgz#d10fa94a049432c46b6ee03fe9db84c83da65c8b"
 
+react-native-modal-selector@^0.0.25:
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/react-native-modal-selector/-/react-native-modal-selector-0.0.25.tgz#40df67afa9e7f2a3da075b7eaec824d5d204b8d1"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-responsive-image-view@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-responsive-image-view/-/react-native-responsive-image-view-1.1.0.tgz#ca1b1a817deb381416f7af758f17c9e6b8f0ad5e"

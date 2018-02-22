@@ -3,8 +3,6 @@ import { ScrollView, View, Image, Dimensions, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import DraftContentRenderer from '../DraftContentRenderer';
 
-import Wishlist from '../wishlist/Wishlist';
-
 import { getResizedImageUrl } from '../../../lib/utilities';
 
 import Spacer from '../Spacer';
