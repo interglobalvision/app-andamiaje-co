@@ -38,4 +38,21 @@ export default {
       ],
     },
   ],
+  futureCatalogos: [
+    {
+      placeholder: true,
+      title: '---- --- -- ------',
+      startDate: '------------',
+      saleDate: '------------',
+      endDate: '------------',
+      lotes: [
+        {
+          title: '-------- -------',
+          artista: {
+            name: '---------- -----------',
+          },
+        },
+      ],
+    },
+  ],
 };

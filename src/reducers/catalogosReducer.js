@@ -13,8 +13,9 @@ export default function catalogoReducer(state = initialState, action) {
     case 'CATALOGOS_REPLACE': {
       let pastCatalogos = [];
       let activeCatalogo = {};
+      let futureCatalogos = [];
 
-      // Pick out the props I need
+      // Get Past Catalogos. Pick out the props I need
       if (action.data && typeof action.data === 'object') {
         pastCatalogos = Object.keys(action.data).
           filter(key => action.data[key].startDate <= Date.now()).  // Only current & past Catalogos
@@ -36,14 +37,37 @@ export default function catalogoReducer(state = initialState, action) {
         activeCatalogo = pastCatalogos.shift();
       }
 
+      // Get Future Catalogos. Pick out the props I need
+      if (action.data && typeof action.data === 'object') {
+        futureCatalogos = Object.keys(action.data).
+          filter(key => action.data[key].startDate > Date.now()).  // Only current & past Catalogos
+          map(id => {
+            const { title, startDate, saleDate, endDate, lotes } = action.data[id];
+
+            return ({
+              id,
+              title,
+              startDate,
+              saleDate,
+              endDate,
+              lotes,
+            })
+          });
+
+        // Remove activeCatalogo from futureCatalogos just in case
+        futureCatalogos = futureCatalogos.filter( catalogo => catalogo.id !== activeCatalogo.id );
+      }
+
       return {
         ...state,
         error: null,
         loading: false,
         activeCatalogo,
         pastCatalogos,
+        futureCatalogos,
       };
     }
+
     case 'LAYOUT_CATALOGO_GRID': {
       const viewSettings = {
         grid: true,
@@ -56,6 +80,7 @@ export default function catalogoReducer(state = initialState, action) {
         viewSettings,
       };
     }
+
     case 'LAYOUT_CATALOGO_LIST': {
       const viewSettings = {
         grid: false,

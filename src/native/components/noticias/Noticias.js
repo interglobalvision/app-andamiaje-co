@@ -4,6 +4,9 @@ import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } f
 import { Container, Content, Card, CardItem, Body, Text, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
+import CatalogosContainer from '../../../containers/CatalogosContainer';
+import Calendar from '../calendar/Calendar';
+
 import Loading from '../Loading';
 import Error from '../Error';
 import Header from '../Header';
@@ -30,6 +33,9 @@ const Noticias = ({
   return (
     <Container>
       <Content padder>
+        <CatalogosContainer
+          Layout={Calendar}
+        />
         <Header
           title="Noticias"
         />
