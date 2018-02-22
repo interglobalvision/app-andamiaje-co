@@ -1,5 +1,6 @@
 import Store from '../store/lotes';
 import { orderBy } from 'lodash';
+import _filter from 'lodash/filter';
 export const initialState = Store;
 
 export default function loteReducer(state = initialState, action) {
@@ -22,7 +23,7 @@ export default function loteReducer(state = initialState, action) {
             return action.activeLotes.find( lote => lote.id === key) === undefined ? false : true;
           }).  // Only lotes in catalogo
           map(id => {
-            const { title, artista, obras, price } = action.data[id];
+            const { title, artista, obras, price, tecnica } = action.data[id];
 
             // Pick out the props I need
             return ({
@@ -31,6 +32,7 @@ export default function loteReducer(state = initialState, action) {
               artista,
               obras,
               price,
+              tecnica
             })
           });
       }
@@ -39,42 +41,6 @@ export default function loteReducer(state = initialState, action) {
         ...state,
         error: null,
         loading: false,
-        lotes,
-      };
-    }
-
-    case 'LOTES_ORDERING_ARTISTA_AZ': {
-      const lotes = orderBy(state.lotes, lote => lote.artista.name, 'asc');
-
-      return {
-        ...state,
-        lotes,
-      };
-    }
-
-    case 'LOTES_ORDERING_ARTISTA_ZA': {
-      const lotes = orderBy(state.lotes, lote => lote.artista.name, 'desc');
-
-      return {
-        ...state,
-        lotes,
-      };
-    }
-
-    case 'LOTES_ORDERING_PRICE_ASC': {
-      const lotes = orderBy(state.lotes, lote => lote.price, 'asc');
-
-      return {
-        ...state,
-        lotes,
-      };
-    }
-
-    case 'LOTES_ORDERING_PRICE_DESC': {
-      const lotes = orderBy(state.lotes, lote => lote.price, 'desc');
-
-      return {
-        ...state,
         lotes,
       };
     }

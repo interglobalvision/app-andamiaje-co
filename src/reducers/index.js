@@ -7,6 +7,8 @@ import lotes from './lotesReducer';
 import artistas from './artistasReducer';
 import miembros from './miembrosReducer';
 import calendar from './calendarReducer';
+import obras from './obrasReducer';
+
 
 const rehydrated = (state = false, action) => {
   switch (action.type) {
@@ -28,4 +30,5 @@ export default {
   artistas,
   miembros,
   calendar,
+  obras,
 };

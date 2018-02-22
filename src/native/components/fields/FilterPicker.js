@@ -2,22 +2,24 @@ import React, {Component} from 'react';
 import { TextInput } from 'react-native';
 import ModalSelector from 'react-native-modal-selector';
 
-class OrderPicker extends Component {
+class FilterPicker extends Component {
   constructor(props) {
     super(props)
 
     let index = 0;
     this.data = [
-      { key: index++, section: true, label: 'Ordenar' },
-      { key: index++, label: 'Artista A-Z', value: 'artist-az', display: 'Artista A-Z' },
-      { key: index++, label: 'Artista Z-A', value: 'artist-za', display: 'Artista Z-A' },
-      { key: index++, label: 'Precio ↑', value: 'price-asc', display: 'Precio ↑' },
-      { key: index++, label: 'Precio ↓', value: 'price-desc', display: 'Precio ↓' },
-      { key: index++, label: 'Ninguno', value: '', display: 'Ordenar' },
+      { key: index++, section: true, label: 'Filtrar' },
+      { key: index++, label: 'Todas', value: '', display: 'Filtrar' },
+      { key: index++, label: 'Escultura', value: 'escultura', display: 'Escultura' },
+      { key: index++, label: 'Pintura', value: 'pintura', display: 'Pintura' },
+      { key: index++, label: 'Foto', value: 'foto', display: 'Foto' },
+      { key: index++, label: 'Video', value: 'video', display: 'Video' },
+      { key: index++, label: 'Instalación', value: 'instalacion', display: 'Instalación' },
+      { key: index++, label: 'Dibujo', value: 'dibujo', display: 'Dibujo' },
     ];
 
     // find display string in data array by initial value from state
-    const initDisplay = this.data.find(item => item.value === props.initValue) === undefined ? 'Ordenar' : this.data.find(item => item.value === props.initValue).display;
+    const initDisplay = this.data.find(item => item.value === props.initValue) === undefined ? 'Filtrar' : this.data.find(item => item.value === props.initValue).display;
 
     this.state = {
       textInputValue: initDisplay
@@ -43,7 +45,7 @@ class OrderPicker extends Component {
           autoCorrect={false}
           style={{borderWidth:0, textAlign: 'center'}}
           editable={false}
-          placeholder='Ordenar'
+          placeholder='Filtrar'
           value={this.state.textInputValue}
         />
       </ModalSelector>
@@ -51,4 +53,4 @@ class OrderPicker extends Component {
   }
 
 }
-export default OrderPicker;
+export default FilterPicker;
