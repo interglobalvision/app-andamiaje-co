@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Text, FlatList, Image } from 'react-native';
+import { StyleSheet, View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { getResizedImageUrl } from '../../../lib/utilities';
 
@@ -55,7 +56,7 @@ export default class WishlistItem extends Component {
     return (
       <View>
         <LoteHeader loteId={lote.id} obrasLength={lote.obras.length} price={lote.price} lote={lote} />
-        <View style={styles.container}>
+        <TouchableOpacity onPress={onPress} style={styles.container}>
           <View style={styles.imageHolder}>
             <Image style={styles.image} source={{ uri: imageSrc }} />
           </View>
@@ -68,7 +69,7 @@ export default class WishlistItem extends Component {
               keyExtractor={keyExtractor}
             />
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }

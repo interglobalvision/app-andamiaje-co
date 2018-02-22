@@ -23,8 +23,6 @@ const WishlistList = ({
 
   const keyExtractor = item => item.id;
 
-  const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
-
   const currentWishlist = lotes.filter(lote => wishlist.find(item => item.id === lote.id));
 
   if (currentWishlist.length) {
