@@ -112,7 +112,7 @@ class LotesContainer extends Component {
     } else {
       return (
         <View style={{alignItems: 'center', justifyContent: 'center', height: 300}}>
-          <Text>No hay lotes con esa tecnica</Text>
+          <Text>No hay lotes con esa técnica</Text>
         </View>
       )
     }

@@ -19,7 +19,7 @@ class FilterPicker extends Component {
     ];
 
     // find display string in data array by initial value from state
-    const initDisplay = this.data.find(item => item.value === props.initValue).display;
+    const initDisplay = this.data.find(item => item.value === props.initValue) === undefined ? 'Filtrar' : this.data.find(item => item.value === props.initValue).display;
 
     this.state = {
       textInputValue: initDisplay
@@ -41,6 +41,8 @@ class FilterPicker extends Component {
         cancelText='Cancelar'
       >
         <TextInput
+          underlineColorAndroid='rgba(0,0,0,0)'
+          autoCorrect={false}
           style={{borderWidth:0, textAlign: 'center'}}
           editable={false}
           placeholder='Filtrar'
