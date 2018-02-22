@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, TouchableOpacity, RefreshControl, View, Text } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';
 import Error from '../Error';
@@ -21,8 +20,6 @@ const LotesGrid = ({
   if (error) return <Error content={error} />;
 
   const keyExtractor = item => item.id;
-
-  const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
   return (
     <FlatList
