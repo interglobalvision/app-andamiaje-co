@@ -1,5 +1,14 @@
 import * as FirebaseModule from 'firebase';
-import firebaseConfig from '../constants/firebase';
+import firebaseDev from '../constants/firebase';
+import firebaseProd from '../constants/firebaseProduction';
+
+let firebaseConfig;
+
+if (Expo.Constants.manifest.releaseChannel === undefined) {
+  firebaseConfig = firebaseDev;
+} else if (Expo.Constants.manifest.releaseChannel === 'prod-v1') {
+  firebaseConfig = firebaseProd;
+}
 
 const {
   apiKey,
