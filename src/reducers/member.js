@@ -19,12 +19,12 @@ export default function userReducer(state = initialState, action) {
       return initialState;
     }
     case 'USER_WISHLIST_REMOVE': {
-      if (action.removeLote) {
+      if (action.removedLote) {
         const wishlist = state.wishlist;
 
         // lodash func removes from array by value
         const newWishlist = remove(wishlist, (lote) => {
-          return lote !== action.removeLote;
+          return lote.id !== action.removedLote.id;
         });
 
         return {
@@ -35,11 +35,11 @@ export default function userReducer(state = initialState, action) {
       return initialState;
     }
     case 'USER_WISHLIST_ADD': {
-      if (action.addLote) {
+      if (action.addedLote) {
         let wishlist = state.wishlist;
 
         // push new lote id into wishlist
-        wishlist.push(action.addLote);
+        wishlist.push(action.addedLote);
         // lodash func removes duplicates
         wishlist = uniq(wishlist);
 
