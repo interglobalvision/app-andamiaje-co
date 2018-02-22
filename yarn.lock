@@ -7824,9 +7824,9 @@ react-native-gesture-handler@1.0.0-alpha.28:
     prop-types "^15.5.10"
     react-timer-mixin "^0.13.3"
 
-react-native-looped-carousel-improved@^1.0.1:
+react-native-looped-carousel-improved@interglobalvision/react-native-looped-carousel-improved#fb64e691c0b1bc0820582d07c3b9699021cee779:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-looped-carousel-improved/-/react-native-looped-carousel-improved-1.0.1.tgz#62455bc17de3cadf2c07477f13acfe86c47cd621"
+  resolved "https://codeload.github.com/interglobalvision/react-native-looped-carousel-improved/tar.gz/fb64e691c0b1bc0820582d07c3b9699021cee779"
   dependencies:
     lodash.isequal "^4.5.0"
     prop-types "^15.5.10"
