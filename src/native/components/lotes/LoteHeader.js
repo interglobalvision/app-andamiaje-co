@@ -15,6 +15,7 @@ class LoteHeader extends Component {
     addToWishlist: PropTypes.func.isRequired,
     removeFromWishlist: PropTypes.func.isRequired,
     wishlist: PropTypes.array.isRequired,
+    lote: PropTypes.object.isRequired,
   }
 
   constructor(props) {
@@ -22,7 +23,7 @@ class LoteHeader extends Component {
   }
 
   addWishlistLote = () => {
-    return this.props.addToWishlist(this.props.loteId)
+    return this.props.addToWishlist(this.props.lote)
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setError(err);
@@ -30,7 +31,7 @@ class LoteHeader extends Component {
   }
 
   removeWishlistLote = () => {
-    return this.props.removeFromWishlist(this.props.loteId)
+    return this.props.removeFromWishlist(this.props.lote)
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setError(err);
@@ -41,7 +42,7 @@ class LoteHeader extends Component {
     const { wishlist, loteId } = this.props;
 
     // true if wishlist array contains lote ID
-    const isWishlist = wishlist.includes(loteId);
+    const isWishlist = wishlist.find(item => item.id === loteId);
 
     if (isWishlist) {
       // show remove button
