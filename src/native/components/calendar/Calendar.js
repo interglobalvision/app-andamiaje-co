@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+
+import { toggleCalendar } from '../../../actions/calendarActions';
 
 import Loading from '../Loading';
 import Error from '../Error';
@@ -10,13 +13,7 @@ import Spacer from '../Spacer';
 
 import CalendarItem from './CalendarItem';
 
-const Calendar = ({
-  error,
-  loading,
-  activeCatalogo,
-  futureCatalogos,
-  reFetch,
-}) => {
+const getDates = (activeCatalogo, futureCatalogos) => {
 
   const catalogos = [activeCatalogo, ...futureCatalogos]
 
@@ -48,32 +45,55 @@ const Calendar = ({
     }
   });
 
+  return dates;
+
+}
+
+const Calendar = ({
+  error,
+  loading,
+  activeCatalogo,
+  futureCatalogos,
+  toggleCalendar,
+  reFetch,
+  show,
+}) => {
+
   // Loading
   if (loading) return <Loading />;
 
   // Error
   if (error) return <Error content={error} />;
 
+  const dates = getDates(activeCatalogo, futureCatalogos);
+
   const keyExtractor = item => item.date;
 
   const onPress = item => Actions.noticia({ match: { params: { id: String(item.id) } } });
 
+  const baseHeight = 100;
+  const height =  show ? dates.length * baseHeight : baseHeight;
+
   return (
-    <View>
-      <FlatList
-        numColumns={1}
-        data={dates}
-        renderItem={({ item }) => (
-         <CalendarItem item={item} />
-        )}
-        keyExtractor={keyExtractor}
-        refreshControl={
-          <RefreshControl
-            refreshing={loading}
-            onRefresh={reFetch}
-          />
-        }
-      />
+    <View style={{
+      height: height,
+    }}>
+      <TouchableOpacity onPress={toggleCalendar} activeOpacity={0.9}>
+        <FlatList
+          numColumns={1}
+          data={dates}
+          renderItem={({ item }) => (
+           <CalendarItem item={item} />
+          )}
+          keyExtractor={keyExtractor}
+          refreshControl={
+            <RefreshControl
+              refreshing={loading}
+              onRefresh={reFetch}
+            />
+          }
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -91,4 +111,12 @@ Calendar.defaultProps = {
   reFetch: null,
 };
 
-export default Calendar;
+const mapStateToProps = state => ({
+  show: state.calendar.show || false,
+});
+
+const mapDispatchToProps = {
+  toggleCalendar,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
