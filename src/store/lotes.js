@@ -9,6 +9,7 @@ export default {
       artista: {
         name: '---- -----',
       },
+      tecnica: [],
       obras: [
         {
           artista: {

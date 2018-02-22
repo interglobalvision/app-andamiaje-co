@@ -3,8 +3,8 @@ export default {
   error: null,
   viewSettings: {
     grid: false,
-    filterBy: '-----',
-    orderBy: '-----',
+    filterBy: '',
+    orderBy: '',
   },
   activeCatalogo: {
     placeholder: true,
