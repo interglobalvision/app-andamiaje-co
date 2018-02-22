@@ -16,7 +16,7 @@ export default function userReducer(state = initialState, action) {
           emailVerified: action.data.emailVerified,
         };
       }
-      return initialState;
+      return state;
     }
     case 'USER_WISHLIST_REMOVE': {
       if (action.removedLote) {
@@ -32,7 +32,7 @@ export default function userReducer(state = initialState, action) {
           wishlist: newWishlist,
         };
       }
-      return initialState;
+      return state;
     }
     case 'USER_WISHLIST_ADD': {
       if (action.addedLote) {
@@ -48,7 +48,7 @@ export default function userReducer(state = initialState, action) {
           wishlist
         };
       }
-      return initialState;
+      return state;
     }
     case 'USER_ERROR': {
       if (action.data) {
@@ -58,10 +58,10 @@ export default function userReducer(state = initialState, action) {
           error: action.data,
         };
       }
-      return initialState;
+      return state;
     }
     case 'USER_RESET': {
-      return initialState;
+      return state;
     }
     default:
       return state;
