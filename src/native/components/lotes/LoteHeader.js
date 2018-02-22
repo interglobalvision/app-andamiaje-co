@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import styles from '../../constants/styles';
 
 import { addToWishlist, removeFromWishlist } from '../../../actions/member';
-
-import Spacer from '../Spacer';
 
 class LoteHeader extends Component {
   static propTypes = {
@@ -13,6 +12,7 @@ class LoteHeader extends Component {
     removeFromWishlist: PropTypes.func.isRequired,
     wishlist: PropTypes.array.isRequired,
     lote: PropTypes.object.isRequired,
+    bordered: PropTypes.bool,
   }
 
   constructor(props) {
@@ -45,43 +45,45 @@ class LoteHeader extends Component {
       // show remove button
       return (
         <TouchableOpacity onPress={ () => {this.removeWishlistLote()} }>
-          <Spacer />
           <Text >Remove</Text>
-          <Spacer />
         </TouchableOpacity>
       );
     }
     return (
       // show add button
       <TouchableOpacity onPress={ () => {this.addWishlistLote()} }>
-        <Spacer />
         <Text>Add</Text>
-        <Spacer />
       </TouchableOpacity>
     );
   }
 
+  renderObrasLength = () => {
+    const { obras } = this.props.lote;
+
+    if (obras.length > 1) {
+      return (<Text>{ obras.length } Obras</Text>)
+    }
+
+    return (<Text>{ obras.length } Obra</Text>)
+  }
+
   render() {
-    const { lote } = this.props;
+    const { lote, bordered } = this.props;
+
+    let containerStyle = [styles.container, styles.loteHeader];
+
+    if (bordered) {
+      containerStyle = [styles.container, styles.bordered, styles.loteHeader];
+    }
 
     return (
-      <View style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-      }}>
+      <View style={containerStyle}>
         <View>
-          <Spacer />
-          <View style={{
-            display: 'flex',
-            flexDirection: 'row',
-          }}>
-            <Text>{ lote.obras.length }</Text>
+          <View style={styles.flexRow}>
+            {this.renderObrasLength()}
             <Text>  •  </Text>
             <Text>ŧ { lote.price }</Text>
-            <Spacer />
           </View>
-          <Spacer />
         </View>
         {this.returnWishlistButton()}
       </View>

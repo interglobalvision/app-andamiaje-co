@@ -46,6 +46,8 @@ import ProfileComponent from '../components/Profile';
 
 import AboutComponent from '../components/About';
 
+import Logo from '../../images/andamiaje-logo.png';
+
 // react-native-router-flux API docs
 // https://github.com/aksonov/react-native-router-flux/blob/master/docs/API.md
 
@@ -60,6 +62,8 @@ const Index = (
     >
       <Stack
         title='Noticias'
+        navigationBarTitleImage={Logo}
+        navigationBarTitleImageStyle={{height: 20, width: 81.4}}
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
         initial
@@ -67,6 +71,8 @@ const Index = (
         <Scene
           key='noticias'
           title='Noticias'
+          navigationBarTitleImage={Logo}
+          navigationBarTitleImageStyle={{height: 20, width: 81.4}}
           component={NoticiasContainer}
           Layout={Noticias}
         />

@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, View, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { getResizedImageUrl, getBestImageSize, getScaledImageDimensions } from '../../../lib/utilities';
+import styles from '../../constants/styles';
 
 const CarouselItem = ({
   image,

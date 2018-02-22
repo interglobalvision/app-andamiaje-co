@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import Spacer from './Spacer';
+import styles from '../constants/styles';
 
 const SectionHeader = ({ title }) => (
-  <View style={{ flex: 1 }}>
-    <Spacer />
+  <View style={[styles.container, styles.bordered, styles.sectionHeader]}>
     <Text>{title}</Text>
   </View>
 );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, ScrollView } from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, ScrollView, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import CatalogosContainer from '../../../containers/CatalogosContainer';
@@ -43,16 +43,17 @@ const Noticias = ({
 
       <SectionHeader title={'Noticias'} />
 
-      <FlatList
-        numColumns={1}
-        data={noticias}
-        renderItem={({ item }) => (
-         <NoticiaItem item={item} />
-        )}
-        keyExtractor={keyExtractor}
-      />
+      <View>
+        <FlatList
+          numColumns={1}
+          data={noticias}
+          renderItem={({ item }) => (
+           <NoticiaItem item={item} />
+          )}
+          keyExtractor={keyExtractor}
+        />
+      </View>
 
-      <Spacer size={20} />
     </ScrollView>
   );
 };
