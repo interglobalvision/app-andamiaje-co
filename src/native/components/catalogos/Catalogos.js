@@ -34,7 +34,7 @@ const CatalogosList = ({
 
   return (
     <ScrollView>
-      <LotesContainer />
+      <LotesContainer includeObras={false} />
 
       <FlatList
         numColumns={1}
