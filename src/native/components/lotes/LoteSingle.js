@@ -4,6 +4,8 @@ import { ScrollView, FlatList, TouchableOpacity, RefreshControl, Image, View, Te
 import { List } from 'native-base';
 
 import Spacer from '../Spacer';
+import Loading from '../Loading';
+import Error from '../Error';
 
 import LoteSingleObra from './LoteSingleObra';
 import LoteHeader from './LoteHeader';

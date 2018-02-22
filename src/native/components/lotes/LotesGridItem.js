@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Image, View, Text, Dimensions } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import Spacer from '../Spacer';
 
@@ -25,7 +26,9 @@ const LotesGridItem = ({
       borderWidth: 1,
       borderStyle: 'solid',
       borderColor: 'white',
-    }}>
+    }}
+    onPress={() => onPress(item)}
+    >
       <Image source={{ uri: imageSrc }} style={{ width: (width / 3), height: (width / 3) }}/>
     </TouchableOpacity>
   );
