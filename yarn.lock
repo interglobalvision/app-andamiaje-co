@@ -7831,6 +7831,13 @@ react-native-looped-carousel-improved@^1.0.1:
     lodash.isequal "^4.5.0"
     prop-types "^15.5.10"
 
+react-native-looped-carousel-improved@interglobalvision/react-native-looped-carousel-improved#fb64e691c0b1bc0820582d07c3b9699021cee779:
+  version "1.0.1"
+  resolved "https://codeload.github.com/interglobalvision/react-native-looped-carousel-improved/tar.gz/fb64e691c0b1bc0820582d07c3b9699021cee779"
+  dependencies:
+    lodash.isequal "^4.5.0"
+    prop-types "^15.5.10"
+
 react-native-maps@0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.17.0.tgz#d10fa94a049432c46b6ee03fe9db84c83da65c8b"
