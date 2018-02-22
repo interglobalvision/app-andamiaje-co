@@ -10,6 +10,7 @@ import Loading from '../Loading';
 import Error from '../Error';
 import Header from '../Header';
 import Spacer from '../Spacer';
+import SectionHeader from '../SectionHeader';
 
 import NoticiaItem from './NoticiaItem';
 
@@ -40,9 +41,7 @@ const Noticias = ({
     >
       <CatalogosContainer Layout={Calendar} />
 
-      <Header
-        title="Noticias"
-      />
+      <SectionHeader title={'Noticias'} />
 
       <FlatList
         numColumns={1}

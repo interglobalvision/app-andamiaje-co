@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View, StyleSheet, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
-import { Container, Content } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 import Loading from '../Loading';

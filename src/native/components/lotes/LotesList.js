@@ -28,7 +28,7 @@ const LotesList = ({
     <FlatList
       numColumns={1}
       data={lotes}
-      renderItem={LotesListItem}
+      renderItem={({item}) => <LotesListItem lote={item} />}
       keyExtractor={keyExtractor}
       refreshControl={
         <RefreshControl
