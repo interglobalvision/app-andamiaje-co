@@ -69,8 +69,6 @@ const Calendar = ({
 
   const keyExtractor = item => item.date;
 
-  const onPress = item => Actions.noticia({ match: { params: { id: String(item.id) } } });
-
   const baseHeight = 100;
   const height =  show ? dates.length * baseHeight : baseHeight;
 
