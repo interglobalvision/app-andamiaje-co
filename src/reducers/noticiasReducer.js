@@ -25,6 +25,7 @@ export default function noticiaReducer(state = initialState, action) {
               publishDate,
               images,
               video,
+              artista,
             } = action.data[id];
 
             return ({
@@ -34,6 +35,7 @@ export default function noticiaReducer(state = initialState, action) {
               publishDate,
               images,
               video,
+              artista,
             })
           });
       }
