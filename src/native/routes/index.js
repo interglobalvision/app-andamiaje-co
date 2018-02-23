@@ -24,6 +24,8 @@ import ArtistaProfile from '../components/artistas/ArtistaProfile';
 import MiembrosContainer from '../../containers/MiembrosContainer';
 import MiembrosList from '../components/miembros/MiembrosList';
 import MiembroProfile from '../components/miembros/MiembroProfile';
+import MiembroOptions from '../components/miembros/MiembroOptions';
+import MiembroOptionsPage from '../components/miembros/MiembroOptionsPage';
 
 import RecipesContainer from '../../containers/Recipes';
 import RecipesComponent from '../components/Recipes';
@@ -66,7 +68,7 @@ const Index = (
         navigationBarTitleImageStyle={{height: 20, width: 81.4}}
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
-        initial
+
       >
         <Scene
           key='noticias'
@@ -112,6 +114,7 @@ const Index = (
         title='Directorio'
         icon={() => <Icon name='book' {...DefaultProps.icons} />}
         {...DefaultProps.navbarProps}
+        initial
       >
         <Tabs
           key="directory"
@@ -121,7 +124,7 @@ const Index = (
         >
           <Stack
             title='Artistas'
-            initial
+
           >
             <Scene
               key='artistas'
@@ -132,6 +135,7 @@ const Index = (
           </Stack>
           <Stack
             title='Miembros'
+            initial
           >
             <Scene
               key='miembros'
@@ -152,6 +156,27 @@ const Index = (
           title='Miembro'
           component={MiembrosContainer}
           Layout={MiembroProfile}
+        />
+        <Scene
+          key='options'
+          title='Opciones'
+          component={MiembrosContainer}
+          Layout={MiembroOptions}
+        />
+        <Scene
+          key='acercaDeAndamiaje'
+          title={'Acerca de Andamiaje'}
+          component={MiembroOptionsPage}
+        />
+        <Scene
+          key='terminosYCondiciones'
+          title={'Términos y Condiciones'}
+          component={MiembroOptionsPage}
+        />
+        <Scene
+          key='politicaDePrivacidad'
+          title={'Política de privacidad'}
+          component={MiembroOptionsPage}
         />
       </Stack>
     </Tabs>

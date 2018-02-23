@@ -10,15 +10,17 @@ const MiembroOptions = ({
   member,
 }) => {
 
+  const content = 'Lorem ipsum';
+
   return (
     <ScrollView>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => {Actions.acercaDeAndamiaje({content: content})}}>
         <Text>Acerca de Andamiaje</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => {Actions.terminosYCondiciones({content: content})}}>
         <Text>Términos y Condiciones</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => {Actions.politicaDePrivacidad({content: content})}}>
         <Text>Política de privacidad</Text>
       </TouchableOpacity>
       <TouchableOpacity>
