@@ -5,17 +5,38 @@ import styleConstants from './styleConstants';
 const windowWidth = Dimensions.get('window').width;
 
 // Calculate container padding
-const containerPaddingPercentage = windowWidth > 500 ? 0.05 : 0.02;
+const containerPaddingPercentage = windowWidth > 500 ? 0.05 : 0.03;
 const containerPadding = windowWidth * containerPaddingPercentage;
 
 // Calculate Carousel styles
-const carouselBulletsPaddingTop = styleConstants.paddingMid;
-const carouselHeight = windowWidth + carouselBulletsPaddingTop;
+const carouselBulletsPaddingTop = styleConstants.paddingBasic;
+const carouselHeight = windowWidth + carouselBulletsPaddingTop + styleConstants.paddingBasic;
 
 export default styles = StyleSheet.create({
+  // Font family:
+  fontFamilyRegular: {
+    fontFamily: styleConstants.fontFamilyRegular,
+  },
+  fontFamilyItalic: {
+    fontFamily: styleConstants.fontFamilyItalic,
+  },
+  fontFamilyMedium: {
+    fontFamily: styleConstants.fontFamilyMedium,
+  },
+  defaultText: {
+    fontFamily: styleConstants.fontFamilyRegular,
+    fontSize: styleConstants.fontSizeBasic,
+    color: colors.black,
+  },
   // Text
+  fontSizeTiny: {
+    fontSize: styleConstants.fontSizeTiny,
+  },
   fontSizeSmall: {
     fontSize: styleConstants.fontSizeSmall,
+  },
+  fontSizeBasic: {
+    fontSize: styleConstants.fontSizeBasic,
   },
   fontSizeMid: {
     fontSize: styleConstants.fontSizeMid,
@@ -30,16 +51,19 @@ export default styles = StyleSheet.create({
     lineHeight: styleConstants.lineHeightParagraph,
   },
   fontItalic: {
-    fontStyle: 'italic',
+    fontFamily: styleConstants.fontFamilyItalic,
   },
   fontBold: {
-    fontWeight: styleConstants.fontWeightBold,
+    fontFamily: styleConstants.fontFamilyMedium,
   },
   textAlignCenter: {
     textAlign: 'center',
   },
   colorWhite: {
     color: colors.white,
+  },
+  colorDarkGrey: {
+    color: colors.darkGrey,
   },
   // Basic
   bordered: {
@@ -50,10 +74,12 @@ export default styles = StyleSheet.create({
   container: {
     paddingLeft: containerPadding,
     paddingRight: containerPadding,
-    backgroundColor: colors.white,
   },
   backgroundWhite: {
     backgroundColor: colors.white,
+  },
+  emptyItemsHeight: {
+    height: 300,
   },
   // Flex
   flexRow: {
@@ -114,7 +140,7 @@ export default styles = StyleSheet.create({
   calendarDate: {
     flexDirection: 'column',
     flexWrap: 'nowrap',
-    flexBasis: 100,
+    flexBasis: 70,
   },
   // LoteHeader
   loteHeader: {
@@ -130,6 +156,13 @@ export default styles = StyleSheet.create({
   },
   carouselBullets: {
     paddingTop: carouselBulletsPaddingTop,
+  },
+  carouselItem: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: windowWidth,
+    height: windowWidth,
+    backgroundColor: colors.white,
   },
   // WishlistItem
   wishlistImageHolder: {
@@ -163,7 +196,7 @@ export default styles = StyleSheet.create({
     borderRadius: 50
   },
   profileHeaderTextHolder: {
-    paddingLeft: styleConstants.paddingSmall,
+    paddingLeft: styleConstants.paddingBasic,
     flex: 1,
   },
 });
