@@ -44,14 +44,15 @@ const Noticias = ({
       <SectionHeader title={'Noticias'} />
 
       <View>
-        <FlatList
-          numColumns={1}
-          data={noticias}
-          renderItem={({ item }) => (
-           <NoticiaItem item={item} />
-          )}
-          keyExtractor={keyExtractor}
-        />
+        {noticias.map( (item, key) => {
+          let border = true;
+          if (key >= (noticias.length - 1) ) {
+            border = false;
+          }
+          return (
+            <NoticiaItem key={keyExtractor(item)} item={item} border={border}/>
+          )
+        })}
       </View>
 
     </ScrollView>

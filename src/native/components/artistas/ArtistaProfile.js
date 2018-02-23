@@ -21,10 +21,10 @@ const ArtistaProfile = ({
   if (artistaId && artistas) {
     artista = artistas.find(item => item.id === artistaId);
   }
+  console.log(artistas);
+  console.log(artistaId);
 
   const placeholder = 'http://via.placeholder.com/50x50';
-
-  const {width, height} = Dimensions.get('window')
 
   const {
     name,
@@ -54,8 +54,8 @@ const ArtistaProfile = ({
         </View>
         <View style={[styles.profileHeaderTextHolder]}>
           { name !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : '' }
-          { country !== 'undefined' ? <Text>{country}</Text>  : '' }
-          { gallery !== 'undefined' ? <Text>{gallery}</Text>  : '' }
+          { country !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{country}</Text>  : '' }
+          { gallery !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{gallery}</Text>  : '' }
         </View>
       </View>
       <DraftContentRenderer rawContent={bioRawContent} />

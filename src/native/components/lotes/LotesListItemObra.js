@@ -6,7 +6,7 @@ import { Text } from 'native-base';
 import styles from '../../constants/styles';
 
 const LotesListItemObra = ({
-  obra,
+  obra, border
 }) => {
 
   return (

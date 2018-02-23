@@ -36,18 +36,17 @@ const LoteSingle = ({
   return (
     <ScrollView style={styles.backgroundWhite}>
       <LoteHeader lote={lote} />
-      <FlatList
-        numColumns={1}
-        data={loteObras}
-        renderItem={({item}) => (<LoteSingleObra obra={item} />)}
-        keyExtractor={keyExtractor}
-        refreshControl={
-          <RefreshControl
-            refreshing={loading}
-            onRefresh={reFetch}
-          />
-        }
-      />
+      <View>
+        {loteObras.map( (item, key) => {
+          let border = true;
+          if (key >= (loteObras.length - 1) ) {
+            border = false;
+          }
+          return (
+            <LoteSingleObra key={keyExtractor} obra={item} border={border}/>
+          )
+        })}
+      </View>
     </ScrollView>
   );
 };

@@ -9,9 +9,9 @@ const CalendarItem = ({item}) => (
     <Text style={[ styles.calendarLabel, styles.fontBold ]}>{item.label}</Text>
     <View style={styles.calendarDate}>
       <Text style={[ styles.fontBold, styles.textAlignCenter, styles.colorWhite, styles.fontSizeLarge ]}>{format(item.date, 'DD')}</Text>
-      <Text style={[ styles.fontBold, styles.textAlignCenter, styles.colorWhite, styles.fontSizeSmall ]}>{format(item.date, 'MMMM').toUpperCase()}</Text>
+      <Text style={[ styles.fontBold, styles.textAlignCenter, styles.colorWhite, styles.fontSizeTiny ]}>{format(item.date, 'MMMM').toUpperCase()}</Text>
     </View>
-  </View>
+  </View> 
 );
 
 export default CalendarItem;

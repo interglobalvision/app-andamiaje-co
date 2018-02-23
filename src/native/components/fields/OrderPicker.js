@@ -41,7 +41,14 @@ class OrderPicker extends Component {
         <TextInput
           underlineColorAndroid='rgba(0,0,0,0)'
           autoCorrect={false}
-          style={{borderWidth:0, textAlign: 'center'}}
+          style={[
+            styles.textAlignCenter,
+            styles.fontSizeSmall,
+            styles.fontBold,
+            {
+              borderWidth:0
+            }
+          ]}
           editable={false}
           placeholder='Ordenar'
           value={this.state.textInputValue}

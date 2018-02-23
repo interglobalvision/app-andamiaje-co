@@ -17,25 +17,30 @@ const renderArtista = (item) => {
   if (item.artista !== undefined) {
     return (
       <TouchableOpacity onPress={() => onPress(item.artista.id)}  style={styles.paddingBottomMid}>
-        <Text>Ver el bio de {item.artista.name}</Text>
+        <Text style={styles.colorDarkGrey, styles.fontSizeSmall}>Ver el bio de {item.artista.name}</Text>
       </TouchableOpacity>
     );
   }
   return null;
 }
 
-const NoticiaItem = ({item}) => {
+const NoticiaItem = ({item, border}) => {
+
+  let holderStyle = [
+    styles.container,
+    styles.backgroundWhite,
+    styles.paddingTopMid,
+    styles.paddingBottomLarge
+  ];
+  if (border) {
+    holderStyle.push(styles.bordered);
+  }
+
   return (
-    <View style={[
-      styles.container,
-      styles.bordered,
-      styles.paddingTopMid,
-      styles.paddingBottomLarge
-    ]}>
+    <View style={holderStyle}>
       <View style={styles.paddingBottomBasic}>
         <Text>
-          <Text style={[styles.fontBold, styles.fontSizeMid ]}>{item.title}</Text>          <TextBullet />
-          <Text>{distanceInWordsToNow(item.publishDate)}</Text>
+          <Text style={[styles.fontBold, styles.fontSizeMid ]}>{item.title}</Text><TextBullet /><Text style={[styles.fontSizeSmall]}>{distanceInWordsToNow(item.publishDate)}</Text>
         </Text>
       </View>
 
