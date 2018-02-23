@@ -7,7 +7,7 @@ import ArtistaPortfolio from './ArtistaPortfolio';
 
 import { getResizedImageUrl } from '../../../lib/utilities';
 
-import Spacer from '../Spacer';
+import styles from '../../constants/styles';
 
 const ArtistaProfile = ({
 	error,
@@ -41,23 +41,25 @@ const ArtistaProfile = ({
   const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
 
 	return (
-    <ScrollView>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
+    <ScrollView style={[styles.backgroundWhite]}>
+      <View style={[
+        styles.container,
+        styles.bordered,
+        styles.flexRow,
+        styles.paddingTopBasic,
+        styles.paddingBottomBasic,
+      ]}>
         <View>
-          <Spacer />
-          <Image source={{ uri: imageSrc }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-          <Spacer />
+          <Image source={{ uri: imageSrc }} style={[styles.profileAvatarImage]} />
         </View>
-        <View style={{ paddingLeft: 10 }}>
-          <Spacer />
-          { name !== 'undefined' ? <Text>{name}</Text>  : '' }
+        <View style={[styles.profileHeaderTextHolder]}>
+          { name !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : '' }
           { country !== 'undefined' ? <Text>{country}</Text>  : '' }
           { gallery !== 'undefined' ? <Text>{gallery}</Text>  : '' }
-          <Spacer />
         </View>
       </View>
       <DraftContentRenderer rawContent={bioRawContent} />
-      <ArtistaPortfolio portfolio={portfolio} />
+      <ArtistaPortfolio portfolio={portfolio} name={name} />
     </ScrollView>
 	);
 };

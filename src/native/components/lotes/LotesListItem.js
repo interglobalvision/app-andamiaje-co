@@ -23,7 +23,7 @@ const LotesListItem = ({
       <LoteHeader lote={lote} bordered={true} />
       <CarouselHolder obras={lote.obras} />
       <TouchableOpacity style={styles.container} onPress={() => onPress(lote.id)}>
-        <View style={[styles.paddingTopBasic, styles.paddingBottomSmall]}>
+        <View style={[styles.paddingTopSmall, styles.paddingBottomSmall]}>
           <Text style={styles.fontBold}>{lote.artista.name}</Text>
         </View>
         <FlatList

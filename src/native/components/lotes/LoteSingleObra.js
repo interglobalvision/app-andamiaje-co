@@ -31,7 +31,7 @@ const LoteSingleObra = ({
           <Text>Ver bio</Text>
         </TouchableOpacity>
         <View>
-          <Text>{obra.title}, {obra.year}</Text>
+          <Text><Text style={[styles.fontItalic]}>{obra.title}</Text>, {obra.year}</Text>
           <Text>{obra.materials}</Text>
           <Text>{obra.dimensions}</Text>
         </View>
