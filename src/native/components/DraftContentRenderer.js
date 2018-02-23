@@ -11,6 +11,13 @@ const customStyles = StyleSheet.flatten({
     marginBottom: styleConstants.paddingSmall,
     lineHeight: styleConstants.lineHeightParagraph,
   },
+  bold: {
+    fontFamily: styleConstants.fontFamilyMedium,
+  },
+  italic: {
+    fontStyle: 'normal',
+    fontFamily: styleConstants.fontFamilyItalic,
+  },
   link: {
     color: colors.darkGrey,
     fontWeight: styleConstants.fontWeightBold,
