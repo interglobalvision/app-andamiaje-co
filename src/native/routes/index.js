@@ -72,7 +72,8 @@ const Index = (
           navigationBarTitleImage={Logo}
           navigationBarTitleImageStyle={{
             height: 20,
-            width: 81.5
+            width: 81.5,
+            alignSelf: 'center'
           }}
           component={NoticiasContainer}
           Layout={Noticias}
