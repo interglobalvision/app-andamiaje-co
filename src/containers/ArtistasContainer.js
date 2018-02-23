@@ -33,7 +33,6 @@ class ArtistasContainer extends Component {
   render = () => {
     const { Layout, artistas, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
-    debugger;
 
     return (
       <Layout
