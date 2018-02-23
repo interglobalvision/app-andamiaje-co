@@ -10,7 +10,6 @@ import MiembroCollection from './MiembroCollection';
 import styles from '../../constants/styles';
 
 const MiembroProfile = ({
-	error,
 	miembros,
 	miembroId,
   member,
@@ -33,7 +32,7 @@ const MiembroProfile = ({
   const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
 
 	return (
-    <ScrollView style={[styles.backgroundWhite]}> 
+    <ScrollView style={[styles.backgroundWhite]}>
       <View style={[
         styles.container,
         styles.bordered,
