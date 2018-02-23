@@ -13,7 +13,16 @@ const MiembroOptions = ({
   return (
     <ScrollView>
       <TouchableOpacity>
-        <Text>Terminos y condiciones</Text>
+        <Text>Acerca de Andamiaje</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text>Términos y Condiciones</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text>Política de privacidad</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text>Cerrar sesión</Text>
       </TouchableOpacity>
     </ScrollView>
   );
