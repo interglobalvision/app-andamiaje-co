@@ -7,7 +7,8 @@
     "icon": "src/images/app-icon.png",
     "privacy": "public",
     "ios": {
-      "bundleIdentifier": "co.andamiaje"
+      "bundleIdentifier": "co.andamiaje",
+      "icon" : "src/images/app-icon-ios.png"
     },
     "android": {
       "package": "co.andamiaje"
