@@ -9,11 +9,20 @@ import { getResizedImageUrl } from '../../../lib/utilities';
 
 import styles from '../../constants/styles';
 
+import Loading from '../Loading';
+import Error from '../Error';
+
 const ArtistaProfile = ({
 	error,
+  loading,
 	artistas,
 	artistaId,
 }) => {
+  // Loading
+  if (loading) return <Loading />;
+
+  // Error
+  if (error) return <Error content={error} />;
 
   // Get this artista from all artistas
   let artista = null;

@@ -59,7 +59,7 @@ WishlistList.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   lotes: PropTypes.array.isRequired,
-  wishlist: PropTypes.array.isRequired,
+  wishlist: PropTypes.object.isRequired,
   reFetch: PropTypes.func,
 };
 

@@ -12,7 +12,7 @@ class LoteHeader extends Component {
   static propTypes = {
     addToWishlist: PropTypes.func.isRequired,
     removeFromWishlist: PropTypes.func.isRequired,
-    wishlist: PropTypes.array.isRequired,
+    wishlist: PropTypes.object.isRequired,
     lote: PropTypes.object.isRequired,
   }
 
