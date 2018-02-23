@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, FlatList, RefreshControl, View, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import _find from 'lodash/find';
 
 import Loading from '../Loading';
 import Error from '../Error';
@@ -25,7 +26,7 @@ const WishlistList = ({
 
   const keyExtractor = item => item.id;
 
-  const currentWishlist = lotes.filter(lote => wishlist.find(item => item.id === lote.id));
+  const currentWishlist = lotes.filter(lote => _find(wishlist, item => item.id === lote.id));
 
   if (currentWishlist.length) {
     return (

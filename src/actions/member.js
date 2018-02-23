@@ -246,11 +246,12 @@ export function removeFromWishlist(removedLote) {
     // Get user ID
     const UID = Firebase.auth().currentUser.uid;
     if (!UID) return reject({ message: 'Not logged in' });
+    let wishlist = {};
 
     return new Promise((resolve) => FirebaseRef.child(`users/${UID}/wishlist`)
       .once('value')
       .then((snapshot) => {
-        let wishlist = snapshot.val() || [];
+        wishlist = snapshot.val() || {};
 
         // delete lote from object
         for(var lote in wishlist) {
@@ -267,7 +268,7 @@ export function removeFromWishlist(removedLote) {
         // dispatch action to remove lote from wishlist on state
         return resolve(dispatch({
           type: 'USER_WISHLIST_REMOVE',
-          removedLote,
+          wishlist,
         }));
 
       })).catch((e) => {

@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../../constants/styles';
 import TextBullet from '../TextBullet';
+import _find from 'lodash/find';
 
 import { addToWishlist, removeFromWishlist } from '../../../actions/member';
 
@@ -39,7 +40,8 @@ class LoteHeader extends Component {
     const { wishlist, lote } = this.props;
 
     // true if wishlist array contains lote ID
-    const isWishlist = wishlist.find(item => item.id === lote.id);
+    //const isWishlist = wishlist.find(item => item.id === lote.id);
+    const isWishlist = _find(wishlist, item => item.id === lote.id);
 
     if (isWishlist) {
       // show remove button
