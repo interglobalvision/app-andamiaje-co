@@ -21,8 +21,6 @@ const ArtistaProfile = ({
   if (artistaId && artistas) {
     artista = artistas.find(item => item.id === artistaId);
   }
-  console.log(artistas);
-  console.log(artistaId);
 
   const placeholder = 'http://via.placeholder.com/50x50';
 
