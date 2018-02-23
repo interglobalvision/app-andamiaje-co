@@ -53,14 +53,10 @@ const MiembroProfile = ({
     <ScrollView>
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <View>
-          <Spacer />
           <Image source={{ uri: imageSrc }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-          <Spacer />
         </View>
         <View style={{ paddingLeft: 10, flex: 1 }}>
-          <Spacer />
           { displayName !== 'undefined' ? <Text>{displayName}</Text>  : '' }
-          <Spacer />
         </View>
         {renderOptionsButton()}
       </View>
