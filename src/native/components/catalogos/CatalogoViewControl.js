@@ -25,20 +25,28 @@ class CatalogoViewControl extends Component {
     const { grid, orderBy, filterBy } = this.props.viewSettings;
 
     return (
-      <View style={[styles.container, styles.paddingTopBasic, styles.paddingBottomBasic, styles.bordered, { alignItems: 'center', justifyContent: 'center' }]}>
-        <View style={{
-          display: 'flex',
-          flexDirection: 'row',
-        }}>
+      <View style={[
+        styles.container,
+        styles.backgroundWhite,
+        styles.paddingTopBasic,
+        styles.paddingBottomBasic,
+        styles.bordered,
+      ]}>
+        <View style={[
+          styles.flexRow,
+          styles.flexCenter,
+        ]}>
           <TouchableOpacity
             style={{
               flexBasis: '20%',
             }}
             onPress={() => {this.props.changeCatalogoLayout(true)}}
           >
-            <Text style={{
-              textAlign: 'center',
-            }}>Grid</Text>
+            <Text style={[
+              styles.textAlignCenter,
+              styles.fontSizeSmall,
+              styles.fontBold,
+            ]}>Grid</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -46,9 +54,11 @@ class CatalogoViewControl extends Component {
             }}
             onPress={() => {this.props.changeCatalogoLayout(false)}}
           >
-            <Text style={{
-              textAlign: 'center',
-            }}>List</Text>
+            <Text style={[
+              styles.textAlignCenter,
+              styles.fontSizeSmall,
+              styles.fontBold,
+            ]}>List</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{

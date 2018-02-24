@@ -1,43 +1,69 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import colors from './colors';
+import styleConstants from './styleConstants';
 
 const windowWidth = Dimensions.get('window').width;
 
 // Calculate container padding
-const containerPaddingPercentage = windowWidth > 500 ? 0.1 : 0.02;
+const containerPaddingPercentage = windowWidth > 500 ? 0.05 : 0.03;
 const containerPadding = windowWidth * containerPaddingPercentage;
 
-// Font sizes
-const fontSizeBasic = 14;
-const fontSizeSmall = 10;
-const fontSizeMid = 21;
-const fontSizeLarge = 28;
-
-// Padding
-const paddingBasic = 20;
-const paddingSmall = paddingBasic / 2; // 10
-const paddingMid = paddingBasic * 1.5; // 30
-const paddingLarge = paddingBasic * 2; // 40
+// Calculate Carousel styles
+const carouselBulletsPaddingTop = styleConstants.paddingBasic;
+const carouselHeight = windowWidth + carouselBulletsPaddingTop + styleConstants.paddingBasic;
 
 export default styles = StyleSheet.create({
+  // Font family:
+  fontFamilyRegular: {
+    fontFamily: styleConstants.fontFamilyRegular,
+  },
+  fontFamilyItalic: {
+    fontFamily: styleConstants.fontFamilyItalic,
+  },
+  fontFamilyMedium: {
+    fontFamily: styleConstants.fontFamilyMedium,
+  },
+  defaultText: {
+    fontFamily: styleConstants.fontFamilyRegular,
+    fontSize: styleConstants.fontSizeBasic,
+    color: colors.black,
+  },
   // Text
+  fontSizeTiny: {
+    fontSize: styleConstants.fontSizeTiny,
+  },
   fontSizeSmall: {
-    fontSize: fontSizeSmall,
+    fontSize: styleConstants.fontSizeSmall,
+  },
+  fontSizeBasic: {
+    fontSize: styleConstants.fontSizeBasic,
   },
   fontSizeMid: {
-    fontSize: fontSizeMid,
+    fontSize: styleConstants.fontSizeMid,
   },
   fontSizeLarge: {
-    fontSize: fontSizeLarge,
+    fontSize: styleConstants.fontSizeLarge,
+  },
+  lineHeightBasic: {
+    lineHeight: styleConstants.lineHeightBasic,
+  },
+  lineHeightParagraph: {
+    lineHeight: styleConstants.lineHeightParagraph,
+  },
+  fontItalic: {
+    fontFamily: styleConstants.fontFamilyItalic,
   },
   fontBold: {
-    fontWeight: '800',
+    fontFamily: styleConstants.fontFamilyMedium,
   },
   textAlignCenter: {
     textAlign: 'center',
   },
   colorWhite: {
     color: colors.white,
+  },
+  colorDarkGrey: {
+    color: colors.darkGrey,
   },
   // Basic
   bordered: {
@@ -48,10 +74,12 @@ export default styles = StyleSheet.create({
   container: {
     paddingLeft: containerPadding,
     paddingRight: containerPadding,
-    backgroundColor: colors.white,
   },
   backgroundWhite: {
     backgroundColor: colors.white,
+  },
+  emptyItemsHeight: {
+    height: 300,
   },
   // Flex
   flexRow: {
@@ -63,33 +91,33 @@ export default styles = StyleSheet.create({
   },
   // Padding
   paddingTopSmall: {
-    paddingTop: paddingSmall,
+    paddingTop: styleConstants.paddingSmall,
   },
   paddingTopBasic: {
-    paddingTop: paddingBasic,
+    paddingTop: styleConstants.paddingBasic,
   },
   paddingTopMid: {
-    paddingTop: paddingMid,
+    paddingTop: styleConstants.paddingMid,
   },
   paddingTopLarge: {
-    paddingTop: paddingLarge,
+    paddingTop: styleConstants.paddingLarge,
   },
   paddingBottomSmall: {
-    paddingBottom: paddingSmall,
+    paddingBottom: styleConstants.paddingSmall,
   },
   paddingBottomBasic: {
-    paddingBottom: paddingBasic,
+    paddingBottom: styleConstants.paddingBasic,
   },
   paddingBottomMid: {
-    paddingBottom: paddingMid,
+    paddingBottom: styleConstants.paddingMid,
   },
   paddingBottomLarge: {
-    paddingBottom: paddingLarge,
+    paddingBottom: styleConstants.paddingLarge,
   },
   // SectionHeader
   sectionHeader: {
-    paddingTop: paddingMid,
-    paddingBottom: paddingSmall,
+    paddingTop: styleConstants.paddingMid,
+    paddingBottom: styleConstants.paddingSmall,
     flex: 1,
   },
   // CalendarItem
@@ -112,14 +140,29 @@ export default styles = StyleSheet.create({
   calendarDate: {
     flexDirection: 'column',
     flexWrap: 'nowrap',
-    flexBasis: 100,
+    flexBasis: 70,
   },
   // LoteHeader
   loteHeader: {
-    paddingTop: paddingBasic,
-    paddingBottom: paddingBasic,
+    paddingTop: styleConstants.paddingBasic,
+    paddingBottom: styleConstants.paddingBasic,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  // Carousel
+  carousel: {
+    width: windowWidth,
+    height: carouselHeight,
+  },
+  carouselBullets: {
+    paddingTop: carouselBulletsPaddingTop,
+  },
+  carouselItem: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: windowWidth,
+    height: windowWidth,
+    backgroundColor: colors.white,
   },
   // WishlistItem
   wishlistImageHolder: {
@@ -130,7 +173,30 @@ export default styles = StyleSheet.create({
     height: 100,
   },
   wishlistTextHolder: {
-    paddingLeft: 10,
+    paddingLeft: styleConstants.paddingSmall,
+    flex: 1,
+  },
+  // Directory
+  directoryImageHolder: {
+    flexBasis: 50,
+  },
+  directoryImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  directoryTextHolder: {
+    paddingLeft: styleConstants.paddingSmall,
+    flex: 1,
+  },
+  // Profile
+  profileAvatarImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50
+  },
+  profileHeaderTextHolder: {
+    paddingLeft: styleConstants.paddingBasic,
     flex: 1,
   },
 });

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../../constants/styles';
+import TextBullet from '../TextBullet';
+import _find from 'lodash/find';
 
 import { addToWishlist, removeFromWishlist } from '../../../actions/member';
 
@@ -10,9 +12,8 @@ class LoteHeader extends Component {
   static propTypes = {
     addToWishlist: PropTypes.func.isRequired,
     removeFromWishlist: PropTypes.func.isRequired,
-    wishlist: PropTypes.array.isRequired,
+    wishlist: PropTypes.object.isRequired,
     lote: PropTypes.object.isRequired,
-    bordered: PropTypes.bool,
   }
 
   constructor(props) {
@@ -39,50 +40,51 @@ class LoteHeader extends Component {
     const { wishlist, lote } = this.props;
 
     // true if wishlist array contains lote ID
-    const isWishlist = wishlist.find(item => item.id === lote.id);
+    //const isWishlist = wishlist.find(item => item.id === lote.id);
+    const isWishlist = _find(wishlist, item => item.id === lote.id);
 
     if (isWishlist) {
       // show remove button
       return (
         <TouchableOpacity onPress={ () => {this.removeWishlistLote()} }>
-          <Text >Remove</Text>
+          <Text style={[styles.fontSizeSmall]}>Remove</Text>
         </TouchableOpacity>
       );
     }
     return (
       // show add button
       <TouchableOpacity onPress={ () => {this.addWishlistLote()} }>
-        <Text>Add</Text>
+        <Text style={[styles.fontSizeSmall]}>Add</Text>
       </TouchableOpacity>
     );
   }
 
   renderObrasLength = () => {
     const { obras } = this.props.lote;
+    let obraText = 'Obra';
 
     if (obras.length > 1) {
-      return (<Text>{ obras.length } Obras</Text>)
+      obraText = 'Obras';
     }
 
-    return (<Text>{ obras.length } Obra</Text>)
+    return (<Text style={[styles.fontSizeSmall]}>{ obras.length } {obraText}</Text>)
   }
 
   render() {
-    const { lote, bordered } = this.props;
-
-    let containerStyle = [styles.container, styles.loteHeader];
-
-    if (bordered) {
-      containerStyle = [styles.container, styles.bordered, styles.loteHeader];
-    }
+    const { lote } = this.props;
 
     return (
-      <View style={containerStyle}>
+      <View style={[
+        styles.container,
+        styles.bordered,
+        styles.backgroundWhite,
+        styles.loteHeader
+      ]}>
         <View>
           <View style={styles.flexRow}>
             {this.renderObrasLength()}
-            <Text>  •  </Text>
-            <Text>ŧ { lote.price }</Text>
+            <TextBullet />
+            <Text style={[styles.fontSizeSmall]}>ŧ { lote.price }</Text>
           </View>
         </View>
         {this.returnWishlistButton()}

@@ -7,13 +7,22 @@ import ArtistaPortfolio from './ArtistaPortfolio';
 
 import { getResizedImageUrl } from '../../../lib/utilities';
 
-import Spacer from '../Spacer';
+import styles from '../../constants/styles';
+
+import Loading from '../Loading';
+import Error from '../Error';
 
 const ArtistaProfile = ({
 	error,
+  loading,
 	artistas,
 	artistaId,
 }) => {
+  // Loading
+  if (loading) return <Loading />;
+
+  // Error
+  if (error) return <Error content={error} />;
 
   // Get this artista from all artistas
   let artista = null;
@@ -23,8 +32,6 @@ const ArtistaProfile = ({
   }
 
   const placeholder = 'http://via.placeholder.com/50x50';
-
-  const {width, height} = Dimensions.get('window')
 
   const {
     name,
@@ -41,23 +48,25 @@ const ArtistaProfile = ({
   const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
 
 	return (
-    <ScrollView>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
+    <ScrollView style={[styles.backgroundWhite]}>
+      <View style={[
+        styles.container,
+        styles.bordered,
+        styles.flexRow,
+        styles.paddingTopBasic,
+        styles.paddingBottomBasic,
+      ]}>
         <View>
-          <Spacer />
-          <Image source={{ uri: imageSrc }} style={{ width: 100, height: 100, borderRadius: 50 }} />
-          <Spacer />
+          <Image source={{ uri: imageSrc }} style={[styles.profileAvatarImage]} />
         </View>
-        <View style={{ paddingLeft: 10 }}>
-          <Spacer />
-          { name !== 'undefined' ? <Text>{name}</Text>  : '' }
-          { country !== 'undefined' ? <Text>{country}</Text>  : '' }
-          { gallery !== 'undefined' ? <Text>{gallery}</Text>  : '' }
-          <Spacer />
+        <View style={[styles.profileHeaderTextHolder]}>
+          { name !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : '' }
+          { country !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{country}</Text>  : '' }
+          { gallery !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{gallery}</Text>  : '' }
         </View>
       </View>
       <DraftContentRenderer rawContent={bioRawContent} />
-      <ArtistaPortfolio portfolio={portfolio} />
+      <ArtistaPortfolio portfolio={portfolio} name={name} />
     </ScrollView>
 	);
 };
