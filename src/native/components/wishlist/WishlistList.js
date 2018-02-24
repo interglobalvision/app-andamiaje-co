@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, FlatList, RefreshControl, View, Text } from 'react-native';
+import { ScrollView, FlatList, RefreshControl, View, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import _find from 'lodash/find';
 
@@ -47,10 +47,19 @@ const WishlistList = ({
     );
   } else {
     return (
-      <View style={[styles.flexCenter, styles.paddingTopLarge, styles.paddingBottomLarge]}>
-        <Text>Parece que tu Wishlist está vacio</Text>
-        <Text>Agrega Obras para guardar las que te gusta</Text>
-      </View>
+      <ScrollView style={styles.backgroundWhite}>
+        <View style={[
+          styles.container,
+          styles.flexCenter,
+          styles.emptyItemsHeight
+        ]}>
+          <Text>Parece que tu Wishlist está vacío</Text>
+          <View style={[styles.paddingTopBasic, styles.paddingBottomBasic]}>
+            <Image source={require('../../../images/icons/icon-wishlist-empty.png')} style={{width: 37, height: 50}} />
+          </View>
+          <Text>Agrega Obras para guardar las que te gusta</Text>
+        </View>
+      </ScrollView>
     )
   }
 };
