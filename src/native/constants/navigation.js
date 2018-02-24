@@ -22,6 +22,9 @@ export default {
     swipeEnabled: true,
     tabBarPosition: 'bottom',
     activeTintColor: colors.black,
+    tabBarStyle: {
+      backgroundColor: colors.white,
+    },
   },
 
   topTabProps: {
