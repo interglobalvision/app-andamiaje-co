@@ -48,8 +48,8 @@ const WishlistList = ({
   } else {
     return (
       <View style={[styles.flexCenter, styles.paddingTopLarge, styles.paddingBottomLarge]}>
-        <Text>Parece que tu Wishlist está vacio</Text>
-        <Text>Agrega Obras para guardar las que te gusta</Text>
+        <Text>Parece que tu lista de Deseos está vacia</Text>
+        <Text>Agrega Obras para guardar las que te gustan</Text>
       </View>
     )
   }

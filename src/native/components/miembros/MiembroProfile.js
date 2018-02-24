@@ -1,10 +1,9 @@
 import React from 'react';
-import { ScrollView, View, Image, Text } from 'react-native';
+import { ScrollView, View, Image, Dimensions, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import DraftContentRenderer from '../DraftContentRenderer';
-
+import { Actions } from 'react-native-router-flux';
 import { getResizedImageUrl } from '../../../lib/utilities';
-
 import MiembroCollection from './MiembroCollection';
 
 import styles from '../../constants/styles';
@@ -31,6 +30,23 @@ const MiembroProfile = ({
 
   const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
 
+  const renderOptionsButton = () => {
+    if (miembroId === member.uid) {
+      return (
+        <View style={[
+          styles.container,
+          styles.paddingTopBasic,
+          styles.paddingBottomBasic,
+        ]}>
+          <TouchableOpacity onPress={() => {Actions.options();}}>
+            <Text>***</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+    return null;
+  }
+
 	return (
     <ScrollView style={[styles.backgroundWhite]}>
       <View style={[
@@ -46,6 +62,7 @@ const MiembroProfile = ({
         <View style={[styles.profileHeaderTextHolder]}>
           { displayName !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{displayName}</Text></View>  : '' }
         </View>
+        {renderOptionsButton()}
       </View>
       <MiembroCollection miembroId={miembroId} memberId={member.uid} collection={collection}/>
     </ScrollView>
