@@ -80,10 +80,16 @@ class LoteHeader extends Component {
         styles.container,
         styles.bordered,
         styles.backgroundWhite,
-        styles.loteHeader
+        styles.paddingTopSmall,
+        styles.paddingBottomSmall,
+        styles.flexRow,
+        {
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        },
       ]}>
         <View>
-          <View style={styles.flexRow}>
+          <View style={[styles.flexRow, {alignItems: 'center'}]}>
             {this.renderObrasLength()}
             <TextBullet />
             <Text style={[styles.fontSizeSmall]}>ŧ { lote.price }</Text>
