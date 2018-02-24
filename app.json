@@ -1,7 +1,7 @@
 {
   "expo": {
     "sdkVersion": "22.0.0",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "name": "Andamiaje",
     "slug": "andamiaje-co",
     "icon": "src/images/app-icon.png",
