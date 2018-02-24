@@ -1,6 +1,6 @@
 import React from 'react';
-import { Scene, Tabs, Stack } from 'react-native-router-flux';
-import { Icon } from 'native-base';
+import { Image } from 'react-native';
+import { Scene, Tabs, Stack, Actions } from 'react-native-router-flux';
 
 import DefaultProps from '../constants/navigation';
 import AppConfig from '../../constants/config';
@@ -62,7 +62,12 @@ const Index = (
     >
       <Stack
         title='Noticias'
-        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        icon={() => {
+          const imageStyle = {height: 25, width: 17.5};
+          const imageIcon = Actions.currentScene === 'noticias' ? <Image source={require('../../images/icons/icon-tab-noticias-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-noticias-white.png')} style={imageStyle} />;
+
+          return (imageIcon);
+        }}
         {...DefaultProps.navbarProps}
         initial
       >
@@ -81,7 +86,12 @@ const Index = (
       </Stack>
       <Stack
         title='Catálogo'
-        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        icon={() => {
+          const imageStyle = {height: 25, width: 22};
+          const imageIcon = Actions.currentScene === 'catalogos' || Actions.currentScene === 'lote' ? <Image source={require('../../images/icons/icon-tab-catalogo-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-catalogo-white.png')} style={imageStyle} />;
+
+          return (imageIcon);
+        }}
         {...DefaultProps.navbarProps}
       >
         <Scene
@@ -100,7 +110,12 @@ const Index = (
       </Stack>
       <Stack
         title='Wishlist'
-        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        icon={() => {
+          const imageStyle = {height: 25, width: 18.5};
+          const imageIcon = Actions.currentScene === 'wishlist' ? <Image source={require('../../images/icons/icon-tab-wishlist-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-wishlist-white.png')} style={imageStyle} />;
+
+          return (imageIcon);
+        }}
         {...DefaultProps.navbarProps}
       >
         <Scene
@@ -112,11 +127,16 @@ const Index = (
       </Stack>
       <Stack
         title='Directorio'
-        icon={() => <Icon name='book' {...DefaultProps.icons} />}
+        icon={() => {
+          const imageStyle = {height: 25, width: 23.5};
+          const imageIcon = Actions.currentScene === 'artistas' || Actions.currentScene === 'miembros' || Actions.currentScene === 'artista' || Actions.currentScene === 'miembro' || Actions.currentScene === 'options' || Actions.currentScene === 'optionsPage' ? <Image source={require('../../images/icons/icon-tab-directorio-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-directorio-white.png')} style={imageStyle} />;
+
+          return (imageIcon);
+        }}
         {...DefaultProps.navbarProps}
       >
         <Tabs
-          key="directory"
+          key="directorio"
           title='Directorio'
           {...DefaultProps.topTabProps}
           headerMode='none'
