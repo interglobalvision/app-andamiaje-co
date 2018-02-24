@@ -142,13 +142,6 @@ export default styles = StyleSheet.create({
     flexWrap: 'nowrap',
     flexBasis: 70,
   },
-  // LoteHeader
-  loteHeader: {
-    paddingTop: styleConstants.paddingBasic,
-    paddingBottom: styleConstants.paddingBasic,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
   // Carousel
   carousel: {
     width: windowWidth,
