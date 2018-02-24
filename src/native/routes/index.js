@@ -49,13 +49,28 @@ import ProfileComponent from '../components/Profile';
 import AboutComponent from '../components/About';
 
 import Logo from '../../images/andamiaje-logo-title.png';
+import BackButton from '../../images/icons/icon-back.png';
 
 // react-native-router-flux API docs
 // https://github.com/aksonov/react-native-router-flux/blob/master/docs/API.md
 
 const Index = (
-  <Scene key="root">
-    <Scene key='login' title='LOGIN' component={LoginContainer} Layout={LoginComponent} hideNavBar initial />
+  <Scene
+    key="root"
+    backButtonImage={BackButton}
+    backButtonImageStyle={{
+      height: 16,
+      width: 8.5
+    }}
+  >
+    <Scene
+      key='login'
+      title='LOGIN'
+      component={LoginContainer}
+      Layout={LoginComponent}
+      hideNavBar
+      initial
+    />
     <Tabs
       key='main'
       lazy={true}
