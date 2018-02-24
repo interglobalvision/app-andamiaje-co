@@ -24,26 +24,6 @@ export default class WishlistItem extends Component {
     // TODO: Need a placeholder image for missing images
     const imageSrc = lote.obras[0].images !== undefined ? getResizedImageUrl(lote.obras[0].images[0], 350, true) : placeholder;
 
-    /*
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        flexDirection: 'row',
-      },
-      imageHolder: {
-        flexBasis: 100,
-      },
-      image: {
-        width: 100,
-        height: 100,
-      },
-      textHolder: {
-        paddingLeft: 10,
-        flex: 1
-      },
-    });
-    */
-
     returnObra = (obra) => {
       return (
         <View style={styles.flexRow}>
@@ -58,11 +38,12 @@ export default class WishlistItem extends Component {
 
     return (
       <View style={styles.bordered}>
-        <LoteHeader lote={lote} bordered={false} />
+        <LoteHeader lote={lote} />
         <TouchableOpacity onPress={() => {onPress(lote)}} style={[
           styles.container,
           styles.flexRow,
-          styles.paddingBottomMid
+          styles.paddingBottomBasic,
+          styles.paddingTopBasic
         ]}>
           <View style={styles.wishlistImageHolder}>
             <Image style={styles.wishlistImage} source={{ uri: imageSrc }} />

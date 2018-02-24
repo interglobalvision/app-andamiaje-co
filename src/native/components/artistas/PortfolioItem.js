@@ -4,24 +4,28 @@ import { Image, View, Text } from 'react-native';
 import { List } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-import Spacer from '../Spacer';
+import styles from '../../constants/styles';
 
 import CarouselHolder from '../carousel/CarouselHolder';
 
 const PortfolioItem = ({
   item,
+  name,
 }) => {
 
   return (
-    <View>
+    <View style={[styles.bordered, styles.paddingTopBasic, styles.paddingBottomLarge]}>
       <CarouselHolder obras={[item]} />
-      <Spacer />
-      <View>
-        <Text>{item.title}, {item.year}</Text>
-        <Text>{item.materials}</Text>
-        <Spacer size={5} />
+      <View style={[styles.container, styles.paddingTopSmall]}>
+        <View style={[styles.paddingBottomSmall]}>
+          <Text style={[styles.fontBold]}>{name}</Text>
+        </View>
+        <View>
+          <Text><Text style={[styles.fontItalic]}>{item.title}</Text>, {item.year}</Text>
+          <Text>{item.materials}</Text>
+          <Text>{item.dimensions}</Text>
+        </View>
       </View>
-      <Spacer />
     </View>
   );
 };

@@ -5,10 +5,10 @@ import DraftContentRenderer from '../DraftContentRenderer';
 import { Actions } from 'react-native-router-flux';
 import { getResizedImageUrl } from '../../../lib/utilities';
 import MiembroCollection from './MiembroCollection';
+
 import styles from '../../constants/styles';
 
 const MiembroProfile = ({
-	error,
 	miembros,
 	miembroId,
   member,
@@ -20,15 +20,13 @@ const MiembroProfile = ({
     miembro = miembros.find(item => item.id === miembroId);
   }
 
-  const placeholder = 'http://via.placeholder.com/100x100';
-
-  const {width, height} = Dimensions.get('window')
-
   const {
     displayName,
     images,
     collection,
   } = miembro;
+
+  const placeholder = 'http://via.placeholder.com/100x100';
 
   const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
 
@@ -50,13 +48,19 @@ const MiembroProfile = ({
   }
 
 	return (
-    <ScrollView>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
+    <ScrollView style={[styles.backgroundWhite]}>
+      <View style={[
+        styles.container,
+        styles.bordered,
+        styles.flexRow,
+        styles.paddingTopBasic,
+        styles.paddingBottomBasic,
+      ]}>
         <View>
-          <Image source={{ uri: imageSrc }} style={{ width: 100, height: 100, borderRadius: 50 }} />
+          <Image source={{ uri: imageSrc }} style={[styles.profileAvatarImage]} />
         </View>
-        <View style={{ paddingLeft: 10, flex: 1 }}>
-          { displayName !== 'undefined' ? <Text>{displayName}</Text>  : '' }
+        <View style={[styles.profileHeaderTextHolder]}>
+          { displayName !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{displayName}</Text></View>  : '' }
         </View>
         {renderOptionsButton()}
       </View>

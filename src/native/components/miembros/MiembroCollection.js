@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 import SectionHeader from '../SectionHeader';
-import Spacer from '../Spacer';
+import styles from '../../constants/styles';
 
 const MiembroCollection = ({ miembroId, memberId, collection }) => {
   const isCurrentMember = miembroId === memberId ? true : false;
@@ -12,11 +12,14 @@ const MiembroCollection = ({ miembroId, memberId, collection }) => {
   return (
     <View>
       <SectionHeader title={headerTitle}/>
-      <Spacer />
-      <View>
+      <View style={[
+        styles.container,
+        styles.backgroundWhite,
+        styles.flexCenter,
+        styles.emptyItemsHeight
+      ]}>
         <Text>{emptyNotice}</Text>
       </View>
-      <Spacer />
     </View>
   )
 };

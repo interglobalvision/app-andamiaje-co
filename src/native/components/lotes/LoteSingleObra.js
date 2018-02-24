@@ -10,13 +10,18 @@ import CarouselHolder from '../carousel/CarouselHolder';
 import styles from '../../constants/styles';
 
 const LoteSingleObra = ({
-  obra,
+  obra, border
 }) => {
 
   const onPress = () => Actions.artista({ match: { params: { id: String(obra.artista.id) } } });
 
+  let holderStyle = [styles.paddingBottomLarge, styles.bordered];
+  if (!border) {
+    holderStyle = [styles.paddingBottomLarge];
+  }
+
   return (
-    <View style={[styles.paddingBottomLarge, styles.bordered]}>
+    <View style={holderStyle}>
       <CarouselHolder obras={[obra]} />
       <View style={[styles.container, styles.paddingTopBasic]}>
         <TouchableOpacity
@@ -31,7 +36,7 @@ const LoteSingleObra = ({
           <Text>Ver bio</Text>
         </TouchableOpacity>
         <View>
-          <Text>{obra.title}, {obra.year}</Text>
+          <Text><Text style={[styles.fontItalic]}>{obra.title}</Text>, {obra.year}</Text>
           <Text>{obra.materials}</Text>
           <Text>{obra.dimensions}</Text>
         </View>

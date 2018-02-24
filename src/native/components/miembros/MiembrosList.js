@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { ScrollView, StyleSheet, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
 import { Container, Content } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import styles from '../../constants/styles';
 
 import Loading from '../Loading';
 import Error from '../Error';
-import Header from '../Header';
-import Spacer from '../Spacer';
-import MiembrosListItem from './MiembrosListItem';
+import DirectoryListItem from '../DirectoryListItem';
 
 const MiembrosList = ({
   error,
@@ -27,12 +26,12 @@ const MiembrosList = ({
   const onPress = item => Actions.miembro({ match: { params: { id: String(item.id) } } });
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.backgroundWhite}>
       <FlatList
         numColumns={1}
         data={miembros}
         renderItem={({ item }) => (
-          <MiembrosListItem id={item.id} displayName={item.displayName} images={item.images} />
+          <DirectoryListItem id={item.id} name={item.displayName} images={item.images} type={'miembro'} />
         )}
         keyExtractor={keyExtractor}
         refreshControl={

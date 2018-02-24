@@ -1,48 +1,49 @@
-import Colors from './colors';
+import colors from './colors';
+import styleConstants from './styleConstants';
 
 export default {
   navbarProps: {
     navigationBarStyle: {
-      backgroundColor: Colors.white,
+      backgroundColor: colors.white,
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 1,
-      borderColor: Colors.black,
+      borderColor: colors.lightGrey,
     },
     titleStyle: {
       alignSelf: 'center',
-      letterSpacing: 2,
-      fontSize: 15,
+      fontSize: styleConstants.fontSizeBasic,
+      fontFamily: styleConstants.fontFamilyMedium,
     },
-    backButtonTintColor: Colors.black,
+    backButtonTintColor: colors.black,
   },
 
   tabProps: {
     swipeEnabled: true,
     tabBarPosition: 'bottom',
-    activeTintColor: Colors.black,
+    activeTintColor: colors.black,
   },
 
   topTabProps: {
     tabBarPosition: 'top',
-    activeTintColor: Colors.white,
-    inactiveTintColor: Colors.black,
+    activeTintColor: colors.white,
+    inactiveTintColor: colors.black,
     style: {
-      backgroundColor: Colors.white,
+      backgroundColor: colors.white,
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 1,
-      borderColor: Colors.black,
+      borderColor: colors.lightGrey,
     },
     indicatorStyle: {
-      backgroundColor: Colors.black,
+      backgroundColor: colors.black,
       height: 100
     }
   },
 
   icons: {
     style: {
-      color: Colors.black,
+      color: colors.black,
     },
   },
 };

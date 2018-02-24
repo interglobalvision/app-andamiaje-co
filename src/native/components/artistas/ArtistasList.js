@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View, StyleSheet, FlatList, TouchableOpacity, RefreshControl } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import styles from '../../constants/styles';
 
 import Loading from '../Loading';
 import Error from '../Error';
-import Spacer from '../Spacer';
-import ArtistasListItem from './ArtistasListItem';
+import DirectoryListItem from '../DirectoryListItem';
 
 const ArtistasList = ({
   error,
@@ -23,12 +23,12 @@ const ArtistasList = ({
   const keyExtractor = item => item.id;
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.backgroundWhite}>
       <FlatList
         numColumns={1}
         data={artistas}
         renderItem={({ item }) => (
-          <ArtistasListItem id={item.id} name={item.name} images={item.images} />
+          <DirectoryListItem id={item.id} name={item.name} images={item.images} type={'artista'} />
         )}
         keyExtractor={keyExtractor}
         refreshControl={
