@@ -1,13 +1,18 @@
 {
   "expo": {
     "sdkVersion": "22.0.0",
-    "version": "0.0.1",
-    "name": "Andamiaje.co",
+    "version": "0.0.2",
+    "name": "Andamiaje",
     "slug": "andamiaje-co",
     "icon": "src/images/app-icon.png",
     "privacy": "public",
+    "orientation": "portrait",
     "ios": {
-      "bundleIdentifier": "co.andamiaje"
+      "bundleIdentifier": "co.andamiaje",
+      "icon" : "src/images/app-icon-ios.png",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "co.andamiaje"
