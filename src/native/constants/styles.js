@@ -11,6 +11,7 @@ const containerPadding = windowWidth * containerPaddingPercentage;
 // Calculate Carousel styles
 const carouselBulletsPaddingTop = styleConstants.paddingBasic;
 const carouselHeight = windowWidth + carouselBulletsPaddingTop + styleConstants.paddingBasic;
+const carouselBulletDiameter = 5;
 
 export default styles = StyleSheet.create({
   // Font family:
@@ -142,20 +143,23 @@ export default styles = StyleSheet.create({
     flexWrap: 'nowrap',
     flexBasis: 70,
   },
-  // LoteHeader
-  loteHeader: {
-    paddingTop: styleConstants.paddingBasic,
-    paddingBottom: styleConstants.paddingBasic,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
   // Carousel
   carousel: {
     width: windowWidth,
     height: carouselHeight,
   },
-  carouselBullets: {
+  carouselBulletsContainer: {
     paddingTop: carouselBulletsPaddingTop,
+  },
+  carouselBulletStyle: {
+    borderColor: 'black',
+    width: carouselBulletDiameter,
+    height: carouselBulletDiameter,
+  },
+  carouselChosenBulletStyle: {
+    backgroundColor: 'black',
+    width: carouselBulletDiameter,
+    height: carouselBulletDiameter,
   },
   carouselItem: {
     justifyContent: 'center',

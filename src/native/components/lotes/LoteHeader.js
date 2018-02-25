@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../../constants/styles';
 import TextBullet from '../TextBullet';
@@ -43,18 +43,20 @@ class LoteHeader extends Component {
     //const isWishlist = wishlist.find(item => item.id === lote.id);
     const isWishlist = _find(wishlist, item => item.id === lote.id);
 
+    const iconImageStyle = {width: 18.5, height: 25};
+
     if (isWishlist) {
       // show remove button
       return (
         <TouchableOpacity onPress={ () => {this.removeWishlistLote()} }>
-          <Text style={[styles.fontSizeSmall]}>Remove</Text>
+          <Image source={require('../../../images/icons/icon-wishlist-check.png')} style={iconImageStyle} />
         </TouchableOpacity>
       );
     }
     return (
       // show add button
       <TouchableOpacity onPress={ () => {this.addWishlistLote()} }>
-        <Text style={[styles.fontSizeSmall]}>Add</Text>
+        <Image source={require('../../../images/icons/icon-wishlist-plus.png')} style={iconImageStyle} />
       </TouchableOpacity>
     );
   }
@@ -78,10 +80,16 @@ class LoteHeader extends Component {
         styles.container,
         styles.bordered,
         styles.backgroundWhite,
-        styles.loteHeader
+        styles.paddingTopSmall,
+        styles.paddingBottomSmall,
+        styles.flexRow,
+        {
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        },
       ]}>
         <View>
-          <View style={styles.flexRow}>
+          <View style={[styles.flexRow, {alignItems: 'center'}]}>
             {this.renderObrasLength()}
             <TextBullet />
             <Text style={[styles.fontSizeSmall]}>ŧ { lote.price }</Text>

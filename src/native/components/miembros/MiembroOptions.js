@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, TouchableOpacity, Text } from 'react-native';
+import { ScrollView, TouchableOpacity, Text, Image, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { logout } from '../../../actions/member';
 import styles from '../../constants/styles';
@@ -16,18 +16,38 @@ const MiembroOptions = ({
   member,
 }) => {
 
+  const optionStyle = [
+    styles.flexRow,
+    styles.paddingTopBasic,
+    styles.paddingBottomBasic,
+    styles.bordered,
+    styles.container,
+    {
+      alignItems: 'center'
+    }
+  ]
+
   return (
-    <ScrollView>
-      <TouchableOpacity onPress={() => {Actions.acercaDeAndamiaje({content: acercaDeAndamiaje})}}>
-        <Text>Acerca de Andamiaje</Text>
+    <ScrollView style={[styles.backgroundWhite]}>
+      <TouchableOpacity onPress={() => {Actions.acercaDeAndamiaje({content: acercaDeAndamiaje})}} style={optionStyle}>
+        <View style={{ flex: 1 }}><Text>Acerca de Andamiaje</Text></View>
+        <View>
+          <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {Actions.terminosYCondiciones({content: terminosYCondiciones})}}>
-        <Text>Términos y Condiciones</Text>
+      <TouchableOpacity onPress={() => {Actions.terminosYCondiciones({content: terminosYCondiciones})}} style={optionStyle}>
+        <View style={{ flex: 1 }}><Text>Términos y Condiciones</Text></View>
+        <View>
+          <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => {Actions.politicaDePrivacidad({content: politicaDePrivacidad})}}>
-        <Text>Política de privacidad</Text>
+      <TouchableOpacity onPress={() => {Actions.politicaDePrivacidad({content: politicaDePrivacidad})}} style={optionStyle}>
+        <View style={{ flex: 1 }}><Text>Política de privacidad</Text></View>
+        <View>
+          <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={logout}>
+      <TouchableOpacity onPress={logout} style={optionStyle}>
         <Text>Cerrar sesión</Text>
       </TouchableOpacity>
     </ScrollView>

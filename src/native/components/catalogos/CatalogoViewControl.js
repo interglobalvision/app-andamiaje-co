@@ -21,8 +21,26 @@ class CatalogoViewControl extends Component {
     super(props)
   }
 
+  renderGridIcon = () => {
+    const { grid } = this.props.viewSettings;
+    const iconImageStyle = {width: 25, height: 25};
+    if (grid) {
+      return (<Image source={require('../../../images/icons/icon-grid-black.png')} style={iconImageStyle} />);
+    }
+    return (<Image source={require('../../../images/icons/icon-grid-white.png')} style={iconImageStyle} />);
+  }
+
+  renderListIcon = () => {
+    const { grid } = this.props.viewSettings;
+    const iconImageStyle = {width: 27, height: 25};
+    if (grid) {
+      return (<Image source={require('../../../images/icons/icon-list-white.png')} style={iconImageStyle} />);
+    }
+    return (<Image source={require('../../../images/icons/icon-list-black.png')} style={iconImageStyle} />);
+  }
+
   render() {
-    const { grid, orderBy, filterBy } = this.props.viewSettings;
+    const { orderBy, filterBy } = this.props.viewSettings;
 
     return (
       <View style={[
@@ -37,28 +55,26 @@ class CatalogoViewControl extends Component {
           styles.flexCenter,
         ]}>
           <TouchableOpacity
-            style={{
-              flexBasis: '20%',
-            }}
+            style={[
+              styles.flexCenter,
+              {
+                flexBasis: '20%',
+              }
+            ]}
             onPress={() => {this.props.changeCatalogoLayout(true)}}
           >
-            <Text style={[
-              styles.textAlignCenter,
-              styles.fontSizeSmall,
-              styles.fontBold,
-            ]}>Grid</Text>
+            {this.renderGridIcon()}
           </TouchableOpacity>
           <TouchableOpacity
-            style={{
-              flexBasis: '20%',
-            }}
+            style={[
+              styles.flexCenter,
+              {
+                flexBasis: '20%',
+              }
+            ]}
             onPress={() => {this.props.changeCatalogoLayout(false)}}
           >
-            <Text style={[
-              styles.textAlignCenter,
-              styles.fontSizeSmall,
-              styles.fontBold,
-            ]}>List</Text>
+            {this.renderListIcon()}
           </TouchableOpacity>
           <TouchableOpacity
             style={{

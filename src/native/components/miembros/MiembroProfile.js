@@ -35,11 +35,9 @@ const MiembroProfile = ({
       return (
         <View style={[
           styles.container,
-          styles.paddingTopBasic,
-          styles.paddingBottomBasic,
         ]}>
           <TouchableOpacity onPress={() => {Actions.options();}}>
-            <Text>***</Text>
+            <Image source={require('../../../images/icons/icon-dots-white.png')} style={{width: 4.5, height: 17.5}} />
           </TouchableOpacity>
         </View>
       )
