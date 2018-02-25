@@ -21,6 +21,7 @@ const CarouselHolder = ({
   });
 
   const showBullets = carouselImages.length > 1 ? true : false;
+  const bulletDiameter = 5;
 
   return (
     <View style={styles.backgroundWhite}>
@@ -29,10 +30,10 @@ const CarouselHolder = ({
         style={styles.carousel}
         autoplay={false}
         bullets={showBullets}
-        bulletsContainerStyle={styles.carouselBullets}
+        bulletsContainerStyle={styles.carouselBulletsContainer}
         isLooped={false}
-        bulletStyle={{ borderColor: 'black' }}
-        chosenBulletStyle={{ backgroundColor: 'black' }}
+        bulletStyle={styles.carouselBulletStyle}
+        chosenBulletStyle={styles.carouselChosenBulletStyle}
       >
         {carouselImages.map(image => <CarouselItem image={image} key={keyExtractor(image)}/>)}
       </Carousel>
