@@ -15,7 +15,8 @@
       }
     },
     "android": {
-      "package": "co.andamiaje"
+      "package": "co.andamiaje",
+      "versionCode": 3
     }
   }
 }
