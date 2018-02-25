@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Content, Form, Item, Label, Input, Text, Button } from 'native-base';
+import { ScrollView, View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Loading from './Loading';
 import Messages from './Messages';
-import Header from './Header';
-import Spacer from './Spacer';
+
+import styles from '../constants/styles';
+import styleConstants from '../constants/styleConstants';
+import colors from '../../native/constants/colors';
 
 class Login extends React.Component {
   static propTypes = {
@@ -34,6 +36,7 @@ class Login extends React.Component {
   }
 
   handleChange = (name, val) => {
+    console.log(name,val);
     this.setState({
       ...this.state,
       [name]: val,
@@ -74,41 +77,92 @@ class Login extends React.Component {
     if (loading) return <Loading />;
 
     return (
-      <Container>
-        <Content padder>
-          <Header
-            title="Welcome back"
-            content="Please use your email and password to login."
-          />
-
+      <View
+        style={[
+          styles.container,
+          styles.backgroundWhite,
+          styles.fullScreen,
+          {
+            justifyContent: 'center',
+            alignItems: 'center',
+          }
+        ]}
+      >
+        <View style={[
+          {
+            width: 300,
+          }
+        ]}>
           {error && <Messages message={error} />}
 
-          <Form>
-            <Item stackedLabel>
-              <Label>Email</Label>
-              <Input
-                autoCapitalize="none"
-                value={this.state.email}
-                keyboardType="email-address"
-                onChangeText={v => this.handleChange('email', v)}
-              />
-            </Item>
-            <Item stackedLabel>
-              <Label>Password</Label>
-              <Input
-                secureTextEntry
-                onChangeText={v => this.handleChange('password', v)}
-              />
-            </Item>
-
-            <Spacer size={20} />
-
-            <Button block onPress={this.handleSubmit}>
-              <Text>Login</Text>
-            </Button>
-          </Form>
-        </Content>
-      </Container>
+          <View style={[
+            styles.paddingBottomSmall,
+          ]}>
+            <TextInput
+              placeholder="Email"
+              autoCapitalize="none"
+              value={this.state.email}
+              keyboardType="email-address"
+              style={[
+                styles.paddingTopSmall,
+                styles.paddingBottomSmall,
+                {
+                  borderBottomColor: colors.black,
+                  borderBottomWidth: 1,
+                }
+              ]}
+              onChangeText={v => this.handleChange('email', v)}
+            />
+          </View>
+          <View style={[
+            styles.paddingBottomSmall,
+            styles.flexNowrap,
+            styles.flexRow,
+            {
+              alignItems: 'center',
+            }
+          ]}>
+            <TextInput
+              placeholder="Contraseña"
+              secureTextEntry
+              style={[
+                styles.paddingTopSmall,
+                styles.paddingBottomSmall,
+                {
+                  borderBottomColor: colors.black,
+                  borderBottomWidth: 1,
+                  flexGrow: 1,
+                }
+              ]}
+              onChangeText={v => this.handleChange('password', v)}
+            />
+            <TouchableOpacity style={[
+              styles.flexCenter,
+              {
+                flexBasis: 30,
+              }
+            ]}>
+              <Text>0</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[
+            styles.paddingTopLarge,
+          ]}>
+            <TouchableOpacity onPress={this.handleSubmit} style={[
+              {
+                backgroundColor: colors.black,
+                padding: styleConstants.paddingBasic,
+                borderRadius: 5
+              }
+            ]}>
+              <Text style={{
+                textAlign: 'center',
+                color: colors.white,
+              }}>Iniciar sesión</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     );
   }
 }

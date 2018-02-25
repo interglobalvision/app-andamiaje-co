@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import Colors from '../../../native-base-theme/variables/commonColor';
+import colors from '../../native/constants/colors';
 
 const Loading = () => (
   <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
-    <ActivityIndicator size="large" color={Colors.brandPrimary} />
+    <ActivityIndicator size="large" color={colors.black} />
   </View>
 );
 

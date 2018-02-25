@@ -3,6 +3,7 @@ import colors from './colors';
 import styleConstants from './styleConstants';
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 // Calculate container padding
 const containerPaddingPercentage = windowWidth > 500 ? 0.05 : 0.03;
@@ -82,6 +83,10 @@ export default styles = StyleSheet.create({
   emptyItemsHeight: {
     height: 300,
   },
+  fullScreen: {
+    height: windowHeight,
+    width: windowWidth,
+  },
   // Flex
   flexRow: {
     flexDirection: 'row',
@@ -89,6 +94,9 @@ export default styles = StyleSheet.create({
   flexCenter: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  flexNowrap: {
+    flexWrap: 'nowrap',
   },
   // Padding
   paddingTopSmall: {
