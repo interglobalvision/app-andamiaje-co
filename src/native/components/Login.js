@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { ScrollView, View, TextInput, TouchableOpacity, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Loading from './Loading';
 import Messages from './Messages';
@@ -29,6 +29,7 @@ class Login extends React.Component {
     this.state = {
       email: (props.member && props.member.email) ? props.member.email : '',
       password: '',
+      showPassword: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -95,6 +96,10 @@ class Login extends React.Component {
         ]}>
           {error && <Messages message={error} />}
 
+          <View style={[styles.paddingBottomMid]}>
+            <Image source={require('../../images/andamiaje-logo-login.png')} style={{width: 300, height: 63.5}} />
+          </View>
+
           <View style={[
             styles.paddingBottomSmall,
           ]}>
@@ -124,7 +129,7 @@ class Login extends React.Component {
           ]}>
             <TextInput
               placeholder="Contraseña"
-              secureTextEntry
+              secureTextEntry={ this.state.showPassword }
               style={[
                 styles.paddingTopSmall,
                 styles.paddingBottomSmall,
@@ -136,17 +141,26 @@ class Login extends React.Component {
               ]}
               onChangeText={v => this.handleChange('password', v)}
             />
-            <TouchableOpacity style={[
-              styles.flexCenter,
-              {
-                flexBasis: 30,
+            <TouchableOpacity
+              onPress={() => {this.setState(prevState => ({
+                  showPassword: !prevState.showPassword
+                }));
+              }}
+              style={[
+                styles.flexCenter,
+                {
+                  flexBasis: 50,
+                }
+              ]}
+            >
+              { this.state.showPassword
+                ? <Image source={require('../../images/icons/icon-eye-visible.png')} style={{width: 31, height: 18}} />
+                : <Image source={require('../../images/icons/icon-eye-hidden.png')} style={{width: 31, height: 25}} />
               }
-            ]}>
-              <Text>0</Text>
             </TouchableOpacity>
           </View>
           <View style={[
-            styles.paddingTopLarge,
+            styles.paddingTopMid,
           ]}>
             <TouchableOpacity onPress={this.handleSubmit} style={[
               {
