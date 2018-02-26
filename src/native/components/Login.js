@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Content, Form, Item, Label, Input, Text, Button } from 'native-base';
+import { ScrollView, View, TextInput, TouchableOpacity, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Loading from './Loading';
 import Messages from './Messages';
-import Header from './Header';
-import Spacer from './Spacer';
+
+import styles from '../constants/styles';
+import styleConstants from '../constants/styleConstants';
+import colors from '../../native/constants/colors';
 
 class Login extends React.Component {
   static propTypes = {
@@ -27,6 +30,7 @@ class Login extends React.Component {
     this.state = {
       email: (props.member && props.member.email) ? props.member.email : '',
       password: '',
+      showPassword: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -69,46 +73,112 @@ class Login extends React.Component {
 
   render() {
     const { loading, error } = this.props;
+    const eyeVisibleSource = require('../../images/icons/icon-eye-visible.png');
+    const eyeHiddenSource = require('../../images/icons/icon-eye-hidden.png');
 
     // Loading
     if (loading) return <Loading />;
 
     return (
-      <Container>
-        <Content padder>
-          <Header
-            title="Welcome back"
-            content="Please use your email and password to login."
-          />
+      <ScrollView scrollEnabled={false}
+        contentContainerStyle={[
+          styles.container,
+          styles.backgroundWhite,
+          styles.fullScreen,
+          {
+            justifyContent: 'center',
+            alignItems: 'center',
+          }
+        ]}
+      >
+        <View style={[
+          {
+            width: 300,
+          }
+        ]}>
+          <View style={[styles.paddingBottomMid]}>
+            <Image source={require('../../images/andamiaje-logo-login.png')} style={{width: 300, height: 63.5}} />
+          </View>
 
+          <View style={[
+            styles.paddingBottomSmall,
+          ]}>
+            <TextInput
+              placeholder="Email"
+              autoCapitalize="none"
+              value={this.state.email}
+              keyboardType="email-address"
+              style={[
+                styles.paddingTopSmall,
+                styles.paddingBottomSmall,
+                {
+                  borderBottomColor: colors.black,
+                  borderBottomWidth: 1,
+                }
+              ]}
+              onChangeText={v => this.handleChange('email', v)}
+            />
+          </View>
+          <View style={[
+            styles.paddingBottomSmall,
+            styles.flexNowrap,
+            styles.flexRow,
+            {
+              alignItems: 'center',
+            }
+          ]}>
+            <TextInput
+              placeholder="Contraseña"
+              secureTextEntry={ this.state.showPassword }
+              style={[
+                styles.paddingTopSmall,
+                styles.paddingBottomSmall,
+                {
+                  borderBottomColor: colors.black,
+                  borderBottomWidth: 1,
+                  flexGrow: 1,
+                }
+              ]}
+              onChangeText={v => this.handleChange('password', v)}
+            />
+            <TouchableOpacity
+              onPress={() => {this.setState(prevState => ({
+                  showPassword: !prevState.showPassword
+                }));
+              }}
+              style={[
+                styles.flexCenter,
+                {
+                  flexBasis: 50,
+                }
+              ]}
+            >
+              { this.state.showPassword
+                ? <Image source={eyeVisibleSource} style={{width: 34, height: 25}} />
+                : <Image source={eyeHiddenSource} style={{width: 34, height: 25}} />
+              }
+            </TouchableOpacity>
+          </View>
+          <View style={[
+            styles.paddingTopMid,
+          ]}>
+            <TouchableOpacity onPress={this.handleSubmit} style={[
+              {
+                backgroundColor: colors.black,
+                padding: styleConstants.paddingBasic,
+                borderRadius: 5
+              }
+            ]}>
+              <Text style={{
+                textAlign: 'center',
+                color: colors.white,
+              }}>Iniciar sesión</Text>
+            </TouchableOpacity>
+          </View>
           {error && <Messages message={error} />}
-
-          <Form>
-            <Item stackedLabel>
-              <Label>Email</Label>
-              <Input
-                autoCapitalize="none"
-                value={this.state.email}
-                keyboardType="email-address"
-                onChangeText={v => this.handleChange('email', v)}
-              />
-            </Item>
-            <Item stackedLabel>
-              <Label>Password</Label>
-              <Input
-                secureTextEntry
-                onChangeText={v => this.handleChange('password', v)}
-              />
-            </Item>
-
-            <Spacer size={20} />
-
-            <Button block onPress={this.handleSubmit}>
-              <Text>Login</Text>
-            </Button>
-          </Form>
-        </Content>
-      </Container>
+        </View>
+        <KeyboardSpacer/>
+      </ScrollView>
     );
   }
 }

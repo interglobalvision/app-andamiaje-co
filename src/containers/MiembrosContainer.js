@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getMiembros, setError } from '../actions/miembrosActions';
+import { logout } from '../actions/member';
 
 class MiembrosContainer extends Component {
   static propTypes = {
@@ -32,7 +33,7 @@ class MiembrosContainer extends Component {
   }
 
   render = () => {
-    const { Layout, miembros, member, match } = this.props;
+    const { Layout, miembros, member, match, logout } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
@@ -40,6 +41,7 @@ class MiembrosContainer extends Component {
         miembroId={id}
         miembros={miembros.miembros}
         member={member}
+        logout={logout}
         error={miembros.error}
         loading={miembros.loading}
         reFetch={() => this.fetchMiembros()}
@@ -56,6 +58,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getMiembros,
   setError,
+  logout,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MiembrosContainer);
