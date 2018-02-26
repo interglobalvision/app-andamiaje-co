@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Image, Dimensions, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Image, Dimensions, Text, Linking, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import DraftContentRenderer from '../DraftContentRenderer';
@@ -66,9 +66,18 @@ const ArtistaProfile = ({
           <Image source={{ uri: imageSrc }} style={[styles.profileAvatarImage]} />
         </View>
         <View style={[styles.profileHeaderTextHolder]}>
-          { name !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : '' }
-          { country !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{country}</Text>  : '' }
-          { gallery !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{gallery}</Text>  : '' }
+          { name !== 'undefined' ? <View><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : null }
+          { country !== 'undefined' ? <Text style={[styles.fontSizeSmall, styles.paddingBottomSmall]}>{country}</Text>  : null }
+          { gallery !== 'undefined' ?
+            <TouchableOpacity onPress={ () => Linking.openURL(galleryUrl) }>
+              <Text style={[styles.fontSizeSmall]}>{gallery}</Text>
+            </TouchableOpacity>
+          : null }
+          { websiteUrl !== 'undefined' ?
+            <TouchableOpacity onPress={ () => Linking.openURL(websiteUrl) }>
+              <Text style={[styles.fontSizeSmall]}>{websiteUrl}</Text>
+            </TouchableOpacity>
+          : null }
         </View>
       </View>
 

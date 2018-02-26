@@ -161,7 +161,7 @@ const Index = (
         >
           <Stack
             title='Artistas'
-
+            initial
           >
             <Scene
               key='artistas'
@@ -172,7 +172,6 @@ const Index = (
           </Stack>
           <Stack
             title='Miembros'
-            initial
           >
             <Scene
               key='miembros'
