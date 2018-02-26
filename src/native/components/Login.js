@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View, TextInput, TouchableOpacity, Text, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Loading from './Loading';
 import Messages from './Messages';
 
@@ -72,13 +73,15 @@ class Login extends React.Component {
 
   render() {
     const { loading, error } = this.props;
+    const eyeVisibleSource = require('../../images/icons/icon-eye-visible.png');
+    const eyeHiddenSource = require('../../images/icons/icon-eye-hidden.png');
 
     // Loading
     if (loading) return <Loading />;
 
     return (
-      <View
-        style={[
+      <ScrollView scrollEnabled={false}
+        contentContainerStyle={[
           styles.container,
           styles.backgroundWhite,
           styles.fullScreen,
@@ -93,8 +96,6 @@ class Login extends React.Component {
             width: 300,
           }
         ]}>
-          {error && <Messages message={error} />}
-
           <View style={[styles.paddingBottomMid]}>
             <Image source={require('../../images/andamiaje-logo-login.png')} style={{width: 300, height: 63.5}} />
           </View>
@@ -153,8 +154,8 @@ class Login extends React.Component {
               ]}
             >
               { this.state.showPassword
-                ? <Image source={require('../../images/icons/icon-eye-visible.png')} style={{width: 31, height: 18}} />
-                : <Image source={require('../../images/icons/icon-eye-hidden.png')} style={{width: 31, height: 25}} />
+                ? <Image source={eyeVisibleSource} style={{width: 34, height: 25}} />
+                : <Image source={eyeHiddenSource} style={{width: 34, height: 25}} />
               }
             </TouchableOpacity>
           </View>
@@ -174,8 +175,10 @@ class Login extends React.Component {
               }}>Iniciar sesión</Text>
             </TouchableOpacity>
           </View>
+          {error && <Messages message={error} />}
         </View>
-      </View>
+        <KeyboardSpacer/>
+      </ScrollView>
     );
   }
 }
