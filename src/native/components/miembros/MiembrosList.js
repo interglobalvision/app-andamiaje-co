@@ -43,7 +43,7 @@ const MiembrosList = ({
     <ScrollView style={styles.backgroundWhite}>
       <View>
         { displayCurrentMember &&
-          <DirectoryListItem key={currentMember.key} id={currentMember.id} name={currentMember.displayName} images={currentMember.images} type={'miembro'} />
+          <DirectoryListItem key={currentMember.key} id={currentMember.id} name={currentMember.displayName} images={currentMember.images} type={'miembro'} currentMember={true} />
         }
         { miembrosArray.map( (item, key) => <DirectoryListItem key={key} id={item.id} name={item.displayName} images={item.images} type={'miembro'} />)}
       </View>
