@@ -60,6 +60,10 @@ export default styles = StyleSheet.create({
   textAlignCenter: {
     textAlign: 'center',
   },
+  textLink: {
+    color: colors.darkGrey,
+    fontFamily: styleConstants.fontFamilyMedium,
+  },
   colorWhite: {
     color: colors.white,
   },
@@ -181,13 +185,15 @@ export default styles = StyleSheet.create({
     flex: 1,
   },
   // Directory
-  directoryImageHolder: {
-    flexBasis: 50,
-  },
   directoryImage: {
     width: 50,
     height: 50,
     borderRadius: 25,
+  },
+  directoryImageCurrent: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   directoryTextHolder: {
     paddingLeft: styleConstants.paddingSmall,
