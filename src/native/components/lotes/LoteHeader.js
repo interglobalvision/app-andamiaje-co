@@ -37,7 +37,11 @@ class LoteHeader extends Component {
   }
 
   returnWishlistButton = () => {
-    const { wishlist, lote } = this.props;
+    const { wishlist, lote, role } = this.props;
+
+    if (role !== 'member') {
+      return;
+    }
 
     // true if wishlist array contains lote ID
     //const isWishlist = wishlist.find(item => item.id === lote.id);
@@ -108,6 +112,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => ({
   wishlist: state.member.wishlist || [],
+  role: state.member.role || '',
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoteHeader);
