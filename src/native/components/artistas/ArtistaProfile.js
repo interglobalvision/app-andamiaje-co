@@ -70,12 +70,12 @@ const ArtistaProfile = ({
           { country !== 'undefined' ? <Text style={[styles.fontSizeSmall, styles.paddingBottomSmall]}>{country}</Text>  : null }
           { gallery !== 'undefined' ?
             <TouchableOpacity onPress={ () => Linking.openURL(galleryUrl) }>
-              <Text style={[styles.fontSizeSmall]}>{gallery}</Text>
+              <Text style={[styles.fontSizeSmall, styles.textLink]}>{gallery}</Text>
             </TouchableOpacity>
           : null }
           { websiteUrl !== 'undefined' ?
             <TouchableOpacity onPress={ () => Linking.openURL(websiteUrl) }>
-              <Text style={[styles.fontSizeSmall]}>{websiteUrl}</Text>
+              <Text style={[styles.fontSizeSmall, styles.textLink]} numberOfLines={1} ellipsizeMode={'tail'}>{websiteUrl}</Text>
             </TouchableOpacity>
           : null }
         </View>
