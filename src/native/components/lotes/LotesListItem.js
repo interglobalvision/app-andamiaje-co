@@ -34,7 +34,7 @@ const LotesListItem = ({
           })}
         </View>
         <View style={[styles.paddingTopSmall, styles.paddingBottomLarge]}>
-          <Text style={[styles.fontSizeSmall]}>Ver más</Text>
+          <Text style={[styles.fontSizeSmall, styles.textLink]}>Ver más</Text>
         </View>
       </TouchableOpacity>
     </View>

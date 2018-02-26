@@ -33,7 +33,7 @@ const LoteSingleObra = ({
           ]}
         >
           <Text style={styles.fontBold}>{obra.artista.name}</Text>
-          <Text>Ver bio</Text>
+          <Text style={[styles.textLink]}>Ver bio</Text>
         </TouchableOpacity>
         <View>
           <Text><Text style={[styles.fontItalic]}>{obra.title}</Text>, {obra.year}</Text>
