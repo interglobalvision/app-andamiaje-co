@@ -53,11 +53,15 @@ const WishlistList = ({
           styles.flexCenter,
           styles.emptyItemsHeight
         ]}>
-          <Text>Parece que tu lista de Deseos está vacia</Text>
+          <Text style={[
+            styles.textAlignCenter
+          ]}>Parece que tu lista de Deseos está vacia</Text>
           <View style={[styles.paddingTopBasic, styles.paddingBottomBasic]}>
             <Image source={require('../../../images/icons/icon-wishlist-empty.png')} style={{width: 36.5, height: 50}} />
           </View>
-          <Text>Agrega Obras para guardar las que más te gustan</Text>
+          <Text style={[
+            styles.textAlignCenter
+          ]}>Agrega Obras para guardar las que más te gustan</Text>
         </View>
       </ScrollView>
     )
