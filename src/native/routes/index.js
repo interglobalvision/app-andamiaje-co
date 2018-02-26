@@ -126,7 +126,7 @@ const Index = (
         />
       </Stack>
       <Stack
-        title='Wishlist'
+        title='Deseos'
         icon={() => {
           const imageStyle = {height: 25, width: 18.5};
           const imageIcon = Actions.currentScene === 'wishlist' ? <Image source={require('../../images/icons/icon-tab-wishlist-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-wishlist-white.png')} style={imageStyle} />;
@@ -137,7 +137,7 @@ const Index = (
       >
         <Scene
           key='wishlist'
-          title='Wishlist'
+          title='Deseos'
           component={WishlistContainer}
           Layout={WishlistList}
         />

@@ -57,7 +57,7 @@ const WishlistList = ({
           <View style={[styles.paddingTopBasic, styles.paddingBottomBasic]}>
             <Image source={require('../../../images/icons/icon-wishlist-empty.png')} style={{width: 36.5, height: 50}} />
           </View>
-          <Text>Agrega Obras para guardar las que te gustan</Text>
+          <Text>Agrega Obras para guardar las que más te gustan</Text>
         </View>
       </ScrollView>
     )
