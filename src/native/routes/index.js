@@ -190,7 +190,7 @@ const Index = (
         />
         <Scene
           key='artistaCv'
-          title={'Artista CV'}
+          title='CV'
           component={ArtistaCVPage}
         />
         <Scene
