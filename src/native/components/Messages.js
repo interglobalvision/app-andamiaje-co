@@ -4,8 +4,8 @@ import { View, Text } from 'react-native';
 import styles from '../constants/styles';
 
 const Messages = ({ message, type }) => (
-  <View>
-    <Text style={[styles.fontFamilyItalic]}>{message}</Text>
+  <View style={[styles.paddingTopSmall, styles.container]}>
+    <Text style={[styles.fontFamilyItalic, styles.fontSizeSmall, styles.textAlignCenter]}>{message}</Text>
   </View>
 );
 
