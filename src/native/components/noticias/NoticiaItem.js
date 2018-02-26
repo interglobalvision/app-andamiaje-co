@@ -18,7 +18,7 @@ const renderArtista = (item) => {
   if (item.artista !== undefined) {
     return (
       <TouchableOpacity onPress={() => onPress(item.artista.id)}  style={styles.paddingBottomMid}>
-        <Text style={styles.colorDarkGrey, styles.fontSizeSmall}>Ver el bio de {item.artista.name}</Text>
+        <Text style={[styles.textLink, styles.fontSizeSmall]}>Ver el bio de {item.artista.name}</Text>
       </TouchableOpacity>
     );
   }
