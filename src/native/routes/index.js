@@ -20,6 +20,7 @@ import WishlistList from '../components/wishlist/WishlistList';
 import ArtistasContainer from '../../containers/ArtistasContainer';
 import ArtistasList from '../components/artistas/ArtistasList';
 import ArtistaProfile from '../components/artistas/ArtistaProfile';
+import ArtistaCVPage from '../components/artistas/ArtistaCVPage';
 
 import MiembrosContainer from '../../containers/MiembrosContainer';
 import MiembrosList from '../components/miembros/MiembrosList';
@@ -186,6 +187,11 @@ const Index = (
           title='Artista'
           component={ArtistasContainer}
           Layout={ArtistaProfile}
+        />
+        <Scene
+          key='artistaCv'
+          title={'Artista CV'}
+          component={ArtistaCVPage}
         />
         <Scene
           key='miembro'
