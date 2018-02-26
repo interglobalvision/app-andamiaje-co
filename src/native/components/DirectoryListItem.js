@@ -5,9 +5,11 @@ import { getResizedImageUrl } from '../../lib/utilities';
 import styles from '../constants/styles';
 
 const DirectoryListItem = ({ name, images, id, type, currentMember, collection }) => {
-  const placeholder = 'http://via.placeholder.com/50x50';
-  // TODO: Need a placeholder image for missing avatars
-  const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
+  let imageSource = require('../../images/placeholder.png');
+
+  if (images !== undefined) {
+    imageSource = {uri: getResizedImageUrl(images[0], 350, true)};
+  }
 
   let onPress = id => Actions.miembro({ match: { params: { id: String(id) } } });
 
@@ -30,7 +32,7 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
           styles.flexRow
         ]}>
           <View>
-            <Image source={{ uri: imageSrc }} style={[styles.profileAvatarImage]} />
+            <Image source={imageSource} style={[styles.profileAvatarImage]} />
           </View>
           <View style={[styles.profileHeaderTextHolder]}>
             <Text style={[styles.fontFamilyMedium]}>{ name }</Text>
@@ -55,7 +57,7 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
         {alignItems: 'center'}
       ]}>
         <View>
-          <Image source={{ uri: imageSrc }} style={styles.directoryImage} />
+          <Image source={imageSource} style={styles.directoryImage} />
         </View>
         <View style={styles.directoryTextHolder}>
           <Text>{ name }</Text>

@@ -20,9 +20,11 @@ export default class WishlistItem extends Component {
   render = () => {
     const { lote } = this.props;
 
-    const placeholder = 'http://via.placeholder.com/100x10';
-    // TODO: Need a placeholder image for missing images
-    const imageSrc = lote.obras[0].images !== undefined ? getResizedImageUrl(lote.obras[0].images[0], 350, true) : placeholder;
+    let imageSource = require('../../../images/placeholder.png');
+
+    if (lote.obras[0].images !== undefined) {
+      imageSource = {uri: getResizedImageUrl(lote.obras[0].images[0], 350, true)};
+    }
 
     returnObra = (obra) => {
       return (
@@ -46,7 +48,7 @@ export default class WishlistItem extends Component {
           styles.paddingTopBasic
         ]}>
           <View style={styles.wishlistImageHolder}>
-            <Image style={styles.wishlistImage} source={{ uri: imageSrc }} />
+            <Image style={styles.wishlistImage} source={imageSource} />
           </View>
           <View style={styles.wishlistTextHolder}>
             <View style={styles.paddingBottomSmall}>

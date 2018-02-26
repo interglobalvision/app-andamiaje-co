@@ -26,9 +26,11 @@ const MiembroProfile = ({
     collection,
   } = miembro;
 
-  const placeholder = 'http://via.placeholder.com/100x100';
+  let imageSource = require('../../../images/placeholder.png');
 
-  const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
+  if (images !== undefined) {
+    imageSource = {uri: getResizedImageUrl(images[0], 350, true)};
+  }
 
   const renderOptionsButton = () => {
     if (miembroId === member.uid) {
@@ -55,7 +57,7 @@ const MiembroProfile = ({
         styles.paddingBottomBasic,
       ]}>
         <View>
-          <Image source={{ uri: imageSrc }} style={[styles.profileAvatarImage]} />
+          <Image source={imageSource} style={[styles.profileAvatarImage]} />
         </View>
         <View style={[styles.profileHeaderTextHolder]}>
           { displayName !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{displayName}</Text></View>  : '' }
