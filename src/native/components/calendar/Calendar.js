@@ -24,7 +24,7 @@ const getDates = (activeCatalogo, futureCatalogos) => {
       label: `El Catálogo ${catalogo.title} sale el`
     }, {
       date: catalogo.saleDate,
-      label: `La Subasta ${catalogo.title} comienza el`
+      label: `La Adquisición ${catalogo.title} es el`
     }];
   }));
 
