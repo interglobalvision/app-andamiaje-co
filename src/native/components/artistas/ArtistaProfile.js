@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Image, Dimensions, Text } from 'react-native';
+import { ScrollView, View, Image, Dimensions, Text, Linking, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import DraftContentRenderer from '../DraftContentRenderer';
 
@@ -62,7 +62,16 @@ const ArtistaProfile = ({
         <View style={[styles.profileHeaderTextHolder]}>
           { name !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : '' }
           { country !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{country}</Text>  : '' }
-          { gallery !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{gallery}</Text>  : '' }
+          { gallery !== 'undefined' ?
+            <TouchableOpacity onPress={ () => Linking.openURL(galleryUrl) }>
+              <Text style={[styles.fontSizeSmall]}>{gallery}</Text>
+            </TouchableOpacity>
+          : '' }
+          { websiteUrl !== 'undefined' ?
+            <TouchableOpacity onPress={ () => Linking.openURL(websiteUrl) }>
+              <Text style={[styles.fontSizeSmall]}>{websiteUrl}</Text>
+            </TouchableOpacity>
+          : '' }
         </View>
       </View>
       <DraftContentRenderer rawContent={bioRawContent} />
