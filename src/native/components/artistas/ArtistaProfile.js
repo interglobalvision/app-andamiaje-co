@@ -71,7 +71,15 @@ const ArtistaProfile = ({
           { gallery !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{gallery}</Text>  : '' }
         </View>
       </View>
-      <DraftContentRenderer rawContent={bioRawContent} />
+
+      <View style={[
+        styles.container,
+        styles.paddingTopBasic,
+        styles.paddingBottomSmall,
+        styles.bordered,
+      ]}>
+        <DraftContentRenderer rawContent={bioRawContent} />
+      </View>
 
       <TouchableOpacity
         style={[
