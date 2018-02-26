@@ -17,7 +17,7 @@ export default function userReducer(state = initialState, action) {
           emailVerified: action.data.emailVerified,
         };
       }
-      return state;
+      return initialState;
     }
     case 'USER_DETAILS_UPDATE': {
       if (action.data) {
@@ -68,10 +68,10 @@ export default function userReducer(state = initialState, action) {
           error: action.data,
         };
       }
-      return state;
+      return initialState;
     }
     case 'USER_RESET': {
-      return state;
+      return initialState;
     }
     default:
       return state;

@@ -1,6 +1,7 @@
 import ErrorMessages from '../constants/errors';
 import statusMessage from './status';
 import { Firebase, FirebaseRef } from '../lib/firebase';
+import { Actions } from 'react-native-router-flux';
 
 /**
   * Sign Up to Firebase
@@ -201,6 +202,7 @@ export function logout() {
     Firebase.auth().signOut()
       .then(() => {
         dispatch({ type: 'USER_RESET' });
+        Actions.login();
         setTimeout(resolve, 1000); // Resolve after 1s so that user sees a message
       }).catch(reject);
   }).catch(async (err) => { await statusMessage(dispatch, 'error', err.message); throw err.message; });

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, TouchableOpacity, Text, Image, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { logout } from '../../../actions/member';
 import styles from '../../constants/styles';
 
 import acercaDeAndamiaje from '../../constants/optionsContent/acercaDeAndamiaje'
@@ -14,6 +13,7 @@ import Error from '../Error';
 
 const MiembroOptions = ({
   member,
+  logout,
 }) => {
 
   const optionStyle = [
