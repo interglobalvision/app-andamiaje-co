@@ -124,6 +124,11 @@ const Index = (
           component={LotesContainer}
           Layout={LoteSingle}
           includeObras={true}
+          rightButtonImage={BackButton}
+          rightButtonStyle={{
+            height: 16,
+            width: 8.5
+          }}
         />
       </Stack>
       <Stack
