@@ -12,7 +12,7 @@ export function clearToast() {
 }
 
 export function showNotification(dispatch, message) {
-  dispatch(addToast({ text: message }));
+  dispatch(addToast({ message: message }));
 
   return delay(3000).then(() => {
     dispatch(clearToast());

@@ -3,12 +3,12 @@ import Store from '../store/toast';
 export const initialState = Store;
 
 export default function toastReducer(state = initialState, action) {
-  const { text, type } = action;
+  const { message, type } = action;
 
   switch (type) {
     case 'ADD_TOAST': {
       return {
-        toast: text,
+        message: message,
       }
     }
     case 'CLEAR_TOAST': {
