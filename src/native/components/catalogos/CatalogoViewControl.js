@@ -23,7 +23,7 @@ class CatalogoViewControl extends Component {
 
   renderGridIcon = () => {
     const { grid } = this.props.viewSettings;
-    const iconImageStyle = {width: 25, height: 25};
+    const iconImageStyle = {width: 20, height: 20};
     if (grid) {
       return (<Image source={require('../../../images/icons/icon-grid-black.png')} style={iconImageStyle} />);
     }
@@ -32,7 +32,7 @@ class CatalogoViewControl extends Component {
 
   renderListIcon = () => {
     const { grid } = this.props.viewSettings;
-    const iconImageStyle = {width: 27, height: 25};
+    const iconImageStyle = {width: 21.6, height: 20};
     if (grid) {
       return (<Image source={require('../../../images/icons/icon-list-white.png')} style={iconImageStyle} />);
     }
