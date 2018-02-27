@@ -117,6 +117,7 @@ class Login extends React.Component {
                 }
               ]}
               onChangeText={v => this.handleChange('email', v)}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
             />
           </View>
           <View style={[
@@ -140,6 +141,7 @@ class Login extends React.Component {
                 }
               ]}
               onChangeText={v => this.handleChange('password', v)}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
             />
             <TouchableOpacity
               onPress={() => {this.setState(prevState => ({
