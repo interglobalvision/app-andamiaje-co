@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { TextInput } from 'react-native';
 import ModalSelector from 'react-native-modal-selector';
 import styles from '../../constants/styles';
+import colors from '../../constants/colors'
 
 class OrderPicker extends Component {
   constructor(props) {
@@ -26,9 +27,6 @@ class OrderPicker extends Component {
   }
 
   render() {
-
-
-
     return(
       <ModalSelector
         data={this.data}
@@ -42,18 +40,18 @@ class OrderPicker extends Component {
           backgroundColor: 'rgba(255,255,255,.7)',
         }}
         optionContainerStyle={{
-          backgroundColor: 'white'
+          backgroundColor: colors.white
         }}
         optionStyle={{
-          backgroundColor: 'black',
-          borderColor: 'white',
+          backgroundColor: colors.black,
+          borderColor: colors.white,
           borderRadius: 5,
         }}
         optionTextStyle={{
-          color: 'white',
+          color: colors.white,
         }}
         cancelStyle={{
-          backgroundColor: 'white'
+          backgroundColor: colors.white
         }}
       >
         <TextInput
@@ -74,6 +72,5 @@ class OrderPicker extends Component {
       </ModalSelector>
     )
   }
-
 }
 export default OrderPicker;

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { TextInput } from 'react-native';
 import ModalSelector from 'react-native-modal-selector';
+import colors from '../../constants/colors'
+import styles from '../../constants/styles';
 
 class FilterPicker extends Component {
   constructor(props) {
@@ -27,9 +29,6 @@ class FilterPicker extends Component {
   }
 
   render() {
-
-
-
     return(
       <ModalSelector
         data={this.data}
@@ -43,18 +42,18 @@ class FilterPicker extends Component {
           backgroundColor: 'rgba(255,255,255,.7)',
         }}
         optionContainerStyle={{
-          backgroundColor: 'white'
+          backgroundColor: colors.white
         }}
         optionStyle={{
-          backgroundColor: 'black',
-          borderColor: 'white',
+          backgroundColor: colors.black,
+          borderColor: colors.white,
           borderRadius: 5,
         }}
         optionTextStyle={{
-          color: 'white',
+          color: colors.white,
         }}
         cancelStyle={{
-          backgroundColor: 'white'
+          backgroundColor: colors.white
         }}
       >
         <TextInput
@@ -75,6 +74,5 @@ class FilterPicker extends Component {
       </ModalSelector>
     )
   }
-
 }
 export default FilterPicker;
