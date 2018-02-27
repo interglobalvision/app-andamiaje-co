@@ -49,9 +49,6 @@ export default styles = StyleSheet.create({
   lineHeightBasic: {
     lineHeight: styleConstants.lineHeightBasic,
   },
-  lineHeightParagraph: {
-    lineHeight: styleConstants.lineHeightParagraph,
-  },
   fontItalic: {
     fontFamily: styleConstants.fontFamilyItalic,
   },

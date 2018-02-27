@@ -14,8 +14,7 @@ const fontSizeLarge = 28;
 const fontWeightBold = '800';
 
 // Line height
-const lineHeightBasic = 18;
-const lineHeightParagraph = 21;
+const lineHeightBasic = 21;
 
 // Padding
 const paddingBasic = 20;
@@ -32,7 +31,6 @@ export default styleConstants = {
   fontWeightBold: fontWeightBold,
   // Line height
   lineHeightBasic: lineHeightBasic,
-  lineHeightParagraph: lineHeightParagraph,
   // Font size
   fontSizeBasic: fontSizeBasic,
   fontSizeTiny: fontSizeTiny,
