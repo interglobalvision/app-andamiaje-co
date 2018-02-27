@@ -7,8 +7,8 @@ export default {
       backgroundColor: colors.white,
       elevation: 0,
       shadowOpacity: 0,
-      borderBottomWidth: 1,
-      borderColor: colors.lightGrey,
+      borderTopWidth: 1,
+      borderTopColor: colors.lightGrey,
     },
     titleStyle: {
       alignSelf: 'center',
