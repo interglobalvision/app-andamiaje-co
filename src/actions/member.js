@@ -1,5 +1,6 @@
 import ErrorMessages from '../constants/errors';
 import statusMessage from './status';
+import { showNotification } from './toastActions';
 import { Firebase, FirebaseRef } from '../lib/firebase';
 
 /**
@@ -229,8 +230,9 @@ export function addToWishlist(addedLote) {
           type: 'USER_WISHLIST_ADD',
           addedLote,
         }));
-
-      })).catch((e) => {
+      }))
+      .then(showNotification(dispatch, 'Test'))
+      .catch((e) => {
         console.log(e);
       });
   }

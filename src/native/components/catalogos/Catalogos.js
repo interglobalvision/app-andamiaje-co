@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 import LotesContainer from '../../../containers/LotesContainer';
 
+import Toast from '../Toast';
 import Loading from '../Loading';
 import Error from '../Error';
 import Header from '../Header';
@@ -33,28 +34,31 @@ const CatalogosList = ({
     */
 
   return (
-    <ScrollView>
-      <LotesContainer includeObras={false} />
+    <View>
+      <Toast />
+      <ScrollView>
+        <LotesContainer includeObras={false} />
 
-      <FlatList
-        numColumns={1}
-        data={pastCatalogos}
-        renderItem={({ item }) => (
-          <View>
-            <Spacer />
-            <Text style={{ fontWeight: '800' }}>{item.title}</Text>
-            <Spacer />
-          </View>
-        )}
-        keyExtractor={keyExtractor}
-        refreshControl={
-          <RefreshControl
-            refreshing={loading}
-            onRefresh={reFetch}
-          />
-        }
-      />
-    </ScrollView>
+        <FlatList
+          numColumns={1}
+          data={pastCatalogos}
+          renderItem={({ item }) => (
+            <View>
+              <Spacer />
+              <Text style={{ fontWeight: '800' }}>{item.title}</Text>
+              <Spacer />
+            </View>
+          )}
+          keyExtractor={keyExtractor}
+          refreshControl={
+            <RefreshControl
+              refreshing={loading}
+              onRefresh={reFetch}
+            />
+          }
+        />
+      </ScrollView>
+    </View>
   );
 };
 
