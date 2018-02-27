@@ -9,7 +9,7 @@ const customStyles = StyleSheet.flatten({
   unstyled: {
     fontSize: styleConstants.fontSizeBasic,
     marginBottom: styleConstants.paddingSmall,
-    lineHeight: styleConstants.lineHeightParagraph,
+    lineHeight: styleConstants.lineHeightBasic,
   },
   bold: {
     fontWeight: 'normal',
