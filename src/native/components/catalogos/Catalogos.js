@@ -35,10 +35,8 @@ const CatalogosList = ({
 
   return (
     <View>
-      <Toast />
       <ScrollView>
         <LotesContainer includeObras={false} />
-
         <FlatList
           numColumns={1}
           data={pastCatalogos}
@@ -58,6 +56,7 @@ const CatalogosList = ({
           }
         />
       </ScrollView>
+      <Toast />
     </View>
   );
 };
