@@ -231,7 +231,7 @@ export function addToWishlist(addedLote) {
           addedLote,
         }));
       }))
-      .then(showNotification(dispatch, 'Test'))
+      .then(showNotification(dispatch, 'Añadida a tu lista de Deseos'))
       .catch((e) => {
         console.log(e);
       });
@@ -273,7 +273,9 @@ export function removeFromWishlist(removedLote) {
           wishlist,
         }));
 
-      })).catch((e) => {
+      }))
+      .then(showNotification(dispatch, 'Eliminada de tu lista de Deseos'))
+      .catch((e) => {
         console.log(e);
       });
   }
