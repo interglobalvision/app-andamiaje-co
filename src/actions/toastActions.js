@@ -11,12 +11,12 @@ export function clearToast() {
   };
 }
 
-export function showNotification(dispatch, text) {
-  dispatch(addToast({ text: 'test' }));
+export function showNotification(dispatch, message) {
+  dispatch(addToast({ text: message }));
 
-  /*return delay(3000).then(() => {
+  return delay(3000).then(() => {
     dispatch(clearToast());
-  }); */
+  });
 
 }
 
