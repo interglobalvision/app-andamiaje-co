@@ -12,6 +12,7 @@ const customStyles = StyleSheet.flatten({
     lineHeight: styleConstants.lineHeightParagraph,
   },
   bold: {
+    fontWeight: 'normal',
     fontFamily: styleConstants.fontFamilyMedium,
   },
   italic: {
@@ -38,12 +39,7 @@ const DraftContentRenderer = ({rawContent}) => {
   const blocks = getRNDraftJSBlocks(params);
 
   return (
-    <View style={[
-      styles.container,
-      styles.paddingTopBasic,
-      styles.paddingBottomSmall,
-      styles.bordered
-    ]}>
+    <View>
     {blocks}
     </View>
   );
