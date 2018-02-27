@@ -129,7 +129,7 @@ class Login extends React.Component {
           ]}>
             <TextInput
               placeholder="Contraseña"
-              secureTextEntry={ this.state.showPassword }
+              secureTextEntry={!this.state.showPassword}
               style={[
                 styles.paddingTopSmall,
                 styles.paddingBottomSmall,
@@ -154,8 +154,8 @@ class Login extends React.Component {
               ]}
             >
               { this.state.showPassword
-                ? <Image source={eyeVisibleSource} style={{width: 34, height: 25}} />
-                : <Image source={eyeHiddenSource} style={{width: 34, height: 25}} />
+                ? <Image source={eyeHiddenSource} style={{width: 34, height: 25}} />
+                : <Image source={eyeVisibleSource} style={{width: 34, height: 25}} />
               }
             </TouchableOpacity>
           </View>
