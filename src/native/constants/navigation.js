@@ -8,7 +8,7 @@ export default {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 1,
-      borderColor: colors.lightGrey,
+      borderBottomColor: colors.lightGrey,
     },
     titleStyle: {
       alignSelf: 'center',
@@ -24,6 +24,8 @@ export default {
     activeTintColor: colors.black,
     tabBarStyle: {
       backgroundColor: colors.white,
+      borderTopWidth: 1,
+      borderTopColor: colors.lightGrey,
     },
   },
 
@@ -36,7 +38,7 @@ export default {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 1,
-      borderColor: colors.lightGrey,
+      borderBottomColor: colors.lightGrey,
     },
     indicatorStyle: {
       backgroundColor: colors.black,
