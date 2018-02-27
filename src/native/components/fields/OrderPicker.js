@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { TextInput } from 'react-native';
 import ModalSelector from 'react-native-modal-selector';
+import styles from '../../constants/styles';
 
 class OrderPicker extends Component {
   constructor(props) {
@@ -37,6 +38,23 @@ class OrderPicker extends Component {
           this.setState({textInputValue:option.display});
         }}
         cancelText='Cancelar'
+        overlayStyle={{
+          backgroundColor: 'rgba(255,255,255,.7)',
+        }}
+        optionContainerStyle={{
+          backgroundColor: 'white'
+        }}
+        optionStyle={{
+          backgroundColor: 'black',
+          borderColor: 'white',
+          borderRadius: 5,
+        }}
+        optionTextStyle={{
+          color: 'white',
+        }}
+        cancelStyle={{
+          backgroundColor: 'white'
+        }}
       >
         <TextInput
           underlineColorAndroid='rgba(0,0,0,0)'
