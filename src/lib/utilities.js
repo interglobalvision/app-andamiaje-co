@@ -61,3 +61,7 @@ export const getScaledImageDimensions = (imageWidth, imageHeight) => {
 
   return imageDimensions;
 }
+
+export const delay = (ms) => new Promise(resolve =>
+  setTimeout(resolve, ms)
+);
