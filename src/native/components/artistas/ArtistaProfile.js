@@ -32,7 +32,11 @@ const ArtistaProfile = ({
     artista = artistas.find(item => item.id === artistaId);
   }
 
-  const placeholder = 'http://via.placeholder.com/50x50';
+  let imageSource = require('../../../images/placeholder.png');
+
+  if (images !== undefined) {
+    imageSource = {uri: getResizedImageUrl(images[0], 350, true)};
+  }
 
   const {
     name,
@@ -47,12 +51,10 @@ const ArtistaProfile = ({
     cvRawContent,
   } = artista;
 
-  const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
-
   const onPressCv = cvRawContent => {
     Actions.artistaCv({content: cvRawContent})
   }
-
+  
 	return (
     <ScrollView style={[styles.backgroundWhite]}>
       <View style={[
@@ -63,7 +65,7 @@ const ArtistaProfile = ({
         styles.paddingBottomBasic,
       ]}>
         <View>
-          <Image source={{ uri: imageSrc }} style={[styles.profileAvatarImage]} />
+          <Image source={imageSource} style={[styles.profileAvatarImage]} />
         </View>
         <View style={[styles.profileHeaderTextHolder]}>
           { name !== 'undefined' ? <View><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : null }
