@@ -1,5 +1,6 @@
 import status from './status';
 import member from './member';
+import toast from './toastReducer';
 import recipes from './recipes';
 import noticias from './noticiasReducer';
 import catalogos from './catalogosReducer';
@@ -22,6 +23,7 @@ const rehydrated = (state = false, action) => {
 export default {
   rehydrated,
   status,
+  toast,
   member,
   recipes,
   noticias,
