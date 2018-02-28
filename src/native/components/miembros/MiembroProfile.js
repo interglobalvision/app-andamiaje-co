@@ -35,13 +35,15 @@ const MiembroProfile = ({
   const renderOptionsButton = () => {
     if (miembroId === member.uid) {
       return (
-        <View style={[
+        <TouchableOpacity onPress={() => {Actions.options();}} style={[
           styles.container,
+          styles.flexCenter,
+          {
+            height: 30,
+          }
         ]}>
-          <TouchableOpacity onPress={() => {Actions.options();}}>
-            <Image source={require('../../../images/icons/icon-dots-white.png')} style={{width: 4.5, height: 17.5}} />
-          </TouchableOpacity>
-        </View>
+          <Image source={require('../../../images/icons/icon-dots-white.png')} style={{width: 4.5, height: 17.5}} />
+        </TouchableOpacity>
       )
     }
     return null;
