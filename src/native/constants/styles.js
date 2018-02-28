@@ -14,6 +14,8 @@ const carouselBulletsPaddingTop = styleConstants.paddingBasic;
 const carouselHeight = windowWidth + carouselBulletsPaddingTop + styleConstants.paddingBasic;
 const carouselBulletDiameter = 5;
 
+export const containerWidth = windowWidth - (containerPadding * 2);
+
 export default styles = StyleSheet.create({
   // Font family:
   fontFamilyRegular: {
@@ -219,5 +221,5 @@ export default styles = StyleSheet.create({
   profileHeaderTextHolder: {
     paddingLeft: styleConstants.paddingBasic,
     flex: 1,
-  },
+  }
 });
