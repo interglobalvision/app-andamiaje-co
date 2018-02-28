@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Image, View, Dimensions } from 'react-native';
+import { ScrollView, Image, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { getResizedImageUrl, getBestImageSize, getScaledImageDimensions } from '../../../lib/utilities';
 import styles from '../../constants/styles';
