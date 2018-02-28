@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Image, View, Text, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { getResizedImageUrl, getBestImageSize } from '../../../lib/utilities';
 
 import Spacer from '../Spacer';
 
@@ -13,17 +14,19 @@ const LotesGridItem = ({
 
   const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
-  let { width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
+  const thirdWidth = width / 3;
 
-  let imageSource = require('../../../images/placeholder.png');
+  let imageSrc = require('../../../images/placeholder.png');
 
   if (item.obras[0].images !== undefined) {
-    imageSource = {uri: item.obras[0].images[0].downloadURL};
+    const imageSize = getBestImageSize(thirdWidth);
+    imageSrc = getResizedImageUrl(item.obras[0].images[0], imageSize);
   }
 
   return (
     <TouchableOpacity onPress={() => onPress(item)}>
-      <Image source={imageSource} style={{ width: (width / 3), height: (width / 3) }}/>
+      <Image source={{ uri: imageSrc, cache: 'force-cache' }} style={{ width: thirdWidth, height: thirdWidth }}/>
     </TouchableOpacity>
   );
 };

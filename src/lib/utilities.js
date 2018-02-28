@@ -24,14 +24,17 @@ export const getResizedImageUrl = (file, size, square) => {
   return file.downloadURL.replace(name, name + thumbSuffixfix);
 };
 
-export const getBestImageSize = () => {
+export const getBestImageSize = (containerWidth = null) => {
   let bestImageSize = 0;
-  const windowWidth = Dimensions.get('window').width;
+
+  if (containerWidth === null) {
+    containerWidth = Dimensions.get('window').width;
+  }
 
   for (i = 1; i < imageSizes.length; i++) {
     bestImageSize = imageSizes[i];
 
-    if (bestImageSize > windowWidth) {
+    if (bestImageSize > containerWidth) {
       break;
     }
   }
