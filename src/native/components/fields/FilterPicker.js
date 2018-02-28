@@ -38,23 +38,54 @@ class FilterPicker extends Component {
           this.setState({textInputValue:option.display});
         }}
         cancelText='Cancelar'
-        overlayStyle={{
-          backgroundColor: 'rgba(255,255,255,.7)',
-        }}
-        optionContainerStyle={{
-          backgroundColor: colors.white
-        }}
-        optionStyle={{
-          backgroundColor: colors.black,
-          borderColor: colors.white,
-          borderRadius: 5,
-        }}
-        optionTextStyle={{
-          color: colors.white,
-        }}
-        cancelStyle={{
-          backgroundColor: colors.white
-        }}
+        overlayStyle={[
+          styles.backgroundWhite,
+          {
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }
+        ]}
+        optionContainerStyle={[
+          styles.backgroundWhite,
+          styles.paddingBottomLarge,
+          {
+            borderWidth: 0,
+            width: 300,
+            alignSelf: 'center'
+          }
+        ]}
+        sectionTextStyle={[
+          styles.fontFamilyMedium,
+        ]}
+        sectionStyle={[
+          {
+            borderBottomWidth: 0,
+          }
+        ]}
+        optionStyle={[
+          styles.backgroundWhite,
+          styles.paddingTopSmall,
+          styles.paddingBottomSmall,
+        {
+          borderBottomColor: colors.lightGrey,
+          borderBottomWidth: 1,
+        }]}
+        optionTextStyle={[
+          styles.colorBlack,
+        ]}
+        cancelStyle={[
+          styles.backgroundWhite,
+          styles.paddingTopSmall,
+          styles.paddingBottomSmall,
+          {
+            borderColor: colors.lightGrey,
+            borderWidth: 1,
+            width: 100,
+            alignSelf: 'center',
+          }
+        ]}
       >
         <TextInput
           underlineColorAndroid='rgba(0,0,0,0)'
