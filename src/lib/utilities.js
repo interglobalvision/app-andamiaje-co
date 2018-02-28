@@ -27,7 +27,7 @@ export const getResizedImageUrl = (file, size, square) => {
 export const getBestImageSize = (containerWidth = null) => {
   let bestImageSize = 0;
 
-  if (containerWidth !== null) {
+  if (containerWidth === null) {
     containerWidth = Dimensions.get('window').width;
   }
 
