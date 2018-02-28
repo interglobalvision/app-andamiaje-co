@@ -24,12 +24,8 @@ export const getResizedImageUrl = (file, size, square) => {
   return file.downloadURL.replace(name, name + thumbSuffixfix);
 };
 
-export const getBestImageSize = (containerWidth = null) => {
+export const getBestImageSize = (containerWidth = Dimensions.get('window').width) => {
   let bestImageSize = 0;
-
-  if (containerWidth === null) {
-    containerWidth = Dimensions.get('window').width;
-  }
 
   for (i = 1; i < imageSizes.length; i++) {
     bestImageSize = imageSizes[i];
@@ -42,22 +38,21 @@ export const getBestImageSize = (containerWidth = null) => {
   return bestImageSize;
 }
 
-export const getScaledImageDimensions = (imageWidth, imageHeight) => {
+export const getScaledImageDimensions = (imageWidth, imageHeight, containerWidth = Dimensions.get('window').width) => {
   let imageDimensions = {};
-  const windowWidth = Dimensions.get('window').width;
 
   if (imageHeight > imageWidth) {
-    const imageStyleWidth = (windowWidth / imageHeight) * imageWidth;
+    const imageStyleWidth = (containerWidth / imageHeight) * imageWidth;
 
     imageDimensions = {
-      height: windowWidth,
+      height: containerWidth,
       width: imageStyleWidth
     }
   } else {
-    const imageStyleHeight = (windowWidth / imageWidth) * imageHeight;
+    const imageStyleHeight = (containerWidth / imageWidth) * imageHeight;
 
     imageDimensions = {
-      width: windowWidth,
+      width: containerWidth,
       height: imageStyleHeight
     }
   }

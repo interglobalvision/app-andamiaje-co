@@ -80,9 +80,9 @@ const NoticiaItem = ({item, border}) => {
   if (item.images !== undefined && item.images.length && !hasVideo) {
     const image = item.images[0];
     const windowWidth = Dimensions.get('window').width;
-    imageSize = getBestImageSize();
+    imageSize = getBestImageSize(containerWidth);
     imageSrc = getResizedImageUrl(image, imageSize);
-    imageDimensions = getScaledImageDimensions(image.width, image.height);
+    imageDimensions = getScaledImageDimensions(image.width, image.height, containerWidth);
   }
 
   return (
