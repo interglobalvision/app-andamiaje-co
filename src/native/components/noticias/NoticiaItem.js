@@ -81,9 +81,9 @@ const NoticiaItem = ({item, border}) => {
     const image = item.images[0];
     const windowWidth = Dimensions.get('window').width;
     imageSize = getBestImageSize();
+    console.log(imageSize);
     imageSrc = getResizedImageUrl(image, imageSize);
     imageDimensions = getScaledImageDimensions(image.width, image.height);
-    console.log(imageDimensions);
   }
 
   return (
