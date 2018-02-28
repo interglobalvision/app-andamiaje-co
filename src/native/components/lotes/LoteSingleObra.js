@@ -43,9 +43,9 @@ const LoteSingleObra = ({
           <Text style={[styles.textLink, styles.fontSizeSmall]}>Ver bio</Text>
         </TouchableOpacity>
         <View>
-          <Text><Text style={[styles.fontItalic]}>{title}</Text>, {year}</Text>
-          <Text>{materials}</Text>
-          <Text>{dimensions}</Text>
+          <Text style={[styles.lineHeightBasic]}><Text style={[styles.fontItalic, styles.lineHeightBasic]}>{title}</Text>, {year}</Text>
+          <Text style={[styles.lineHeightBasic]}>{materials}</Text>
+          <Text style={[styles.lineHeightBasic]}>{dimensions}</Text>
         </View>
         <View style={[styles.paddingTopBasic]}>
           <DraftContentRenderer rawContent={notesRawContent} />
