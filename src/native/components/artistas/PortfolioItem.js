@@ -16,14 +16,14 @@ const PortfolioItem = ({
   return (
     <View style={[styles.bordered, styles.paddingTopBasic, styles.paddingBottomLarge]}>
       <CarouselHolder obras={[item]} />
-      <View style={[styles.container, styles.paddingTopSmall]}>
+      <View style={[styles.container]}>
         <View style={[styles.paddingBottomSmall]}>
           <Text style={[styles.fontBold]}>{name}</Text>
         </View>
         <View>
-          <Text><Text style={[styles.fontItalic]}>{item.title}</Text>, {item.year}</Text>
-          <Text>{item.materials}</Text>
-          <Text>{item.dimensions}</Text>
+          <Text style={[styles.lineHeightBasic]}><Text style={[styles.fontItalic]}>{item.title}</Text>, {item.year}</Text>
+          <Text style={[styles.lineHeightBasic]}>{item.materials}</Text>
+          <Text style={[styles.lineHeightBasic]}>{item.dimensions}</Text>
         </View>
       </View>
     </View>

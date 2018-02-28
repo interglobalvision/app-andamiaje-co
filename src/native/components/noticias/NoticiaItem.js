@@ -7,6 +7,7 @@ import getRNDraftJSBlocks from 'react-native-draftjs-render';
 import { Actions } from 'react-native-router-flux';
 import styles from '../../constants/styles';
 import TextBullet from '../TextBullet';
+import colors from '../../constants/colors';
 
 import ResponsiveImageView from 'react-native-responsive-image-view';
 
@@ -14,11 +15,34 @@ import Spacer from '../Spacer';
 
 const onPress = id => Actions.artista({ match: { params: { id: String(id) } } });
 
+const customStyles = StyleSheet.flatten({
+  unstyled: {
+    fontSize: styleConstants.fontSizeBasic,
+    marginBottom: styleConstants.paddingSmall,
+    lineHeight: styleConstants.lineHeightParagraph,
+  },
+  bold: {
+    fontWeight: 'normal',
+    fontFamily: styleConstants.fontFamilyMedium,
+  },
+  italic: {
+    fontStyle: 'normal',
+    fontFamily: styleConstants.fontFamilyItalic,
+  },
+  link: {
+    color: colors.darkGrey,
+    fontWeight: styleConstants.fontWeightBold,
+  },
+  paragraph: {
+    paddingBottom: styleConstants.paddingLarge,
+  }
+});
+
 const renderArtista = (item) => {
   if (item.artista !== undefined) {
     return (
       <TouchableOpacity onPress={() => onPress(item.artista.id)}  style={styles.paddingBottomMid}>
-        <Text style={styles.colorDarkGrey, styles.fontSizeSmall}>Ver el bio de {item.artista.name}</Text>
+        <Text style={[styles.textLink, styles.fontSizeSmall]}>Ver el bio de {item.artista.name}</Text>
       </TouchableOpacity>
     );
   }
@@ -37,6 +61,13 @@ const NoticiaItem = ({item, border}) => {
     holderStyle.push(styles.bordered);
   }
 
+  const contentState = JSON.parse(item.rawContent);
+
+  const draftParams = {
+    contentState,
+    customStyles,
+  };
+
   return (
     <View style={holderStyle}>
       <View style={styles.paddingBottomBasic}>
@@ -45,7 +76,7 @@ const NoticiaItem = ({item, border}) => {
         </Text>
       </View>
 
-      <View style={styles.paddingBottomMid}>{getRNDraftJSBlocks({ contentState: JSON.parse(item.rawContent) })}</View>
+      <View style={styles.paddingBottomMid}>{getRNDraftJSBlocks(draftParams)}</View>
 
       {renderArtista(item)}
 

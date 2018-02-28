@@ -15,10 +15,10 @@ const LotesGridItem = ({
 
   let { width } = Dimensions.get('window');
 
-  let imageSrc = 'http://via.placeholder.com/300x300';
+  let imageSource = require('../../../images/placeholder.png');
 
-  if (item.obras[0].images !== undefined && item.obras[0].images !== null) {
-    imageSrc = item.obras[0].images[0].downloadURL;
+  if (item.obras[0].images !== undefined) {
+    imageSource = {uri: item.obras[0].images[0].downloadURL};
   }
 
   return (
@@ -29,7 +29,7 @@ const LotesGridItem = ({
     }}
     onPress={() => onPress(item)}
     >
-      <Image source={{ uri: imageSrc }} style={{ width: (width / 3), height: (width / 3) }}/>
+      <Image source={imageSource} style={{ width: (width / 3), height: (width / 3) }}/>
     </TouchableOpacity>
   );
 };

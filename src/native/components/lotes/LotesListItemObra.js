@@ -11,8 +11,8 @@ const LotesListItemObra = ({
 
   return (
     <View style={styles.paddingBottomSmall}>
-      <Text><Text style={styles.fontItalic}>{obra.title}</Text>, {obra.year}</Text>
-      <Text>{obra.materials}</Text>
+      <Text style={[{color: 'black'}]}><Text style={[styles.fontItalic, {color: 'black'}]}>{obra.title}</Text>, {obra.year}</Text>
+      <Text style={[{color: 'black'}]}>{obra.materials}</Text>
     </View>
   );
 };

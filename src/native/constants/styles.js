@@ -3,6 +3,7 @@ import colors from './colors';
 import styleConstants from './styleConstants';
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 // Calculate container padding
 const containerPaddingPercentage = windowWidth > 500 ? 0.05 : 0.03;
@@ -48,9 +49,6 @@ export default styles = StyleSheet.create({
   lineHeightBasic: {
     lineHeight: styleConstants.lineHeightBasic,
   },
-  lineHeightParagraph: {
-    lineHeight: styleConstants.lineHeightParagraph,
-  },
   fontItalic: {
     fontFamily: styleConstants.fontFamilyItalic,
   },
@@ -60,8 +58,15 @@ export default styles = StyleSheet.create({
   textAlignCenter: {
     textAlign: 'center',
   },
+  textLink: {
+    color: colors.darkGrey,
+    fontFamily: styleConstants.fontFamilyMedium,
+  },
   colorWhite: {
     color: colors.white,
+  },
+  colorBlack: {
+    color: colors.black,
   },
   colorDarkGrey: {
     color: colors.darkGrey,
@@ -90,6 +95,10 @@ export default styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: colors.lightGrey,
   },
+  fullScreen: {
+    height: windowHeight,
+    width: windowWidth,
+  },
   // Flex
   flexRow: {
     flexDirection: 'row',
@@ -97,6 +106,9 @@ export default styles = StyleSheet.create({
   flexCenter: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  flexNowrap: {
+    flexWrap: 'nowrap',
   },
   // Padding
   paddingTopSmall: {
@@ -110,6 +122,9 @@ export default styles = StyleSheet.create({
   },
   paddingTopLarge: {
     paddingTop: styleConstants.paddingLarge,
+  },
+  paddingBottomTiny: {
+    paddingBottom: styleConstants.paddingTiny,
   },
   paddingBottomSmall: {
     paddingBottom: styleConstants.paddingSmall,
@@ -189,13 +204,15 @@ export default styles = StyleSheet.create({
     flex: 1,
   },
   // Directory
-  directoryImageHolder: {
-    flexBasis: 50,
-  },
   directoryImage: {
     width: 50,
     height: 50,
     borderRadius: 25,
+  },
+  directoryImageCurrent: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   directoryTextHolder: {
     paddingLeft: styleConstants.paddingSmall,

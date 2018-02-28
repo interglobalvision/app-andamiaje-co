@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, View, Image, Dimensions, Text } from 'react-native';
+import { ScrollView, View, Image, Dimensions, Text, Linking, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import DraftContentRenderer from '../DraftContentRenderer';
 
@@ -31,8 +32,6 @@ const ArtistaProfile = ({
     artista = artistas.find(item => item.id === artistaId);
   }
 
-  const placeholder = 'http://via.placeholder.com/50x50';
-
   const {
     name,
     images,
@@ -43,9 +42,18 @@ const ArtistaProfile = ({
     portfolio,
     video,
     bioRawContent,
+    cvRawContent,
   } = artista;
 
-  const imageSrc = images !== undefined ? getResizedImageUrl(images[0], 350, true) : placeholder;
+  let imageSource = require('../../../images/placeholder.png');
+
+  if (images !== undefined) {
+    imageSource = {uri: getResizedImageUrl(images[0], 350, true)};
+  }
+
+  const onPressCv = cvRawContent => {
+    Actions.artistaCv({content: cvRawContent})
+  }
 
 	return (
     <ScrollView style={[styles.backgroundWhite]}>
@@ -57,15 +65,52 @@ const ArtistaProfile = ({
         styles.paddingBottomBasic,
       ]}>
         <View>
-          <Image source={{ uri: imageSrc }} style={[styles.profileAvatarImage]} />
+          <Image source={imageSource} style={[styles.profileAvatarImage]} />
         </View>
         <View style={[styles.profileHeaderTextHolder]}>
-          { name !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : '' }
-          { country !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{country}</Text>  : '' }
-          { gallery !== 'undefined' ? <Text style={[styles.fontSizeSmall]}>{gallery}</Text>  : '' }
+          { name !== 'undefined' ? <View><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : null }
+          { country !== 'undefined' ? <Text style={[styles.fontSizeSmall, styles.paddingBottomSmall]}>{country}</Text>  : null }
+          { gallery !== 'undefined' ?
+            <TouchableOpacity onPress={ () => Linking.openURL(galleryUrl) }>
+              <Text style={[styles.fontSizeSmall, styles.textLink]}>{gallery}</Text>
+            </TouchableOpacity>
+          : null }
+          { websiteUrl !== 'undefined' ?
+            <TouchableOpacity onPress={ () => Linking.openURL(websiteUrl) }>
+              <Text style={[styles.fontSizeSmall, styles.textLink]} numberOfLines={1} ellipsizeMode={'tail'}>{websiteUrl}</Text>
+            </TouchableOpacity>
+          : null }
         </View>
       </View>
-      <DraftContentRenderer rawContent={bioRawContent} />
+
+      <View style={[
+        styles.container,
+        styles.paddingTopBasic,
+        styles.paddingBottomSmall,
+        styles.bordered,
+      ]}>
+        <DraftContentRenderer rawContent={bioRawContent} />
+      </View>
+
+      <TouchableOpacity
+        style={[
+          styles.flexRow,
+          styles.paddingTopBasic,
+          styles.paddingBottomBasic,
+          styles.bordered,
+          styles.container,
+          {
+            alignItems: 'center'
+          }
+        ]}
+        onPress={() => onPressCv(cvRawContent)}
+      >
+        <View style={{ flex: 1 }}><Text>CV</Text></View>
+        <View>
+          <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+        </View>
+      </TouchableOpacity>
+
       <ArtistaPortfolio portfolio={portfolio} name={name} />
     </ScrollView>
 	);
