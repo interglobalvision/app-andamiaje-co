@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import colors from './colors';
 import styleConstants from './styleConstants';
 
@@ -8,7 +9,8 @@ export default {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 1,
-      borderColor: colors.lightGrey,
+      borderBottomColor: colors.lightGrey,
+      paddingTop: Platform.OS === 'ios' ? 0 : 5,
     },
     titleStyle: {
       alignSelf: 'center',
@@ -24,6 +26,8 @@ export default {
     activeTintColor: colors.black,
     tabBarStyle: {
       backgroundColor: colors.white,
+      borderTopWidth: 1,
+      borderTopColor: colors.lightGrey,
     },
   },
 
@@ -36,7 +40,7 @@ export default {
       elevation: 0,
       shadowOpacity: 0,
       borderBottomWidth: 1,
-      borderColor: colors.lightGrey,
+      borderBottomColor: colors.lightGrey,
     },
     indicatorStyle: {
       backgroundColor: colors.black,

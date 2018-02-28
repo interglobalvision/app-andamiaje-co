@@ -49,9 +49,6 @@ export default styles = StyleSheet.create({
   lineHeightBasic: {
     lineHeight: styleConstants.lineHeightBasic,
   },
-  lineHeightParagraph: {
-    lineHeight: styleConstants.lineHeightParagraph,
-  },
   fontItalic: {
     fontFamily: styleConstants.fontFamilyItalic,
   },
@@ -67,6 +64,9 @@ export default styles = StyleSheet.create({
   },
   colorWhite: {
     color: colors.white,
+  },
+  colorBlack: {
+    color: colors.black,
   },
   colorDarkGrey: {
     color: colors.darkGrey,
@@ -114,6 +114,9 @@ export default styles = StyleSheet.create({
   },
   paddingTopLarge: {
     paddingTop: styleConstants.paddingLarge,
+  },
+  paddingBottomTiny: {
+    paddingBottom: styleConstants.paddingTiny,
   },
   paddingBottomSmall: {
     paddingBottom: styleConstants.paddingSmall,
