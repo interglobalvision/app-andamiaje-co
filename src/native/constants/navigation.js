@@ -16,6 +16,7 @@ export default {
       alignSelf: 'center',
       fontSize: styleConstants.fontSizeBasic,
       fontFamily: styleConstants.fontFamilyMedium,
+      fontWeight: 'normal',
     },
     backButtonTintColor: colors.black,
   },

@@ -34,30 +34,31 @@ const CatalogosList = ({
     */
 
   return (
-    <View>
-      <ScrollView>
-        <LotesContainer includeObras={false} />
-        <FlatList
-          numColumns={1}
-          data={pastCatalogos}
-          renderItem={({ item }) => (
-            <View>
-              <Spacer />
-              <Text style={{ fontWeight: '800' }}>{item.title}</Text>
-              <Spacer />
-            </View>
-          )}
-          keyExtractor={keyExtractor}
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={reFetch}
-            />
-          }
-        />
-      </ScrollView>
-      <Toast />
-    </View>
+  <View style={{flex: 1}}>
+    <ScrollView style={styles.backgroundWhite}>
+      <LotesContainer includeObras={false} />
+
+      <FlatList
+        numColumns={1}
+        data={pastCatalogos}
+        renderItem={({ item }) => (
+          <View>
+            <Spacer />
+            <Text style={styles.fontFamilyMedium}>{item.title}</Text>
+            <Spacer />
+          </View>
+        )}
+        keyExtractor={keyExtractor}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={reFetch}
+          />
+        }
+      />
+    </ScrollView>
+    <Toast />
+  </View>
   );
 };
 

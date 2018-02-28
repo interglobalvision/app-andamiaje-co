@@ -10,7 +10,7 @@ const SectionHeader = ({ title }) => (
     styles.bordered,
     styles.sectionHeader
   ]}>
-    <Text>{title}</Text>
+    <Text style={[styles.fontSizeSmall]}>{title}</Text>
   </View>
 );
 

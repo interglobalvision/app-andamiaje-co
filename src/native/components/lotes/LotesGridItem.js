@@ -22,13 +22,7 @@ const LotesGridItem = ({
   }
 
   return (
-    <TouchableOpacity style={{
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: 'white',
-    }}
-    onPress={() => onPress(item)}
-    >
+    <TouchableOpacity onPress={() => onPress(item)}>
       <Image source={imageSource} style={{ width: (width / 3), height: (width / 3) }}/>
     </TouchableOpacity>
   );
