@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, View, TouchableOpacity, Text } from 'react-native';
+import Thumbnail from 'react-native-thumbnail-video';
 import { distanceInWordsToNow } from 'date-fns';
 import es from 'date-fns/locale/es';
 import getRNDraftJSBlocks from 'react-native-draftjs-render';
 import { Actions } from 'react-native-router-flux';
-import styles from '../../constants/styles';
+import styles, { containerWidth } from '../../constants/styles';
 import TextBullet from '../TextBullet';
 import colors from '../../constants/colors';
 
@@ -68,6 +69,8 @@ const NoticiaItem = ({item, border}) => {
     customStyles,
   };
 
+  const hasVideo = item.video.url !== undefined && item.video.url !== '' && item.video.provider === 'youtube';
+
   return (
     <View style={holderStyle}>
       <View style={styles.paddingBottomBasic}>
@@ -80,7 +83,9 @@ const NoticiaItem = ({item, border}) => {
 
       {renderArtista(item)}
 
-      { item.images !== undefined && item.images.length ?
+      { hasVideo ? <Thumbnail url={item.video.url} imageWidth={containerWidth} imageHeight={((containerWidth / 16) * 9)} iconStyle={{width: 25, height: 29}} /> : null }
+
+      { item.images !== undefined && item.images.length && !hasVideo ?
         <ResponsiveImageView
           source={{ uri: item.images[0].downloadURL}}
           render={({ getViewProps, getImageProps }) => (
@@ -88,7 +93,8 @@ const NoticiaItem = ({item, border}) => {
               <Image {...getImageProps()} />
             </View>
           )}
-        /> : '' }
+        /> : null }
+
     </View>
   );
 }

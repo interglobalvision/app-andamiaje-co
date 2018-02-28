@@ -3,13 +3,10 @@ import { ScrollView, View, Image, Dimensions, Text, Linking, TouchableOpacity } 
 import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import DraftContentRenderer from '../DraftContentRenderer';
-
 import ArtistaPortfolio from './ArtistaPortfolio';
-
+import ArtistaVideo from './ArtistaVideo';
 import { getResizedImageUrl } from '../../../lib/utilities';
-
 import styles from '../../constants/styles';
-
 import Loading from '../Loading';
 import Error from '../Error';
 
@@ -110,6 +107,8 @@ const ArtistaProfile = ({
           <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
         </View>
       </TouchableOpacity>
+
+      <ArtistaVideo video={video} />
 
       <ArtistaPortfolio portfolio={portfolio} name={name} />
     </ScrollView>

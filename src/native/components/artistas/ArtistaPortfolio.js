@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, ScrollView, View, Image, Dimensions, Text } from 'react-native';
 import PortfolioItem from './PortfolioItem';
-
 import SectionHeader from '../SectionHeader';
 
 const ArtistaPortfolio = ({ portfolio, name }) => {
