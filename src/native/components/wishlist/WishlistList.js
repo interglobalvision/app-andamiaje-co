@@ -4,6 +4,7 @@ import { ScrollView, FlatList, RefreshControl, View, Text, Image } from 'react-n
 import { Actions } from 'react-native-router-flux';
 import _find from 'lodash/find';
 
+import Toast from '../Toast';
 import Loading from '../Loading';
 import Error from '../Error';
 
@@ -30,20 +31,23 @@ const WishlistList = ({
 
   if (currentWishlist.length) {
     return (
-      <ScrollView style={styles.backgroundWhite}>
-        <FlatList
-          numColumns={1}
-          data={currentWishlist}
-          renderItem={({item}) => (<WishlistItem lote={item} />)}
-          keyExtractor={keyExtractor}
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={reFetch}
-            />
-          }
-        />
-      </ScrollView>
+      <View>
+        <ScrollView style={styles.backgroundWhite}>
+          <FlatList
+            numColumns={1}
+            data={currentWishlist}
+            renderItem={({item}) => (<WishlistItem lote={item} />)}
+            keyExtractor={keyExtractor}
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={reFetch}
+              />
+            }
+          />
+        </ScrollView>
+        <Toast />
+      </View>
     );
   } else {
     return (

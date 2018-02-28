@@ -87,6 +87,14 @@ export default styles = StyleSheet.create({
   emptyItemsHeight: {
     height: 300,
   },
+  toast: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderTopWidth: 1,
+    borderTopColor: colors.lightGrey,
+  },
   fullScreen: {
     height: windowHeight,
     width: windowWidth,

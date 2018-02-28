@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 import LotesContainer from '../../../containers/LotesContainer';
 
+import Toast from '../Toast';
 import Loading from '../Loading';
 import Error from '../Error';
 import Header from '../Header';
@@ -33,6 +34,7 @@ const CatalogosList = ({
     */
 
   return (
+  <View style={{flex: 1}}>
     <ScrollView style={styles.backgroundWhite}>
       <LotesContainer includeObras={false} />
 
@@ -42,7 +44,7 @@ const CatalogosList = ({
         renderItem={({ item }) => (
           <View>
             <Spacer />
-            <Text style={{ fontWeight: '800' }}>{item.title}</Text>
+            <Text style={styles.fontFamilyMedium}>{item.title}</Text>
             <Spacer />
           </View>
         )}
@@ -55,6 +57,8 @@ const CatalogosList = ({
         }
       />
     </ScrollView>
+    <Toast />
+  </View>
   );
 };
 

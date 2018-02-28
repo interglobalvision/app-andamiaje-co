@@ -1,5 +1,6 @@
 import ErrorMessages from '../constants/errors';
 import statusMessage from './status';
+import { showNotification } from './toastActions';
 import { Firebase, FirebaseRef } from '../lib/firebase';
 import { Actions } from 'react-native-router-flux';
 
@@ -231,8 +232,9 @@ export function addToWishlist(addedLote) {
           type: 'USER_WISHLIST_ADD',
           addedLote,
         }));
-
-      })).catch((e) => {
+      }))
+      .then(showNotification(dispatch, 'Añadido a tu lista de Deseos'))
+      .catch((e) => {
         console.log(e);
       });
   }
@@ -273,7 +275,9 @@ export function removeFromWishlist(removedLote) {
           wishlist,
         }));
 
-      })).catch((e) => {
+      }))
+      .then(showNotification(dispatch, 'Eliminado de tu lista de Deseos'))
+      .catch((e) => {
         console.log(e);
       });
   }
