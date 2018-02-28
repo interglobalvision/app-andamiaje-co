@@ -3,14 +3,10 @@ import { ScrollView, View, Image, Dimensions, Text, Linking, TouchableOpacity } 
 import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import DraftContentRenderer from '../DraftContentRenderer';
-import Thumbnail from 'react-native-thumbnail-video';
-
 import ArtistaPortfolio from './ArtistaPortfolio';
-import SectionHeader from '../SectionHeader';
+import ArtistaVideo from './ArtistaVideo';
 import { getResizedImageUrl } from '../../../lib/utilities';
-
-import styles, { containerWidth } from '../../constants/styles';
-
+import styles from '../../constants/styles';
 import Loading from '../Loading';
 import Error from '../Error';
 
@@ -55,8 +51,6 @@ const ArtistaProfile = ({
   const onPressCv = cvRawContent => {
     Actions.artistaCv({content: cvRawContent})
   }
-
-  const hasVideo = video.url !== undefined && video.url !== '' && video.provider === 'youtube';
 
 	return (
     <ScrollView style={[styles.backgroundWhite]}>
@@ -114,24 +108,7 @@ const ArtistaProfile = ({
         </View>
       </TouchableOpacity>
 
-      { hasVideo
-        ? <View>
-            <SectionHeader title={'Video'} />
-            <View style={[
-              styles.container,
-              styles.paddingTopSmall,
-              styles.paddingBottomLarge,
-            ]}>
-              <Thumbnail
-                url={video.url}
-                imageWidth={containerWidth}
-                imageHeight={((containerWidth / 16) * 9)}
-                iconStyle={{width: 25, height: 29}}
-              />
-            </View>
-          </View>
-        : null
-      }
+      <ArtistaVideo video={video} />
 
       <ArtistaPortfolio portfolio={portfolio} name={name} />
     </ScrollView>
