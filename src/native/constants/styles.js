@@ -86,6 +86,9 @@ export default styles = StyleSheet.create({
   backgroundWhite: {
     backgroundColor: colors.white,
   },
+  backgroundBlack: {
+    backgroundColor: colors.black,
+  },
   emptyItemsHeight: {
     height: 300,
   },
