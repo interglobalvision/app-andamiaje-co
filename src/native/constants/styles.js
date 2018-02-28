@@ -65,6 +65,9 @@ export default styles = StyleSheet.create({
   colorWhite: {
     color: colors.white,
   },
+  colorBlack: {
+    color: colors.black,
+  },
   colorDarkGrey: {
     color: colors.darkGrey,
   },
@@ -111,6 +114,9 @@ export default styles = StyleSheet.create({
   },
   paddingTopLarge: {
     paddingTop: styleConstants.paddingLarge,
+  },
+  paddingBottomTiny: {
+    paddingBottom: styleConstants.paddingTiny,
   },
   paddingBottomSmall: {
     paddingBottom: styleConstants.paddingSmall,

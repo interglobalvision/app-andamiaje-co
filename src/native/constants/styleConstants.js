@@ -18,6 +18,7 @@ const lineHeightBasic = 21;
 
 // Padding
 const paddingBasic = 20;
+const paddingTiny = paddingBasic / 3; // 6.66
 const paddingSmall = paddingBasic / 2; // 10
 const paddingMid = paddingBasic * 1.5; // 30
 const paddingLarge = paddingBasic * 2.5; // 50
