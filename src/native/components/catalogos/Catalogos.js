@@ -33,7 +33,7 @@ const CatalogosList = ({
     */
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.backgroundWhite}>
       <LotesContainer includeObras={false} />
 
       <FlatList

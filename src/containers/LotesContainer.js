@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { orderBy } from 'lodash';
 import _filter from 'lodash/filter';
@@ -141,8 +141,14 @@ class LotesContainer extends Component {
       );
     } else {
       return (
-        <View style={{alignItems: 'center', justifyContent: 'center', height: 300}}>
-          <Text>No hay lotes con esa técnica</Text>
+        <View style={[
+          styles.container,
+          styles.flexCenter,
+          styles.emptyItemsHeight,
+        ]}>
+          <Text style={[
+            styles.textAlignCenter
+          ]}>No hay lotes con esa técnica</Text>
         </View>
       )
     }
