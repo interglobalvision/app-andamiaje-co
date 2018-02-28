@@ -1,8 +1,9 @@
 {
   "expo": {
     "sdkVersion": "22.0.0",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "name": "Andamiaje",
+    "description": "Andamiaje es una iniciativa curatorial que busca apoyar a artistas emergentes a través de un proyecto dirigido a un grupo exclusivo de miembros",
     "slug": "andamiaje-co",
     "icon": "src/images/app-icon.png",
     "privacy": "public",
@@ -17,7 +18,7 @@
     },
     "android": {
       "package": "co.andamiaje",
-      "versionCode": 4
+      "versionCode": 5
     }
   }
 }
