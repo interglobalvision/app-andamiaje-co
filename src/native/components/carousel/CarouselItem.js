@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, Dimensions } from 'react-native';
+import { ScrollView, Image, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { getResizedImageUrl, getBestImageSize, getScaledImageDimensions } from '../../../lib/utilities';
 import styles from '../../constants/styles';
@@ -14,7 +14,13 @@ const CarouselItem = ({
   const imageDimensions = getScaledImageDimensions(image.width, image.height);
 
   return (
-    <View style={styles.carouselItem}>
+    <ScrollView
+      scrollEnabled={false}
+      minimumZoomScale={1}
+      maximumZoomScale={1.000000000000001}
+      bouncesZoom={true}
+      pinchGestureEnabled={true}
+      contentContainerStyle={styles.carouselItem}>
       <Image
         source={{ uri: imageSrc, cache: 'force-cache' }}
         style={{
@@ -22,7 +28,7 @@ const CarouselItem = ({
           height: imageDimensions.height
         }}
       />
-    </View>
+    </ScrollView>
   );
 };
 
