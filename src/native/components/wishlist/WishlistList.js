@@ -31,7 +31,7 @@ const WishlistList = ({
 
   if (currentWishlist.length) {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <ScrollView style={styles.backgroundWhite}>
           <FlatList
             numColumns={1}
@@ -51,24 +51,27 @@ const WishlistList = ({
     );
   } else {
     return (
-      <ScrollView style={styles.backgroundWhite}>
-        <View style={[
-          styles.container,
-          styles.flexCenter,
-          styles.emptyItemsHeight
-        ]}>
-          <Text style={[
-            styles.textAlignCenter
-          ]}>Parece que tu lista de Deseos está vacía</Text>
-          <View style={[styles.paddingTopBasic, styles.paddingBottomBasic]}>
-            <Image source={require('../../../images/icons/icon-wishlist-empty.png')} style={{width: 36.5, height: 50}} />
+      <View style={{flex: 1}}>
+        <ScrollView style={styles.backgroundWhite}>
+          <View style={[
+            styles.container,
+            styles.flexCenter,
+            styles.emptyItemsHeight
+          ]}>
+            <Text style={[
+              styles.textAlignCenter
+            ]}>Parece que tu lista de Deseos está vacía</Text>
+            <View style={[styles.paddingTopBasic, styles.paddingBottomBasic]}>
+              <Image source={require('../../../images/icons/icon-wishlist-empty.png')} style={{width: 36.5, height: 50}} />
+            </View>
+            <Text style={[
+              styles.textAlignCenter,
+              styles.fontSizeSmall,
+            ]}>Agrega Obras para guardar las que más te gustan</Text>
           </View>
-          <Text style={[
-            styles.textAlignCenter,
-            styles.fontSizeSmall,
-          ]}>Agrega Obras para guardar las que más te gustan</Text>
-        </View>
-      </ScrollView>
+        </ScrollView>
+        <Toast />
+      </View>
     )
   }
 };
