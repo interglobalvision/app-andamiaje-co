@@ -75,6 +75,7 @@
     "react-native-modal-selector": "^0.0.25",
     "react-native-responsive-image-view": "^1.1.0",
     "react-native-router-flux": "^4.0.0-beta.24",
+    "react-native-thumbnail-video": "^0.0.8",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "reactstrap": "^5.0.0-alpha.4",
