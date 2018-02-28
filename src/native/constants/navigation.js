@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import colors from './colors';
 import styleConstants from './styleConstants';
 
@@ -9,6 +10,7 @@ export default {
       shadowOpacity: 0,
       borderBottomWidth: 1,
       borderBottomColor: colors.lightGrey,
+      paddingTop: Platform.OS === 'ios' ? 0 : 5,
     },
     titleStyle: {
       alignSelf: 'center',
