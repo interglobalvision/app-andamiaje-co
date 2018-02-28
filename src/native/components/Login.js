@@ -96,8 +96,11 @@ class Login extends React.Component {
             width: 300,
           }
         ]}>
-          <View style={[styles.paddingBottomMid]}>
-            <Image source={require('../../images/andamiaje-logo-login.png')} style={{width: 300, height: 63.5}} />
+          <View style={[
+            styles.paddingBottomLarge, 
+            styles.flexCenter
+          ]}>
+            <Image source={require('../../images/andamiaje-logo-login.png')} style={{width: 240, height: 50.8}} />
           </View>
 
           <View style={[
@@ -156,19 +159,21 @@ class Login extends React.Component {
               ]}
             >
               { this.state.showPassword
-                ? <Image source={eyeHiddenSource} style={{width: 34, height: 25}} />
-                : <Image source={eyeVisibleSource} style={{width: 34, height: 25}} />
+                ? <Image source={eyeVisibleSource} style={{width: 34, height: 25}} />
+                : <Image source={eyeHiddenSource} style={{width: 34, height: 25}} />
               }
             </TouchableOpacity>
           </View>
           <View style={[
-            styles.paddingTopMid,
+            styles.paddingTopLarge,
+            styles.flexCenter,
           ]}>
             <TouchableOpacity onPress={this.handleSubmit} style={[
               {
                 backgroundColor: colors.black,
                 padding: styleConstants.paddingBasic,
-                borderRadius: 5
+                borderRadius: 5,
+                width: 240,
               }
             ]}>
               <Text style={{
