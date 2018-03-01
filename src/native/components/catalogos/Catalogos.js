@@ -4,7 +4,6 @@ import { FlatList, TouchableOpacity, RefreshControl, Image, View, ScrollView, Te
 import { Actions } from 'react-native-router-flux';
 
 import LotesContainer from '../../../containers/LotesContainer';
-import CountdownTitle from '../countdown/CountdownTitle';
 import Countdown from '../countdown/Countdown';
 
 import styles from '../../constants/styles';
@@ -32,31 +31,14 @@ const CatalogosList = ({
 
   const onPress = item => Actions.catalogo({ match: { params: { id: String(item.id) } } });
 
-  const currentDate = Date.now();
-  const oneDay = 86400000;
-  const countdownBeforeSale = oneDay * 5;
-  const timeUntilSale = activeCatalogo.saleDate - currentDate;
-
-  const saleSoon = (timeUntilSale < countdownBeforeSale) && (currentDate < activeCatalogo.saleDate) ? true : false;
-  const saleStarted = (currentDate > activeCatalogo.saleDate) && (currentDate < activeCatalogo.endDate) ? true : false;
-  const saleEnded = currentDate > activeCatalogo.endDate ? true : false;
-
   return (
     <View style={{flex: 1}}>
       <ScrollView
-        stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
+        //stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
         style={styles.backgroundWhite}
       >
-      
-        {(saleSoon || saleStarted || saleEnded) &&
-          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
-        }
-        {saleSoon &&
-          <Countdown countdownTo={activeCatalogo.saleDate} />
-        }
-        {saleStarted &&
-          <Countdown countdownTo={activeCatalogo.endDate} />
-        }
+
+        <Countdown activeCatalogo={activeCatalogo} />
 
         <LotesContainer includeObras={false} />
 

@@ -25,7 +25,7 @@ class CountdownTitle extends React.Component {
     }
 
     if (saleEnded) {
-      actionString = 'ha terminada';
+      actionString = 'ha terminado';
     }
 
     return (

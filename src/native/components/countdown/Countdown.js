@@ -1,65 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
+
 import styles from '../../constants/styles';
+
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
 
 class Countdown extends React.Component {
   static propTypes = {
-    countdownTo: PropTypes.number.isRequired,
+    activeCatalogo: PropTypes.object.isRequired,
   }
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    };
-  }
-
-  componentDidMount = () => {
-    this.updateClock();
-    this.timeInterval = setInterval(this.updateClock, 1000);
-  }
-
-  componentWillUnmount = () => {
-    clearInterval(this.timeInterval);
-  }
-
-  updateClock = () => {
-    const t = this.props.countdownTo - Date.now();
-    let seconds = ('0' + (Math.floor( (t/1000) % 60 ))).slice(-2);
-    let minutes = ('0' + (Math.floor( (t/1000/60) % 60 ))).slice(-2);
-    let hours = ('0' + (Math.floor( (t/(1000*60*60)) % 24 ))).slice(-2);
-    let days = ('0' + (Math.floor( t/(1000*60*60*24) ))).slice(-2);
-
-    this.setState({
-      days: days,
-      hours: hours,
-      minutes: minutes,
-      seconds: seconds,
-    });
-
-    if (t <= 0) {
-      clearInterval(this.timeInterval);
-    }
   }
 
   render() {
+    const { activeCatalogo } = this.props;
+
+    const currentDate = Date.now();
+    const oneDay = 86400000;
+    const countdownBeforeSale = oneDay * 5;
+    const timeUntilSale = activeCatalogo.saleDate - currentDate;
+
+    const saleSoon = (timeUntilSale < countdownBeforeSale) && (currentDate < activeCatalogo.saleDate) ? true : false;
+
+    console.log('Sale Soon', saleSoon);
+
+    const saleStarted = (currentDate > activeCatalogo.saleDate) && (currentDate < activeCatalogo.endDate) ? true : false;
+
+    console.log('Sale Started', saleStarted);
+
+    const saleEnded = currentDate > activeCatalogo.endDate || (saleStarted && currentDate < oneDay + activeCatalogo.endDate) ? true : false;
+
+    console.log('Sale Ended', saleEnded);
+
     return (
-      <View style={[
-        styles.backgroundBlack,
-        styles.flexCenter,
-        styles.paddingTopSmall,
-        styles.paddingBottomSmall,
-      ]}>
-        <Text style={[
-          styles.colorWhite,
-          styles.fontFamilyMedium,
-          styles.fontSizeMid,
-        ]}>{this.state.days} : {this.state.hours} : {this.state.minutes} : {this.state.seconds}</Text>
+      <View>
+        {(saleSoon || saleStarted || saleEnded) &&
+          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+        }
+        {saleSoon &&
+          <CountdownClock countdownTo={activeCatalogo.saleDate} />
+        }
+        {saleStarted &&
+          <CountdownClock countdownTo={activeCatalogo.endDate} />
+        }
       </View>
     );
   }
