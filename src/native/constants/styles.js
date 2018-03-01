@@ -159,10 +159,6 @@ export default styles = StyleSheet.create({
     borderBottomColor: colors.white,
     backgroundColor: colors.black,
   },
-  calendarLabel: {
-    flex: 1,
-    color: 'white'
-  },
   calendarDate: {
     flexDirection: 'column',
     flexWrap: 'nowrap',
