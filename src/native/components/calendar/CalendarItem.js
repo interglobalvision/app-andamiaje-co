@@ -8,9 +8,13 @@ import Spacer from '../Spacer';
 
 const CalendarItem = ({item}) => (
   <View style={[ styles.container, styles.calendarItem ]}>
-    <View>
-      <Text style={[ styles.calendarLabel, styles.fontBold ]}>{item.label}</Text>
-      { item.label2 !== undefined ? <Text style={[ styles.calendarLabel, styles.fontBold ]}>{item.label2}</Text> : null }
+    <View style={[
+      {
+        justifyContent: 'center',
+      }
+    ]}>
+      <Text style={[ styles.colorWhite, styles.fontBold ]}>{item.label}</Text>
+      { item.label2 !== undefined ? <Text style={[ styles.colorWhite, styles.fontBold ]}>{item.label2}</Text> : null }
     </View>
     <View style={styles.calendarDate}>
       <Text style={[ styles.fontBold, styles.textAlignCenter, styles.colorWhite, styles.fontSizeLarge ]}>{format(item.date, 'DD')}</Text>
