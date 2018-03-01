@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { format } from 'date-fns';
+import es from 'date-fns/locale/es';
 
 import { toggleCalendar } from '../../../actions/calendarActions';
 
 import Loading from '../Loading';
 import Error from '../Error';
-import Header from '../Header';
-import Spacer from '../Spacer';
 
 import CalendarItem from './CalendarItem';
 
@@ -24,7 +24,8 @@ const getDates = (activeCatalogo, futureCatalogos) => {
       label: `El Catálogo ${catalogo.title} sale el`
     }, {
       date: catalogo.saleDate,
-      label: `La Adquisición ${catalogo.title} es el`
+      label: `La Adquisición ${catalogo.title} es el`,
+      label2: `Y comienza a las ${format(catalogo.saleDate, 'HH:mm')}`,
     }];
   }));
 
