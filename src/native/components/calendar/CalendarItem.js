@@ -14,7 +14,7 @@ const CalendarItem = ({item}) => (
       }
     ]}>
       <Text style={[ styles.colorWhite, styles.fontBold ]}>{item.label}</Text>
-      { item.label2 !== undefined ? <Text style={[ styles.colorWhite, styles.fontBold ]}>{item.label2}</Text> : null }
+      { item.label2 !== undefined ? <View style={[styles.paddingTopTiny]}><Text style={[ styles.colorWhite, styles.fontSizeSmall ]}>{item.label2}</Text></View> : null }
     </View>
     <View style={styles.calendarDate}>
       <Text style={[ styles.fontBold, styles.textAlignCenter, styles.colorWhite, styles.fontSizeLarge ]}>{format(item.date, 'DD')}</Text>
