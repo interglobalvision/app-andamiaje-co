@@ -4,7 +4,7 @@ import { ScrollView, View, TextInput, TouchableOpacity, Text, Image } from 'reac
 import { Actions } from 'react-native-router-flux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Loading from './Loading';
-import Messages from './Messages';
+import Toast from './Toast';
 
 import styles from '../constants/styles';
 import styleConstants from '../constants/styleConstants';
@@ -80,6 +80,7 @@ class Login extends React.Component {
     if (loading) return <Loading />;
 
     return (
+      <View>
       <ScrollView scrollEnabled={false}
         contentContainerStyle={[
           styles.container,
@@ -97,7 +98,7 @@ class Login extends React.Component {
           }
         ]}>
           <View style={[
-            styles.paddingBottomLarge, 
+            styles.paddingBottomLarge,
             styles.flexCenter
           ]}>
             <Image source={require('../../images/andamiaje-logo-login.png')} style={{width: 240, height: 50.8}} />
@@ -182,10 +183,11 @@ class Login extends React.Component {
               }}>Iniciar sesión</Text>
             </TouchableOpacity>
           </View>
-          {error && <Messages message={error} />}
         </View>
         <KeyboardSpacer/>
       </ScrollView>
+      <Toast />
+      </View>
     );
   }
 }
