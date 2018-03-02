@@ -16,13 +16,15 @@ class MemberTokens extends Component {
     const currentMiembro = miembros.find(miembro => miembro.id === member.uid);
 
     if (currentMiembro !== undefined && currentMiembro !== null) {
+      const tokensRemaining = 15;
+
       return (
         <View style={[
           styles.container,
         ]}><Text style={[
           styles.fontSizeSmall,
           styles.fontFamilyMedium,
-        ]}>ŧ 15</Text></View>
+        ]}>ŧ {tokensRemaining}</Text></View>
       )
     }
 
