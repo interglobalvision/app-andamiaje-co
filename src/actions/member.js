@@ -203,7 +203,7 @@ export function logout() {
     Firebase.auth().signOut()
       .then(() => {
         dispatch({ type: 'USER_RESET' });
-        Actions.login();
+        Actions.login({type: 'reset'});
         setTimeout(resolve, 1000); // Resolve after 1s so that user sees a message
       }).catch(reject);
   }).catch(async (err) => { await statusMessage(dispatch, 'error', err.message); throw err.message; });
