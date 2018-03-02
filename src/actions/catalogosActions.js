@@ -64,3 +64,9 @@ export function changeCatalogoFilter(tecnica) {
     });
   }
 }
+
+export function updateCountdown(currentTime) {
+  return {
+    type: 'UPDATE_COUNTDOWN',
+  };
+}
