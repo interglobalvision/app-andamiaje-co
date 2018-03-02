@@ -18,4 +18,8 @@ export default {
   // Recipes
   recipe404: 'Recipe not found',
   missingMealId: 'Missing meal definition',
+
+  // Firebase auth errors
+  wrongPassword: 'La contraseña no es válida',
+  userNotFound: 'No se encontró al usuario'
 };
