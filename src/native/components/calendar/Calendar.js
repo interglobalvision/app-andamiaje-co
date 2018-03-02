@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { StyleSheet, FlatList, TouchableOpacity, RefreshControl, Image, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { format } from 'date-fns';
 import es from 'date-fns/locale/es';
+import * as Animatable from 'react-native-animatable';
 
 import { toggleCalendar } from '../../../actions/calendarActions';
 
@@ -50,64 +51,95 @@ const getDates = (activeCatalogo, futureCatalogos) => {
 
 }
 
-const Calendar = ({
-  error,
-  loading,
-  activeCatalogo,
-  futureCatalogos,
-  toggleCalendar,
-  reFetch,
-  show,
-}) => {
+class Calendar extends Component {
+  static propTypes = {
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
+    activeCatalogo: PropTypes.object.isRequired,
+    pastCatalogos: PropTypes.array.isRequired,
+    reFetch: PropTypes.func,
+  };
 
-  // Loading
-  if (loading) return <Loading />;
+  static defaultProps = {
+    error: null,
+    reFetch: null,
+  };
 
-  // Error
-  if (error) return <Error content={error} />;
+  constructor(props) {
+    super(props);
 
-  const dates = getDates(activeCatalogo, futureCatalogos);
+    this.dates = getDates(props.activeCatalogo, props.futureCatalogos);
+    this.baseHeight = 100;
+  }
 
-  const keyExtractor = item => item.date;
+  componentDidMount() {
+    if (this.props.show) {
+      this.props.toggleCalendar();
+    }
+  }
 
-  const baseHeight = 100;
-  const height =  show ? dates.length * baseHeight : baseHeight;
+  animateCalendar = () => {
+    this.props.toggleCalendar();
 
-  return (
-    <View style={{
-      height: height,
-    }}>
-      <TouchableOpacity onPress={toggleCalendar} activeOpacity={0.9}>
-        <FlatList
-          numColumns={1}
-          data={dates}
-          renderItem={({ item }) => (
-           <CalendarItem item={item} />
-          )}
-          keyExtractor={keyExtractor}
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={reFetch}
-            />
-          }
-        />
-      </TouchableOpacity>
-    </View>
-  );
-};
+    const fromHeight = this.props.show ? (this.dates.length * this.baseHeight) : this.baseHeight;
+    const toHeight = this.props.show ? this.baseHeight : (this.dates.length * this.baseHeight);
 
-Calendar.propTypes = {
-  error: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  activeCatalogo: PropTypes.object.isRequired,
-  pastCatalogos: PropTypes.array.isRequired,
-  reFetch: PropTypes.func,
-};
+    this.view.transition(
+      {
+        height: fromHeight,
+      },
+      {
+        height: toHeight,
+      },
+      this.dates.length * 200,
+      'ease-in-out'
+    );
+  }
 
-Calendar.defaultProps = {
-  error: null,
-  reFetch: null,
+  handleViewRef = ref => this.view = ref;
+
+  render() {
+    const {
+      error,
+      loading,
+      activeCatalogo,
+      futureCatalogos,
+      reFetch,
+    } = this.props;
+
+    // Loading
+    if (loading) return <Loading />;
+
+    // Error
+    if (error) return <Error content={error} />;
+
+    const keyExtractor = item => item.date;
+
+    return (
+      <Animatable.View
+        ref={this.handleViewRef}
+        style={{
+        height: this.baseHeight,
+      }}>
+        <TouchableOpacity onPress={this.animateCalendar} activeOpacity={0.9}>
+          <FlatList
+            numColumns={1}
+            data={this.dates}
+            renderItem={({ item }) => (
+             <CalendarItem item={item} />
+            )}
+            keyExtractor={keyExtractor}
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={reFetch}
+              />
+            }
+          />
+        </TouchableOpacity>
+      </Animatable.View>
+    );
+  };
 };
 
 const mapStateToProps = state => ({
