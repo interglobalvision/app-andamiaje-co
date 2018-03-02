@@ -38,7 +38,7 @@ class Toast extends Component {
             styles.flexCenter,
             styles.toast,
         ]}>
-          <Text style={[styles.fontSizeSmall]}>{this.props.message}</Text>
+          <Text style={[styles.fontSizeSmall, styles.textAlignCenter]}>{this.props.message}</Text>
         </Animatable.View>
       );
     }
