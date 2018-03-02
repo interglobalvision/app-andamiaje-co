@@ -50,7 +50,6 @@ const MiembrosList = ({
       </View>
       { !displayCurrentMember &&
         <View style={[
-          styles.bordered,
           {
             borderTopWidth: 1,
             borderTopColor: colors.lightGrey,
