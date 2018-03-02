@@ -55,4 +55,10 @@ export default {
       ],
     },
   ],
+  countdown: {
+    currentTime: Date.now(),
+    saleSoon: false,
+    saleStarted: false,
+    saleEnded: false,
+  },
 };

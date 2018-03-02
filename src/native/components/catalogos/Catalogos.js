@@ -4,7 +4,8 @@ import { FlatList, TouchableOpacity, RefreshControl, Image, View, ScrollView, Te
 import { Actions } from 'react-native-router-flux';
 
 import LotesContainer from '../../../containers/LotesContainer';
-import Countdown from '../countdown/Countdown';
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
 
 import styles from '../../constants/styles';
 
@@ -19,6 +20,7 @@ const CatalogosList = ({
   loading,
   activeCatalogo,
   pastCatalogos,
+  countdown,
   reFetch,
 }) => {
   // Loading
@@ -31,14 +33,28 @@ const CatalogosList = ({
 
   const onPress = item => Actions.catalogo({ match: { params: { id: String(item.id) } } });
 
+  const {
+    saleSoon,
+    saleStarted,
+    saleEnded,
+  } = countdown;
+
   return (
     <View style={{flex: 1}}>
       <ScrollView
-        //stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
+        stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
         style={styles.backgroundWhite}
       >
 
-        <Countdown activeCatalogo={activeCatalogo} />
+        {(saleSoon || saleStarted || saleEnded) &&
+          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+        }
+        {saleSoon &&
+          <CountdownClock countdownTo={activeCatalogo.saleDate} />
+        }
+        {saleStarted &&
+          <CountdownClock countdownTo={activeCatalogo.endDate} />
+        }
 
         <LotesContainer includeObras={false} />
 

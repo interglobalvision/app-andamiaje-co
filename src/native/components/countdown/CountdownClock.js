@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import styles from '../../constants/styles';
+import { connect } from 'react-redux';
+
+import { updateCountdown } from '../../../actions/catalogosActions';
 
 class CountdownClock extends React.Component {
   static propTypes = {
@@ -17,18 +20,23 @@ class CountdownClock extends React.Component {
       minutes: 0,
       seconds: 0,
     };
+
+    this.updateClock = this.updateClock.bind(this);
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.updateClock();
-    this.timeInterval = setInterval(this.updateClock, 1000);
+    this.timeInterval = setInterval(this.updateClock, 500);
   }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     clearInterval(this.timeInterval);
   }
 
-  updateClock = () => {
+  updateClock() {
+    // Call the redux action
+    this.props.updateCountdown(Date.now());
+
     const t = this.props.countdownTo - Date.now();
     let seconds = ('0' + (Math.floor( (t/1000) % 60 ))).slice(-2);
     let minutes = ('0' + (Math.floor( (t/1000/60) % 60 ))).slice(-2);
@@ -65,4 +73,12 @@ class CountdownClock extends React.Component {
   }
 }
 
-export default CountdownClock;
+const mapStateToProps = state => ({
+  countdown: state.catalogos.countdown || {},
+});
+
+const mapDispatchToProps = {
+  updateCountdown,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CountdownClock);

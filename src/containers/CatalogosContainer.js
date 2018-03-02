@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getCatalogos, setError } from '../actions/catalogosActions';
+import { updateCountdown } from '../actions/catalogosActions';
 
 class CatalogosContainer extends Component {
   static propTypes = {
@@ -24,6 +25,7 @@ class CatalogosContainer extends Component {
     */
   fetchCatalogos = () => {
     return this.props.getCatalogos()
+      .then(() => this.props.updateCountdown())
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setError(err);
@@ -40,6 +42,7 @@ class CatalogosContainer extends Component {
         activeCatalogo={catalogos.activeCatalogo}
         pastCatalogos={catalogos.pastCatalogos}
         futureCatalogos={catalogos.futureCatalogos}
+        countdown={catalogos.countdown}
         reFetch={() => this.fetchCatalogos()}
       />
     );
@@ -53,6 +56,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getCatalogos,
   setError,
+  updateCountdown,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CatalogosContainer);
