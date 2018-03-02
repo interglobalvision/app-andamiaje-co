@@ -40,7 +40,10 @@ const MiembroOptions = ({
       </View>
 
       <View style={[
-        styles.bordered,
+        //styles.bordered,
+        {
+          height: 0,
+        }
       ]}>
         <TouchableOpacity onPress={() => {Actions.terminosYCondiciones({content: terminosYCondiciones})}} style={optionStyle}>
           <View style={{ flex: 1 }}><Text>Términos y Condiciones</Text></View>
