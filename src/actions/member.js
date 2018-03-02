@@ -128,11 +128,15 @@ export function login(formData) {
     await statusMessage(dispatch, 'error', err.message);
 
     let toastMessage = err.message;
+
+    if (err.code === 'auth/invalid-email') { toastMessage = ErrorMessages.invalidEmail }
+    if (err.code === 'auth/invalid-password') { toastMessage = ErrorMessages.wrongPassword }
     if (err.code === 'auth/wrong-password') { toastMessage = ErrorMessages.wrongPassword }
     if (err.code === 'auth/user-not-found') { toastMessage = ErrorMessages.userNotFound }
+    if (err.code === 'auth/auth/internal-error') { toastMessage = ErrorMessages.internalError }
 
     showNotification(dispatch, toastMessage);
-    
+
     throw err.message;
   });
 }
