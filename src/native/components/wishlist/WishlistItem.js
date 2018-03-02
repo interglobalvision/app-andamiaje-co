@@ -28,8 +28,10 @@ export default class WishlistItem extends Component {
 
     returnObra = (obra) => {
       return (
-        <View style={styles.flexRow}>
-          <Text style={{flex: 1, flexWrap: 'wrap'}}>{obra.title}</Text>
+        <View style={[styles.flexRow, styles.paddingBottomTiny]}>
+          <Text style={{flex: 1, flexWrap: 'wrap'}}>
+            <Text style={[styles.fontFamilyItalic]}>{obra.title}</Text>, {obra.year}
+          </Text>
         </View>
       );
     }
@@ -54,15 +56,20 @@ export default class WishlistItem extends Component {
             <View style={styles.paddingBottomSmall}>
               <Text style={styles.fontBold}>{lote.artista.name}</Text>
             </View>
-            <FlatList
-              numColumns={1}
-              data={lote.obras}
-              renderItem={({item}) => returnObra(item)}
-              keyExtractor={keyExtractor}
-            />
+            <View>
+              { lote.obras.map( (item) => returnObra(item) )}
+            </View>
           </View>
         </TouchableOpacity>
       </View>
     );
   }
 }
+/*
+<FlatList
+  numColumns={1}
+  data={lote.obras}
+  renderItem={({item}) => returnObra(item)}
+  keyExtractor={keyExtractor}
+/>
+*/
