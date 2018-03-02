@@ -42,17 +42,6 @@ const MiembroOptions = ({
       <View style={[
         styles.bordered,
       ]}>
-        <TouchableOpacity onPress={() => {Actions.terminosYCondiciones({content: terminosYCondiciones})}} style={optionStyle}>
-          <View style={{ flex: 1 }}><Text>Términos y Condiciones</Text></View>
-          <View>
-            <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
-          </View>
-        </TouchableOpacity>
-      </View>
-
-      <View style={[
-        styles.bordered,
-      ]}>
         <TouchableOpacity onPress={() => {Actions.politicaDePrivacidad({content: politicaDePrivacidad})}} style={optionStyle}>
           <View style={{ flex: 1 }}><Text>Política de privacidad</Text></View>
           <View>

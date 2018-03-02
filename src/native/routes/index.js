@@ -49,6 +49,9 @@ import ProfileComponent from '../components/Profile';
 
 import AboutComponent from '../components/About';
 
+import MemberTokens from '../components/MemberTokens';
+import EmptyNavButton from '../components/EmptyNavButton';
+
 import Logo from '../../images/andamiaje-logo-title.png';
 import BackButton from '../../images/icons/icon-back.png';
 
@@ -118,6 +121,8 @@ const Index = (
           title='Catálogo'
           component={CatalogosContainer}
           Layout={CatalogosList}
+          renderLeftButton={EmptyNavButton}
+          renderRightButton={() => <MemberTokens />}
         />
         <Scene
           key='lote'
@@ -125,11 +130,7 @@ const Index = (
           component={LotesContainer}
           Layout={LoteSingle}
           includeObras={true}
-          rightButtonImage={BackButton}
-          rightButtonStyle={{
-            height: 16,
-            width: 8.5
-          }}
+          renderRightButton={() => <MemberTokens />}
         />
       </Stack>
       <Stack
@@ -147,6 +148,8 @@ const Index = (
           title='Deseos'
           component={WishlistContainer}
           Layout={WishlistList}
+          renderLeftButton={EmptyNavButton}
+          renderRightButton={() => <MemberTokens />}
         />
       </Stack>
       <Stack
@@ -193,73 +196,45 @@ const Index = (
           title='Artista'
           component={ArtistasContainer}
           Layout={ArtistaProfile}
-          rightButtonImage={BackButton}
-          rightButtonStyle={{
-            height: 16,
-            width: 8.5
-          }}
+          renderRightButton={() => <MemberTokens />}
         />
         <Scene
           key='artistaCv'
           title='CV'
           component={ArtistaCVPage}
-          rightButtonImage={BackButton}
-          rightButtonStyle={{
-            height: 16,
-            width: 8.5
-          }}
+          renderRightButton={EmptyNavButton}
         />
         <Scene
           key='miembro'
           title='Miembro'
           component={MiembrosContainer}
           Layout={MiembroProfile}
-          rightButtonImage={BackButton}
-          rightButtonStyle={{
-            height: 16,
-            width: 8.5
-          }}
+          renderRightButton={EmptyNavButton}
         />
         <Scene
           key='options'
           title='Opciones'
           component={MiembrosContainer}
           Layout={MiembroOptions}
-          rightButtonImage={BackButton}
-          rightButtonStyle={{
-            height: 16,
-            width: 8.5
-          }}
+          renderRightButton={EmptyNavButton}
         />
         <Scene
           key='acercaDeAndamiaje'
           title={'Acerca de Andamiaje'}
           component={MiembroOptionsPage}
-          rightButtonImage={BackButton}
-          rightButtonStyle={{
-            height: 16,
-            width: 8.5
-          }}
+          renderRightButton={EmptyNavButton}
         />
         <Scene
           key='terminosYCondiciones'
           title={'Términos y Condiciones'}
           component={MiembroOptionsPage}
-          rightButtonImage={BackButton}
-          rightButtonStyle={{
-            height: 16,
-            width: 8.5
-          }}
+          renderRightButton={EmptyNavButton}
         />
         <Scene
           key='politicaDePrivacidad'
           title={'Política de privacidad'}
           component={MiembroOptionsPage}
-          rightButtonImage={BackButton}
-          rightButtonStyle={{
-            height: 16,
-            width: 8.5
-          }}
+          renderRightButton={EmptyNavButton}
         />
       </Stack>
     </Tabs>
