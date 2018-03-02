@@ -49,11 +49,7 @@ const MiembrosList = ({
         { miembrosArray.map( (item, key) => <DirectoryListItem key={key} id={item.id} name={item.displayName} images={item.images} type={'miembro'} />)}
       </View>
       { !displayCurrentMember &&
-        <TouchableOpacity onPress={() => {Actions.options()}} style={[
-          styles.flexRow,
-          styles.paddingTopBasic,
-          styles.paddingBottomBasic,
-          styles.container,
+        <View style={[
           styles.bordered,
           {
             borderTopWidth: 1,
@@ -61,11 +57,18 @@ const MiembrosList = ({
             alignItems: 'center'
           }
         ]}>
-          <View style={{ flex: 1 }}><Text>Opciones</Text></View>
-          <View>
-            <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => {Actions.options()}} style={[
+            styles.flexRow,
+            styles.paddingTopBasic,
+            styles.paddingBottomBasic,
+            styles.container,
+          ]}>
+            <View style={{ flex: 1 }}><Text>Opciones</Text></View>
+            <View>
+              <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+            </View>
+          </TouchableOpacity>
+        </View>
       }
     </ScrollView>
   );
