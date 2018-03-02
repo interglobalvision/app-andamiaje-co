@@ -83,7 +83,7 @@ class Calendar extends Component {
 
     const fromHeight = this.props.show ? (this.dates.length * this.baseHeight) : this.baseHeight;
     const toHeight = this.props.show ? this.baseHeight : (this.dates.length * this.baseHeight);
-    
+
     this.view.transition(
       {
         height: fromHeight,
@@ -91,7 +91,7 @@ class Calendar extends Component {
       {
         height: toHeight,
       },
-      800,
+      this.dates.length * 200,
       'ease-in-out'
     );
   }
