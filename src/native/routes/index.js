@@ -77,6 +77,7 @@ const Index = (
       lazy={true}
       {...DefaultProps.tabProps}
       hideNavBar
+      swipeEnabled={false}
     >
       <Stack
         title='Noticias'
@@ -163,6 +164,7 @@ const Index = (
           title='Directorio'
           {...DefaultProps.topTabProps}
           headerMode='none'
+          swipeEnabled={true}
         >
           <Stack
             title='Artistas'
