@@ -113,6 +113,9 @@ export default styles = StyleSheet.create({
     flexWrap: 'nowrap',
   },
   // Padding
+  paddingTopTiny: {
+    paddingTop: styleConstants.paddingTiny,
+  },
   paddingTopSmall: {
     paddingTop: styleConstants.paddingSmall,
   },
