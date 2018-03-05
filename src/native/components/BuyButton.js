@@ -1,44 +1,138 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
-import styles from '../constants/styles';
+import styles, { containerWidth } from '../constants/styles';
+import colors from '../constants/colors';
 
 class BuyButton extends React.Component {
   static propTypes = {
-    error: PropTypes.string,
-  }
-
-  static defaultProps = {
-    error: null,
+    lote: PropTypes.object.isRequired,
   }
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      complete: false,
+      buttonText: 'Mantener presionado para adquirir',
+    }
   }
 
-  handleChange = () => {
+  onPressIn = () => {
+    if (!this.state.complete) {
+      const duration = 2000;
 
+      this.pressTimeout = setTimeout(this.confirmBuy, duration);
+
+      this.view.transition(
+        {
+          right: 0,
+        },
+        {
+          right: containerWidth,
+        },
+        duration,
+        'ease-in'
+      );
+    }
   }
 
-  handleSubmit = () => {
+  onPressOut = () => {
+    if (!this.state.complete) {
+      this.view.transitionTo(
+        {
+          right: 0,
+        },
+        100,
+        'linear'
+      );
 
+      clearTimeout(this.pressTimeout);
+    }
   }
 
-  componentDidMount() {
+  confirmBuy = () => {
+    this.setState({
+      complete: true,
+      buttonText: 'Bitch, you guessed it!'
+    });
 
+    clearTimeout(this.pressTimeout);
   }
 
-  componentWillUpdate() {
+  handleViewRef = ref => this.view = ref;
 
-  }
-
-  render() {
-    const { } = this.props;
+  render = () => {
+    const { lote } = this.props;
 
     return (
-      <View>
+      <View style={[
+        styles.container,
+        styles.paddingTopBasic,
+        styles.paddingBottomSmall,
+      ]}>
+        <TouchableWithoutFeedback
+          onPressIn={this.onPressIn}
+          onPressOut={this.onPressOut}
+        >
+          <View style={[]}>
 
+            <View style={[
+              styles.backgroundWhite,
+              styles.paddingTopBasic,
+              styles.paddingBottomBasic,
+              styles.flexCenter,
+              {
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: colors.darkGrey,
+                width: containerWidth,
+              }
+            ]}>
+              <Text style={[
+                styles.colorBlack,
+                styles.fontFamilyMedium,
+                styles.textAlignCenter,
+              ]}>{this.state.buttonText}</Text>
+            </View>
+
+            <Animatable.View
+              ref={this.handleViewRef}
+              style={[
+              {
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+                overflow: 'hidden',
+                backgroundColor: 'rgba(0,0,0,0)',
+              }
+            ]}>
+              <View style={[
+                styles.backgroundBlack,
+                styles.flexCenter,
+                styles.paddingTopBasic,
+                styles.paddingBottomBasic,
+                {
+                  width: containerWidth,
+                  borderRadius: 5,
+                  borderWidth: 1,
+                  borderColor: colors.black,
+                }
+              ]}>
+                <Text style={[
+                  styles.colorWhite,
+                  styles.fontFamilyMedium,
+                  styles.textAlignCenter,
+                ]}>{this.state.buttonText}</Text>
+              </View>
+            </Animatable.View>
+
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
