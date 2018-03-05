@@ -83,8 +83,14 @@ export function login(formData) {
     await statusMessage(dispatch, 'loading', true);
 
     // Validation checks
-    if (!email) return reject({ message: ErrorMessages.missingEmail });
-    if (!password) return reject({ message: ErrorMessages.missingPassword });
+    if (!email) {
+      showNotification(dispatch, ErrorMessages.missingEmail);
+      return reject(new Error(ErrorMessages.missingEmail));
+    }
+    if (!password) {
+      showNotification(dispatch, ErrorMessages.missingPassword);
+      return reject(new Error(ErrorMessages.missingPassword));
+    }
 
     // Go to Firebase
     return Firebase.auth()
@@ -118,7 +124,21 @@ export function login(formData) {
               data: res,
             }));
           }).catch(reject));
-  }).catch(async (err) => { await statusMessage(dispatch, 'error', err.message); throw err.message; });
+  }).catch(async (err) => {
+    await statusMessage(dispatch, 'error', err.message);
+
+    let toastMessage = err.message;
+
+    if (err.code === 'auth/invalid-email') { toastMessage = ErrorMessages.invalidEmail }
+    if (err.code === 'auth/invalid-password') { toastMessage = ErrorMessages.wrongPassword }
+    if (err.code === 'auth/wrong-password') { toastMessage = ErrorMessages.wrongPassword }
+    if (err.code === 'auth/user-not-found') { toastMessage = ErrorMessages.userNotFound }
+    if (err.code === 'auth/auth/internal-error') { toastMessage = ErrorMessages.internalError }
+
+    showNotification(dispatch, toastMessage);
+
+    throw err.message;
+  });
 }
 
 /**
@@ -203,7 +223,7 @@ export function logout() {
     Firebase.auth().signOut()
       .then(() => {
         dispatch({ type: 'USER_RESET' });
-        Actions.login();
+        Actions.login({type: 'reset'});
         setTimeout(resolve, 1000); // Resolve after 1s so that user sees a message
       }).catch(reject);
   }).catch(async (err) => { await statusMessage(dispatch, 'error', err.message); throw err.message; });
@@ -233,7 +253,7 @@ export function addToWishlist(addedLote) {
           addedLote,
         }));
       }))
-      .then(showNotification(dispatch, 'Añadido a tu lista de Deseos'))
+      .then(showNotification(dispatch, 'Añadida a tu lista de Deseos'))
       .catch((e) => {
         console.log(e);
       });
@@ -276,7 +296,7 @@ export function removeFromWishlist(removedLote) {
         }));
 
       }))
-      .then(showNotification(dispatch, 'Eliminado de tu lista de Deseos'))
+      .then(showNotification(dispatch, 'Eliminada de tu lista de Deseos'))
       .catch((e) => {
         console.log(e);
       });

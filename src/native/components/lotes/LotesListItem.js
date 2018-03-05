@@ -16,16 +16,36 @@ const LotesListItem = ({
 
   const keyExtractor = item => item.id;
 
-  const onPress = id => Actions.lote({ match: { params: { id: String(id) } } });
+  const onPressArtista = id => Actions.artista({ match: { params: { id: String(id) } } });
+  const onPressLote = id => Actions.lote({ match: { params: { id: String(id) } } });
 
   return (
     <View style={[styles.bordered]}>
       <LoteHeader lote={lote} />
       <CarouselHolder obras={lote.obras} />
-      <TouchableOpacity style={[styles.container, styles.backgroundWhite]} onPress={() => onPress(lote.id)}>
-        <View style={[styles.paddingTopSmall, styles.paddingBottomSmall]}>
-          <Text style={styles.fontBold}>{lote.artista.name}</Text>
-        </View>
+
+      <TouchableOpacity
+        onPress={() => onPressArtista(lote.artista.id)}
+        style={[
+          styles.container,
+          styles.backgroundWhite,
+          styles.paddingTopSmall,
+          styles.paddingBottomSmall,
+          styles.flexRow,
+          { justifyContent: 'space-between' }
+        ]}
+      >
+        <Text style={styles.fontBold}>{lote.artista.name}</Text>
+        <Text style={[styles.textLink, styles.fontSizeSmall]}>Ver bio</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => onPressLote(lote.id)}
+        style={[
+          styles.container,
+          styles.backgroundWhite
+        ]}
+      >
         <View>
           {lote.obras.map( (item, key) => {
             return (

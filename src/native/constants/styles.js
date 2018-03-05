@@ -86,6 +86,9 @@ export default styles = StyleSheet.create({
   backgroundWhite: {
     backgroundColor: colors.white,
   },
+  backgroundBlack: {
+    backgroundColor: colors.black,
+  },
   emptyItemsHeight: {
     height: 300,
   },
@@ -113,6 +116,9 @@ export default styles = StyleSheet.create({
     flexWrap: 'nowrap',
   },
   // Padding
+  paddingTopTiny: {
+    paddingTop: styleConstants.paddingTiny,
+  },
   paddingTopSmall: {
     paddingTop: styleConstants.paddingSmall,
   },
@@ -158,10 +164,6 @@ export default styles = StyleSheet.create({
     borderStyle: 'solid',
     borderBottomColor: colors.white,
     backgroundColor: colors.black,
-  },
-  calendarLabel: {
-    flex: 1,
-    color: 'white'
   },
   calendarDate: {
     flexDirection: 'column',

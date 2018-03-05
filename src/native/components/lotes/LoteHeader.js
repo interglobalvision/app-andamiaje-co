@@ -111,7 +111,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  wishlist: state.member.wishlist || [],
+  wishlist: state.member.wishlist || {},
   role: state.member.role || '',
 });
 

@@ -4,6 +4,10 @@ import { FlatList, TouchableOpacity, RefreshControl, Image, View, ScrollView, Te
 import { Actions } from 'react-native-router-flux';
 
 import LotesContainer from '../../../containers/LotesContainer';
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
+
+import styles from '../../constants/styles';
 
 import Toast from '../Toast';
 import Loading from '../Loading';
@@ -16,6 +20,7 @@ const CatalogosList = ({
   loading,
   activeCatalogo,
   pastCatalogos,
+  countdown,
   reFetch,
 }) => {
   // Loading
@@ -28,37 +33,52 @@ const CatalogosList = ({
 
   const onPress = item => Actions.catalogo({ match: { params: { id: String(item.id) } } });
 
-  /**
-    * pass activeCatalogo Lotes into LotesContainer
-    * list pastCatalogos below
-    */
+  const {
+    saleSoon,
+    saleStarted,
+    saleEnded,
+  } = countdown;
 
   return (
-  <View style={{flex: 1}}>
-    <ScrollView style={styles.backgroundWhite}>
-      <LotesContainer includeObras={false} />
+    <View style={{flex: 1}}>
+      <ScrollView
+        stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
+        style={styles.backgroundWhite}
+      >
 
-      <FlatList
-        numColumns={1}
-        data={pastCatalogos}
-        renderItem={({ item }) => (
-          <View>
-            <Spacer />
-            <Text style={styles.fontFamilyMedium}>{item.title}</Text>
-            <Spacer />
-          </View>
-        )}
-        keyExtractor={keyExtractor}
-        refreshControl={
-          <RefreshControl
-            refreshing={loading}
-            onRefresh={reFetch}
-          />
+        {(saleSoon || saleStarted || saleEnded) &&
+          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
         }
-      />
-    </ScrollView>
-    <Toast />
-  </View>
+        {saleSoon &&
+          <CountdownClock countdownTo={activeCatalogo.saleDate} />
+        }
+        {saleStarted &&
+          <CountdownClock countdownTo={activeCatalogo.endDate} />
+        }
+
+        <LotesContainer includeObras={false} />
+
+        <FlatList
+          numColumns={1}
+          data={pastCatalogos}
+          renderItem={({ item }) => (
+            <View>
+              <Spacer />
+              <Text style={styles.fontFamilyMedium}>{item.title}</Text>
+              <Spacer />
+            </View>
+          )}
+          keyExtractor={keyExtractor}
+          refreshControl={
+            <RefreshControl
+              refreshing={loading}
+              onRefresh={reFetch}
+            />
+          }
+        />
+      </ScrollView>
+      <Toast />
+    </View>
   );
 };
 

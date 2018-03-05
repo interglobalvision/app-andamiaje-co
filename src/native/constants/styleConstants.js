@@ -39,8 +39,9 @@ export default styleConstants = {
   fontSizeMid: fontSizeMid,
   fontSizeLarge: fontSizeLarge,
   // Padding
-  paddingBasic: paddingBasic,
+  paddingTiny: paddingTiny,
   paddingSmall: paddingSmall,
+  paddingBasic: paddingBasic,
   paddingMid: paddingMid,
   paddingLarge: paddingLarge,
 }

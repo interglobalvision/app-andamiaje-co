@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { getResizedImageUrl } from '../../../lib/utilities';
@@ -26,10 +26,12 @@ export default class WishlistItem extends Component {
       imageSource = {uri: getResizedImageUrl(lote.obras[0].images[0], 350, true)};
     }
 
-    returnObra = (obra) => {
+    returnObra = (obra, key) => {
       return (
-        <View style={styles.flexRow}>
-          <Text style={{flex: 1, flexWrap: 'wrap'}}>{obra.title}</Text>
+        <View key={key} style={[styles.flexRow, styles.paddingBottomTiny]}>
+          <Text style={{flex: 1, flexWrap: 'wrap'}}>
+            <Text style={[styles.fontFamilyItalic]}>{obra.title}</Text>, {obra.year}
+          </Text>
         </View>
       );
     }
@@ -54,12 +56,9 @@ export default class WishlistItem extends Component {
             <View style={styles.paddingBottomSmall}>
               <Text style={styles.fontBold}>{lote.artista.name}</Text>
             </View>
-            <FlatList
-              numColumns={1}
-              data={lote.obras}
-              renderItem={({item}) => returnObra(item)}
-              keyExtractor={keyExtractor}
-            />
+            <View>
+              { lote.obras.map( (item, key) => returnObra(item, key) )}
+            </View>
           </View>
         </TouchableOpacity>
       </View>
