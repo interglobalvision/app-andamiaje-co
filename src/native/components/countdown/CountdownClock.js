@@ -43,14 +43,14 @@ class CountdownClock extends React.Component {
     let hours = ('0' + (Math.floor( (t/(1000*60*60)) % 24 ))).slice(-2);
     let days = ('0' + (Math.floor( t/(1000*60*60*24) ))).slice(-2);
 
-    this.setState({
-      days: days,
-      hours: hours,
-      minutes: minutes,
-      seconds: seconds,
-    });
-
-    if (t <= 0) {
+    if (t > 0) {
+      this.setState({
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds,
+      });
+    } else if (t <= 0) {
       clearInterval(this.timeInterval);
     }
   }
