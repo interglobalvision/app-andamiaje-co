@@ -9,6 +9,8 @@ import { getResizedImageUrl } from '../../../lib/utilities';
 import styles from '../../constants/styles';
 import Loading from '../Loading';
 import Error from '../Error';
+import WishlistContainer from '../../../containers/WishlistContainer'
+import ArtistaLotes from './ArtistaLotes'
 
 const ArtistaProfile = ({
 	error,
@@ -109,6 +111,8 @@ const ArtistaProfile = ({
       </TouchableOpacity>
 
       <ArtistaVideo video={video} />
+
+      <WishlistContainer Layout={ArtistaLotes} artistaId={artistaId} />
 
       <ArtistaPortfolio portfolio={portfolio} name={name} />
     </ScrollView>
