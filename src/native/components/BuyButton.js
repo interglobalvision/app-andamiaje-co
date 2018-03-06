@@ -57,7 +57,7 @@ class BuyButton extends React.Component {
   confirmBuy = () => {
     this.setState({
       complete: true,
-      buttonText: 'Bitch, you guessed it!'
+      buttonText: 'Cargando...'
     });
 
     clearTimeout(this.pressTimeout);
