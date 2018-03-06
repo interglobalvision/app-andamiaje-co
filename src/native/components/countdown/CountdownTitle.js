@@ -18,6 +18,12 @@ class CountdownTitle extends React.Component {
   render() {
     const { title, saleStarted, saleEnded } = this.props;
 
+    let viewStyle = [
+      styles.backgroundBlack,
+      styles.paddingTopBasic,
+      styles.flexCenter,
+    ]
+
     let actionString = 'empieza en';
 
     if (saleStarted) {
@@ -26,14 +32,11 @@ class CountdownTitle extends React.Component {
 
     if (saleEnded) {
       actionString = 'ha terminado';
+      viewStyle.push(styles.paddingBottomBasic);
     }
 
     return (
-      <View style={[
-        styles.backgroundBlack,
-        styles.paddingTopBasic,
-        styles.flexCenter,
-      ]}>
+      <View style={viewStyle}>
         <Text style={[
           styles.colorWhite,
           styles.textAlignCenter,

@@ -7,6 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import CarouselHolder from '../carousel/CarouselHolder';
 import LotesListItemObra from './LotesListItemObra';
 import LoteHeader from './LoteHeader';
+import BuyButton from '../BuyButton';
 
 import styles from '../../constants/styles';
 
@@ -20,7 +21,7 @@ const LotesListItem = ({
   const onPressLote = id => Actions.lote({ match: { params: { id: String(id) } } });
 
   return (
-    <View style={[styles.bordered]}>
+    <View style={[styles.bordered, styles.paddingBottomLarge]}>
       <LoteHeader lote={lote} />
       <CarouselHolder obras={lote.obras} />
 
@@ -53,10 +54,12 @@ const LotesListItem = ({
             )
           })}
         </View>
-        <View style={[styles.paddingTopSmall, styles.paddingBottomLarge]}>
+        <View style={[styles.paddingTopSmall,]}>
           <Text style={[styles.fontSizeSmall, styles.textLink]}>Ver más</Text>
         </View>
       </TouchableOpacity>
+
+      <BuyButton lote={lote} />
     </View>
   );
 };
