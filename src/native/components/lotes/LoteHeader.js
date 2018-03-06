@@ -14,6 +14,11 @@ class LoteHeader extends Component {
     removeFromWishlist: PropTypes.func.isRequired,
     wishlist: PropTypes.object.isRequired,
     lote: PropTypes.object.isRequired,
+    bordered: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    bordered: true,
   }
 
   constructor(props) {
@@ -77,21 +82,26 @@ class LoteHeader extends Component {
   }
 
   render() {
-    const { lote } = this.props;
+    const { lote, bordered } = this.props;
+
+    const containerStyle = [
+      styles.container,
+      styles.backgroundWhite,
+      styles.paddingTopSmall,
+      styles.paddingBottomSmall,
+      styles.flexRow,
+      {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
+    ];
+
+    if (bordered) {
+      containerStyle.push(styles.bordered);
+    }
 
     return (
-      <View style={[
-        styles.container,
-        styles.bordered,
-        styles.backgroundWhite,
-        styles.paddingTopSmall,
-        styles.paddingBottomSmall,
-        styles.flexRow,
-        {
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        },
-      ]}>
+      <View style={containerStyle}>
         <View>
           <View style={[styles.flexRow, {alignItems: 'center'}]}>
             {this.renderObrasLength()}
