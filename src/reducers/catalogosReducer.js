@@ -116,7 +116,7 @@ export default function catalogoReducer(state = initialState, action) {
 
       const saleStarted = (currentTime > activeCatalogo.saleDate) && (currentTime < activeCatalogo.endDate) ? true : false;
 
-      const saleEnded = saleStarted && currentTime > activeCatalogo.endDate && currentTime < oneDay + activeCatalogo.endDate ? true : false;
+      const saleEnded = (currentTime > activeCatalogo.endDate) && (currentTime < oneDay + activeCatalogo.endDate) ? true : false;
 
       return {
         ...state,
