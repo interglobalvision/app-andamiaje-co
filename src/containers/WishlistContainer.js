@@ -38,14 +38,16 @@ class WishlistContainer extends Component {
   }
 
   render = () => {
-    const { Layout, lotes, wishlist } = this.props;
+    const { Layout, lotes, wishlist, artistaId } = this.props;
 
     return (
       <Layout
         error={lotes.error}
         loading={lotes.loading}
         lotes={lotes.lotes}
+        artistaId={artistaId}
         wishlist={wishlist}
+
         reFetch={() => this.fetchLotes()}
       />
     );
