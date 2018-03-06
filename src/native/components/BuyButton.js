@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { connect } from 'react-redux';
 
 import styles, { containerWidth } from '../constants/styles';
 import colors from '../constants/colors';
@@ -66,76 +67,114 @@ class BuyButton extends React.Component {
 
   render = () => {
     const { lote } = this.props;
+    const { saleStarted, saleEnded } = this.props.countdown;
 
-    return (
-      <View style={[
-        styles.container,
-        styles.paddingTopBasic,
-        styles.paddingBottomSmall,
-      ]}>
-        <TouchableWithoutFeedback
-          onPressIn={this.onPressIn}
-          onPressOut={this.onPressOut}
-        >
-          <View style={[]}>
+    if (saleStarted) {
+      return (
+        <View style={[
+          styles.container,
+          styles.paddingTopBasic,
+          styles.paddingBottomSmall,
+        ]}>
+          <TouchableWithoutFeedback
+            onPressIn={this.onPressIn}
+            onPressOut={this.onPressOut}
+          >
+            <View style={[]}>
 
-            <View style={[
-              styles.backgroundWhite,
-              styles.paddingTopBasic,
-              styles.paddingBottomBasic,
-              styles.flexCenter,
-              {
-                borderRadius: 5,
-                borderWidth: 1,
-                borderColor: colors.darkGrey,
-                width: containerWidth,
-              }
-            ]}>
-              <Text style={[
-                styles.colorBlack,
-                styles.fontFamilyMedium,
-                styles.textAlignCenter,
-              ]}>{this.state.buttonText}</Text>
-            </View>
-
-            <Animatable.View
-              ref={this.handleViewRef}
-              style={[
-              {
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-                overflow: 'hidden',
-                backgroundColor: 'rgba(0,0,0,0)',
-              }
-            ]}>
               <View style={[
-                styles.backgroundBlack,
-                styles.flexCenter,
+                styles.backgroundWhite,
                 styles.paddingTopBasic,
                 styles.paddingBottomBasic,
+                styles.flexCenter,
                 {
-                  width: containerWidth,
                   borderRadius: 5,
                   borderWidth: 1,
-                  borderColor: colors.black,
+                  borderColor: colors.lightGrey,
+                  width: containerWidth,
                 }
               ]}>
                 <Text style={[
-                  styles.colorWhite,
+                  styles.colorBlack,
                   styles.fontFamilyMedium,
                   styles.textAlignCenter,
                 ]}>{this.state.buttonText}</Text>
               </View>
-            </Animatable.View>
 
+              <Animatable.View
+                ref={this.handleViewRef}
+                style={[
+                {
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  left: 0,
+                  overflow: 'hidden',
+                  backgroundColor: 'rgba(0,0,0,0)',
+                }
+              ]}>
+                <View style={[
+                  styles.backgroundBlack,
+                  styles.flexCenter,
+                  styles.paddingTopBasic,
+                  styles.paddingBottomBasic,
+                  {
+                    width: containerWidth,
+                    borderRadius: 5,
+                    borderWidth: 1,
+                    borderColor: colors.black,
+                  }
+                ]}>
+                  <Text style={[
+                    styles.colorWhite,
+                    styles.fontFamilyMedium,
+                    styles.textAlignCenter,
+                  ]}>{this.state.buttonText}</Text>
+                </View>
+              </Animatable.View>
+
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      );
+    } else if (saleEnded) {
+      return (
+        <View style={[
+          styles.container,
+          styles.paddingTopBasic,
+          styles.paddingBottomSmall,
+        ]}>
+          <View style={[
+            styles.backgroundWhite,
+            styles.paddingTopBasic,
+            styles.paddingBottomBasic,
+            styles.flexCenter,
+            {
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: colors.lightGrey,
+              width: containerWidth,
+            }
+          ]}>
+            <Text style={[
+              styles.colorBlack,
+              styles.fontFamilyMedium,
+              styles.textAlignCenter,
+            ]}>Colección de [Usuario]</Text>
           </View>
-        </TouchableWithoutFeedback>
-      </View>
-    );
+        </View>
+      );
+    }
+    return null;
   }
 }
 
-export default BuyButton;
+const mapStateToProps = state => ({
+  countdown: state.catalogos.countdown || {},
+});
+
+const mapDispatchToProps = {
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuyButton);
