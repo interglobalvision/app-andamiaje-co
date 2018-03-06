@@ -34,7 +34,7 @@ const LoteSingle = ({
   });
 
   return (
-    <ScrollView style={styles.backgroundWhite}>
+    <ScrollView stickyHeaderIndices={[0]} style={styles.backgroundWhite}>
       <LoteHeader lote={lote} />
       <View>
         {loteObras.map( (item, key) => {
