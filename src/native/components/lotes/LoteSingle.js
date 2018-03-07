@@ -14,7 +14,6 @@ const LoteSingle = ({
   obras,
   error,
   loading,
-  reFetch,
 }) => {
 
   // Loading
@@ -22,10 +21,6 @@ const LoteSingle = ({
 
   // Error
   if (error) return <Error content={error} />;
-
-  const keyExtractor = item => item.id;
-
-  const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
   const loteObras = obras.filter( obra => {
     return lote.obras.some( loteObra => {
@@ -56,7 +51,6 @@ LoteSingle.propTypes = {
   obras: PropTypes.array.isRequired,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  reFetch: PropTypes.func,
 };
 
 export default LoteSingle;
