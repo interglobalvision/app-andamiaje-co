@@ -43,7 +43,7 @@ const LoteSingle = ({
             border = false;
           }
           return (
-            <LoteSingleObra key={keyExtractor} obra={item} border={border}/>
+            <LoteSingleObra key={key} obra={item} border={border}/>
           )
         })}
       </View>
