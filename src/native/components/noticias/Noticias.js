@@ -12,6 +12,8 @@ import Header from '../Header';
 import Spacer from '../Spacer';
 import SectionHeader from '../SectionHeader';
 
+import InlineVideo from '../InlineVideo';
+
 import NoticiaItem from './NoticiaItem';
 
 const Noticias = ({
@@ -40,6 +42,8 @@ const Noticias = ({
       }
     >
       <CatalogosContainer Layout={Calendar} />
+
+      <InlineVideo />
 
       <SectionHeader title={'Noticias'} />
 
