@@ -16,18 +16,14 @@ export default function loteReducer(state = initialState, action) {
       let lotes = [];
 
       if (action.data && typeof action.data === 'object' && action.activeLotes !== undefined || action.activeLotes !== '') {
-        // action.data is Object, and activeLotes arg is not empty
-        lotes = Object.keys(action.data).
-          filter(key => {
-            // Filter by activeLotes
-            return action.activeLotes.find( lote => lote.id === key) === undefined ? false : true;
-          }).  // Only lotes in catalogo
-          map(id => {
-            const { title, artista, obras, price, tecnica } = action.data[id];
+
+        lotes = action.activeLotes.
+          map(lote => {
+            const { title, artista, obras, price, tecnica } = action.data[lote.id];
 
             // Pick out the props I need
             return ({
-              id,
+              id: lote.id,
               title,
               artista,
               obras,
