@@ -24,7 +24,7 @@ const LoteSingleObra = ({
 
   let holderStyle = [styles.paddingBottomLarge];
   if (border) {
-    holderStyle.pust(styles.bordered);
+    holderStyle.push(styles.bordered);
   }
 
   return (
