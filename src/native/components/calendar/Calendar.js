@@ -113,36 +113,35 @@ class Calendar extends Component {
     // Error
     if (error) return <Error content={error} />;
 
+    // Empty Calendar
+    if(this.dates.length === 0) return null;
+
     const keyExtractor = item => item.date;
 
-    if(this.dates.length) {
-      return (
-        <Animatable.View
-          ref={this.handleViewRef}
-          style={{
-          height: this.baseHeight,
-        }}>
-          <TouchableOpacity onPress={this.animateCalendar} activeOpacity={0.9}>
-            <FlatList
-              numColumns={1}
-              data={this.dates}
-              renderItem={({ item }) => (
-               <CalendarItem item={item} />
-              )}
-              keyExtractor={keyExtractor}
-              refreshControl={
-                <RefreshControl
-                  refreshing={loading}
-                  onRefresh={reFetch}
-                />
-              }
-            />
-          </TouchableOpacity>
-        </Animatable.View>
-      );
-    }
-
-    return null;
+    return (
+      <Animatable.View
+        ref={this.handleViewRef}
+        style={{
+        height: this.baseHeight,
+      }}>
+        <TouchableOpacity onPress={this.animateCalendar} activeOpacity={0.9}>
+          <FlatList
+            numColumns={1}
+            data={this.dates}
+            renderItem={({ item }) => (
+             <CalendarItem item={item} />
+            )}
+            keyExtractor={keyExtractor}
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={reFetch}
+              />
+            }
+          />
+        </TouchableOpacity>
+      </Animatable.View>
+    );
   };
 };
 
