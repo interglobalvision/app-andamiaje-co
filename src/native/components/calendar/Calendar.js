@@ -115,30 +115,34 @@ class Calendar extends Component {
 
     const keyExtractor = item => item.date;
 
-    return (
-      <Animatable.View
-        ref={this.handleViewRef}
-        style={{
-        height: this.baseHeight,
-      }}>
-        <TouchableOpacity onPress={this.animateCalendar} activeOpacity={0.9}>
-          <FlatList
-            numColumns={1}
-            data={this.dates}
-            renderItem={({ item }) => (
-             <CalendarItem item={item} />
-            )}
-            keyExtractor={keyExtractor}
-            refreshControl={
-              <RefreshControl
-                refreshing={loading}
-                onRefresh={reFetch}
-              />
-            }
-          />
-        </TouchableOpacity>
-      </Animatable.View>
-    );
+    if(this.dates.length) {
+      return (
+        <Animatable.View
+          ref={this.handleViewRef}
+          style={{
+          height: this.baseHeight,
+        }}>
+          <TouchableOpacity onPress={this.animateCalendar} activeOpacity={0.9}>
+            <FlatList
+              numColumns={1}
+              data={this.dates}
+              renderItem={({ item }) => (
+               <CalendarItem item={item} />
+              )}
+              keyExtractor={keyExtractor}
+              refreshControl={
+                <RefreshControl
+                  refreshing={loading}
+                  onRefresh={reFetch}
+                />
+              }
+            />
+          </TouchableOpacity>
+        </Animatable.View>
+      );
+    }
+
+    return null;
   };
 };
 
