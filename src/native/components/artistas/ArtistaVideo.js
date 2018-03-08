@@ -12,23 +12,26 @@ const ArtistaVideo = ({
 }) => {
   const hasVideo = video.url !== undefined && video.url !== '' && video.provider === 'youtube';
 
-  return (
-    <View>
-      <SectionHeader title={'Video'} />
-      <View style={[
-        styles.container,
-        styles.paddingTopSmall,
-        styles.paddingBottomLarge,
-      ]}>
-        <Thumbnail
-          url={video.url}
-          imageWidth={containerWidth}
-          imageHeight={((containerWidth / 16) * 9)}
-          iconStyle={{width: 25, height: 29}}
-        />
+  if (hasVideo) {
+    return (
+      <View>
+        <SectionHeader title={'Video'} />
+        <View style={[
+          styles.container,
+          styles.paddingTopSmall,
+          styles.paddingBottomLarge,
+        ]}>
+          <Thumbnail
+            url={video.url}
+            imageWidth={containerWidth}
+            imageHeight={((containerWidth / 16) * 9)}
+            iconStyle={{width: 25, height: 29}}
+          />
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
+  return null;
 };
 
 ArtistaVideo.propTypes = {
