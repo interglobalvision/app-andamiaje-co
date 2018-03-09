@@ -110,6 +110,9 @@ class BuyButton extends React.Component {
                   showNotification('Estas obras ya tienen dueño');
                 }
                 break;
+              case 'lote/too-expensive':
+                showNotification('No tienes suficientes tokens');
+                break;
               case 'unauthorized':
                 showNotification('No puedes realizar esta acción');
                 break;
