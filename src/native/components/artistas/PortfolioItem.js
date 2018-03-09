@@ -13,8 +13,6 @@ const PortfolioItem = ({
   item,
   name,
 }) => {
-  console.log(item);
-
   return (
     <View style={[styles.bordered, styles.paddingTopBasic, styles.paddingBottomLarge]}>
       <CarouselHolder obras={[item]} />
