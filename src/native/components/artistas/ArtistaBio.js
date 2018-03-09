@@ -20,18 +20,21 @@ class ArtistaBio extends React.Component {
   }
 
   showFullBio = () => {
+    const transitionDuration = 1000;
+
     this.containerView.transitionTo({
         height: this.bioHeight,
+        borderBottomWidth: 0, // this solves a zIndex issue on android
       },
-      1000,
-      'linear'
+      transitionDuration,
+      'ease-out'
     );
 
     this.buttonView.transitionTo({
         opacity: 0,
       },
-      1000,
-      'linear'
+      transitionDuration,
+      'ease-out'
     );
   }
 
@@ -45,20 +48,21 @@ class ArtistaBio extends React.Component {
     if (bioRawContent === '' || bioRawContent === undefined) {
       return null
     }
-    
+
     return (
       <View style={[
         styles.container,
         styles.paddingTopBasic,
-        styles.paddingBottomBasic,
+        styles.paddingBottomMid,
         styles.bordered,
       ]}>
         <Animatable.View
           ref={ref => this.containerView = ref}
           style={[
+            styles.bordered,
             {
               overflow: 'hidden',
-              height: windowHeight * .3,
+              height: windowHeight * .4,
             }
           ]}
         >
@@ -69,39 +73,40 @@ class ArtistaBio extends React.Component {
           >
             <DraftContentRenderer rawContent={bioRawContent} />
           </View>
-          <Animatable.View
-            ref={ref => this.buttonView = ref}
-            style={[
-              {
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                justifyContent: 'flex-end',
-              }
-          ]}>
-            <LinearGradient
-              colors={[
-                'rgba(255,255,255,0)',
-                'rgba(255,255,255,1)',
-                'rgba(255,255,255,1)'
-              ]}
-            >
-              <TouchableOpacity
-                onPress={this.showFullBio}
-                style={[
-                  styles.paddingTopLarge,
-                  styles.paddingBottomSmall,
-                  {
-                    backgroundColor: 'transparent',
-                  }
-              ]}>
-                <Text style={[
-                  styles.textLink,
-                ]}>Ver todo</Text>
-              </TouchableOpacity>
-            </LinearGradient>
-          </Animatable.View>
+        </Animatable.View>
+        <Animatable.View
+          ref={ref => this.buttonView = ref}
+          style={[
+            styles.container,
+            {
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              justifyContent: 'flex-end',
+            }
+        ]}>
+          <LinearGradient
+            colors={[
+              'rgba(255,255,255,0)',
+              'rgba(255,255,255,1)',
+              'rgba(255,255,255,1)'
+            ]}
+          >
+            <TouchableOpacity
+              onPress={this.showFullBio}
+              style={[
+                styles.paddingTopLarge,
+                styles.paddingBottomBasic,
+                {
+                  backgroundColor: 'transparent',
+                }
+            ]}>
+              <Text style={[
+                styles.textLink,
+              ]}>Ver todo</Text>
+            </TouchableOpacity>
+          </LinearGradient>
         </Animatable.View>
       </View>
     );
