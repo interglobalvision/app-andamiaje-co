@@ -19,7 +19,7 @@ export default function loteReducer(state = initialState, action) {
 
         lotes = action.activeLotes.
           map(lote => {
-            const { title, artista, obras, price, tecnica } = action.data[lote.id];
+            const { title, artista, obras, price, tecnica, owner } = action.data[lote.id];
 
             // Pick out the props I need
             return ({
@@ -28,7 +28,8 @@ export default function loteReducer(state = initialState, action) {
               artista,
               obras,
               price,
-              tecnica
+              tecnica,
+              owner,
             })
           });
       }
