@@ -11,6 +11,7 @@ import Loading from '../Loading';
 import Error from '../Error';
 import WishlistContainer from '../../../containers/WishlistContainer'
 import ArtistaLotes from './ArtistaLotes'
+import ArtistaBio from './ArtistaBio'
 
 const ArtistaProfile = ({
 	error,
@@ -82,14 +83,7 @@ const ArtistaProfile = ({
         </View>
       </View>
 
-      <View style={[
-        styles.container,
-        styles.paddingTopBasic,
-        styles.paddingBottomSmall,
-        styles.bordered,
-      ]}>
-        <DraftContentRenderer rawContent={bioRawContent} />
-      </View>
+      <ArtistaBio bioRawContent={bioRawContent} />
 
       <TouchableOpacity
         style={[
