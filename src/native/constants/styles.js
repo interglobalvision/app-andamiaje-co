@@ -63,6 +63,7 @@ export default styles = StyleSheet.create({
   textLink: {
     color: colors.darkGrey,
     fontFamily: styleConstants.fontFamilyMedium,
+    fontSize: styleConstants.fontSizeSmall,
   },
   colorWhite: {
     color: colors.white,
