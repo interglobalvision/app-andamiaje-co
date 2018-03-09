@@ -13,7 +13,16 @@ import TextBullet from '../TextBullet';
 import colors from '../../constants/colors';
 import Spacer from '../Spacer';
 
-const onPress = id => Actions.artista({ match: { params: { id: String(id) } } });
+const onPress = id => Actions.artista({
+  match: {
+    params: {
+      id: String(id) ,
+    },
+  },
+  onBack: () => {
+    Actions.popTo('noticias');
+  }
+});
 
 const customStyles = StyleSheet.flatten({
   unstyled: {
