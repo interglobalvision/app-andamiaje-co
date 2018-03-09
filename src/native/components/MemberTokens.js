@@ -4,39 +4,52 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../constants/styles';
 
-class MemberTokens extends Component {
-  constructor(props) {
-    super(props)
-  }
+const MemberTokens = ({
+  error,
+  loading,
+  miembros,
+  member,
+  reFetch,
+}) => {
 
-  render = () => {
-  	const {miembros, member } = this.props;
+  // Loading
+  if (loading || error) return ( <View></View> );
 
-    // check if logged in member is Miembro
-    const currentMiembro = miembros.find(miembro => miembro.id === member.uid);
+  // check if logged in member is Miembro
+  const currentMiembro = miembros.find(miembro => miembro.id === member.uid);
 
-    if (currentMiembro !== undefined && currentMiembro !== null) {
-      const tokensRemaining = 15;
-
-      return (
-        <View style={[
-          styles.container,
-        ]}><Text style={[
-          styles.fontSizeSmall,
-          styles.fontFamilyMedium,
-        ]}>ŧ {tokensRemaining}</Text></View>
-      )
+  if (currentMiembro !== undefined && currentMiembro !== null) {
+    if (currentMiembro.tokens === undefined || currentMiembro.tokens === '') {
+      return <View></View>
     }
 
     return (
-      <View></View>
+      <View style={[
+        styles.container,
+      ]}><Text style={[
+        styles.fontSizeSmall,
+        styles.fontFamilyMedium,
+      ]}>ŧ {currentMiembro.tokens}</Text></View>
     )
   }
+
+  return (
+    <View></View>
+  )
 }
 
-const mapStateToProps = state => ({
-  miembros: state.miembros.miembros || {},
-  member: state.member || {},
-});
+MemberTokens.propTypes = {
+  error: PropTypes.string,
+  loading: PropTypes.bool,
+  miembros: PropTypes.array,
+  member: PropTypes.object,
+};
 
-export default connect(mapStateToProps, null)(MemberTokens);
+MemberTokens.defaultProps = {
+  error: null,
+  loading: true,
+  miembros: [],
+  member: {},
+};
+
+export default MemberTokens;

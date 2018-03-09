@@ -122,7 +122,7 @@ const Index = (
           component={CatalogosContainer}
           Layout={CatalogosList}
           renderLeftButton={EmptyNavButton}
-          renderRightButton={() => <MemberTokens />}
+          renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
         />
         <Scene
           key='lote'
