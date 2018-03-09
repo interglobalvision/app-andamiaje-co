@@ -14,7 +14,6 @@ const LoteSingle = ({
   obras,
   error,
   loading,
-  reFetch,
 }) => {
 
   // Loading
@@ -23,10 +22,6 @@ const LoteSingle = ({
   // Error
   if (error) return <Error content={error} />;
 
-  const keyExtractor = item => item.id;
-
-  const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
-
   const loteObras = obras.filter( obra => {
     return lote.obras.some( loteObra => {
       return loteObra.id === obra.id;
@@ -34,7 +29,7 @@ const LoteSingle = ({
   });
 
   return (
-    <ScrollView style={styles.backgroundWhite}>
+    <ScrollView stickyHeaderIndices={[0]} style={styles.backgroundWhite}>
       <LoteHeader lote={lote} />
       <View>
         {loteObras.map( (item, key) => {
@@ -43,7 +38,7 @@ const LoteSingle = ({
             border = false;
           }
           return (
-            <LoteSingleObra key={keyExtractor} obra={item} border={border}/>
+            <LoteSingleObra key={key} obra={item} border={border}/>
           )
         })}
       </View>
@@ -56,7 +51,6 @@ LoteSingle.propTypes = {
   obras: PropTypes.array.isRequired,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  reFetch: PropTypes.func,
 };
 
 export default LoteSingle;

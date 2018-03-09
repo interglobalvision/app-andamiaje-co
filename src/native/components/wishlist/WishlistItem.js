@@ -42,12 +42,11 @@ export default class WishlistItem extends Component {
 
     return (
       <View style={styles.bordered}>
-        <LoteHeader lote={lote} />
+        <LoteHeader lote={lote} bordered={false} />
         <TouchableOpacity onPress={() => {onPress(lote)}} style={[
           styles.container,
           styles.flexRow,
           styles.paddingBottomBasic,
-          styles.paddingTopBasic
         ]}>
           <View style={styles.wishlistImageHolder}>
             <Image style={styles.wishlistImage} source={imageSource} />

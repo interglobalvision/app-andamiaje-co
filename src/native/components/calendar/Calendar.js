@@ -113,6 +113,9 @@ class Calendar extends Component {
     // Error
     if (error) return <Error content={error} />;
 
+    // Empty Calendar
+    if(this.dates.length === 0) return null;
+
     const keyExtractor = item => item.date;
 
     return (
