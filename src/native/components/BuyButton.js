@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
+import { Firebase, FirebaseRef } from '../../lib/firebase';
+import axios from 'axios';
 
+import { showNotification } from '../../actions/toastActions';
 import styles, { containerWidth } from '../constants/styles';
+import { CloudFunctionsUrl } from '../../constants/functions';
 import colors from '../constants/colors';
 
 class BuyButton extends React.Component {
@@ -27,11 +31,9 @@ class BuyButton extends React.Component {
 
       this.pressTimeout = setTimeout(this.confirmBuy, duration);
 
-      this.view.transition(
-        {
+      this.view.transition({
           right: 0,
-        },
-        {
+        }, {
           right: containerWidth,
         },
         duration,
@@ -42,8 +44,7 @@ class BuyButton extends React.Component {
 
   onPressOut = () => {
     if (!this.state.complete) {
-      this.view.transitionTo(
-        {
+      this.view.transitionTo({
           right: 0,
         },
         100,
@@ -54,13 +55,109 @@ class BuyButton extends React.Component {
     }
   }
 
+  acquireLote = () => {
+
+    const { Firebase, FirebaseRef, showNotification } = this.props;
+
+    // acquire lote function url
+    const acquireLoteFunction = CloudFunctionsUrl + '/acquireLote';
+
+    Firebase.auth().currentUser.getIdToken(true /* Force refresh */)
+
+      .then(idToken => {
+        // Call create user function
+        return axios.get(acquireLoteFunction, {
+          params: {
+            lote: this.props.lote.id,
+          },
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': idToken,
+          },
+          mode: 'no-cors'
+        })
+
+      })
+
+      .then(response => {
+
+        if (response.status === 200) {
+          console.log(response);
+          // TODO dispatch an action to update the lote with it's owner
+        }
+      })
+
+
+      .catch(error => {
+        // Error
+        if (error.response) {
+          if(error.response.data.error) {
+            switch (error.response.data.error) {
+              case 'loteId/undefined':
+                showNotification('Lote incorrecto');
+                break;
+              case 'lote/has-owner':
+                showNotification('Este lote ya tiene dueño');
+                break;
+              case 'unauthorized':
+                showNotification('No puedes realizar esta acción');
+                break;
+              default:
+                showNotification('Ha sucedido un error');
+                break;
+            }
+          }
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+          showNotification('Ha sucedido un error');
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+          showNotification('Ha sucedido un error');
+        }
+
+        this.resetButton();
+
+        console.log(error.config);
+
+      })
+
+      .catch(e => {
+        console.log(e);
+
+        showNotification('Ha sucedido un error');
+        this.resetButton();
+      });
+
+  }
+
   confirmBuy = () => {
+    clearTimeout(this.pressTimeout);
+
     this.setState({
       complete: true,
-      buttonText: 'Cargando...'
+      buttonText: 'Adquiriendo…'
     });
 
-    clearTimeout(this.pressTimeout);
+    this.acquireLote();
+  }
+
+  resetButton = (message = 'Mantener presionado para adquirir') => {
+    this.view.transitionTo({
+      right: 0,
+    },
+      100,
+      'linear'
+    );
+
+    this.setState({
+      complete: false,
+      buttonText: message,
+    });
+
   }
 
   handleViewRef = ref => this.view = ref;
@@ -171,10 +268,13 @@ class BuyButton extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  Firebase,
+  FirebaseRef,
   countdown: state.catalogos.countdown || {},
 });
 
-const mapDispatchToProps = {
-};
+const mapDispatchToProps = (dispatch) => ({
+  showNotification: (message) => showNotification(dispatch, message),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuyButton);

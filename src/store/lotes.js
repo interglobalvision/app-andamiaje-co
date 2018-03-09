@@ -4,6 +4,9 @@ export default {
   lotes: [
     {
       placeholder: true,
+      owner: {
+        name: '------- -------',
+      },
       title: '---- --- -- ------',
       price: '-',
       artista: {
