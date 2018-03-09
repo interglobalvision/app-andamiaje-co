@@ -57,7 +57,7 @@ class BuyButton extends React.Component {
 
   acquireLote = () => {
 
-    const { Firebase, FirebaseRef, showNotification } = this.props;
+    const { Firebase, FirebaseRef, showNotification, lote } = this.props;
 
     // acquire lote function url
     const acquireLoteFunction = CloudFunctionsUrl + '/acquireLote';
@@ -68,7 +68,7 @@ class BuyButton extends React.Component {
         // Call acquire lote function
         return axios.get(acquireLoteFunction, {
           params: {
-            lote: this.props.lote.id,
+            lote: lote.id,
           },
           headers: {
             'Access-Control-Allow-Origin': '*',
@@ -83,7 +83,14 @@ class BuyButton extends React.Component {
 
         if (response.status === 200) {
           console.log(response);
-          // TODO dispatch an action to update the lote with it's owner
+
+          if(lote.obras.length === 1) {
+            showNotification('¡Has adquirido esta obra!');
+          } else {
+            showNotification('¡Has adquirido estas obras!');
+          }
+
+          // TODO show confetti
         }
       })
 
@@ -94,10 +101,14 @@ class BuyButton extends React.Component {
           if(error.response.data.error) {
             switch (error.response.data.error) {
               case 'loteId/undefined':
-                showNotification('Lote incorrecto');
+                showNotification('ID incorrecto');
                 break;
               case 'lote/has-owner':
-                showNotification('Este lote ya tiene dueño');
+                if(lote.obras.length === 1) {
+                  showNotification('Esta obra ya tiene dueño');
+                } else {
+                  showNotification('Estas obras ya tienen dueño');
+                }
                 break;
               case 'unauthorized':
                 showNotification('No puedes realizar esta acción');
@@ -164,9 +175,37 @@ class BuyButton extends React.Component {
 
   render = () => {
     const { lote } = this.props;
+    const { owner } = lote;
     const { saleStarted, saleEnded } = this.props.countdown;
 
-    if (saleStarted) {
+    if (owner !== undefined) {
+      return (
+        <View style={[
+          styles.container,
+          styles.paddingTopBasic,
+          styles.paddingBottomSmall,
+        ]}>
+          <View style={[
+            styles.backgroundWhite,
+            styles.paddingTopBasic,
+            styles.paddingBottomBasic,
+            styles.flexCenter,
+            {
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: colors.lightGrey,
+              width: containerWidth,
+            }
+          ]}>
+            <Text style={[
+              styles.colorBlack,
+              styles.fontFamilyMedium,
+              styles.textAlignCenter,
+            ]}>Adquirida por { owner.name }</Text>
+          </View>
+        </View>
+      );
+    } else if (saleStarted) {
       return (
         <View style={[
           styles.container,
