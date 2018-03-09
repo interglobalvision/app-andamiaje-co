@@ -26,10 +26,15 @@ const MemberTokens = ({
     return (
       <View style={[
         styles.container,
-      ]}><Text style={[
-        styles.fontSizeSmall,
-        styles.fontFamilyMedium,
-      ]}>ŧ {currentMiembro.tokens}</Text></View>
+      ]}>
+        <Text style={[
+          styles.fontSizeSmall,
+          styles.fontFamilyMedium,
+          {
+            letterSpacing: 1
+          }
+        ]}>ŧ {currentMiembro.tokens}</Text>
+      </View>
     )
   }
 
