@@ -65,7 +65,7 @@ class BuyButton extends React.Component {
     Firebase.auth().currentUser.getIdToken(true /* Force refresh */)
 
       .then(idToken => {
-        // Call create user function
+        // Call acquire lote function
         return axios.get(acquireLoteFunction, {
           params: {
             lote: this.props.lote.id,
