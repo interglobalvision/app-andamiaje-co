@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, View, Text } from 'react-native';
 import { List } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import Hyperlink from 'react-native-hyperlink';
 
 import styles from '../../constants/styles';
 
@@ -12,7 +13,6 @@ const PortfolioItem = ({
   item,
   name,
 }) => {
-
   return (
     <View style={[styles.bordered, styles.paddingTopBasic, styles.paddingBottomLarge]}>
       <CarouselHolder obras={[item]} />
@@ -25,6 +25,15 @@ const PortfolioItem = ({
           <Text style={[styles.lineHeightBasic]}>{item.materials}</Text>
           <Text style={[styles.lineHeightBasic]}>{item.dimensions}</Text>
         </View>
+        {(item.notes !== undefined && item.notes !== '') &&
+          <View style={[
+            styles.paddingTopBasic,
+          ]}>
+            <Hyperlink linkDefault={true} linkStyle={styles.textLink}>
+              <Text style={[styles.lineHeightBasic]}>{item.notes}</Text>
+            </Hyperlink>
+          </View>
+        }
       </View>
     </View>
   );
