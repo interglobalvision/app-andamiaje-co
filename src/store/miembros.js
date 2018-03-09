@@ -15,6 +15,7 @@ export default {
         }
       ],
       collection: [],
+      tokens: 0,
     },
   ],
 };

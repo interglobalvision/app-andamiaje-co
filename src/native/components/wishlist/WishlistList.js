@@ -80,13 +80,14 @@ WishlistList.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   lotes: PropTypes.array.isRequired,
-  wishlist: PropTypes.object.isRequired,
+  wishlist: PropTypes.object,
   reFetch: PropTypes.func,
 };
 
 WishlistList.defaultProps = {
   error: null,
   reFetch: null,
+  wishlist: {},
 };
 
 export default WishlistList;
