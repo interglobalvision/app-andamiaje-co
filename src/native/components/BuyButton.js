@@ -23,6 +23,8 @@ class BuyButton extends React.Component {
       complete: false,
       buttonText: 'Mantener presionado para adquirir',
     }
+
+    this.resetButton = this.resetButton.bind(this);
   }
 
   onPressIn = () => {
@@ -62,7 +64,7 @@ class BuyButton extends React.Component {
     // acquire lote function url
     const acquireLoteFunction = CloudFunctionsUrl + '/acquireLote';
 
-    Firebase.auth().currentUser.getIdToken(true /* Force refresh */)
+    Firebase.auth().currentUser.getIdToken()
 
       .then(idToken => {
         // Call acquire lote function
@@ -102,6 +104,7 @@ class BuyButton extends React.Component {
             switch (error.response.data.error) {
               case 'loteId/undefined':
                 showNotification('ID incorrecto');
+                this.resetButton();
                 break;
               case 'lote/has-owner':
                 if(lote.obras.length === 1) {
@@ -112,9 +115,11 @@ class BuyButton extends React.Component {
                 break;
               case 'unauthorized':
                 showNotification('No puedes realizar esta acción');
+                this.resetButton();
                 break;
               default:
                 showNotification('Ha sucedido un error');
+                this.resetButton();
                 break;
             }
           }
@@ -124,13 +129,13 @@ class BuyButton extends React.Component {
           // http.ClientRequest in node.js
           console.log(error.request);
           showNotification('Ha sucedido un error');
+          this.resetButton();
         } else {
           // Something happened in setting up the request that triggered an Error
           console.log('Error', error.message);
           showNotification('Ha sucedido un error');
+          this.resetButton();
         }
-
-        this.resetButton();
 
         console.log(error.config);
 
