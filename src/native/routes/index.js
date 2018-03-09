@@ -130,7 +130,7 @@ const Index = (
           component={LotesContainer}
           Layout={LoteSingle}
           includeObras={true}
-          renderRightButton={() => <MemberTokens />}
+          renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
         />
       </Stack>
       <Stack
@@ -149,7 +149,7 @@ const Index = (
           component={WishlistContainer}
           Layout={WishlistList}
           renderLeftButton={EmptyNavButton}
-          renderRightButton={() => <MemberTokens />}
+          renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
         />
       </Stack>
       <Stack
@@ -196,7 +196,7 @@ const Index = (
           title='Artista'
           component={ArtistasContainer}
           Layout={ArtistaProfile}
-          renderRightButton={() => <MemberTokens />}
+          renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
         />
         <Scene
           key='artistaCv'
