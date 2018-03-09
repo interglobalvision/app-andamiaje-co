@@ -49,6 +49,9 @@ const MiembroProfile = ({
     return null;
   }
 
+  const collectionLength = collection !== undefined && collection !== {} ? Object.keys(collection).length : 0;
+  const collectionLengthString = collectionLength === 1 ? '1 obra' : collectionLength.toString() + ' obras';
+
 	return (
     <ScrollView style={[styles.backgroundWhite]}>
       <View style={[
@@ -62,7 +65,10 @@ const MiembroProfile = ({
           <Image source={imageSource} style={[styles.profileAvatarImage]} />
         </View>
         <View style={[styles.profileHeaderTextHolder]}>
-          { displayName !== 'undefined' ? <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{displayName}</Text></View>  : '' }
+          { displayName !== undefined &&
+            <View style={[styles.paddingBottomSmall]}><Text style={[styles.fontBold, styles.fontSizeMid]}>{displayName}</Text></View>
+          }
+          <Text style={[styles.fontSizeSmall]}>Colección de {collectionLengthString}</Text>
         </View>
         {renderOptionsButton()}
       </View>
