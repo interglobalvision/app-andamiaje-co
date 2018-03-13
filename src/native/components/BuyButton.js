@@ -84,7 +84,6 @@ class BuyButton extends React.Component {
       .then(response => {
 
         if (response.status === 200) {
-          console.log(response);
 
           if(lote.obras.length === 1) {
             showNotification('¡Has adquirido esta obra!');
@@ -112,6 +111,7 @@ class BuyButton extends React.Component {
                 } else {
                   showNotification('Estas obras ya tienen dueño');
                 }
+                this.resetButton();
                 break;
               case 'lote/too-expensive':
                 showNotification('No tienes suficientes tokens');
@@ -165,18 +165,25 @@ class BuyButton extends React.Component {
   }
 
   resetButton = (message = 'Mantener presionado para adquirir') => {
-    this.view.transitionTo({
-      right: 0,
-    },
-      100,
-      'linear'
-    );
 
-    this.setState({
-      complete: false,
-      buttonText: message,
-    });
+    // This horrible check is an ugly fix to avoid trying to
+    // transform the button after it has unmounted
+    if(this !== null
+      && this.view !== null
+      && this.view.transitionTo !== undefined
+      && this.view.transitionTo !== null) {
+      this.view.transitionTo({
+        right: 0,
+      },
+        100,
+        'linear'
+      );
 
+      this.setState({
+        complete: false,
+        buttonText: message,
+      });
+    }
   }
 
   handleViewRef = ref => this.view = ref;
