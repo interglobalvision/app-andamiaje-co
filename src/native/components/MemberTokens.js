@@ -28,7 +28,6 @@ const MemberTokens = ({
         styles.container,
       ]}>
         <Text style={[
-          styles.fontSizeSmall,
           styles.fontFamilyMedium,
           {
             letterSpacing: 1
