@@ -201,7 +201,7 @@ class BuyButton extends React.Component {
         <View style={[
           styles.container,
           styles.paddingTopBasic,
-          styles.paddingBottomSmall,
+          styles.paddingBottomBasic,
         ]}>
           <View style={[
             styles.backgroundWhite,
@@ -228,7 +228,7 @@ class BuyButton extends React.Component {
         <View style={[
           styles.container,
           styles.paddingTopBasic,
-          styles.paddingBottomSmall,
+          styles.paddingBottomBasic,
         ]}>
           <TouchableWithoutFeedback
             onPressIn={this.onPressIn}
@@ -299,7 +299,7 @@ class BuyButton extends React.Component {
         style={[
           styles.container,
           styles.paddingTopBasic,
-          styles.paddingBottomSmall,
+          styles.paddingBottomBasic,
         ]}>
           <Text style={[
             styles.textLink,
