@@ -8,9 +8,10 @@ import Spacer from '../Spacer';
 
 import LoteSingleObra from './LoteSingleObra';
 import LoteHeader from './LoteHeader';
-import Toast from '../Toast';
 import CountdownTitle from '../countdown/CountdownTitle';
 import CountdownClock from '../countdown/CountdownClock';
+import BuyButton from '../BuyButton';
+import Toast from '../Toast';
 
 const LoteSingle = ({
   lote,
@@ -41,7 +42,10 @@ const LoteSingle = ({
 
   return (
     <View style={{flex: 1}}>
-      <ScrollView stickyHeaderIndices={saleSoon || saleStarted ? [1] : [0]} style={styles.backgroundWhite}>
+      <ScrollView stickyHeaderIndices={saleSoon || saleStarted ? [1] : [0]} contentContainerStyle={[
+        styles.backgroundWhite,
+        styles.paddingBottomLarge,
+      ]}>
         {(saleSoon || saleStarted || saleEnded) &&
           <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
         }
@@ -51,6 +55,7 @@ const LoteSingle = ({
         {saleStarted &&
           <CountdownClock countdownTo={activeCatalogo.endDate} />
         }
+
         <LoteHeader lote={lote} />
         <View>
           {loteObras.map( (item, key) => {
@@ -63,6 +68,8 @@ const LoteSingle = ({
             )
           })}
         </View>
+
+        <BuyButton lote={lote} />
       </ScrollView>
       <Toast />
     </View>
