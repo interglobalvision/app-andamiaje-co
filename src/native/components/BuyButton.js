@@ -62,7 +62,7 @@ class BuyButton extends React.Component {
 
   acquireLote = () => {
 
-    const { Firebase, FirebaseRef, showNotification, lote } = this.props;
+    const { Firebase, FirebaseRef, showNotification, lote, member } = this.props;
 
     // acquire lote function url
     const acquireLoteFunction = CloudFunctionsUrl + '/acquireLote';
@@ -192,121 +192,151 @@ class BuyButton extends React.Component {
   handleViewRef = ref => this.view = ref;
 
   render = () => {
-    const { lote } = this.props;
+    const { lote, member } = this.props;
     const { owner } = lote;
     const { saleStarted, saleEnded } = this.props.countdown;
 
-    if (owner !== undefined && (saleStarted || saleEnded)) {
-      return (
-        <View style={[
-          styles.container,
-          styles.paddingTopBasic,
-          styles.paddingBottomBasic,
-        ]}>
-          <View style={[
-            styles.backgroundWhite,
-            styles.paddingTopBasic,
-            styles.paddingBottomBasic,
-            styles.flexCenter,
-            {
-              borderRadius: 5,
-              borderWidth: 1,
-              borderColor: colors.lightGrey,
-              width: containerWidth,
-            }
-          ]}>
+    const enoughTokens = member.tokens >= lote.price;
+
+    const wrapperStyles = [
+      styles.container,
+      styles.paddingTopBasic,
+      styles.paddingBottomBasic,
+    ];
+
+    if (owner !== undefined) {
+      if(saleStarted || saleEnded) {
+        // Adquirido
+        return (
+          <View style={wrapperStyles}>
+            <View style={[
+              styles.backgroundWhite,
+              styles.paddingTopBasic,
+              styles.paddingBottomBasic,
+              styles.flexCenter,
+              {
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: colors.lightGrey,
+                width: containerWidth,
+              }
+            ]}>
+              <Text style={[
+                styles.colorBlack,
+                styles.fontFamilyMedium,
+                styles.textAlignCenter,
+              ]}>Adquirida por { owner.name }</Text>
+            </View>
+          </View>
+        );
+      } else {
+        // Coleccion de…
+        return (
+          <TouchableOpacity
+          onPress={() => this.onPressOwner(owner.uid)}
+          style={wrapperStyles}>
+            <Text style={[
+              styles.textLink,
+            ]}>Colección de { owner.name }</Text>
+          </TouchableOpacity>
+        );
+      }
+    } else {
+      if(saleStarted) {
+        if(enoughTokens) {
+          // Buy
+          return (
+            <View style={wrapperStyles}>
+              <TouchableWithoutFeedback
+                onPressIn={this.onPressIn}
+                onPressOut={this.onPressOut}
+              >
+                <View style={[]}>
+
+                  <View style={[
+                    styles.backgroundWhite,
+                    styles.paddingTopBasic,
+                    styles.paddingBottomBasic,
+                    styles.flexCenter,
+                    {
+                      borderRadius: 5,
+                      borderWidth: 1,
+                      borderColor: colors.lightGrey,
+                      width: containerWidth,
+                    }
+                  ]}>
+                    <Text style={[
+                      styles.colorBlack,
+                      styles.fontFamilyMedium,
+                      styles.textAlignCenter,
+                    ]}>{this.state.buttonText}</Text>
+                  </View>
+
+                  <Animatable.View
+                    ref={this.handleViewRef}
+                    style={[
+                    {
+                      position: 'absolute',
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                      left: 0,
+                      overflow: 'hidden',
+                      backgroundColor: 'rgba(0,0,0,0)',
+                    }
+                  ]}>
+                    <View style={[
+                      styles.backgroundBlack,
+                      styles.flexCenter,
+                      styles.paddingTopBasic,
+                      styles.paddingBottomBasic,
+                      {
+                        width: containerWidth,
+                        borderRadius: 5,
+                        borderWidth: 1,
+                        borderColor: colors.black,
+                      }
+                    ]}>
+                      <Text style={[
+                        styles.colorWhite,
+                        styles.fontFamilyMedium,
+                        styles.textAlignCenter,
+                      ]}>{this.state.buttonText}</Text>
+                    </View>
+                  </Animatable.View>
+
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          );
+        } else {
+          // Not Enough
+          return (
+            <View style={wrapperStyles}>
+            <View style={[
+              styles.backgroundWhite,
+              styles.paddingTopBasic,
+              styles.paddingBottomBasic,
+              styles.flexCenter,
+              {
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: colors.lightGrey,
+                width: containerWidth,
+              }
+            ]}>
             <Text style={[
               styles.colorBlack,
               styles.fontFamilyMedium,
               styles.textAlignCenter,
-            ]}>Adquirida por { owner.name }</Text>
-          </View>
-        </View>
-      );
-    } else if (saleStarted) {
-      return (
-        <View style={[
-          styles.container,
-          styles.paddingTopBasic,
-          styles.paddingBottomBasic,
-        ]}>
-          <TouchableWithoutFeedback
-            onPressIn={this.onPressIn}
-            onPressOut={this.onPressOut}
-          >
-            <View style={[]}>
-
-              <View style={[
-                styles.backgroundWhite,
-                styles.paddingTopBasic,
-                styles.paddingBottomBasic,
-                styles.flexCenter,
-                {
-                  borderRadius: 5,
-                  borderWidth: 1,
-                  borderColor: colors.lightGrey,
-                  width: containerWidth,
-                }
-              ]}>
-                <Text style={[
-                  styles.colorBlack,
-                  styles.fontFamilyMedium,
-                  styles.textAlignCenter,
-                ]}>{this.state.buttonText}</Text>
-              </View>
-
-              <Animatable.View
-                ref={this.handleViewRef}
-                style={[
-                {
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  left: 0,
-                  overflow: 'hidden',
-                  backgroundColor: 'rgba(0,0,0,0)',
-                }
-              ]}>
-                <View style={[
-                  styles.backgroundBlack,
-                  styles.flexCenter,
-                  styles.paddingTopBasic,
-                  styles.paddingBottomBasic,
-                  {
-                    width: containerWidth,
-                    borderRadius: 5,
-                    borderWidth: 1,
-                    borderColor: colors.black,
-                  }
-                ]}>
-                  <Text style={[
-                    styles.colorWhite,
-                    styles.fontFamilyMedium,
-                    styles.textAlignCenter,
-                  ]}>{this.state.buttonText}</Text>
-                </View>
-              </Animatable.View>
-
+            ]}>No tienes suficientes tokens</Text>
             </View>
-          </TouchableWithoutFeedback>
-        </View>
-      );
-    } else if (owner !== undefined) {
-      return (
-        <TouchableOpacity
-        onPress={() => this.onPressOwner(owner.uid)}
-        style={[
-          styles.container,
-          styles.paddingTopBasic,
-          styles.paddingBottomBasic,
-        ]}>
-          <Text style={[
-            styles.textLink,
-          ]}>Colección de { owner.name }</Text>
-        </TouchableOpacity>
-      );
+            </View>
+          );
+        }
+      }
     }
+
     return null;
   }
 }
@@ -315,6 +345,7 @@ const mapStateToProps = state => ({
   Firebase,
   FirebaseRef,
   countdown: state.catalogos.countdown || {},
+  member: state.member || {},
 });
 
 const mapDispatchToProps = (dispatch) => ({

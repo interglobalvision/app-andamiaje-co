@@ -30,6 +30,8 @@ export default function userReducer(state = initialState, action) {
           signedUp: action.data.signedUp,
           role: action.data.role,
           wishlist: action.data.wishlist,
+          tokens: action.data.tokens,
+          collection: action.data.collection,
         };
       }
       return initialState;
