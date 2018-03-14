@@ -201,7 +201,7 @@ class BuyButton extends React.Component {
     const wrapperStyles = [
       styles.container,
       styles.paddingTopBasic,
-      styles.paddingBottomSmall,
+      styles.paddingBottomBasic,
     ];
 
     if (owner !== undefined) {

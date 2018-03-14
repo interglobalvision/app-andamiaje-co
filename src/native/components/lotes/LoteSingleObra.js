@@ -22,7 +22,7 @@ const LoteSingleObra = ({
 
   const onPress = () => Actions.artista({ match: { params: { id: String(obra.artista.id) } } });
 
-  let holderStyle = [styles.paddingBottomLarge];
+  let holderStyle = [styles.paddingBottomMid];
   if (border) {
     holderStyle.push(styles.bordered);
   }

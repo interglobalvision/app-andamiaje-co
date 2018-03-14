@@ -22,8 +22,12 @@ const PortfolioItem = ({
         </View>
         <View>
           <Text style={[styles.lineHeightBasic]}><Text style={[styles.fontItalic]}>{item.title}</Text>, {item.year}</Text>
-          <Text style={[styles.lineHeightBasic]}>{item.materials}</Text>
-          <Text style={[styles.lineHeightBasic]}>{item.dimensions}</Text>
+          {(item.materials !== undefined && item.materials !== '') &&
+            <Text style={[styles.lineHeightBasic]}>{item.materials}</Text>
+          }
+          {(item.dimensions !== undefined && item.dimensions !== '') &&
+            <Text style={[styles.lineHeightBasic]}>{item.dimensions}</Text>
+          }
         </View>
         {(item.notes !== undefined && item.notes !== '') &&
           <View style={[
