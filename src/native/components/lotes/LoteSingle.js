@@ -8,12 +8,16 @@ import Spacer from '../Spacer';
 
 import LoteSingleObra from './LoteSingleObra';
 import LoteHeader from './LoteHeader';
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
 import BuyButton from '../BuyButton';
 import Toast from '../Toast';
 
 const LoteSingle = ({
   lote,
   obras,
+  activeCatalogo,
+  countdown,
   error,
   loading,
 }) => {
@@ -30,12 +34,28 @@ const LoteSingle = ({
     });
   });
 
+  const {
+    saleSoon,
+    saleStarted,
+    saleEnded,
+  } = countdown;
+
   return (
     <View style={{flex: 1}}>
-      <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={[
+      <ScrollView stickyHeaderIndices={saleSoon || saleStarted ? [1] : [0]} contentContainerStyle={[
         styles.backgroundWhite,
         styles.paddingBottomLarge,
       ]}>
+        {(saleSoon || saleStarted || saleEnded) &&
+          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+        }
+        {saleSoon &&
+          <CountdownClock countdownTo={activeCatalogo.saleDate} />
+        }
+        {saleStarted &&
+          <CountdownClock countdownTo={activeCatalogo.endDate} />
+        }
+
         <LoteHeader lote={lote} />
         <View>
           {loteObras.map( (item, key) => {
@@ -48,6 +68,7 @@ const LoteSingle = ({
             )
           })}
         </View>
+
         <BuyButton lote={lote} />
       </ScrollView>
       <Toast />
@@ -58,6 +79,8 @@ const LoteSingle = ({
 LoteSingle.propTypes = {
   lote: PropTypes.object.isRequired,
   obras: PropTypes.array.isRequired,
+  activeCatalogo: PropTypes.object.isRequired,
+  countdown: PropTypes.object.isRequired,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
 };

@@ -11,6 +11,7 @@ import CatalogoViewControl from '../native/components/catalogos/CatalogoViewCont
 
 import { getLotes, setError as setLotesError } from '../actions/lotesActions';
 import { getObras, setError as setObrasError } from '../actions/obrasActions';
+import { getCatalogos, setError as setCatalogosError } from '../actions/catalogosActions';
 
 class LotesContainer extends Component {
   static propTypes = {
@@ -25,11 +26,18 @@ class LotesContainer extends Component {
       error: PropTypes.string,
       obras: PropTypes.array.isRequired,
     }).isRequired,
+    catalogos: PropTypes.shape({
+      loading: PropTypes.bool.isRequired,
+      error: PropTypes.string,
+      catalogos: PropTypes.array.isRequired,
+    }).isRequired,
     viewSettings: PropTypes.object.isRequired,
     getLotes: PropTypes.func.isRequired,
     setLotesError: PropTypes.func.isRequired,
     getObras: PropTypes.func.isRequired,
     setObrasError: PropTypes.func.isRequired,
+    getCatalogos: PropTypes.func.isRequired,
+    setCatalogosError: PropTypes.func.isRequired,
     includeObras: PropTypes.bool.isRequired,
   }
 
@@ -39,7 +47,7 @@ class LotesContainer extends Component {
 
   componentDidMount = () => {
     if (this.props.includeObras) {
-      this.fetchLotesAndObras();
+      this.fetchLotesObrasAndCatalogos();
     } else {
       this.fetchLotes();
     }
@@ -48,7 +56,7 @@ class LotesContainer extends Component {
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchLotesAndObras = () => {
+  fetchLotesObrasAndCatalogos = () => {
     return this.props.getLotes()
       .catch((err) => {
         console.log(`Error: ${err}`);
@@ -58,6 +66,11 @@ class LotesContainer extends Component {
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setObrasError(err);
+      })
+      .then(this.props.getCatalogos)
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        return this.props.setCatalogosError(err);
       });
 
   }
@@ -161,8 +174,9 @@ class LotesContainer extends Component {
     if (id !== null) {
       const { obras } = this.props.obras;
       const { lotes } = this.props.lotes;
+      const { activeCatalogo, countdown } = this.props.catalogos;
 
-      const loading = this.props.lotes.loading || this.props.obras.loading ? true : false;
+      const loading = this.props.lotes.loading || this.props.obras.loading || this.props.catalogos.loading ? true : false;
 
       let error = null;
 
@@ -174,15 +188,21 @@ class LotesContainer extends Component {
         error = this.props.obras.error;
       }
 
+      if(this.props.catalogos.error !== null) {
+        error = this.props.catalogos.error;
+      }
+
       const lote = lotes.find(item => item.id === id);
 
       return (
         <Layout
           lote={lote}
           obras={obras}
+          activeCatalogo={activeCatalogo}
+          countdown={countdown}
           loading={loading}
           error={error}
-          reFetch={() => this.fetchLotesAndObras()}
+          reFetch={() => this.fetchLotesObrasAndCatalogos()}
         />
       );
     }
@@ -202,6 +222,7 @@ const mapStateToProps = state => ({
   lotes: state.lotes || {},
   viewSettings: state.catalogos.viewSettings || {},
   obras: state.obras || [],
+  catalogos: state.catalogos || {},
 });
 
 const mapDispatchToProps = {
@@ -209,6 +230,8 @@ const mapDispatchToProps = {
   setLotesError,
   getObras,
   setObrasError,
+  getCatalogos,
+  setCatalogosError,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LotesContainer);
