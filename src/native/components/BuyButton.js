@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
 import { Firebase, FirebaseRef } from '../../lib/firebase';
 import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
 
 import { showNotification } from '../../actions/toastActions';
 import styles, { containerWidth } from '../constants/styles';
@@ -56,6 +57,8 @@ class BuyButton extends React.Component {
       clearTimeout(this.pressTimeout);
     }
   }
+
+  onPressOwner = id => Actions.miembro({ match: { params: { id: String(id) } } });
 
   acquireLote = () => {
 
@@ -193,7 +196,7 @@ class BuyButton extends React.Component {
     const { owner } = lote;
     const { saleStarted, saleEnded } = this.props.countdown;
 
-    if (owner !== undefined) {
+    if (owner !== undefined && (saleStarted || saleEnded)) {
       return (
         <View style={[
           styles.container,
@@ -289,32 +292,19 @@ class BuyButton extends React.Component {
           </TouchableWithoutFeedback>
         </View>
       );
-    } else if (saleEnded) {
+    } else if (owner !== undefined) {
       return (
-        <View style={[
+        <TouchableOpacity
+        onPress={() => this.onPressOwner(owner.uid)}
+        style={[
           styles.container,
           styles.paddingTopBasic,
           styles.paddingBottomSmall,
         ]}>
-          <View style={[
-            styles.backgroundWhite,
-            styles.paddingTopBasic,
-            styles.paddingBottomBasic,
-            styles.flexCenter,
-            {
-              borderRadius: 5,
-              borderWidth: 1,
-              borderColor: colors.lightGrey,
-              width: containerWidth,
-            }
-          ]}>
-            <Text style={[
-              styles.colorBlack,
-              styles.fontFamilyMedium,
-              styles.textAlignCenter,
-            ]}>Colección de [Usuario]</Text>
-          </View>
-        </View>
+          <Text style={[
+            styles.textLink,
+          ]}>Colección de { owner.name }</Text>
+        </TouchableOpacity>
       );
     }
     return null;
