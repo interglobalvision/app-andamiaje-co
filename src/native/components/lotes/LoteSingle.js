@@ -8,10 +8,15 @@ import Spacer from '../Spacer';
 
 import LoteSingleObra from './LoteSingleObra';
 import LoteHeader from './LoteHeader';
+import Toast from '../Toast';
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
 
 const LoteSingle = ({
   lote,
   obras,
+  activeCatalogo,
+  countdown,
   error,
   loading,
 }) => {
@@ -28,27 +33,47 @@ const LoteSingle = ({
     });
   });
 
+  const {
+    saleSoon,
+    saleStarted,
+    saleEnded,
+  } = countdown;
+
   return (
-    <ScrollView stickyHeaderIndices={[0]} style={styles.backgroundWhite}>
-      <LoteHeader lote={lote} />
-      <View>
-        {loteObras.map( (item, key) => {
-          let border = true;
-          if (key >= (loteObras.length - 1) ) {
-            border = false;
-          }
-          return (
-            <LoteSingleObra key={key} obra={item} border={border}/>
-          )
-        })}
-      </View>
-    </ScrollView>
+    <View style={{flex: 1}}>
+      <ScrollView stickyHeaderIndices={saleSoon || saleStarted ? [1] : [0]} style={styles.backgroundWhite}>
+        {(saleSoon || saleStarted || saleEnded) &&
+          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+        }
+        {saleSoon &&
+          <CountdownClock countdownTo={activeCatalogo.saleDate} />
+        }
+        {saleStarted &&
+          <CountdownClock countdownTo={activeCatalogo.endDate} />
+        }
+        <LoteHeader lote={lote} />
+        <View>
+          {loteObras.map( (item, key) => {
+            let border = true;
+            if (key >= (loteObras.length - 1) ) {
+              border = false;
+            }
+            return (
+              <LoteSingleObra key={key} obra={item} border={border}/>
+            )
+          })}
+        </View>
+      </ScrollView>
+      <Toast />
+    </View>
   );
 };
 
 LoteSingle.propTypes = {
   lote: PropTypes.object.isRequired,
   obras: PropTypes.array.isRequired,
+  activeCatalogo: PropTypes.object.isRequired,
+  countdown: PropTypes.object.isRequired,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
 };
