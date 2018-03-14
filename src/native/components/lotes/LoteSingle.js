@@ -8,6 +8,7 @@ import Spacer from '../Spacer';
 
 import LoteSingleObra from './LoteSingleObra';
 import LoteHeader from './LoteHeader';
+import BuyButton from '../BuyButton';
 
 const LoteSingle = ({
   lote,
@@ -29,7 +30,10 @@ const LoteSingle = ({
   });
 
   return (
-    <ScrollView stickyHeaderIndices={[0]} style={styles.backgroundWhite}>
+    <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={[
+      styles.backgroundWhite,
+      styles.paddingBottomLarge,
+    ]}>
       <LoteHeader lote={lote} />
       <View>
         {loteObras.map( (item, key) => {
@@ -42,6 +46,7 @@ const LoteSingle = ({
           )
         })}
       </View>
+      <BuyButton lote={lote} />
     </ScrollView>
   );
 };
