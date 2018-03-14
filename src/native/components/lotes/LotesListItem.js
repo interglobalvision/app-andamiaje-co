@@ -17,7 +17,17 @@ const LotesListItem = ({
 
   const keyExtractor = item => item.id;
 
-  const onPressArtista = id => Actions.artista({ match: { params: { id: String(id) } } });
+  const onPressArtista = id => Actions.artista({
+    match: {
+      params: {
+        id: String(id)
+      }
+    },
+    onBack: () => {
+      Actions.catalogos();
+    },
+  });
+
   const onPressLote = id => Actions.lote({ match: { params: { id: String(id) } } });
 
   return (
