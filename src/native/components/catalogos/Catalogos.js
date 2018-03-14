@@ -87,6 +87,7 @@ CatalogosList.propTypes = {
   loading: PropTypes.bool.isRequired,
   activeCatalogo: PropTypes.object.isRequired,
   pastCatalogos: PropTypes.array.isRequired,
+  countdown: PropTypes.object.isRequired,
   reFetch: PropTypes.func,
 };
 

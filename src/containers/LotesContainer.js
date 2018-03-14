@@ -26,6 +26,11 @@ class LotesContainer extends Component {
       error: PropTypes.string,
       obras: PropTypes.array.isRequired,
     }).isRequired,
+    catalogos: PropTypes.shape({
+      loading: PropTypes.bool.isRequired,
+      error: PropTypes.string,
+      catalogos: PropTypes.array.isRequired,
+    }).isRequired,
     viewSettings: PropTypes.object.isRequired,
     getLotes: PropTypes.func.isRequired,
     setLotesError: PropTypes.func.isRequired,
@@ -42,7 +47,7 @@ class LotesContainer extends Component {
 
   componentDidMount = () => {
     if (this.props.includeObras) {
-      this.fetchLotesObrasandCatalogo();
+      this.fetchLotesObrasAndCatalogos();
     } else {
       this.fetchLotes();
     }
@@ -51,17 +56,21 @@ class LotesContainer extends Component {
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchLotesObrasandCatalogo = () => {
+  fetchLotesObrasAndCatalogos = () => {
     return this.props.getLotes()
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setLotesError(err);
       })
       .then(this.props.getObras)
-      .then(this.props.getCatalogos)
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setObrasError(err);
+      })
+      .then(this.props.getCatalogos)
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        return this.props.setCatalogosError(err);
       });
 
   }
@@ -167,7 +176,7 @@ class LotesContainer extends Component {
       const { lotes } = this.props.lotes;
       const { activeCatalogo, countdown } = this.props.catalogos;
 
-      const loading = this.props.lotes.loading || this.props.obras.loading ? true : false;
+      const loading = this.props.lotes.loading || this.props.obras.loading || this.props.catalogos.loading ? true : false;
 
       let error = null;
 
@@ -193,7 +202,7 @@ class LotesContainer extends Component {
           countdown={countdown}
           loading={loading}
           error={error}
-          reFetch={() => this.fetchLotesObrasandCatalogo()}
+          reFetch={() => this.fetchLotesObrasAndCatalogos()}
         />
       );
     }
