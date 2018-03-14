@@ -9,6 +9,7 @@ import Spacer from '../Spacer';
 import LoteSingleObra from './LoteSingleObra';
 import LoteHeader from './LoteHeader';
 import BuyButton from '../BuyButton';
+import Toast from '../Toast';
 
 const LoteSingle = ({
   lote,
@@ -30,24 +31,27 @@ const LoteSingle = ({
   });
 
   return (
-    <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={[
-      styles.backgroundWhite,
-      styles.paddingBottomLarge,
-    ]}>
-      <LoteHeader lote={lote} />
-      <View>
-        {loteObras.map( (item, key) => {
-          let border = true;
-          if (key >= (loteObras.length - 1) ) {
-            border = false;
-          }
-          return (
-            <LoteSingleObra key={key} obra={item} border={border}/>
-          )
-        })}
-      </View>
-      <BuyButton lote={lote} />
-    </ScrollView>
+    <View style={{flex: 1}}>
+      <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={[
+        styles.backgroundWhite,
+        styles.paddingBottomLarge,
+      ]}>
+        <LoteHeader lote={lote} />
+        <View>
+          {loteObras.map( (item, key) => {
+            let border = true;
+            if (key >= (loteObras.length - 1) ) {
+              border = false;
+            }
+            return (
+              <LoteSingleObra key={key} obra={item} border={border}/>
+            )
+          })}
+        </View>
+        <BuyButton lote={lote} />
+      </ScrollView>
+      <Toast />
+    </View>
   );
 };
 
