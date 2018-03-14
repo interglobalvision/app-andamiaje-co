@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
 import { Firebase, FirebaseRef } from '../../lib/firebase';
 import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
 
 import { showNotification } from '../../actions/toastActions';
 import styles, { containerWidth } from '../constants/styles';
@@ -57,6 +58,8 @@ class BuyButton extends React.Component {
     }
   }
 
+  onPressOwner = id => Actions.miembro({ match: { params: { id: String(id) } } });
+
   acquireLote = () => {
 
     const { Firebase, FirebaseRef, showNotification, lote } = this.props;
@@ -84,7 +87,6 @@ class BuyButton extends React.Component {
       .then(response => {
 
         if (response.status === 200) {
-          console.log(response);
 
           if(lote.obras.length === 1) {
             showNotification('¡Has adquirido esta obra!');
@@ -112,6 +114,7 @@ class BuyButton extends React.Component {
                 } else {
                   showNotification('Estas obras ya tienen dueño');
                 }
+                this.resetButton();
                 break;
               case 'lote/too-expensive':
                 showNotification('No tienes suficientes tokens');
@@ -165,18 +168,25 @@ class BuyButton extends React.Component {
   }
 
   resetButton = (message = 'Mantener presionado para adquirir') => {
-    this.view.transitionTo({
-      right: 0,
-    },
-      100,
-      'linear'
-    );
 
-    this.setState({
-      complete: false,
-      buttonText: message,
-    });
+    // This horrible check is an ugly fix to avoid trying to
+    // transform the button after it has unmounted
+    if(this !== null
+      && this.view !== null
+      && this.view.transitionTo !== undefined
+      && this.view.transitionTo !== null) {
+      this.view.transitionTo({
+        right: 0,
+      },
+        100,
+        'linear'
+      );
 
+      this.setState({
+        complete: false,
+        buttonText: message,
+      });
+    }
   }
 
   handleViewRef = ref => this.view = ref;
@@ -186,7 +196,7 @@ class BuyButton extends React.Component {
     const { owner } = lote;
     const { saleStarted, saleEnded } = this.props.countdown;
 
-    if (owner !== undefined) {
+    if (owner !== undefined && (saleStarted || saleEnded)) {
       return (
         <View style={[
           styles.container,
@@ -282,32 +292,19 @@ class BuyButton extends React.Component {
           </TouchableWithoutFeedback>
         </View>
       );
-    } else if (saleEnded) {
+    } else if (owner !== undefined) {
       return (
-        <View style={[
+        <TouchableOpacity
+        onPress={() => this.onPressOwner(owner.uid)}
+        style={[
           styles.container,
           styles.paddingTopBasic,
           styles.paddingBottomSmall,
         ]}>
-          <View style={[
-            styles.backgroundWhite,
-            styles.paddingTopBasic,
-            styles.paddingBottomBasic,
-            styles.flexCenter,
-            {
-              borderRadius: 5,
-              borderWidth: 1,
-              borderColor: colors.lightGrey,
-              width: containerWidth,
-            }
-          ]}>
-            <Text style={[
-              styles.colorBlack,
-              styles.fontFamilyMedium,
-              styles.textAlignCenter,
-            ]}>Colección de [Usuario]</Text>
-          </View>
-        </View>
+          <Text style={[
+            styles.textLink,
+          ]}>Colección de { owner.name }</Text>
+        </TouchableOpacity>
       );
     }
     return null;
