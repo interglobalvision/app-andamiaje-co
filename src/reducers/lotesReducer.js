@@ -1,7 +1,4 @@
 import Store from '../store/lotes';
-import _filter from 'lodash/filter';
-import _omitBy from 'lodash/omitBy';
-import _isNil from 'lodash/isNil';
 export const initialState = Store;
 
 export default function loteReducer(state = initialState, action) {
@@ -22,8 +19,7 @@ export default function loteReducer(state = initialState, action) {
           map(lote => {
             const { title, artista, obras, price, tecnica, owner } = action.data[lote.id];
 
-            // Remove undefined values
-            const cleanLote = _omitBy({
+            return({
               id: lote.id,
               title,
               artista,
@@ -31,9 +27,8 @@ export default function loteReducer(state = initialState, action) {
               price,
               tecnica,
               owner,
-            }, _isNil);
+            });
 
-            return cleanLote;
           });
       }
 
