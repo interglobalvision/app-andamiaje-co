@@ -6,6 +6,16 @@ const PARTICLE_DIMENSIONS = { width: 20, height: 20 };
 const SCREEN_DIMENSIONS = Dimensions.get('window');
 const WIGGLE_ROOM = 100;
 
+const colors = [
+  'rgb(92,255,97)',
+  'rgb(191,225,4)',
+  'rgb(228,220,4)',
+  'rgb(255,95,88)',
+  'rgb(247,39,141)',
+  'rgb(0,184,255)',
+  'rgb(183,6,254)',
+];
+
 const FlippingParticle = ({ back = false, delay, duration = 1000, source, style = {} }) => (
   <Animatable.View
     animation={{
@@ -64,7 +74,7 @@ const Falling = ({ duration, delay, style, children }) => (
     duration={duration}
     delay={delay}
     easing={t => Math.pow(t, 1.7)}
-    iterationCount="infinite"
+    iterationCount={1}
     useNativeDriver={false}
     style={style}
   >
@@ -82,7 +92,9 @@ const range = count => {
   return array;
 };
 
-const Confetti = ({ count = 30, duration = 4000 }) => (
+const randomColor = () => colors[Math.floor(randomize(colors.length))];
+
+const Confetti = ({ count = 30, duration = 5000 }) => (
   <View pointerEvents="none" style={[
     {
       position: 'absolute',
@@ -112,7 +124,7 @@ const Confetti = ({ count = 30, duration = 4000 }) => (
                 position: 'absolute',
                 width: PARTICLE_DIMENSIONS.width,
                 height: PARTICLE_DIMENSIONS.height,
-                backgroundColor: 'black',
+                backgroundColor: randomColor(),
                 borderColor: 'white',
                 borderWidth: 1,
               }}
@@ -124,8 +136,8 @@ const Confetti = ({ count = 30, duration = 4000 }) => (
                 position: 'absolute',
                 width: PARTICLE_DIMENSIONS.width,
                 height: PARTICLE_DIMENSIONS.height,
-                backgroundColor: 'white',
-                borderColor: 'black',
+                backgroundColor: randomColor(),
+                borderColor: 'white',
                 borderWidth: 1,
               }}
             />
