@@ -8,12 +8,41 @@ import styles from '../constants/styles';
 
 class MemberTokens extends Component {
 
+  constructor(props) {
+    super(props);
+    Animatable.initializeRegistryWithDefinitions({
+      bigBounceIn: {
+        0: {
+          opacity: 0,
+          scale: 0.3,
+        },
+        0.2: {
+          scale: 1.5,
+        },
+        0.4: {
+          scale: 0.95,
+          opacity: 1,
+        },
+        0.6: {
+          scale: 1.7,
+        },
+        0.8: {
+          scale: 0.97,
+        },
+        1: {
+          opacity: 1,
+          scale: 1,
+        },
+      }
+    });
+  }
+
   componentWillUpdate() {
     this.animateTokens(this.view);
   }
 
   animateTokens(viewRef) {
-    viewRef.bounceIn(800);
+    viewRef.bigBounceIn(1000);
   }
 
   render() {
