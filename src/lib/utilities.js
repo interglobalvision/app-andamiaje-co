@@ -60,6 +60,11 @@ export const getScaledImageDimensions = (imageWidth, imageHeight, containerWidth
   return imageDimensions;
 }
 
+export const getBestVideoSrc = (targetWidth, sources) => {
+  const targetSource = Object.keys(sources).find( index => index > targetWidth);
+  return sources[targetSource];
+}
+
 export const delay = (ms) => new Promise(resolve =>
   setTimeout(resolve, ms)
 );
