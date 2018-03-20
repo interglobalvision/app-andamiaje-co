@@ -83,15 +83,9 @@ const NoticiaItem = ({item, border}) => {
 
   if (item.images !== undefined && item.images.length && !hasVideo && !hasVimeo) {
     const image = item.images[0];
-
     imageSize = getBestImageSize(containerWidth);
-    console.log('imageSize', imageSize);
-
     imageSrc = getResizedImageUrl(image, imageSize);
-    console.log('imageSrc', imageSrc);
-
     imageDimensions = getScaledImageDimensions(image.width, image.height, containerWidth);
-    console.log('imageDimensions', imageDimensions);
   }
 
   return (
