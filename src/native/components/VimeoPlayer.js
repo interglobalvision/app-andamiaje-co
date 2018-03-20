@@ -11,20 +11,22 @@ export default class VimeoPlayer extends Component {
 
     const source = getBestVideoSrc(width, sources);
 
-    console.log(source);
-
 		return (
-			<View style={styles.container}>
+			<View>
         <VideoPlayer
+          debug={true}
+          showControlsOnLoad={true}
+          showFullscreenButton={false}
+          thumbImage={ source.thumb !== undefined && source.thumb.link !== undefined ? source.thumb.link : null }
+          isPortrait={true}
+          playFromPositionMillis={0}
           videoProps={{
-            shouldPlay: true,
+            shouldPlay: false,
             resizeMode: Video.RESIZE_MODE_CONTAIN,
             source: {
               uri: source.link,
             },
           }}
-          isPortrait={true}
-          playFromPositionMillis={0}
         />
 			</View>
 		);

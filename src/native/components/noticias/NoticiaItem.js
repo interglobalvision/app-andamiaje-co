@@ -53,7 +53,6 @@ const renderArtista = (item) => {
 const NoticiaItem = ({item, border}) => {
 
   let holderStyle = [
-    styles.container,
     styles.backgroundWhite,
     styles.paddingTopMid,
     styles.paddingBottomLarge
@@ -80,37 +79,46 @@ const NoticiaItem = ({item, border}) => {
   let imageSrc;
   let imageDimensions;
 
+  const windowWidth = Dimensions.get('window').width;
+
   if (item.images !== undefined && item.images.length && !hasVideo && !hasVimeo) {
     const image = item.images[0];
-    const windowWidth = Dimensions.get('window').width;
+
     imageSize = getBestImageSize(containerWidth);
+    console.log('imageSize', imageSize);
+
     imageSrc = getResizedImageUrl(image, imageSize);
+    console.log('imageSrc', imageSrc);
+
     imageDimensions = getScaledImageDimensions(image.width, image.height, containerWidth);
+    console.log('imageDimensions', imageDimensions);
   }
 
   return (
     <View style={holderStyle}>
-      <View style={styles.paddingBottomBasic}>
+      <View style={[styles.container, styles.paddingBottomBasic]}>
         <Text>
           <Text style={[styles.fontBold, styles.fontSizeMid ]}>{item.title}</Text><TextBullet /><Text style={[styles.fontSizeSmall]}>{distanceInWordsToNow(item.publishDate, { locale: es })}</Text>
         </Text>
       </View>
 
-      <View style={styles.paddingBottomMid}>{getRNDraftJSBlocks(draftParams)}</View>
+      <View style={[styles.container, styles.paddingBottomMid]}>{getRNDraftJSBlocks(draftParams)}</View>
 
-      {renderArtista(item)}
+      <View style={styles.container}>{renderArtista(item)}</View>
 
-      { hasVimeo && <VimeoPlayer sources={item.vimeo.sources} width={containerWidth} /> }
+      { hasVimeo && <VimeoPlayer sources={item.vimeo.sources} width={windowWidth} /> }
       { hasVideo && !hasVimeo ? <Thumbnail url={item.video.url} imageWidth={containerWidth} imageHeight={((containerWidth / 16) * 9)} iconStyle={{width: 25, height: 29}} /> : null }
 
       { imageSrc !== null && !hasVideo && !hasVimeo ?
-        <Image
-          source={{ uri: imageSrc, cache: 'force-cache' }}
-          style={{
-            width: imageDimensions.width,
-            height: imageDimensions.height
-          }}
-        /> : null }
+        <View style={[styles.container, styles.flexCenter]}>
+          <Image
+            source={{ uri: imageSrc, cache: 'force-cache' }}
+            style={{
+              width: imageDimensions.width,
+              height: imageDimensions.height
+            }}
+          />
+        </View> : null }
     </View>
   );
 }
