@@ -12,6 +12,7 @@ import { getResizedImageUrl, getBestImageSize, getScaledImageDimensions } from '
 import TextBullet from '../TextBullet';
 import colors from '../../constants/colors';
 import Spacer from '../Spacer';
+import VimeoPlayer from '../VimeoPlayer';
 
 const onPress = id => Actions.artista({ match: { params: { id: String(id) } } });
 
@@ -57,6 +58,7 @@ const NoticiaItem = ({item, border}) => {
     styles.paddingTopMid,
     styles.paddingBottomLarge
   ];
+
   if (border) {
     holderStyle.push(styles.bordered);
   }
@@ -69,7 +71,8 @@ const NoticiaItem = ({item, border}) => {
     customStyles,
   };
 
-  // function to check if it has video
+  // function to check if it has vimeo and video (youtube)
+  const hasVimeo = item.vimeo !== undefined && item.vimeo.sources !== undefined;
   const hasVideo = item.video.url !== undefined && item.video.url !== '' && item.video.provider === 'youtube';
 
   // Check for image
@@ -77,7 +80,7 @@ const NoticiaItem = ({item, border}) => {
   let imageSrc;
   let imageDimensions;
 
-  if (item.images !== undefined && item.images.length && !hasVideo) {
+  if (item.images !== undefined && item.images.length && !hasVideo && !hasVimeo) {
     const image = item.images[0];
     const windowWidth = Dimensions.get('window').width;
     imageSize = getBestImageSize(containerWidth);
@@ -97,9 +100,10 @@ const NoticiaItem = ({item, border}) => {
 
       {renderArtista(item)}
 
-      { hasVideo ? <Thumbnail url={item.video.url} imageWidth={containerWidth} imageHeight={((containerWidth / 16) * 9)} iconStyle={{width: 25, height: 29}} /> : null }
+      { hasVimeo && <VimeoPlayer sources={item.vimeo.sources} width={containerWidth} /> }
+      { hasVideo && !hasVimeo ? <Thumbnail url={item.video.url} imageWidth={containerWidth} imageHeight={((containerWidth / 16) * 9)} iconStyle={{width: 25, height: 29}} /> : null }
 
-      { imageSrc !== null && !hasVideo ?
+      { imageSrc !== null && !hasVideo && !hasVimeo ?
         <Image
           source={{ uri: imageSrc, cache: 'force-cache' }}
           style={{

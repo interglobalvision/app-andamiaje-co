@@ -25,6 +25,7 @@ export default function noticiaReducer(state = initialState, action) {
               publishDate,
               images,
               video,
+              vimeo,
               artista,
             } = action.data[id];
 
@@ -35,6 +36,7 @@ export default function noticiaReducer(state = initialState, action) {
               publishDate,
               images,
               video,
+              vimeo,
               artista,
             })
           });
