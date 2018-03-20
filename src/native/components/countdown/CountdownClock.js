@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import styles from '../../constants/styles';
 import { connect } from 'react-redux';
-
+import { requestInterval, clearRequestInterval } from '../../../lib/utilities';
 import { updateCountdown } from '../../../actions/catalogosActions';
 
 class CountdownClock extends React.Component {
@@ -26,11 +26,11 @@ class CountdownClock extends React.Component {
 
   componentDidMount() {
     this.updateClock();
-    this.timeInterval = setInterval(this.updateClock, 500);
+    this.timeInterval = requestInterval(this.updateClock, 500);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timeInterval);
+    clearRequestInterval(this.timeInterval);
   }
 
   updateClock() {
@@ -43,15 +43,15 @@ class CountdownClock extends React.Component {
     let hours = ('0' + (Math.floor( (t/(1000*60*60)) % 24 ))).slice(-2);
     let days = ('0' + (Math.floor( t/(1000*60*60*24) ))).slice(-2);
 
-    this.setState({
-      days: days,
-      hours: hours,
-      minutes: minutes,
-      seconds: seconds,
-    });
-
-    if (t <= 0) {
-      clearInterval(this.timeInterval);
+    if (t > 0) {
+      this.setState({
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds,
+      });
+    } else if (t <= 0) {
+      clearRequestInterval(this.timeInterval);
     }
   }
 

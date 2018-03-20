@@ -20,13 +20,14 @@ export default function miembroReducer(state = initialState, action) {
         miembros = Object.keys(action.data).
           filter(key => action.data[key].active).  // Only active Miembros
           map(id => {
-            const { displayName, images, collection } = action.data[id];
+            const { displayName, images, collection, tokens } = action.data[id];
 
             return ({
               id,
               displayName,
               images,
               collection,
+              tokens,
             })
           });
 

@@ -1,4 +1,8 @@
 import { Firebase, FirebaseRef } from '../lib/firebase';
+import { CloudFunctionsUrl } from '../constants/functions';
+import axios from 'axios';
+
+import { showNotification } from './toastActions';
 
 /**
  * Set an Error Message

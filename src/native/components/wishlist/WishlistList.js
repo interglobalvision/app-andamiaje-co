@@ -9,6 +9,8 @@ import Loading from '../Loading';
 import Error from '../Error';
 
 import WishlistItem from './WishlistItem';
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
 
 import styles from '../../constants/styles';
 
@@ -17,6 +19,8 @@ const WishlistList = ({
   error,
   lotes,
   wishlist,
+  activeCatalogo,
+  countdown,
   reFetch,
 }) => {
   // Loading
@@ -29,10 +33,28 @@ const WishlistList = ({
 
   const currentWishlist = lotes.filter(lote => _find(wishlist, item => item.id === lote.id));
 
+  const {
+    saleSoon,
+    saleStarted,
+    saleEnded,
+  } = countdown;
+
   if (currentWishlist.length) {
     return (
       <View style={{flex: 1}}>
-        <ScrollView style={styles.backgroundWhite}>
+        <ScrollView
+          stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
+          style={styles.backgroundWhite}
+        >
+          {(saleSoon || saleStarted || saleEnded) &&
+            <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+          }
+          {saleSoon &&
+            <CountdownClock countdownTo={activeCatalogo.saleDate} />
+          }
+          {saleStarted &&
+            <CountdownClock countdownTo={activeCatalogo.endDate} />
+          }
           <FlatList
             numColumns={1}
             data={currentWishlist}
@@ -52,7 +74,19 @@ const WishlistList = ({
   } else {
     return (
       <View style={{flex: 1}}>
-        <ScrollView style={styles.backgroundWhite}>
+        <ScrollView
+          stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
+          style={styles.backgroundWhite}
+        >
+          {(saleSoon || saleStarted || saleEnded) &&
+            <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+          }
+          {saleSoon &&
+            <CountdownClock countdownTo={activeCatalogo.saleDate} />
+          }
+          {saleStarted &&
+            <CountdownClock countdownTo={activeCatalogo.endDate} />
+          }
           <View style={[
             styles.container,
             styles.flexCenter,
@@ -80,13 +114,16 @@ WishlistList.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   lotes: PropTypes.array.isRequired,
-  wishlist: PropTypes.object.isRequired,
+  wishlist: PropTypes.object,
+  activeCatalogo: PropTypes.object.isRequired,
+  countdown: PropTypes.object.isRequired,
   reFetch: PropTypes.func,
 };
 
 WishlistList.defaultProps = {
   error: null,
   reFetch: null,
+  wishlist: {},
 };
 
 export default WishlistList;

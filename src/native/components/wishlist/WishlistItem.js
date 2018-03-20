@@ -7,6 +7,7 @@ import { getResizedImageUrl } from '../../../lib/utilities';
 
 import LoteHeader from '../lotes/LoteHeader'
 import styles from '../../constants/styles';
+import BuyButton from '../BuyButton';
 
 export default class WishlistItem extends Component {
   static propTypes = {
@@ -41,13 +42,15 @@ export default class WishlistItem extends Component {
     const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
     return (
-      <View style={styles.bordered}>
-        <LoteHeader lote={lote} />
+      <View style={[
+        styles.bordered,
+        styles.paddingBottomBasic,
+      ]}>
+        <LoteHeader lote={lote} bordered={false} />
         <TouchableOpacity onPress={() => {onPress(lote)}} style={[
           styles.container,
           styles.flexRow,
           styles.paddingBottomBasic,
-          styles.paddingTopBasic
         ]}>
           <View style={styles.wishlistImageHolder}>
             <Image style={styles.wishlistImage} source={imageSource} />
@@ -61,6 +64,7 @@ export default class WishlistItem extends Component {
             </View>
           </View>
         </TouchableOpacity>
+        <BuyButton lote={lote} />
       </View>
     );
   }

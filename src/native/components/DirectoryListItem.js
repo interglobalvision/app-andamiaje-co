@@ -18,7 +18,7 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
   }
 
   if (currentMember) {
-    const collectionLength = collection !== undefined ? collection.length : 0;
+    const collectionLength = collection !== undefined && collection !== {} ? Object.keys(collection).length : 0;
     const collectionLengthString = collectionLength === 1 ? '1 obra' : collectionLength.toString() + ' obras';
 
     return (
@@ -35,9 +35,9 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
             <Image source={imageSource} style={[styles.profileAvatarImage]} />
           </View>
           <View style={[styles.profileHeaderTextHolder]}>
-            <Text style={[styles.fontFamilyMedium]}>{ name }</Text>
+            <Text style={[styles.fontFamilyMedium, styles.paddingBottomSmall]}>{ name }</Text>
             <Text style={[styles.fontSizeSmall]}>Colección de {collectionLengthString}</Text>
-            <View style={[styles.paddingTopSmall]}>
+            <View style={[styles.paddingTopBasic]}>
               <Text style={[styles.fontSizeSmall, styles.textLink]}>Ver tu colección</Text>
             </View>
           </View>

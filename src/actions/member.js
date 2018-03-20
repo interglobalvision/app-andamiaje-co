@@ -3,6 +3,8 @@ import statusMessage from './status';
 import { showNotification } from './toastActions';
 import { Firebase, FirebaseRef } from '../lib/firebase';
 import { Actions } from 'react-native-router-flux';
+import _omitBy from 'lodash/omitBy';
+import _isNil from 'lodash/isNil';
 
 /**
   * Sign Up to Firebase
@@ -238,6 +240,9 @@ export function addToWishlist(addedLote) {
     return () => new Promise(resolve => resolve());
   }
 
+  // remove undefined data
+  const cleanLote = _omitBy(addedLote, _isNil);
+
   return (dispatch) => {
     // Get user ID
     const UID = Firebase.auth().currentUser.uid;
@@ -245,12 +250,12 @@ export function addToWishlist(addedLote) {
 
     // push lote to wishlist on firebase
     return new Promise(resolve => FirebaseRef.child(`users/${UID}/wishlist`)
-      .push(addedLote).then(() => {
+      .push(cleanLote).then(() => {
 
         // dispatch action to add lote to wishlist on state
         return resolve(dispatch({
           type: 'USER_WISHLIST_ADD',
-          addedLote,
+          addedLote: cleanLote,
         }));
       }))
       .then(showNotification(dispatch, 'Añadida a tu lista de Deseos'))

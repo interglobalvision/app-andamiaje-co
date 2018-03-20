@@ -61,9 +61,9 @@ class CatalogoViewControl extends Component {
                 flexBasis: '20%',
               }
             ]}
-            onPress={() => {this.props.changeCatalogoLayout(true)}}
+            onPress={() => {this.props.changeCatalogoLayout(false)}}
           >
-            {this.renderGridIcon()}
+            {this.renderListIcon()}
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -72,9 +72,9 @@ class CatalogoViewControl extends Component {
                 flexBasis: '20%',
               }
             ]}
-            onPress={() => {this.props.changeCatalogoLayout(false)}}
+            onPress={() => {this.props.changeCatalogoLayout(true)}}
           >
-            {this.renderListIcon()}
+            {this.renderGridIcon()}
           </TouchableOpacity>
           <TouchableOpacity
             style={{

@@ -8,13 +8,18 @@ import Spacer from '../Spacer';
 
 import LoteSingleObra from './LoteSingleObra';
 import LoteHeader from './LoteHeader';
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
+import BuyButton from '../BuyButton';
+import Toast from '../Toast';
 
 const LoteSingle = ({
   lote,
   obras,
+  activeCatalogo,
+  countdown,
   error,
   loading,
-  reFetch,
 }) => {
 
   // Loading
@@ -23,40 +28,61 @@ const LoteSingle = ({
   // Error
   if (error) return <Error content={error} />;
 
-  const keyExtractor = item => item.id;
-
-  const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
-
   const loteObras = obras.filter( obra => {
     return lote.obras.some( loteObra => {
       return loteObra.id === obra.id;
     });
   });
 
+  const {
+    saleSoon,
+    saleStarted,
+    saleEnded,
+  } = countdown;
+
   return (
-    <ScrollView style={styles.backgroundWhite}>
-      <LoteHeader lote={lote} />
-      <View>
-        {loteObras.map( (item, key) => {
-          let border = true;
-          if (key >= (loteObras.length - 1) ) {
-            border = false;
-          }
-          return (
-            <LoteSingleObra key={keyExtractor} obra={item} border={border}/>
-          )
-        })}
-      </View>
-    </ScrollView>
+    <View style={{flex: 1}}>
+      <ScrollView stickyHeaderIndices={saleSoon || saleStarted ? [1] : [0]} contentContainerStyle={[
+        styles.backgroundWhite,
+        styles.paddingBottomLarge,
+      ]}>
+        {(saleSoon || saleStarted || saleEnded) &&
+          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+        }
+        {saleSoon &&
+          <CountdownClock countdownTo={activeCatalogo.saleDate} />
+        }
+        {saleStarted &&
+          <CountdownClock countdownTo={activeCatalogo.endDate} />
+        }
+
+        <LoteHeader lote={lote} />
+        <View>
+          {loteObras.map( (item, key) => {
+            let border = true;
+            if (key >= (loteObras.length - 1) ) {
+              border = false;
+            }
+            return (
+              <LoteSingleObra key={key} obra={item} border={border}/>
+            )
+          })}
+        </View>
+
+        <BuyButton lote={lote} />
+      </ScrollView>
+      <Toast />
+    </View>
   );
 };
 
 LoteSingle.propTypes = {
   lote: PropTypes.object.isRequired,
   obras: PropTypes.array.isRequired,
+  activeCatalogo: PropTypes.object.isRequired,
+  countdown: PropTypes.object.isRequired,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  reFetch: PropTypes.func,
 };
 
 export default LoteSingle;

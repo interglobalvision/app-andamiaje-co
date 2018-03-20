@@ -9,6 +9,10 @@ import { getResizedImageUrl } from '../../../lib/utilities';
 import styles from '../../constants/styles';
 import Loading from '../Loading';
 import Error from '../Error';
+import WishlistContainer from '../../../containers/WishlistContainer'
+import ArtistaLotes from './ArtistaLotes'
+import ArtistaBio from './ArtistaBio'
+import Toast from '../Toast';
 
 const ArtistaProfile = ({
 	error,
@@ -53,65 +57,63 @@ const ArtistaProfile = ({
   }
 
 	return (
-    <ScrollView style={[styles.backgroundWhite]}>
-      <View style={[
-        styles.container,
-        styles.bordered,
-        styles.flexRow,
-        styles.paddingTopBasic,
-        styles.paddingBottomBasic,
-      ]}>
-        <View>
-          <Image source={imageSource} style={[styles.profileAvatarImage]} />
-        </View>
-        <View style={[styles.profileHeaderTextHolder]}>
-          { name !== 'undefined' ? <View><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : null }
-          { country !== 'undefined' ? <Text style={[styles.fontSizeSmall, styles.paddingBottomSmall]}>{country}</Text>  : null }
-          { gallery !== 'undefined' ?
-            <TouchableOpacity onPress={ () => Linking.openURL(galleryUrl) }>
-              <Text style={[styles.fontSizeSmall, styles.textLink]}>{gallery}</Text>
-            </TouchableOpacity>
-          : null }
-          { websiteUrl !== 'undefined' ?
-            <TouchableOpacity onPress={ () => Linking.openURL(websiteUrl) }>
-              <Text style={[styles.fontSizeSmall, styles.textLink]} numberOfLines={1} ellipsizeMode={'tail'}>{websiteUrl}</Text>
-            </TouchableOpacity>
-          : null }
-        </View>
-      </View>
-
-      <View style={[
-        styles.container,
-        styles.paddingTopBasic,
-        styles.paddingBottomSmall,
-        styles.bordered,
-      ]}>
-        <DraftContentRenderer rawContent={bioRawContent} />
-      </View>
-
-      <TouchableOpacity
-        style={[
+    <View style={{flex: 1}}>
+      <ScrollView style={[styles.backgroundWhite]}>
+        <View style={[
+          styles.container,
+          styles.bordered,
           styles.flexRow,
           styles.paddingTopBasic,
           styles.paddingBottomBasic,
-          styles.bordered,
-          styles.container,
-          {
-            alignItems: 'center'
-          }
-        ]}
-        onPress={() => onPressCv(cvRawContent)}
-      >
-        <View style={{ flex: 1 }}><Text>CV</Text></View>
-        <View>
-          <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+        ]}>
+          <View>
+            <Image source={imageSource} style={[styles.profileAvatarImage]} />
+          </View>
+          <View style={[styles.profileHeaderTextHolder]}>
+            { name !== 'undefined' ? <View><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : null }
+            { country !== 'undefined' ? <Text style={[styles.fontSizeSmall, styles.paddingBottomSmall]}>{country}</Text>  : null }
+            { gallery !== 'undefined' ?
+              <TouchableOpacity onPress={ () => Linking.openURL(galleryUrl) }>
+                <Text style={[styles.fontSizeSmall, styles.textLink]}>{gallery}</Text>
+              </TouchableOpacity>
+            : null }
+            { websiteUrl !== 'undefined' ?
+              <TouchableOpacity onPress={ () => Linking.openURL(websiteUrl) }>
+                <Text style={[styles.fontSizeSmall, styles.textLink]} numberOfLines={1} ellipsizeMode={'tail'}>{websiteUrl}</Text>
+              </TouchableOpacity>
+            : null }
+          </View>
         </View>
-      </TouchableOpacity>
 
-      <ArtistaVideo video={video} />
+        <ArtistaBio bioRawContent={bioRawContent} />
 
-      <ArtistaPortfolio portfolio={portfolio} name={name} />
-    </ScrollView>
+        <TouchableOpacity
+          style={[
+            styles.flexRow,
+            styles.paddingTopBasic,
+            styles.paddingBottomBasic,
+            styles.bordered,
+            styles.container,
+            {
+              alignItems: 'center'
+            }
+          ]}
+          onPress={() => onPressCv(cvRawContent)}
+        >
+          <View style={{ flex: 1 }}><Text>CV</Text></View>
+          <View>
+            <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+          </View>
+        </TouchableOpacity>
+
+        <ArtistaVideo video={video} />
+
+        <WishlistContainer Layout={ArtistaLotes} artistaId={artistaId} />
+
+        <ArtistaPortfolio portfolio={portfolio} name={name} />
+      </ScrollView>
+      <Toast />
+    </View>
 	);
 };
 
