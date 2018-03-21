@@ -6,10 +6,39 @@ import * as Animatable from 'react-native-animatable';
 
 import styles from '../constants/styles';
 
-class MemberTokens extends Component {
+const MemberTokens = ({
+	error,
+	loading,
+	miembros,
+	member,
+	reFetch,
+}) => {
 
+	// Loading
+	if (loading || error) return ( <View></View> );
+
+	// check if logged in member is Miembro
+	const currentMiembro = miembros.find(miembro => miembro.id === member.uid);
+
+	if (currentMiembro !== undefined && currentMiembro !== null) {
+		if (currentMiembro.tokens === undefined || currentMiembro.tokens === '') {
+			return <View></View>
+		}
+
+		return (
+			<TokensDisplay tokens={currentMiembro.tokens} />
+		)
+	}
+
+	return (
+		<View></View>
+	)
+}
+
+class TokensDisplay extends Component {
   constructor(props) {
     super(props);
+
     Animatable.initializeRegistryWithDefinitions({
       bigBounceIn: {
         0: {
@@ -37,58 +66,39 @@ class MemberTokens extends Component {
     });
   }
 
-  componentWillUpdate() {
-    this.animateTokens(this.view);
-  }
-
   animateTokens(viewRef) {
     viewRef.bigBounceIn(1000);
   }
 
+  componentWillUpdate() {
+    this.animateTokens(this.view);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.tokens !== nextProps.tokens;
+  }
+
   render() {
-    const {
-      error,
-      loading,
-      miembros,
-      member,
-      reFetch,
-    } = this.props;
-
-    // Loading
-    if (loading || error) return ( <View></View> );
-
-    // check if logged in member is Miembro
-    const currentMiembro = miembros.find(miembro => miembro.id === member.uid);
+    const { tokens } = this.props;
 
     handleViewRef = ref => this.view = ref;
 
-    if (currentMiembro !== undefined && currentMiembro !== null) {
-      if (currentMiembro.tokens === undefined || currentMiembro.tokens === '') {
-        return <View></View>
-      }
-
-      return (
-        <Animatable.View
-          ref={handleViewRef}
-        >
-          <View style={[
-            styles.container,
-          ]}>
-          <Text style={[
-            styles.fontFamilyMedium,
-            {
-              letterSpacing: 1
-            }
-          ]}>ŧ {currentMiembro.tokens}</Text>
-          </View>
-        </Animatable.View>
-      )
-    }
-
     return (
-      <View></View>
-    )
-
+      <Animatable.View
+        ref={handleViewRef}
+      >
+        <View style={[
+          styles.container,
+        ]}>
+        <Text style={[
+          styles.fontFamilyMedium,
+          {
+            letterSpacing: 1
+          }
+        ]}>ŧ {tokens}</Text>
+        </View>
+      </Animatable.View>
+    );
   }
 }
 
