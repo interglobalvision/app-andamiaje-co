@@ -15,10 +15,12 @@ export default function noticiaReducer(state = initialState, action) {
 
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        noticias = Object.keys(action.data).
-          filter(key => action.data[key].published).  // Only published Noticias
-          reverse(). // Reverse data becasue it comes sort by publishedDate ASC
-          map(id => {
+        noticias = Object.keys(action.data)
+          .filter(key => action.data[key].published) // Only published Noticias
+          .sort( (a,b) => {
+            return action.data[b].publishDate - action.data[a].publishDate;
+          })
+          .map(id => {
             const {
               title,
               rawContent,
