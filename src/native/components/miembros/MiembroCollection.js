@@ -7,7 +7,6 @@ import SectionHeader from '../SectionHeader';
 import styles from '../../constants/styles';
 
 const MiembroCollection = ({ miembroId, memberId, collection }) => {
-  console.log('collection', collection);
 
   const emptyCollection = collection && Object.keys(collection).length ? false : true;
   const isCurrentMember = miembroId === memberId ? true : false;
