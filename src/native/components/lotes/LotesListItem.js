@@ -13,6 +13,7 @@ import styles from '../../constants/styles';
 
 const LotesListItem = ({
   lote,
+  displayOnly,
 }) => {
 
   const keyExtractor = item => item.id;
@@ -59,7 +60,7 @@ const LotesListItem = ({
         </View>
       </TouchableOpacity>
 
-      <BuyButton lote={lote} />
+    { !displayOnly ? <BuyButton lote={lote} /> : null }
     </View>
   );
 };
