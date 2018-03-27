@@ -60,8 +60,9 @@ export const getScaledImageDimensions = (imageWidth, imageHeight, containerWidth
   return imageDimensions;
 }
 
+// Return the best source to match double the screen width
 export const getBestVideoSrc = (targetWidth, sources) => {
-  const targetSource = Object.keys(sources).find( index => index > targetWidth);
+  const targetSource = Object.keys(sources).find( index => index > targetWidth * 2); // keys are actually the widths
   return sources[targetSource];
 }
 

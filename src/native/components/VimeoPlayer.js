@@ -26,7 +26,7 @@ export default class VimeoPlayer extends Component {
                 uri: source.link,
               },
               posterSource: {
-                uri: source.thumb.link,
+                uri: source.thumb,
               },
               usePoster: true,
           }}
