@@ -1,7 +1,6 @@
 import React from 'react';
-import { FlatList, RefreshControl, Text } from 'react-native';
+import { View } from 'react-native';
 import _filter from 'lodash/filter';
-import _find from 'lodash/find';
 
 import LotesListItem from '../lotes/LotesListItem';
 import Loading from '../Loading';
@@ -12,7 +11,6 @@ const CollectionLotes = ({
   error,
   lotes,
   collection,
-  reFetch,
 }) => {
 
   // Loading
@@ -31,18 +29,9 @@ const CollectionLotes = ({
   const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
   return (
-    <FlatList
-      numColumns={1}
-      data={collectionLotes}
-      renderItem={({item}) => <LotesListItem lote={item} displayOnly={true} />}
-      keyExtractor={keyExtractor}
-      refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          onRefresh={reFetch}
-        />
-      }
-    />
+    <View>
+      { collectionLotes.map( (item, key) => <LotesListItem key={key} lote={item} displayOnly={true} />) }
+    </View>
   );
 
 }

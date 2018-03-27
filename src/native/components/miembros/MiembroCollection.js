@@ -16,15 +16,12 @@ const MiembroCollection = ({ miembroId, memberId, collection }) => {
   return (
     <View>
       <SectionHeader title={headerTitle}/>
-      <View style={[
+      { emptyCollection ? <View style={[
         styles.container,
         styles.backgroundWhite,
         styles.flexCenter,
         styles.emptyItemsHeight
-      ]}>
-        { emptyCollection ? <Text>{emptyNotice}</Text> : null }
-        { !emptyCollection ? <MemberCollectionContainer collection={collection} Layout={CollectionLotes} /> : null }
-      </View>
+      ]}><Text>{emptyNotice}</Text></View> : <MemberCollectionContainer collection={collection} Layout={CollectionLotes} /> }
     </View>
   )
 };
