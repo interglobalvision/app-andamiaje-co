@@ -1,6 +1,7 @@
 import status from './status';
 import member from './member';
 import toast from './toastReducer';
+import confetti from './confettiReducer';
 import recipes from './recipes';
 import noticias from './noticiasReducer';
 import catalogos from './catalogosReducer';
@@ -24,6 +25,7 @@ export default {
   rehydrated,
   status,
   toast,
+  confetti,
   member,
   recipes,
   noticias,
