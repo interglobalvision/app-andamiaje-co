@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Dimensions, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
@@ -94,57 +95,70 @@ const range = count => {
 
 const randomColor = () => colors[Math.floor(randomize(colors.length))];
 
-const Confetti = ({ count = 30, duration = 5000 }) => (
-  <View pointerEvents="none" style={[
-    {
-      position: 'absolute',
-      top: 0,
-      width: SCREEN_DIMENSIONS.width,
-      height: SCREEN_DIMENSIONS.height,
-    }
-  ]}>
-    {range(count)
-      .map(i => randomize(2000))
-      .map((flipDelay, i) => (
-        <Falling
-          key={i}
-          duration={duration}
-          delay={i * (duration / count)}
-          style={{
-            position: 'absolute',
-            paddingHorizontal: WIGGLE_ROOM,
-            left: randomize(SCREEN_DIMENSIONS.width - PARTICLE_DIMENSIONS.width) - WIGGLE_ROOM,
-            backgroundColor: 'blue',
-          }}
-        >
-          <Swinging amplitude={PARTICLE_DIMENSIONS.width / 5} delay={randomize(duration)}>
-            <FlippingParticle
-              delay={flipDelay}
+const Confetti = ({ show, count = 30, duration = 5000 }) => {
+  if(show) {
+    return(
+      <View pointerEvents="none" style={[
+        {
+          position: 'absolute',
+          top: 0,
+          width: SCREEN_DIMENSIONS.width,
+          height: SCREEN_DIMENSIONS.height,
+        }
+      ]}>
+        {range(count)
+          .map(i => randomize(2000))
+          .map((flipDelay, i) => (
+            <Falling
+              key={i}
+              duration={duration}
+              delay={i * (duration / count)}
               style={{
                 position: 'absolute',
-                width: PARTICLE_DIMENSIONS.width,
-                height: PARTICLE_DIMENSIONS.height,
-                backgroundColor: randomColor(),
-                borderColor: 'white',
-                borderWidth: 1,
+                paddingHorizontal: WIGGLE_ROOM,
+                left: randomize(SCREEN_DIMENSIONS.width - PARTICLE_DIMENSIONS.width) - WIGGLE_ROOM,
+                backgroundColor: 'blue',
               }}
-            />
-            <FlippingParticle
-              delay={flipDelay}
-              back
-              style={{
-                position: 'absolute',
-                width: PARTICLE_DIMENSIONS.width,
-                height: PARTICLE_DIMENSIONS.height,
-                backgroundColor: randomColor(),
-                borderColor: 'white',
-                borderWidth: 1,
-              }}
-            />
-          </Swinging>
-        </Falling>
-      ))}
-  </View>
-);
+            >
+              <Swinging amplitude={PARTICLE_DIMENSIONS.width / 5} delay={randomize(duration)}>
+                <FlippingParticle
+                  delay={flipDelay}
+                  style={{
+                    position: 'absolute',
+                    width: PARTICLE_DIMENSIONS.width,
+                    height: PARTICLE_DIMENSIONS.height,
+                    backgroundColor: randomColor(),
+                    borderColor: 'white',
+                    borderWidth: 1,
+                  }}
+                />
+                <FlippingParticle
+                  delay={flipDelay}
+                  back
+                  style={{
+                    position: 'absolute',
+                    width: PARTICLE_DIMENSIONS.width,
+                    height: PARTICLE_DIMENSIONS.height,
+                    backgroundColor: randomColor(),
+                    borderColor: 'white',
+                    borderWidth: 1,
+                  }}
+                />
+              </Swinging>
+            </Falling>
+          ))}
+      </View>
+    );
+  }
 
-export default Confetti;
+  return null;
+};
+
+const mapDispatchToProps = {
+};
+
+const mapStateToProps = state => ({
+  show: state.confetti.show,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Confetti);
