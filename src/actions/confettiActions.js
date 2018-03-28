@@ -15,7 +15,7 @@ export function clearConfetti() {
 export function throwConfetti(dispatch, message) {
 	dispatch(showConfetti());
 
-	return delay(5000).then(() => {
+	return delay(10000).then(() => {
 		dispatch(clearConfetti());
 	});
 
