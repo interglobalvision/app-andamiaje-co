@@ -26,7 +26,7 @@ class CountdownClock extends React.Component {
 
   componentDidMount() {
     this.updateClock();
-    //this.timeInterval = requestInterval(this.updateClock, 500);
+    this.timeInterval = requestInterval(this.updateClock, 500);
   }
 
   componentWillUnmount() {

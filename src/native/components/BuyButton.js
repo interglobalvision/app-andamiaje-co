@@ -33,7 +33,9 @@ class BuyButton extends React.Component {
     if (!this.state.complete) {
       const duration = 2000;
 
-      this.props.throwConfetti();
+      // UNCOMMENT this line in order to throw conffeti as soon as the button is
+      // pressed, good for testing
+      //this.props.throwConfetti();
 
       this.pressTimeout = setTimeout(this.confirmBuy, duration);
 
