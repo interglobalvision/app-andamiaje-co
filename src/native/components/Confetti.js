@@ -8,13 +8,13 @@ const SCREEN_DIMENSIONS = Dimensions.get('window');
 const WIGGLE_ROOM = 100;
 
 const colors = [
-  'rgb(92,255,97)',
-  'rgb(191,225,4)',
-  'rgb(228,220,4)',
-  'rgb(255,95,88)',
-  'rgb(247,39,141)',
-  'rgb(0,184,255)',
-  'rgb(183,6,254)',
+  'rgba(92,255,97,.6)',
+  'rgba(191,225,4,.6)',
+  'rgba(228,220,4,.6)',
+  'rgba(255,95,88,.6)',
+  'rgba(247,39,141,.6)',
+  'rgba(0,184,255,.6)',
+  'rgba(183,6,254,.6)',
 ];
 
 const FlippingParticle = ({ back = false, delay, duration = 1000, source, style = {} }) => (
