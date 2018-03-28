@@ -69,6 +69,7 @@ const WishlistList = ({
             }
           />
         </ScrollView>
+        <Confetti />
         <Toast />
       </View>
     );
@@ -105,8 +106,6 @@ const WishlistList = ({
             ]}>Agrega Obras para guardar las que más te gustan</Text>
           </View>
         </ScrollView>
-        <Confetti />
-        <Toast />
       </View>
     )
   }
