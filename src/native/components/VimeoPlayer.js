@@ -12,6 +12,8 @@ export default class VimeoPlayer extends Component {
 
     const source = getBestVideoSrc(width, sources);
 
+    const thumbImage = require('../../images/icons/vimeo-thumb.png');
+
 		return (
 			<View>
         <VideoPlayer
@@ -30,6 +32,7 @@ export default class VimeoPlayer extends Component {
               },
               usePoster: true,
           }}
+          thumbImage={thumbImage}
         />
 			</View>
 		);
