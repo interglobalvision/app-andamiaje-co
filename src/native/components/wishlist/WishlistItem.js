@@ -38,7 +38,16 @@ export default class WishlistItem extends Component {
 
     const keyExtractor = item => item.id;
 
-    const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
+    const onPress = item => Actions.lote({
+      match: {
+        params: {
+          id: String(item.id)
+        }
+      },
+      onBack: () => {
+        Actions.wishlist();
+      },
+    });
 
     return (
       <View style={styles.bordered}>
