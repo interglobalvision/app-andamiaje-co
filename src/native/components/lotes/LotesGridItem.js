@@ -27,6 +27,27 @@ const LotesGridItem = ({
   return (
     <TouchableOpacity onPress={() => onPress(item)}>
       <Image source={{ uri: imageSrc, cache: 'force-cache' }} style={{ width: thirdWidth, height: thirdWidth }}/>
+      {item.owner !== undefined &&
+        <View style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          overflow: 'hidden',
+          backgroundColor: 'rgba(30,30,30,.4)',
+        }}>
+          <View style={{
+            position: 'absolute',
+            width: '150%',
+            top: '50%',
+            left: '-25%',
+            borderTopWidth: 2,
+            borderTopColor: 'rgba(30,30,30,1)',
+            transform: [{ rotate: '25deg' }],
+          }}></View>
+        </View>
+      }
     </TouchableOpacity>
   );
 };
