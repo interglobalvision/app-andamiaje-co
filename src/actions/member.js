@@ -73,6 +73,34 @@ function getUserData(dispatch) {
 }
 
 /**
+  * Get this User's Details
+  */
+export function getUser(dispatch) {
+  const UID = (
+    FirebaseRef
+    && Firebase
+    && Firebase.auth()
+    && Firebase.auth().currentUser
+    && Firebase.auth().currentUser.uid
+  ) ? Firebase.auth().currentUser.uid : null;
+
+  if (!UID) {
+    return () => new Promise(resolve => resolve());
+  }
+
+  const ref = FirebaseRef.child(`users/${UID}`);
+
+  return ref.on('value', (snapshot) => {
+    const userData = snapshot.val() || [];
+
+    return dispatch({
+      type: 'USER_DETAILS_UPDATE',
+      data: userData,
+    });
+  });
+}
+
+/**
   * Login to Firebase with Email/Password
   */
 export function login(formData) {

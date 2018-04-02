@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getNoticias, setError } from '../actions/noticiasActions';
+import { getUser } from '../actions/member';
 
 class NoticiasContainer extends Component {
   static propTypes = {
@@ -12,11 +13,24 @@ class NoticiasContainer extends Component {
       error: PropTypes.string,
       noticias: PropTypes.array.isRequired,
     }).isRequired,
+    getUser: PropTypes.func.isRequired,
     getNoticias: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
   }
 
-  componentDidMount = () => this.fetchNoticias();
+  componentDidMount = () => {
+    this.fetchUser();
+    //this.fetchNoticias();
+  }
+
+  fetchUser = () => {
+    return this.props.getUser()
+      .then(() => this.fetchNoticias())
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        return this.props.setError(err);
+      });
+  }
 
   /**
     * Fetch Data from API, saving to Redux
@@ -49,6 +63,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  getUser,
   getNoticias,
   setError,
 };
