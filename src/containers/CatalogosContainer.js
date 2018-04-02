@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getCatalogos, setError } from '../actions/catalogosActions';
+import { getUser} from '../actions/member';
 import { updateCountdown } from '../actions/catalogosActions';
 
 class CatalogosContainer extends Component {
@@ -14,11 +15,23 @@ class CatalogosContainer extends Component {
       activeCatalogo: PropTypes.object.isRequired,
       pastCatalogos: PropTypes.array.isRequired,
     }).isRequired,
+    getUser: PropTypes.func.isRequired,
     getCatalogos: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
   }
 
-  componentDidMount = () => this.fetchCatalogos();
+  componentDidMount = () => {
+    this.fetchUser();
+  }
+
+  fetchUser = () => {
+    return this.props.getUser()
+      .then(() => this.fetchCatalogos())
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        return this.props.setError(err);
+      });
+  }
 
   /**
     * Fetch Data from API, saving to Redux
@@ -54,6 +67,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  getUser,
   getCatalogos,
   setError,
   updateCountdown,
