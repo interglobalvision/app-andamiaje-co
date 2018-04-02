@@ -88,16 +88,15 @@ export function getUser(dispatch) {
     return () => new Promise(resolve => resolve());
   }
 
-  const ref = FirebaseRef.child(`users/${UID}`);
+  return dispatch => new Promise(resolve => FirebaseRef.child(`users/${UID}`)
+    .on('value', (snapshot) => {
+      const userData = snapshot.val() || [];
 
-  return ref.on('value', (snapshot) => {
-    const userData = snapshot.val() || [];
-
-    return dispatch({
-      type: 'USER_DETAILS_UPDATE',
-      data: userData,
-    });
-  });
+      return dispatch({
+        type: 'USER_DETAILS_UPDATE',
+        data: userData,
+      });
+    })).catch(e => console.log(e));
 }
 
 /**
