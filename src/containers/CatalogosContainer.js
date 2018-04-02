@@ -21,7 +21,7 @@ class CatalogosContainer extends Component {
   }
 
   componentDidMount = () => {
-    this.fetchCatalogos();
+    this.fetchUser();
   }
 
   fetchUser = () => {
