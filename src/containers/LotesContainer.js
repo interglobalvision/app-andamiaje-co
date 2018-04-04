@@ -29,7 +29,7 @@ class LotesContainer extends Component {
     catalogos: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
-      catalogos: PropTypes.array.isRequired,
+      activeCatalogo: PropTypes.object.isRequired,
     }).isRequired,
     viewSettings: PropTypes.object.isRequired,
     getLotes: PropTypes.func.isRequired,

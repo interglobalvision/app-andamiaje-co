@@ -12,6 +12,7 @@ import CountdownTitle from '../countdown/CountdownTitle';
 import CountdownClock from '../countdown/CountdownClock';
 import BuyButton from '../BuyButton';
 import Toast from '../Toast';
+import Confetti from '../Confetti';
 
 const LoteSingle = ({
   lote,
@@ -71,6 +72,7 @@ const LoteSingle = ({
 
         <BuyButton lote={lote} />
       </ScrollView>
+      <Confetti />
       <Toast />
     </View>
   );

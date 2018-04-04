@@ -16,7 +16,7 @@ class WishlistContainer extends Component {
     catalogos: PropTypes.shape({
       loading: PropTypes.bool.isRequired,
       error: PropTypes.string,
-      catalogos: PropTypes.array.isRequired,
+      activeCatalogo: PropTypes.object.isRequired,
     }).isRequired,
     getLotes: PropTypes.func.isRequired,
     setLotesError: PropTypes.func.isRequired,

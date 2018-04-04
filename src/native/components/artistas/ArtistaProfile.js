@@ -13,6 +13,7 @@ import WishlistContainer from '../../../containers/WishlistContainer'
 import ArtistaLotes from './ArtistaLotes'
 import ArtistaBio from './ArtistaBio'
 import Toast from '../Toast';
+import Confetti from '../Confetti';
 
 const ArtistaProfile = ({
 	error,
@@ -112,6 +113,7 @@ const ArtistaProfile = ({
 
         <ArtistaPortfolio portfolio={portfolio} name={name} />
       </ScrollView>
+      <Confetti />
       <Toast />
     </View>
 	);
