@@ -1,6 +1,7 @@
 import { Firebase, FirebaseRef } from '../lib/firebase';
 import { CloudFunctionsUrl } from '../constants/functions';
 import axios from 'axios';
+import Sentry from 'sentry-expo';
 
 import { showNotification } from './toastActions';
 
@@ -39,6 +40,10 @@ export function getLotes() {
           data: lotes,
           activeLotes, // pass activeLotes to loteReducer as action.activeLotes
         }));
-      })).catch(e => console.log(e));
+      })).catch(e => {
+        console.log(e);
+        // capture the exception
+        Sentry.captureException(new Error(e));
+      });
   }
 }
