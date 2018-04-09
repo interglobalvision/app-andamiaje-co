@@ -85,6 +85,7 @@
     "redux": "^3.7.2",
     "redux-persist": "^5.4.0",
     "redux-thunk": "^2.2.0",
+    "sentry-expo": "^1.7.0",
     "superagent": "^3.8.1"
   }
 }
