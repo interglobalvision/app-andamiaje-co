@@ -20,7 +20,7 @@ export default function artistaReducer(state = initialState, action) {
         artistas = Object.keys(action.data).
           filter(key => action.data[key].active).  // Only active Artistas
           map(id => {
-            const { name, gallery, galleryUrl, websiteUrl, country, bioRawContent, cvRawContent, images, portfolio, video } = action.data[id];
+            const { name, gallery, galleryUrl, websiteUrl, country, bioRawContent, cvRawContent, images, portfolio, video, vimeo } = action.data[id];
 
             return ({
               id,
@@ -34,6 +34,7 @@ export default function artistaReducer(state = initialState, action) {
               images,
               portfolio,
               video,
+              vimeo,
             })
           });
 

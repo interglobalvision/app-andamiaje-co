@@ -12,6 +12,7 @@ import { getResizedImageUrl, getBestImageSize, getScaledImageDimensions } from '
 import TextBullet from '../TextBullet';
 import colors from '../../constants/colors';
 import Spacer from '../Spacer';
+import VimeoPlayer from '../VimeoPlayer';
 
 const onPress = id => Actions.artista({
   match: {
@@ -61,11 +62,11 @@ const renderArtista = (item) => {
 const NoticiaItem = ({item, border}) => {
 
   let holderStyle = [
-    styles.container,
     styles.backgroundWhite,
     styles.paddingTopMid,
     styles.paddingBottomLarge
   ];
+
   if (border) {
     holderStyle.push(styles.bordered);
   }
@@ -78,7 +79,8 @@ const NoticiaItem = ({item, border}) => {
     customStyles,
   };
 
-  // function to check if it has video
+  // function to check if it has vimeo and video (youtube)
+  const hasVimeo = item.vimeo !== undefined && item.vimeo.sources !== undefined;
   const hasVideo = item.video.url !== undefined && item.video.url !== '' && item.video.provider === 'youtube';
 
   // Check for image
@@ -86,9 +88,10 @@ const NoticiaItem = ({item, border}) => {
   let imageSrc;
   let imageDimensions;
 
-  if (item.images !== undefined && item.images.length && !hasVideo) {
+  const windowWidth = Dimensions.get('window').width;
+
+  if (item.images !== undefined && item.images.length && !hasVideo && !hasVimeo) {
     const image = item.images[0];
-    const windowWidth = Dimensions.get('window').width;
     imageSize = getBestImageSize(containerWidth);
     imageSrc = getResizedImageUrl(image, imageSize);
     imageDimensions = getScaledImageDimensions(image.width, image.height, containerWidth);
@@ -96,26 +99,29 @@ const NoticiaItem = ({item, border}) => {
 
   return (
     <View style={holderStyle}>
-      <View style={styles.paddingBottomBasic}>
+      <View style={[styles.container, styles.paddingBottomBasic]}>
         <Text>
           <Text style={[styles.fontBold, styles.fontSizeMid ]}>{item.title}</Text><TextBullet /><Text style={[styles.fontSizeSmall]}>{distanceInWordsToNow(item.publishDate, { locale: es })}</Text>
         </Text>
       </View>
 
-      <View style={styles.paddingBottomMid}>{getRNDraftJSBlocks(draftParams)}</View>
+      <View style={[styles.container, styles.paddingBottomMid]}>{getRNDraftJSBlocks(draftParams)}</View>
 
-      {renderArtista(item)}
+      <View style={styles.container}>{renderArtista(item)}</View>
 
-      { hasVideo ? <Thumbnail url={item.video.url} imageWidth={containerWidth} imageHeight={((containerWidth / 16) * 9)} iconStyle={{width: 25, height: 29}} /> : null }
+      { hasVimeo && <VimeoPlayer sources={item.vimeo.sources} width={windowWidth} /> }
+      { hasVideo && !hasVimeo ? <Thumbnail url={item.video.url} imageWidth={containerWidth} imageHeight={((containerWidth / 16) * 9)} iconStyle={{width: 25, height: 29}} /> : null }
 
-      { imageSrc !== null && !hasVideo ?
-        <Image
-          source={{ uri: imageSrc, cache: 'force-cache' }}
-          style={{
-            width: imageDimensions.width,
-            height: imageDimensions.height
-          }}
-        /> : null }
+      { imageSrc !== null && !hasVideo && !hasVimeo ?
+        <View style={[styles.container, styles.flexCenter]}>
+          <Image
+            source={{ uri: imageSrc, cache: 'force-cache' }}
+            style={{
+              width: imageDimensions.width,
+              height: imageDimensions.height
+            }}
+          />
+        </View> : null }
     </View>
   );
 }

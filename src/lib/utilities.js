@@ -60,6 +60,15 @@ export const getScaledImageDimensions = (imageWidth, imageHeight, containerWidth
   return imageDimensions;
 }
 
+// Return the best source to match double the screen width
+export const getBestVideoSrc = (targetWidth, sources) => {
+  let targetSource = Object.keys(sources).find( index => index > targetWidth * 2); // keys are actually the widths
+  if (targetSource == undefined) {
+    targetSource = '1920';
+  }
+  return sources[targetSource];
+}
+
 export const delay = (ms) => new Promise(resolve =>
   setTimeout(resolve, ms)
 );

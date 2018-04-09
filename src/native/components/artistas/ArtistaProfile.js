@@ -45,6 +45,7 @@ const ArtistaProfile = ({
     video,
     bioRawContent,
     cvRawContent,
+    vimeo,
   } = artista;
 
   let imageSource = require('../../../images/placeholder.png');
@@ -107,7 +108,7 @@ const ArtistaProfile = ({
           </View>
         </TouchableOpacity>
 
-        <ArtistaVideo video={video} />
+        <ArtistaVideo video={video} vimeo={vimeo} />
 
         <WishlistContainer Layout={ArtistaLotes} artistaId={artistaId} />
 
