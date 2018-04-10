@@ -7,6 +7,12 @@ import _omitBy from 'lodash/omitBy';
 import _isNil from 'lodash/isNil';
 import Sentry from 'sentry-expo';
 
+export function setError(message) {
+  return dispatch => new Promise(resolve => resolve(dispatch({
+    type: 'USER_ERROR',
+    data: message,
+  })));
+}
 /**
   * Sign Up to Firebase
   */

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { getNoticias, setError } from '../actions/noticiasActions';
 import { getUser } from '../actions/member';
+import { getCatalogos, updateCountdown } from '../actions/catalogosActions';
 
 class NoticiasContainer extends Component {
   static propTypes = {
@@ -13,6 +14,11 @@ class NoticiasContainer extends Component {
       error: PropTypes.string,
       noticias: PropTypes.array.isRequired,
     }).isRequired,
+    catalogos: PropTypes.shape({
+      activeCatalogo: PropTypes.object.isRequired,
+      countdown: PropTypes.object,
+    }).isRequired,
+    countdown: PropTypes.object,
     getUser: PropTypes.func.isRequired,
     getNoticias: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
@@ -32,11 +38,9 @@ class NoticiasContainer extends Component {
       });
   }
 
-  /**
-    * Fetch Data from API, saving to Redux
-    */
   fetchNoticias = () => {
     return this.props.getNoticias()
+      .then(() => this.fetchCatalogos())
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setError(err);
@@ -44,14 +48,25 @@ class NoticiasContainer extends Component {
 
   }
 
+  fetchCatalogos = () => {
+    return this.props.getCatalogos()
+      .then(() => this.props.updateCountdown())
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+        return this.props.setError(err);
+      });
+  }
+
   render = () => {
-    const { Layout, noticias } = this.props;
+    const { Layout, noticias, catalogos } = this.props;
 
     return (
       <Layout
         error={noticias.error}
         loading={noticias.loading}
         noticias={noticias.noticias}
+        activeCatalogo={catalogos.activeCatalogo}
+        countdown={catalogos.countdown}
         reFetch={() => this.fetchNoticias()}
       />
     );
@@ -60,11 +75,14 @@ class NoticiasContainer extends Component {
 
 const mapStateToProps = state => ({
   noticias: state.noticias || {},
+  catalogos: state.catalogos || {},
 });
 
 const mapDispatchToProps = {
   getUser,
   getNoticias,
+  getCatalogos,
+  updateCountdown,
   setError,
 };
 
