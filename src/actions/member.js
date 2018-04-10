@@ -92,10 +92,10 @@ export function getUser(dispatch) {
     .on('value', (snapshot) => {
       const userData = snapshot.val() || [];
 
-      return dispatch({
+      return resolve(dispatch({
         type: 'USER_DETAILS_UPDATE',
         data: userData,
-      });
+      }));
     })).catch(e => console.log(e));
 }
 
