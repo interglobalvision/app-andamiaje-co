@@ -26,7 +26,13 @@ export function getCatalogos() {
         type: 'CATALOGOS_REPLACE',
         data: catalogos,
       }));
-    })).catch(e => console.log(e));
+    }))
+    .then( () => {
+      return dispatch({
+        type: 'UPDATE_COUNTDOWN',
+      });
+    })
+    .catch(e => console.log(e));
 }
 
 /**
