@@ -115,10 +115,10 @@ export function getUser(dispatch) {
         tokens: userData.tokens,
       });
 
-      return dispatch({
+      return resolve(dispatch({
         type: 'USER_DETAILS_UPDATE',
         data: userData,
-      });
+      }));
     }))
     .catch(error => {
       console.log(error);
