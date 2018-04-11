@@ -81,6 +81,7 @@ const Index = (
       {...DefaultProps.tabProps}
       hideNavBar
       swipeEnabled={false}
+      backToInitial={true}
     >
       <Stack
         title='Noticias'
@@ -168,6 +169,7 @@ const Index = (
           {...DefaultProps.topTabProps}
           headerMode='none'
           swipeEnabled={true}
+          backToInitial={true}
         >
           <Stack
             title='Artistas'
