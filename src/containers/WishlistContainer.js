@@ -48,8 +48,8 @@ class WishlistContainer extends Component {
   }
 
   render = () => {
-    const { Layout, lotes, wishlist, artistaId } = this.props;
-    const { activeCatalogo, countdown } = this.props.catalogos;
+    const { Layout, lotes, wishlist, artistaId, countdown } = this.props;
+    const { activeCatalogo } = this.props.catalogos;
 
     const loading = this.props.lotes.loading || this.props.catalogos.loading ? true : false;
 
@@ -82,6 +82,7 @@ const mapStateToProps = state => ({
   lotes: state.lotes || {},
   wishlist: state.member.wishlist,
   catalogos: state.catalogos || {},
+  countdown: state.countdown || {},
 });
 
 const mapDispatchToProps = {

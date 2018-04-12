@@ -55,6 +55,7 @@ const ArtistaProfile = ({
     saleSoon,
     saleStarted,
     saleEnded,
+    artistaCountdown,
   } = countdown;
 
   let imageSource = require('../../../images/placeholder.png');
@@ -73,13 +74,13 @@ const ArtistaProfile = ({
         stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
         style={[styles.backgroundWhite]}
       >
-        {(saleSoon || saleStarted || saleEnded) &&
+        { artistaCountdown && (saleSoon || saleStarted || saleEnded) &&
           <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
         }
-        {saleSoon &&
+        { artistaCountdown && saleSoon &&
           <CountdownClock countdownTo={activeCatalogo.saleDate} />
         }
-        {saleStarted &&
+        { artistaCountdown && saleStarted &&
           <CountdownClock countdownTo={activeCatalogo.endDate} />
         }
 

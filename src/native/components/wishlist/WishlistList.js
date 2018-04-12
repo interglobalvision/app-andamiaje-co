@@ -38,6 +38,7 @@ const WishlistList = ({
     saleSoon,
     saleStarted,
     saleEnded,
+    wishlistCountdown,
   } = countdown;
 
   if (currentWishlist.length) {
@@ -47,15 +48,16 @@ const WishlistList = ({
           stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
           style={styles.backgroundWhite}
         >
-          {(saleSoon || saleStarted || saleEnded) &&
+          { wishlistCountdown && (saleSoon || saleStarted || saleEnded) &&
             <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
           }
-          {saleSoon &&
+          { wishlistCountdown && saleSoon &&
             <CountdownClock countdownTo={activeCatalogo.saleDate} />
           }
-          {saleStarted &&
+          { wishlistCountdown && saleStarted &&
             <CountdownClock countdownTo={activeCatalogo.endDate} />
           }
+
           <FlatList
             numColumns={1}
             data={currentWishlist}

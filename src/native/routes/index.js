@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Router, Scene, Tabs, Stack, Actions } from 'react-native-router-flux';
 
-import { updateCountdown } from '../../actions/countdownActions';
+import {
+  startNoticiasCountdown,
+  stopNoticiasCountdown,
+  startCatalogosCountdown,
+  stopCatalogosCountdown,
+  startWishlistCountdown,
+  stopWishlistCountdown,
+  startArtistaCountdown,
+  stopArtistaCountdown,
+} from '../../actions/countdownActions';
 
 import { Image } from 'react-native';
 
@@ -62,13 +71,8 @@ import BackButton from '../../images/icons/icon-back.png';
 class ConnectedRouter extends Component {
   constructor(props) {
     super(props);
-
-    this.callThis = this.callThis.bind(this);
   }
 
-  callThis() {
-    console.log(this.props);
-  }
   render() {
     return (
       <Router>
@@ -117,7 +121,8 @@ class ConnectedRouter extends Component {
                 }}
                 component={NoticiasContainer}
                 Layout={Noticias}
-                onEnter={this.callThis}
+                onEnter={this.props.startNoticiasCountdown}
+                onExit={this.props.stopNoticiasCountdown}
               />
             </Stack>
             <Stack
@@ -137,6 +142,8 @@ class ConnectedRouter extends Component {
                 Layout={CatalogosList}
                 renderLeftButton={EmptyNavButton}
                 renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
+                onEnter={this.props.startCatalogosCountdown}
+                onExit={this.props.stopCatalogosCountdown}
               />
               <Scene
                 key='lote'
@@ -164,6 +171,8 @@ class ConnectedRouter extends Component {
                 Layout={WishlistList}
                 renderLeftButton={EmptyNavButton}
                 renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
+                onEnter={this.props.startWishlistCountdown}
+                onExit={this.props.stopWishlistCountdown}
               />
             </Stack>
             <Stack
@@ -211,6 +220,8 @@ class ConnectedRouter extends Component {
                 component={ArtistasContainer}
                 Layout={ArtistaProfile}
                 renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
+                onEnter={this.props.startArtistaCountdown}
+                onExit={this.props.stopArtistaCountdown}
               />
               <Scene
                 key='artistaCv'
@@ -259,7 +270,14 @@ class ConnectedRouter extends Component {
 }
 
 const mapDispatchToProps = {
-  updateCountdown,
+  startNoticiasCountdown,
+  stopNoticiasCountdown,
+  startCatalogosCountdown,
+  stopCatalogosCountdown,
+  startWishlistCountdown,
+  stopWishlistCountdown,
+  startArtistaCountdown,
+  stopArtistaCountdown,
 };
 
 export default connect(null, mapDispatchToProps)(ConnectedRouter);
