@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StatusBar, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import { Router } from 'react-native-router-flux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import Sentry from 'sentry-expo';
 
@@ -11,7 +10,7 @@ import getTheme from '../../native-base-theme/components';
 import theme from '../../native-base-theme/variables/commonColor';
 import SentryDSN  from '../lib/sentry';
 
-import Routes from './routes/index';
+import Router from './routes/index';
 import Loading from './components/Loading';
 
 console.disableYellowBox = true;
@@ -34,9 +33,7 @@ class Root extends Component {
           persistor={persistor}
       >
           <StyleProvider style={getTheme(theme)}>
-            <Router>
-              {Routes}
-            </Router>
+            <Router />
           </StyleProvider>
         </PersistGate>
       </Provider>
