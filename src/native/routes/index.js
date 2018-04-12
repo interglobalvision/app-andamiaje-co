@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Router, Scene, Tabs, Stack, Actions } from 'react-native-router-flux';
 
-import { updateCountdown } from '../../actions/catalogosActions';
+import { updateCountdown } from '../../actions/countdownActions';
 
 import { Image } from 'react-native';
 

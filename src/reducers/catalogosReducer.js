@@ -104,33 +104,6 @@ export default function catalogoReducer(state = initialState, action) {
       };
     }
 
-    case 'UPDATE_COUNTDOWN': {
-      const currentTime = Date.now();
-      const activeCatalogo = state.activeCatalogo;
-
-      const oneDay = 86400000;
-      const countdownBeforeSale = oneDay * 5;
-      const timeUntilSale = activeCatalogo.saleDate - currentTime;
-
-      const saleSoon = (timeUntilSale < countdownBeforeSale) && (currentTime < activeCatalogo.saleDate) ? true : false;
-
-      const saleStarted = (currentTime > activeCatalogo.saleDate) && (currentTime < activeCatalogo.endDate) ? true : false;
-
-      const saleEnded = (currentTime > activeCatalogo.endDate) && (currentTime < oneDay + activeCatalogo.endDate) ? true : false;
-
-      return {
-        ...state,
-        countdown: {
-          ...state.countdown,
-          currentTime,
-          saleSoon,
-          saleStarted,
-          saleEnded,
-        }
-      };
-
-    }
-
     default:
       return state;
 

@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 import { getNoticias, setError } from '../actions/noticiasActions';
 import { getUser } from '../actions/member';
-import { getCatalogos, updateCountdown } from '../actions/catalogosActions';
+import { getCatalogos } from '../actions/catalogosActions';
+import { updateCountdown } from '../actions/countdownActions';
 
 class NoticiasContainer extends Component {
   static propTypes = {
@@ -16,7 +17,6 @@ class NoticiasContainer extends Component {
     }).isRequired,
     catalogos: PropTypes.shape({
       activeCatalogo: PropTypes.object.isRequired,
-      countdown: PropTypes.object,
     }).isRequired,
     countdown: PropTypes.object,
     getUser: PropTypes.func.isRequired,
@@ -58,7 +58,7 @@ class NoticiasContainer extends Component {
   }
 
   render = () => {
-    const { Layout, noticias, catalogos } = this.props;
+    const { Layout, noticias, catalogos, countdown } = this.props;
 
     return (
       <Layout
@@ -66,7 +66,7 @@ class NoticiasContainer extends Component {
         loading={noticias.loading}
         noticias={noticias.noticias}
         activeCatalogo={catalogos.activeCatalogo}
-        countdown={catalogos.countdown}
+        countdown={countdown}
         reFetch={() => this.fetchNoticias()}
       />
     );
@@ -76,6 +76,7 @@ class NoticiasContainer extends Component {
 const mapStateToProps = state => ({
   noticias: state.noticias || {},
   catalogos: state.catalogos || {},
+  countdown: state.countdown || {},
 });
 
 const mapDispatchToProps = {

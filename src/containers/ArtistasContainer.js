@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getArtistas, setError } from '../actions/artistasActions';
-import { getCatalogos, updateCountdown } from '../actions/catalogosActions';
+import { getCatalogos } from '../actions/catalogosActions';
+import { updateCountdown } from '../actions/countdownActions';
 
 class ArtistasContainer extends Component {
   static propTypes = {
@@ -15,8 +16,8 @@ class ArtistasContainer extends Component {
     }).isRequired,
     catalogos: PropTypes.shape({
       activeCatalogo: PropTypes.object.isRequired,
-      countdown: PropTypes.object,
     }).isRequired,
+    countdown: PropTypes.object,
     getArtistas: PropTypes.func.isRequired,
     getCatalogos: PropTypes.func.isRequired,
     updateCountdown: PropTypes.func.isRequired,
@@ -47,7 +48,7 @@ class ArtistasContainer extends Component {
   }
 
   render = () => {
-    const { Layout, artistas, catalogos, match } = this.props;
+    const { Layout, artistas, catalogos, countdown, match } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
@@ -55,7 +56,7 @@ class ArtistasContainer extends Component {
         artistaId={id}
         artistas={artistas.artistas}
         activeCatalogo={catalogos.activeCatalogo}
-        countdown={catalogos.countdown}
+        countdown={countdown}
         error={artistas.error}
         loading={artistas.loading}
         reFetch={() => this.fetchArtistas()}
@@ -67,6 +68,7 @@ class ArtistasContainer extends Component {
 const mapStateToProps = state => ({
   artistas: state.artistas || {},
   catalogos: state.catalogos || {},
+  countdown: state.countdown || {},
 });
 
 const mapDispatchToProps = {

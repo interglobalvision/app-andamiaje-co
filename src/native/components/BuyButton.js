@@ -356,7 +356,7 @@ class BuyButton extends React.Component {
 const mapStateToProps = state => ({
   Firebase,
   FirebaseRef,
-  countdown: state.catalogos.countdown || {},
+  countdown: state.countdown || {},
   member: state.member || {},
 });
 

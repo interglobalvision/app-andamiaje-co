@@ -10,6 +10,7 @@ import artistas from './artistasReducer';
 import miembros from './miembrosReducer';
 import calendar from './calendarReducer';
 import obras from './obrasReducer';
+import countdown from './countdownReducer';
 
 
 const rehydrated = (state = false, action) => {
@@ -35,4 +36,5 @@ export default {
   miembros,
   calendar,
   obras,
+  countdown,
 };

@@ -1,4 +1,5 @@
 import { Firebase, FirebaseRef } from '../lib/firebase';
+import { updateCountdown } from './countdownActions';
 
 /**
  * Set an Error Message
@@ -28,9 +29,7 @@ export function getCatalogos() {
       }));
     }))
     .then( () => {
-      return dispatch({
-        type: 'UPDATE_COUNTDOWN',
-      });
+      updateCountdown();
     })
     .catch(e => console.log(e));
 }
@@ -69,10 +68,4 @@ export function changeCatalogoFilter(tecnica) {
       tecnica
     });
   }
-}
-
-export function updateCountdown(currentTime) {
-  return {
-    type: 'UPDATE_COUNTDOWN',
-  };
 }
