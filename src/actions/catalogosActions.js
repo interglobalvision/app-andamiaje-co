@@ -23,14 +23,15 @@ export function getCatalogos() {
     .on('value', (snapshot) => {
       const catalogos = snapshot.val() || {};
 
-      return resolve(dispatch({
+      dispatch({
         type: 'CATALOGOS_REPLACE',
         data: catalogos,
-      }));
+      });
+
+      dispatch(updateCountdown)
+
+      return resolve();
     }))
-    .then( () => {
-      updateCountdown();
-    })
     .catch(e => console.log(e));
 }
 
