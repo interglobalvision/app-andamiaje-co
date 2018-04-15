@@ -83,6 +83,73 @@ class ConnectedRouter extends Component {
             height: 16,
             width: 8.5
           }}
+          component={NoticiasContainer}
+          Layout={Noticias}
+        />
+      </Stack>
+      <Stack
+        title='Catálogo'
+        icon={() => {
+          const imageStyle = {height: 25, width: 22};
+          const imageIcon = Actions.currentScene === 'catalogos' || Actions.currentScene === 'lote' ? <Image source={require('../../images/icons/icon-tab-catalogo-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-catalogo-white.png')} style={imageStyle} />;
+
+          return (imageIcon);
+        }}
+        {...DefaultProps.navbarProps}
+      >
+        <Scene
+          key='catalogos'
+          title='Catálogo'
+          component={CatalogosContainer}
+          Layout={CatalogosList}
+          renderLeftButton={EmptyNavButton}
+          renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
+        />
+        <Scene
+          key='lote'
+          title='Obra'
+          component={LotesContainer}
+          Layout={LoteSingle}
+          includeObras={true}
+          renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
+        />
+      </Stack>
+      <Stack
+        title='Deseos'
+        icon={() => {
+          const imageStyle = {height: 25, width: 18.5};
+          const imageIcon = Actions.currentScene === 'wishlist' ? <Image source={require('../../images/icons/icon-tab-wishlist-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-wishlist-white.png')} style={imageStyle} />;
+
+          return (imageIcon);
+        }}
+        {...DefaultProps.navbarProps}
+      >
+        <Scene
+          key='wishlist'
+          title='Deseos'
+          component={WishlistContainer}
+          Layout={WishlistList}
+          renderLeftButton={EmptyNavButton}
+          renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
+        />
+      </Stack>
+      <Stack
+        title='Directorio'
+        icon={() => {
+          const imageStyle = {height: 25, width: 23.5};
+          const imageIcon = Actions.currentScene === 'artistas' || Actions.currentScene === 'miembros' || Actions.currentScene === 'artista' || Actions.currentScene === 'miembro' || Actions.currentScene === 'options' || Actions.currentScene === 'optionsPage' ? <Image source={require('../../images/icons/icon-tab-directorio-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-directorio-white.png')} style={imageStyle} />;
+
+          return (imageIcon);
+        }}
+        {...DefaultProps.navbarProps}
+      >
+        <Tabs
+          key="directorio"
+          title='Directorio'
+          {...DefaultProps.topTabProps}
+          headerMode='none'
+          swipeEnabled={true}
+          backToInitial={true}
         >
           <Scene
             key='login'
