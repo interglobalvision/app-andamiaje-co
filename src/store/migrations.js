@@ -1,3 +1,5 @@
+// Redux Persist Migration
+// https://github.com/rt2zz/redux-persist/blob/master/docs/migrations.md
 export const migrations = {
   1: ({_persist}) => {
     return {_persist}; // reset all state, except version
