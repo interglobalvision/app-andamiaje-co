@@ -116,6 +116,8 @@ class Calendar extends Component {
     // Empty Calendar
     if(this.dates.length === 0) return null;
 
+    this.dates = getDates(activeCatalogo, futureCatalogos);
+
     const keyExtractor = item => item.date;
 
     return (

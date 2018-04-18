@@ -98,6 +98,7 @@ class ConnectedRouter extends Component {
             {...DefaultProps.tabProps}
             hideNavBar
             swipeEnabled={false}
+            backToInitial={true}
           >
             <Stack
               title='Noticias'
@@ -191,6 +192,7 @@ class ConnectedRouter extends Component {
                 {...DefaultProps.topTabProps}
                 headerMode='none'
                 swipeEnabled={true}
+                backToInitial={true}
               >
                 <Stack
                   title='Artistas'
