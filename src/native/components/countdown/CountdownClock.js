@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 import styles from '../../constants/styles';
 import { connect } from 'react-redux';
 import { requestInterval, clearRequestInterval } from '../../../lib/utilities';
-import { updateCountdown } from '../../../actions/catalogosActions';
+import { updateCountdown } from '../../../actions/countdownActions';
 
 class CountdownClock extends React.Component {
   static propTypes = {
@@ -74,7 +74,7 @@ class CountdownClock extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  countdown: state.catalogos.countdown || {},
+  countdown: state.countdown || {},
 });
 
 const mapDispatchToProps = {

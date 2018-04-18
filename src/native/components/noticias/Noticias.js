@@ -38,6 +38,7 @@ const Noticias = ({
     saleSoon,
     saleStarted,
     saleEnded,
+    noticiasCountdown,
   } = countdown;
 
   return (
@@ -51,13 +52,13 @@ const Noticias = ({
       }
     >
 
-      {(saleSoon || saleStarted || saleEnded) &&
+      { noticiasCountdown && (saleSoon || saleStarted || saleEnded) &&
         <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
       }
-      {saleSoon &&
+      { noticiasCountdown && saleSoon &&
         <CountdownClock countdownTo={activeCatalogo.saleDate} />
       }
-      {saleStarted &&
+      { noticiasCountdown && saleStarted &&
         <CountdownClock countdownTo={activeCatalogo.endDate} />
       }
 
