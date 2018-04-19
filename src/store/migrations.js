@@ -10,7 +10,7 @@ export const migrations = {
       catalogos: undefined,
       countdown: undefined,
       calendar: undefined,
-    }; // reset all state, except version
+    };
   },
   3: (state) => {
     return {
@@ -18,6 +18,13 @@ export const migrations = {
       catalogos: undefined,
       countdown: undefined,
       calendar: undefined,
-    }; // reset all state, except version
+    };
+  },
+  4: (state) => {
+    return {
+      ...state,
+      countdown: undefined,
+      calendar: undefined,
+    }; // reset countdown and calendar
   },
 }

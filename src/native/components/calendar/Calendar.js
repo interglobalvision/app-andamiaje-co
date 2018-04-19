@@ -113,10 +113,10 @@ class Calendar extends Component {
     // Error
     if (error) return <Error content={error} />;
 
+    this.dates = getDates(activeCatalogo, futureCatalogos);
+
     // Empty Calendar
     if(this.dates.length === 0) return null;
-
-    this.dates = getDates(activeCatalogo, futureCatalogos);
 
     const keyExtractor = item => item.date;
 

@@ -8,7 +8,7 @@ import { migrations } from './migrations';
 // Redux Persist config
 const config = {
   key: 'root',
-  version: 3,
+  version: 4,
   storage,
   blacklist: ['status', 'countdown', 'catalogos'],
   migrate: createMigrate(migrations, { debug: true }),
