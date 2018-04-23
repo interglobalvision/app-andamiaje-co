@@ -39,6 +39,7 @@ const LoteSingle = ({
     saleSoon,
     saleStarted,
     saleEnded,
+    loteCountdown,
   } = countdown;
 
   return (
@@ -47,15 +48,16 @@ const LoteSingle = ({
         styles.backgroundWhite,
         styles.paddingBottomLarge,
       ]}>
-        {(saleSoon || saleStarted || saleEnded) &&
-          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
-        }
-        {saleSoon &&
-          <CountdownClock countdownTo={activeCatalogo.saleDate} />
-        }
-        {saleStarted &&
-          <CountdownClock countdownTo={activeCatalogo.endDate} />
-        }
+
+      { loteCountdown && (saleSoon || saleStarted || saleEnded) &&
+        <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+      }
+      { loteCountdown && saleSoon &&
+        <CountdownClock countdownTo={activeCatalogo.saleDate} />
+      }
+      { loteCountdown && saleStarted &&
+        <CountdownClock countdownTo={activeCatalogo.endDate} />
+      }
 
         <LoteHeader lote={lote} />
         <View>

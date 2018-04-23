@@ -60,3 +60,15 @@ export function stopArtistaCountdown() {
     type: 'STOP_ARTISTA_COUNTDOWN',
   }
 }
+
+export function startLoteCountdown() {
+  return {
+    type: 'START_LOTE_COUNTDOWN',
+  }
+}
+
+export function stopLoteCountdown() {
+  return {
+    type: 'STOP_LOTE_COUNTDOWN',
+  }
+}

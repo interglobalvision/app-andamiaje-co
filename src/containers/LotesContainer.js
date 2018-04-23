@@ -12,6 +12,7 @@ import CatalogoViewControl from '../native/components/catalogos/CatalogoViewCont
 import { getLotes, setError as setLotesError } from '../actions/lotesActions';
 import { getObras, setError as setObrasError } from '../actions/obrasActions';
 import { getCatalogos, setError as setCatalogosError } from '../actions/catalogosActions';
+import { updateCountdown } from '../actions/countdownActions';
 
 class LotesContainer extends Component {
   static propTypes = {
@@ -31,6 +32,7 @@ class LotesContainer extends Component {
       error: PropTypes.string,
       activeCatalogo: PropTypes.object.isRequired,
     }).isRequired,
+    countdown: PropTypes.object,
     viewSettings: PropTypes.object.isRequired,
     getLotes: PropTypes.func.isRequired,
     setLotesError: PropTypes.func.isRequired,
@@ -68,6 +70,7 @@ class LotesContainer extends Component {
         return this.props.setObrasError(err);
       })
       .then(this.props.getCatalogos)
+      .then(() => this.props.updateCountdown())
       .catch((err) => {
         console.log(`Error: ${err}`);
         return this.props.setCatalogosError(err);
@@ -174,7 +177,8 @@ class LotesContainer extends Component {
     if (id !== null) {
       const { obras } = this.props.obras;
       const { lotes } = this.props.lotes;
-      const { activeCatalogo, countdown } = this.props.catalogos;
+      const { countdown } = this.props;
+      const { activeCatalogo } = this.props.catalogos;
 
       const loading = this.props.lotes.loading || this.props.obras.loading || this.props.catalogos.loading ? true : false;
 
@@ -223,6 +227,7 @@ const mapStateToProps = state => ({
   viewSettings: state.catalogos.viewSettings || {},
   obras: state.obras || [],
   catalogos: state.catalogos || {},
+  countdown: state.countdown || {},
 });
 
 const mapDispatchToProps = {
@@ -232,6 +237,7 @@ const mapDispatchToProps = {
   setObrasError,
   getCatalogos,
   setCatalogosError,
+  updateCountdown,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LotesContainer);

@@ -84,6 +84,20 @@ export default function countdownReducer(state = initialState, action) {
       };
     }
 
+    case 'START_LOTE_COUNTDOWN': {
+      return {
+        ...state,
+        loteCountdown: true,
+      };
+    }
+
+    case 'STOP_LOTE_COUNTDOWN': {
+      return {
+        ...state,
+        loteCountdown: false,
+      };
+    }
+
     default:
       return state;
   }
