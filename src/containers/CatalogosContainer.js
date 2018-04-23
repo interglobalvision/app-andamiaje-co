@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getCatalogos, setError } from '../actions/catalogosActions';
 import { getUser} from '../actions/member';
-import { updateCountdown } from '../actions/catalogosActions';
+import { getCatalogos, setError } from '../actions/catalogosActions';
+import { updateCountdown } from '../actions/countdownActions';
 
 class CatalogosContainer extends Component {
   static propTypes = {
@@ -15,6 +15,7 @@ class CatalogosContainer extends Component {
       activeCatalogo: PropTypes.object.isRequired,
       pastCatalogos: PropTypes.array.isRequired,
     }).isRequired,
+    countdown: PropTypes.object,
     getUser: PropTypes.func.isRequired,
     getCatalogos: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
@@ -46,7 +47,7 @@ class CatalogosContainer extends Component {
   }
 
   render = () => {
-    const { Layout, catalogos } = this.props;
+    const { Layout, catalogos, countdown } = this.props;
 
     return (
       <Layout
@@ -55,7 +56,7 @@ class CatalogosContainer extends Component {
         activeCatalogo={catalogos.activeCatalogo}
         pastCatalogos={catalogos.pastCatalogos}
         futureCatalogos={catalogos.futureCatalogos}
-        countdown={catalogos.countdown}
+        countdown={countdown}
         reFetch={() => this.fetchCatalogos()}
       />
     );
@@ -64,6 +65,7 @@ class CatalogosContainer extends Component {
 
 const mapStateToProps = state => ({
   catalogos: state.catalogos || {},
+  countdown: state.countdown || {},
 });
 
 const mapDispatchToProps = {

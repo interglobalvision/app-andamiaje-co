@@ -5,7 +5,14 @@ import { Firebase, FirebaseRef } from '../lib/firebase';
 import { Actions } from 'react-native-router-flux';
 import _omitBy from 'lodash/omitBy';
 import _isNil from 'lodash/isNil';
+import Sentry from 'sentry-expo';
 
+export function setError(message) {
+  return dispatch => new Promise(resolve => resolve(dispatch({
+    type: 'USER_ERROR',
+    data: message,
+  })));
+}
 /**
   * Sign Up to Firebase
   */
@@ -43,7 +50,13 @@ export function signUp(formData) {
           }).then(() => statusMessage(dispatch, 'loading', false).then(resolve));
         }
       }).catch(reject);
-  }).catch(async (err) => { await statusMessage(dispatch, 'error', err.message); throw err.message; });
+  }).catch(async (err) => {
+
+    // capture the exception
+    Sentry.captureException(new Error(error));
+
+    await statusMessage(dispatch, 'error', err.message); throw err.message;
+  });
 }
 
 /**
@@ -64,6 +77,14 @@ function getUserData(dispatch) {
 
   return ref.on('value', (snapshot) => {
     const userData = snapshot.val() || [];
+
+    // Set the user context in Sentry
+    Sentry.setUserContext({
+      email: userData.email,
+      displayName: userData.displayName,
+      role: userData.role,
+      tokens: userData.tokens,
+    });
 
     return dispatch({
       type: 'USER_DETAILS_UPDATE',
@@ -92,11 +113,25 @@ export function getUser(dispatch) {
     .on('value', (snapshot) => {
       const userData = snapshot.val() || [];
 
-      return dispatch({
+      // Set the user context in Sentry
+      Sentry.setUserContext({
+        email: userData.email,
+        displayName: userData.displayName,
+        role: userData.role,
+        tokens: userData.tokens,
+      });
+
+      return resolve(dispatch({
         type: 'USER_DETAILS_UPDATE',
         data: userData,
-      });
-    })).catch(e => console.log(e));
+      }));
+    }))
+    .catch(error => {
+      console.log(error);
+
+      // capture the exception
+      Sentry.captureException(new Error(error));
+    });
 }
 
 /**
@@ -288,6 +323,8 @@ export function addToWishlist(addedLote) {
       .then(showNotification(dispatch, 'Añadida a tu lista de Deseos'))
       .catch((e) => {
         console.log(e);
+        // capture the exception
+        Sentry.captureException(new Error(e));
       });
   }
 }
@@ -331,6 +368,8 @@ export function removeFromWishlist(removedLote) {
       .then(showNotification(dispatch, 'Eliminada de tu lista de Deseos'))
       .catch((e) => {
         console.log(e);
+        // capture the exception
+        Sentry.captureException(new Error(e));
       });
   }
 

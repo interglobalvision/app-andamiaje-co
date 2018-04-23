@@ -1,15 +1,17 @@
-/* global window */
 import { createStore, applyMiddleware, compose } from 'redux';
-import { persistStore, persistCombineReducers } from 'redux-persist';
+import { persistStore, persistCombineReducers, createMigrate } from 'redux-persist';
 import storage from 'redux-persist/es/storage'; // default: localStorage if web, AsyncStorage if react-native
 import thunk from 'redux-thunk';
 import reducers from '../reducers';
+import { migrations } from './migrations';
 
 // Redux Persist config
 const config = {
   key: 'root',
+  version: 4,
   storage,
-  blacklist: ['status'],
+  blacklist: ['status', 'countdown', 'catalogos'],
+  migrate: createMigrate(migrations, { debug: true }),
 };
 
 const reducer = persistCombineReducers(config, reducers);

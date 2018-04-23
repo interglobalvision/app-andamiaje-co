@@ -6,4 +6,7 @@ Frente a la inmensa oferta del mundo del arte contemporáneo, surgen preguntas 
 
 A partir de un modelo de inversión novedoso invitamos a que los participantes adquieran obras de 17 artistas, favoreciendo un diálogo estético, curatorial y formativo que va más allá de una simple transacción de compra-venta. La invitación se limita a un grupo cerrado de 20 coleccionistas, con quienes se comparten tres catálogos de obra al año, de manera tal que los miembros que conforman Andamiaje, quienes podrán escoger sus piezas a partir de una mecánica definida al inicio, recibiendo a lo largo del año el monto total de su inversión en obras de arte. Para fines propios del proyecto se ha creado una aplicación digital que sirve como plataforma, así como punto de encuentro e intercambio entre los miembros y las propuestas del proyecto.
 
-La intención es crear un círculo virtuoso en el que todos ganan, abriendo la posibilidad a sus integrantes de formar parte de la futura escritura de la historia del arte contemporáneo en México.`;
+La intención es crear un círculo virtuoso en el que todos ganan, abriendo la posibilidad a sus integrantes de formar parte de la futura escritura de la historia del arte contemporáneo en México.
+
+Version: 1.1.1
+`;

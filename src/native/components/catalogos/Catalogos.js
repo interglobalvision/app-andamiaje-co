@@ -39,6 +39,7 @@ const CatalogosList = ({
     saleSoon,
     saleStarted,
     saleEnded,
+    catalogosCountdown,
   } = countdown;
 
   return (
@@ -48,13 +49,13 @@ const CatalogosList = ({
         style={styles.backgroundWhite}
       >
 
-        {(saleSoon || saleStarted || saleEnded) &&
+        { catalogosCountdown && (saleSoon || saleStarted || saleEnded) &&
           <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
         }
-        {saleSoon &&
+        { catalogosCountdown && saleSoon &&
           <CountdownClock countdownTo={activeCatalogo.saleDate} />
         }
-        {saleStarted &&
+        { catalogosCountdown && saleStarted &&
           <CountdownClock countdownTo={activeCatalogo.endDate} />
         }
 

@@ -14,12 +14,16 @@ import ArtistaLotes from './ArtistaLotes'
 import ArtistaBio from './ArtistaBio'
 import Toast from '../Toast';
 import Confetti from '../Confetti';
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
 
 const ArtistaProfile = ({
 	error,
   loading,
 	artistas,
 	artistaId,
+  activeCatalogo,
+  countdown,
 }) => {
   // Loading
   if (loading) return <Loading />;
@@ -47,6 +51,13 @@ const ArtistaProfile = ({
     cvRawContent,
   } = artista;
 
+  const {
+    saleSoon,
+    saleStarted,
+    saleEnded,
+    artistaCountdown,
+  } = countdown;
+
   let imageSource = require('../../../images/placeholder.png');
 
   if (images !== undefined) {
@@ -59,7 +70,20 @@ const ArtistaProfile = ({
 
 	return (
     <View style={{flex: 1}}>
-      <ScrollView style={[styles.backgroundWhite]}>
+      <ScrollView
+        stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
+        style={[styles.backgroundWhite]}
+      >
+        { artistaCountdown && (saleSoon || saleStarted || saleEnded) &&
+          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+        }
+        { artistaCountdown && saleSoon &&
+          <CountdownClock countdownTo={activeCatalogo.saleDate} />
+        }
+        { artistaCountdown && saleStarted &&
+          <CountdownClock countdownTo={activeCatalogo.endDate} />
+        }
+
         <View style={[
           styles.container,
           styles.bordered,
@@ -123,6 +147,8 @@ ArtistaProfile.propTypes = {
 	error: PropTypes.string,
 	artistaId: PropTypes.string.isRequired,
 	artistas: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  activeCatalogo: PropTypes.object.isRequired,
+  countdown: PropTypes.object.isRequired,
 };
 
 ArtistaProfile.defaultProps = {

@@ -44,10 +44,7 @@ export default class WishlistItem extends Component {
         params: {
           id: String(item.id)
         }
-      },
-      onBack: () => {
-        Actions.wishlist();
-      },
+      }
     });
 
     return (

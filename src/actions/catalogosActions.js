@@ -1,4 +1,5 @@
 import { Firebase, FirebaseRef } from '../lib/firebase';
+import { updateCountdown } from './countdownActions';
 
 /**
  * Set an Error Message
@@ -22,11 +23,16 @@ export function getCatalogos() {
     .on('value', (snapshot) => {
       const catalogos = snapshot.val() || {};
 
-      return resolve(dispatch({
+      dispatch({
         type: 'CATALOGOS_REPLACE',
         data: catalogos,
-      }));
-    })).catch(e => console.log(e));
+      });
+
+      dispatch(updateCountdown)
+
+      return resolve();
+    }))
+    .catch(e => console.log(e));
 }
 
 /**
@@ -63,10 +69,4 @@ export function changeCatalogoFilter(tecnica) {
       tecnica
     });
   }
-}
-
-export function updateCountdown(currentTime) {
-  return {
-    type: 'UPDATE_COUNTDOWN',
-  };
 }

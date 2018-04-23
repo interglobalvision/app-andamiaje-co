@@ -5,6 +5,8 @@ import { Actions } from 'react-native-router-flux';
 
 import CatalogosContainer from '../../../containers/CatalogosContainer';
 import Calendar from '../calendar/Calendar';
+import CountdownTitle from '../countdown/CountdownTitle';
+import CountdownClock from '../countdown/CountdownClock';
 
 import Loading from '../Loading';
 import Error from '../Error';
@@ -18,6 +20,8 @@ const Noticias = ({
   error,
   loading,
   noticias,
+  activeCatalogo,
+  countdown,
   reFetch,
 }) => {
   // Loading
@@ -30,8 +34,16 @@ const Noticias = ({
 
   const onPress = item => Actions.noticia({ match: { params: { id: String(item.id) } } });
 
+  const {
+    saleSoon,
+    saleStarted,
+    saleEnded,
+    noticiasCountdown,
+  } = countdown;
+
   return (
     <ScrollView
+      stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
       refreshControl={
         <RefreshControl
           refreshing={loading}
@@ -39,6 +51,17 @@ const Noticias = ({
         />
       }
     >
+
+      { noticiasCountdown && (saleSoon || saleStarted || saleEnded) &&
+        <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+      }
+      { noticiasCountdown && saleSoon &&
+        <CountdownClock countdownTo={activeCatalogo.saleDate} />
+      }
+      { noticiasCountdown && saleStarted &&
+        <CountdownClock countdownTo={activeCatalogo.endDate} />
+      }
+
       <CatalogosContainer Layout={Calendar} />
 
       <SectionHeader title={'Noticias'} />
@@ -63,6 +86,8 @@ Noticias.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   noticias: PropTypes.array.isRequired,
+  activeCatalogo: PropTypes.object.isRequired,
+  countdown: PropTypes.object.isRequired,
   reFetch: PropTypes.func,
 };
 

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Firebase, FirebaseRef } from '../../lib/firebase';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
+import Sentry from 'sentry-expo';
 
 import { showNotification } from '../../actions/toastActions';
 import { throwConfetti } from '../../actions/confettiActions';
@@ -99,8 +100,6 @@ class BuyButton extends React.Component {
           } else {
             showNotification('¡Has adquirido estas obras!');
           }
-
-          // TODO show confetti
         }
       })
 
@@ -151,10 +150,17 @@ class BuyButton extends React.Component {
 
         console.log(error.config);
 
+        // capture the exception
+        Sentry.captureException(new Error(error));
+
       })
 
-      .catch(e => {
-        console.log(e);
+      .catch(error => {
+        console.log(error);
+
+        // capture the exception
+        Sentry.captureException(new Error(error));
+
 
         showNotification('Ha sucedido un error');
         this.resetButton();
@@ -350,7 +356,7 @@ class BuyButton extends React.Component {
 const mapStateToProps = state => ({
   Firebase,
   FirebaseRef,
-  countdown: state.catalogos.countdown || {},
+  countdown: state.countdown || {},
   member: state.member || {},
 });
 
