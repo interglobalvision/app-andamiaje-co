@@ -13,7 +13,6 @@ import WishlistContainer from '../../../containers/WishlistContainer'
 import ArtistaLotes from './ArtistaLotes'
 import ArtistaBio from './ArtistaBio'
 import Toast from '../Toast';
-import Confetti from '../Confetti';
 import CountdownTitle from '../countdown/CountdownTitle';
 import CountdownClock from '../countdown/CountdownClock';
 
@@ -137,7 +136,6 @@ const ArtistaProfile = ({
 
         <ArtistaPortfolio portfolio={portfolio} name={name} />
       </ScrollView>
-      <Confetti />
       <Toast />
     </View>
 	);

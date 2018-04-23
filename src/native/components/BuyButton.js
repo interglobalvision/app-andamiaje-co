@@ -9,7 +9,6 @@ import { Actions } from 'react-native-router-flux';
 import Sentry from 'sentry-expo';
 
 import { showNotification } from '../../actions/toastActions';
-import { throwConfetti } from '../../actions/confettiActions';
 import styles, { containerWidth } from '../constants/styles';
 import { CloudFunctionsUrl } from '../../constants/functions';
 import colors from '../constants/colors';
@@ -33,10 +32,6 @@ class BuyButton extends React.Component {
   onPressIn = () => {
     if (!this.state.complete) {
       const duration = 2000;
-
-      // UNCOMMENT this line in order to throw conffeti as soon as the button is
-      // pressed, good for testing
-      // this.props.throwConfetti();
 
       this.pressTimeout = setTimeout(this.confirmBuy, duration);
 
@@ -68,7 +63,7 @@ class BuyButton extends React.Component {
 
   acquireLote = () => {
 
-    const { Firebase, FirebaseRef, showNotification, throwConfetti, lote, member } = this.props;
+    const { Firebase, FirebaseRef, showNotification, lote, member } = this.props;
 
     // acquire lote function url
     const acquireLoteFunction = CloudFunctionsUrl + '/acquireLote';
@@ -95,7 +90,6 @@ class BuyButton extends React.Component {
         if (response.status === 200) {
 
           if(lote.obras.length === 1) {
-            throwConfetti();
             showNotification('¡Has adquirido esta obra!');
           } else {
             showNotification('¡Has adquirido estas obras!');
@@ -362,7 +356,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   showNotification: (message) => showNotification(dispatch, message),
-  throwConfetti: () => throwConfetti(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuyButton);

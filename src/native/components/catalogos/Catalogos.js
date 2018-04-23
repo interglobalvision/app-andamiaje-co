@@ -7,8 +7,6 @@ import LotesContainer from '../../../containers/LotesContainer';
 import CountdownTitle from '../countdown/CountdownTitle';
 import CountdownClock from '../countdown/CountdownClock';
 
-import Confetti from '../Confetti';
-
 import styles from '../../constants/styles';
 
 import Toast from '../Toast';
@@ -80,7 +78,6 @@ const CatalogosList = ({
           }
         />
       </ScrollView>
-      <Confetti />
       <Toast />
     </View>
   );
