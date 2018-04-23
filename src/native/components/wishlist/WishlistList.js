@@ -11,7 +11,6 @@ import Error from '../Error';
 import WishlistItem from './WishlistItem';
 import CountdownTitle from '../countdown/CountdownTitle';
 import CountdownClock from '../countdown/CountdownClock';
-import Confetti from '../Confetti';
 
 import styles from '../../constants/styles';
 
@@ -71,7 +70,6 @@ const WishlistList = ({
             }
           />
         </ScrollView>
-        <Confetti />
         <Toast />
       </View>
     );
