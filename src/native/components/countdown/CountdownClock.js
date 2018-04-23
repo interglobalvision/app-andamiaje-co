@@ -5,6 +5,8 @@ import styles from '../../constants/styles';
 import { connect } from 'react-redux';
 import { requestInterval, clearRequestInterval } from '../../../lib/utilities';
 import { updateCountdown } from '../../../actions/countdownActions';
+import CountdownNumber from './CountdownNumber';
+import CountdownColon from './CountdownColon';
 
 class CountdownClock extends React.Component {
   static propTypes = {
@@ -59,15 +61,19 @@ class CountdownClock extends React.Component {
     return (
       <View style={[
         styles.backgroundBlack,
-        styles.flexCenter,
         styles.paddingTopSmall,
         styles.paddingBottomSmall,
+        styles.flexRow,
+        styles.alignStart,
+        styles.justifyCenter,
       ]}>
-        <Text style={[
-          styles.colorWhite,
-          styles.fontFamilyMedium,
-          styles.fontSizeMid,
-        ]}>{this.state.days} : {this.state.hours} : {this.state.minutes} : {this.state.seconds}</Text>
+          <CountdownNumber number={this.state.days} title={'Días'} />
+          <CountdownColon />
+          <CountdownNumber number={this.state.hours} title={'Horas'} />
+          <CountdownColon />
+          <CountdownNumber number={this.state.minutes} title={'Min'} />
+          <CountdownColon />
+          <CountdownNumber number={this.state.seconds} title={'Seg'} />
       </View>
     );
   }

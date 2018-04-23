@@ -109,6 +109,9 @@ export default styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row',
   },
+  flexColumn: {
+    flexDirection: 'column',
+  },
   flexCenter: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -116,6 +119,13 @@ export default styles = StyleSheet.create({
   flexNowrap: {
     flexWrap: 'nowrap',
   },
+  justifyCenter: {
+    justifyContent: 'center',
+  },
+  alignStart: {
+    alignItems: 'flex-start',
+  },
+
   // Padding
   paddingTopTiny: {
     paddingTop: styleConstants.paddingTiny,
@@ -146,6 +156,36 @@ export default styles = StyleSheet.create({
   },
   paddingBottomLarge: {
     paddingBottom: styleConstants.paddingLarge,
+  },
+  paddingLeftTiny: {
+    paddingLeft: styleConstants.paddingTiny,
+  },
+  paddingLeftSmall: {
+    paddingLeft: styleConstants.paddingSmall,
+  },
+  paddingLeftBasic: {
+    paddingLeft: styleConstants.paddingBasic,
+  },
+  paddingLeftMid: {
+    paddingLeft: styleConstants.paddingMid,
+  },
+  paddingLeftLarge: {
+    paddingLeft: styleConstants.paddingLarge,
+  },
+  paddingRightTiny: {
+    paddingRight: styleConstants.paddingTiny,
+  },
+  paddingRightSmall: {
+    paddingRight: styleConstants.paddingSmall,
+  },
+  paddingRightBasic: {
+    paddingRight: styleConstants.paddingBasic,
+  },
+  paddingRightMid: {
+    paddingRight: styleConstants.paddingMid,
+  },
+  paddingRightLarge: {
+    paddingRight: styleConstants.paddingLarge,
   },
   // SectionHeader
   sectionHeader: {
