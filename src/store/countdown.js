@@ -7,4 +7,5 @@ export default {
   catalogosCountdown: false,
   wishlistCountdown: false,
   artistaCountdown: false,
+  loteCountdown: false,
 };

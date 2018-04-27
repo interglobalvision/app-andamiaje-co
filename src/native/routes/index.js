@@ -11,6 +11,8 @@ import {
   stopWishlistCountdown,
   startArtistaCountdown,
   stopArtistaCountdown,
+  startLoteCountdown,
+  stopLoteCountdown,
 } from '../../actions/countdownActions';
 
 import { Image } from 'react-native';
@@ -153,6 +155,8 @@ class ConnectedRouter extends Component {
                 Layout={LoteSingle}
                 includeObras={true}
                 renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
+                onEnter={this.props.startLoteCountdown}
+                onExit={this.props.stopLoteCountdown}
               />
             </Stack>
             <Stack
@@ -280,6 +284,8 @@ const mapDispatchToProps = {
   stopWishlistCountdown,
   startArtistaCountdown,
   stopArtistaCountdown,
+  startLoteCountdown,
+  stopLoteCountdown,
 };
 
 export default connect(null, mapDispatchToProps)(ConnectedRouter);
