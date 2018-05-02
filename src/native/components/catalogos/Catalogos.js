@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import LotesContainer from '../../../containers/LotesContainer';
 import CountdownTitle from '../countdown/CountdownTitle';
 import CountdownClock from '../countdown/CountdownClock';
+import EmptyCatalogo from './EmptyCatalogo';
 
 import Confetti from '../Confetti';
 
@@ -30,6 +31,9 @@ const CatalogosList = ({
 
   // Error
   if (error) return <Error content={error} />;
+
+  // Empty Catalog
+  if (!Object.keys(activeCatalogo).length) return <EmptyCatalogo />;
 
   const keyExtractor = item => item.id;
 

@@ -25,7 +25,7 @@ export function getLotes() {
 
   return (dispatch, getState) => {
     // Get active lotes from store state
-    const activeLotes = getState().catalogos.activeCatalogo.lotes;
+    const activeLotes = getState().catalogos.activeCatalogo.lotes || [];
 
     if(activeLotes === undefined) {
       resolve => resolve();

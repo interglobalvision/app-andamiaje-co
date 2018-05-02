@@ -32,7 +32,8 @@ const WishlistList = ({
 
   const keyExtractor = item => item.id;
 
-  const currentWishlist = lotes.filter(lote => _find(wishlist, item => item.id === lote.id));
+  const currentWishlist = lotes.filter(lote => _find(wishlist, item => item.id === lote.id)) // Only lotes that are in the wishlist
+    .filter(lote => _find(activeCatalogo, item => item.id === lote.id)); // Only items that are in the active catalog
 
   const {
     saleSoon,
