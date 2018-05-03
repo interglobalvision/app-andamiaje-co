@@ -8,5 +8,5 @@ A partir de un modelo de inversión novedoso invitamos a que los participantes 
 
 La intención es crear un círculo virtuoso en el que todos ganan, abriendo la posibilidad a sus integrantes de formar parte de la futura escritura de la historia del arte contemporáneo en México.
 
-Version: 1.1.1
+Version: 1.1.2
 `;

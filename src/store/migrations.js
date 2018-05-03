@@ -27,4 +27,11 @@ export const migrations = {
       calendar: undefined,
     }; // reset countdown and calendar
   },
+  5: (state) => {
+    return {
+      ...state,
+      countdown: undefined,
+      calendar: undefined,
+    }; // reset countdown and calendar
+  },
 }

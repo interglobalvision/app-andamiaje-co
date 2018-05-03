@@ -32,9 +32,11 @@ export default function catalogoReducer(state = initialState, action) {
             })
           });
 
-        // remove the first Catalogo from pastCatalogos array,
-        // and assign it to activeCatalogo
-        activeCatalogo = pastCatalogos.shift();
+        // Find if any of the catalogos should be active
+        activeCatalogo = pastCatalogos.filter(catalogo => catalogo.endDate > Date.now());
+
+        // If no active catalogo, assign an empty object
+        activeCatalogo = activeCatalogo.length ? activeCatalogo[0] : {};
       }
 
       // Get Future Catalogos. Pick out the props I need
