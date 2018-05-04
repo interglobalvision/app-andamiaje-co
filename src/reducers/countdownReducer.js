@@ -1,9 +1,9 @@
 import Store from '../store/countdown';
+
 export const initialState = Store;
 
 export default function countdownReducer(state = initialState, action) {
   switch (action.type) {
-
     case 'UPDATE_COUNTDOWN': {
       const currentTime = Date.now();
       const activeCatalogo = action.activeCatalogo;
@@ -12,11 +12,11 @@ export default function countdownReducer(state = initialState, action) {
       const countdownBeforeSale = oneDay * 5;
       const timeUntilSale = activeCatalogo.saleDate - currentTime;
 
-      const saleSoon = (timeUntilSale < countdownBeforeSale) && (currentTime < activeCatalogo.saleDate) ? true : false;
+      const saleSoon = !!((timeUntilSale < countdownBeforeSale) && (currentTime < activeCatalogo.saleDate));
 
-      const saleStarted = (currentTime > activeCatalogo.saleDate) && (currentTime < activeCatalogo.endDate) ? true : false;
+      const saleStarted = !!((currentTime > activeCatalogo.saleDate) && (currentTime < activeCatalogo.endDate));
 
-      const saleEnded = (currentTime > activeCatalogo.endDate) && (currentTime < oneDay + activeCatalogo.endDate) ? true : false;
+      const saleEnded = !!((currentTime > activeCatalogo.endDate) && (currentTime < oneDay + activeCatalogo.endDate));
 
       return {
         ...state,
@@ -25,7 +25,6 @@ export default function countdownReducer(state = initialState, action) {
         saleStarted,
         saleEnded,
       };
-
     }
 
     case 'START_NOTICIAS_COUNTDOWN': {

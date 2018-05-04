@@ -26,39 +26,34 @@ class NoticiasContainer extends Component {
 
   componentDidMount = () => {
     this.fetchUser();
-    //this.fetchNoticias();
+    // this.fetchNoticias();
   }
 
-  fetchUser = () => {
-    return this.props.getUser()
-      .then(() => this.fetchNoticias())
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-  }
+  fetchUser = () => this.props.getUser()
+    .then(() => this.fetchNoticias())
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
-  fetchNoticias = () => {
-    return this.props.getNoticias()
-      .then(() => this.fetchCatalogos())
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
+  fetchNoticias = () => this.props.getNoticias()
+    .then(() => this.fetchCatalogos())
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
-  }
-
-  fetchCatalogos = () => {
-    return this.props.getCatalogos()
-      .then(() => this.props.updateCountdown())
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-  }
+  fetchCatalogos = () => this.props.getCatalogos()
+    .then(() => this.props.updateCountdown())
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
   render = () => {
-    const { Layout, noticias, catalogos, countdown } = this.props;
+    const {
+      Layout, noticias, catalogos, countdown,
+    } = this.props;
 
     return (
       <Layout

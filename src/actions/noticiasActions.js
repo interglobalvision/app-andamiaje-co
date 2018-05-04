@@ -27,9 +27,9 @@ export function getNoticias() {
         type: 'NOTICIAS_REPLACE',
         data: noticias,
       }));
-    })).catch(e => {
-      console.log(e);
-      // capture the exception
-      Sentry.captureException(new Error(e));
-    });
+    })).catch((e) => {
+    console.log(e);
+    // capture the exception
+    Sentry.captureException(new Error(e));
+  });
 }

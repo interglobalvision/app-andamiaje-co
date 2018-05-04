@@ -7,33 +7,32 @@ import * as Animatable from 'react-native-animatable';
 import styles from '../constants/styles';
 
 const MemberTokens = ({
-	error,
-	loading,
-	miembros,
-	member,
-	reFetch,
+  error,
+  loading,
+  miembros,
+  member,
+  reFetch,
 }) => {
+  // Loading
+  if (loading || error) return (<View />);
 
-	// Loading
-	if (loading || error) return ( <View></View> );
+  // check if logged in member is Miembro
+  const currentMiembro = miembros.find(miembro => miembro.id === member.uid);
 
-	// check if logged in member is Miembro
-	const currentMiembro = miembros.find(miembro => miembro.id === member.uid);
+  if (currentMiembro !== undefined && currentMiembro !== null) {
+    if (currentMiembro.tokens === undefined || currentMiembro.tokens === '') {
+      return <View />;
+    }
 
-	if (currentMiembro !== undefined && currentMiembro !== null) {
-		if (currentMiembro.tokens === undefined || currentMiembro.tokens === '') {
-			return <View></View>
-		}
+    return (
+      <TokensDisplay tokens={currentMiembro.tokens} />
+    );
+  }
 
-		return (
-			<TokensDisplay tokens={currentMiembro.tokens} />
-		)
-	}
-
-	return (
-		<View></View>
-	)
-}
+  return (
+    <View />
+  );
+};
 
 class TokensDisplay extends Component {
   constructor(props) {
@@ -62,7 +61,7 @@ class TokensDisplay extends Component {
           opacity: 1,
           scale: 1,
         },
-      }
+      },
     });
   }
 
@@ -89,13 +88,16 @@ class TokensDisplay extends Component {
       >
         <View style={[
           styles.container,
-        ]}>
-        <Text style={[
+        ]}
+        >
+          <Text style={[
           styles.fontFamilyMedium,
           {
-            letterSpacing: 1
-          }
-        ]}>ŧ {tokens}</Text>
+            letterSpacing: 1,
+          },
+        ]}
+          >ŧ {tokens}
+          </Text>
         </View>
       </Animatable.View>
     );

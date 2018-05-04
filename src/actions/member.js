@@ -51,7 +51,6 @@ export function signUp(formData) {
         }
       }).catch(reject);
   }).catch(async (err) => {
-
     // capture the exception
     Sentry.captureException(new Error(error));
 
@@ -126,7 +125,7 @@ export function getUser(dispatch) {
         data: userData,
       }));
     }))
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
 
       // capture the exception
@@ -193,11 +192,11 @@ export function login(formData) {
 
     let toastMessage = err.message;
 
-    if (err.code === 'auth/invalid-email') { toastMessage = ErrorMessages.invalidEmail }
-    if (err.code === 'auth/invalid-password') { toastMessage = ErrorMessages.wrongPassword }
-    if (err.code === 'auth/wrong-password') { toastMessage = ErrorMessages.wrongPassword }
-    if (err.code === 'auth/user-not-found') { toastMessage = ErrorMessages.userNotFound }
-    if (err.code === 'auth/auth/internal-error') { toastMessage = ErrorMessages.internalError }
+    if (err.code === 'auth/invalid-email') { toastMessage = ErrorMessages.invalidEmail; }
+    if (err.code === 'auth/invalid-password') { toastMessage = ErrorMessages.wrongPassword; }
+    if (err.code === 'auth/wrong-password') { toastMessage = ErrorMessages.wrongPassword; }
+    if (err.code === 'auth/user-not-found') { toastMessage = ErrorMessages.userNotFound; }
+    if (err.code === 'auth/auth/internal-error') { toastMessage = ErrorMessages.internalError; }
 
     showNotification(dispatch, toastMessage);
 
@@ -287,7 +286,7 @@ export function logout() {
     Firebase.auth().signOut()
       .then(() => {
         dispatch({ type: 'USER_RESET' });
-        Actions.login({type: 'reset'});
+        Actions.login({ type: 'reset' });
         setTimeout(resolve, 1000); // Resolve after 1s so that user sees a message
       }).catch(reject);
   }).catch(async (err) => { await statusMessage(dispatch, 'error', err.message); throw err.message; });
@@ -297,7 +296,6 @@ export function logout() {
   * Wishlist
   */
 export function addToWishlist(addedLote) {
-
   if (Firebase === null) {
     return () => new Promise(resolve => resolve());
   }
@@ -312,25 +310,23 @@ export function addToWishlist(addedLote) {
 
     // push lote to wishlist on firebase
     return new Promise(resolve => FirebaseRef.child(`users/${UID}/wishlist`)
-      .push(cleanLote).then(() => {
+      .push(cleanLote).then(() =>
 
         // dispatch action to add lote to wishlist on state
-        return resolve(dispatch({
+        resolve(dispatch({
           type: 'USER_WISHLIST_ADD',
           addedLote: cleanLote,
-        }));
-      }))
+        }))))
       .then(showNotification(dispatch, 'Añadida a tu lista de Deseos'))
       .catch((e) => {
         console.log(e);
         // capture the exception
         Sentry.captureException(new Error(e));
       });
-  }
+  };
 }
 
 export function removeFromWishlist(removedLote) {
-
   if (Firebase === null) {
     return () => new Promise(resolve => resolve());
   }
@@ -341,36 +337,33 @@ export function removeFromWishlist(removedLote) {
     if (!UID) return reject({ message: 'Not logged in' });
     let wishlist = {};
 
-    return new Promise((resolve) => FirebaseRef.child(`users/${UID}/wishlist`)
+    return new Promise(resolve => FirebaseRef.child(`users/${UID}/wishlist`)
       .once('value')
       .then((snapshot) => {
         wishlist = snapshot.val() || {};
 
         // delete lote from object
-        for(var lote in wishlist) {
-          if(wishlist[lote].id == removedLote.id) {
+        for (const lote in wishlist) {
+          if (wishlist[lote].id == removedLote.id) {
             delete wishlist[lote];
           }
         }
 
         // update wishlish object in firebase
-        FirebaseRef.child(`users/${UID}`).update({wishlist: wishlist});
+        FirebaseRef.child(`users/${UID}`).update({ wishlist });
       })
-      .then(() => {
+      .then(() =>
 
         // dispatch action to remove lote from wishlist on state
-        return resolve(dispatch({
+        resolve(dispatch({
           type: 'USER_WISHLIST_REMOVE',
           wishlist,
-        }));
-
-      }))
+        }))))
       .then(showNotification(dispatch, 'Eliminada de tu lista de Deseos'))
       .catch((e) => {
         console.log(e);
         // capture the exception
         Sentry.captureException(new Error(e));
       });
-  }
-
+  };
 }

@@ -44,7 +44,7 @@ class LotesContainer extends Component {
   }
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentDidMount = () => {
@@ -58,41 +58,35 @@ class LotesContainer extends Component {
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchLotesObrasAndCatalogos = () => {
-    return this.props.getLotes()
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setLotesError(err);
-      })
-      .then(this.props.getObras)
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setObrasError(err);
-      })
-      .then(this.props.getCatalogos)
-      .then(() => this.props.updateCountdown())
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setCatalogosError(err);
-      });
+  fetchLotesObrasAndCatalogos = () => this.props.getLotes()
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setLotesError(err);
+    })
+    .then(this.props.getObras)
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setObrasError(err);
+    })
+    .then(this.props.getCatalogos)
+    .then(() => this.props.updateCountdown())
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setCatalogosError(err);
+    })
 
-  }
-
-  fetchLotes = () => {
-    return this.props.getLotes()
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setLotesError(err);
-      });
-
-  }
+  fetchLotes = () => this.props.getLotes()
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setLotesError(err);
+    })
 
   applyFilter = (lotes) => {
     let filteredLotes = lotes;
     const filterLotesBy = this.props.viewSettings.filterBy;
 
     if (filterLotesBy !== '' && filterLotesBy !== undefined && filterLotesBy !== null) {
-      filteredLotes = _filter(lotes, lote => lote.tecnica.includes(filterLotesBy) );
+      filteredLotes = _filter(lotes, lote => lote.tecnica.includes(filterLotesBy));
     }
 
     return filteredLotes;
@@ -155,19 +149,21 @@ class LotesContainer extends Component {
           reFetch={() => this.fetchLotes()}
         />
       );
-    } else {
-      return (
-        <View style={[
+    }
+    return (
+      <View style={[
           styles.container,
           styles.flexCenter,
           styles.emptyItemsHeight,
-        ]}>
-          <Text style={[
-            styles.textAlignCenter
-          ]}>No hay lotes con esa técnica</Text>
-        </View>
-      )
-    }
+        ]}
+      >
+        <Text style={[
+            styles.textAlignCenter,
+          ]}
+        >No hay lotes con esa técnica
+        </Text>
+      </View>
+    );
   }
 
   render = () => {
@@ -180,19 +176,19 @@ class LotesContainer extends Component {
       const { countdown } = this.props;
       const { activeCatalogo } = this.props.catalogos;
 
-      const loading = this.props.lotes.loading || this.props.obras.loading || this.props.catalogos.loading ? true : false;
+      const loading = !!(this.props.lotes.loading || this.props.obras.loading || this.props.catalogos.loading);
 
       let error = null;
 
-      if(this.props.lotes.error !== null) {
+      if (this.props.lotes.error !== null) {
         error = this.props.lotes.error;
       }
 
-      if(this.props.obras.error !== null) {
+      if (this.props.obras.error !== null) {
         error = this.props.obras.error;
       }
 
-      if(this.props.catalogos.error !== null) {
+      if (this.props.catalogos.error !== null) {
         error = this.props.catalogos.error;
       }
 

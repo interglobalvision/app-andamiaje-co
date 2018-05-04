@@ -22,19 +22,21 @@ class ArtistaBio extends React.Component {
   showFullBio = () => {
     const transitionDuration = 1000;
 
-    this.containerView.transitionTo({
+    this.containerView.transitionTo(
+      {
         height: this.bioHeight,
         borderBottomWidth: 0, // this solves a zIndex issue on android
       },
       transitionDuration,
-      'ease-out'
+      'ease-out',
     );
 
-    this.buttonView.transitionTo({
+    this.buttonView.transitionTo(
+      {
         opacity: 0,
       },
       transitionDuration,
-      'ease-out'
+      'ease-out',
     );
   }
 
@@ -46,7 +48,7 @@ class ArtistaBio extends React.Component {
     const handleViewRef = ref => this.view = ref;
 
     if (bioRawContent === '' || bioRawContent === undefined) {
-      return null
+      return null;
     }
 
     return (
@@ -55,15 +57,16 @@ class ArtistaBio extends React.Component {
         styles.paddingTopBasic,
         styles.paddingBottomMid,
         styles.bordered,
-      ]}>
+      ]}
+      >
         <Animatable.View
           ref={ref => this.containerView = ref}
           style={[
             styles.bordered,
             {
               overflow: 'hidden',
-              height: windowHeight * .4,
-            }
+              height: windowHeight * 0.4,
+            },
           ]}
         >
           <View
@@ -84,13 +87,14 @@ class ArtistaBio extends React.Component {
               left: 0,
               right: 0,
               justifyContent: 'flex-end',
-            }
-        ]}>
+            },
+        ]}
+        >
           <LinearGradient
             colors={[
               'rgba(255,255,255,0)',
               'rgba(255,255,255,1)',
-              'rgba(255,255,255,1)'
+              'rgba(255,255,255,1)',
             ]}
           >
             <TouchableOpacity
@@ -100,17 +104,20 @@ class ArtistaBio extends React.Component {
                 styles.paddingBottomBasic,
                 {
                   backgroundColor: 'transparent',
-                }
-            ]}>
+                },
+            ]}
+            >
               <Text style={[
                 styles.textLink,
-              ]}>Ver todo</Text>
+              ]}
+              >Ver todo
+              </Text>
             </TouchableOpacity>
           </LinearGradient>
         </Animatable.View>
       </View>
     );
   }
-};
+}
 
 export default ArtistaBio;

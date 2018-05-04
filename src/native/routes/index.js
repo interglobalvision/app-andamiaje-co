@@ -83,29 +83,29 @@ class ConnectedRouter extends Component {
           backButtonImage={BackButton}
           backButtonImageStyle={{
             height: 16,
-            width: 8.5
+            width: 8.5,
           }}
         >
           <Scene
-            key='login'
-            title='LOGIN'
+            key="login"
+            title="LOGIN"
             component={LoginContainer}
             Layout={LoginComponent}
             hideNavBar
             initial
           />
           <Tabs
-            key='main'
-            lazy={true}
+            key="main"
+            lazy
             {...DefaultProps.tabProps}
             hideNavBar
             swipeEnabled={false}
-            backToInitial={true}
+            backToInitial
           >
             <Stack
-              title='Noticias'
+              title="Noticias"
               icon={() => {
-                const imageStyle = {height: 25, width: 17.5};
+                const imageStyle = { height: 25, width: 17.5 };
                 const imageIcon = Actions.currentScene === 'noticias' ? <Image source={require('../../images/icons/icon-tab-noticias-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-noticias-white.png')} style={imageStyle} />;
 
                 return (imageIcon);
@@ -114,13 +114,13 @@ class ConnectedRouter extends Component {
               initial
             >
               <Scene
-                key='noticias'
-                title='Noticias'
+                key="noticias"
+                title="Noticias"
                 navigationBarTitleImage={Logo}
                 navigationBarTitleImageStyle={{
                   height: 20,
                   width: 81.5,
-                  alignSelf: 'center'
+                  alignSelf: 'center',
                 }}
                 component={NoticiasContainer}
                 Layout={Noticias}
@@ -129,9 +129,9 @@ class ConnectedRouter extends Component {
               />
             </Stack>
             <Stack
-              title='Catálogo'
+              title="Catálogo"
               icon={() => {
-                const imageStyle = {height: 25, width: 22};
+                const imageStyle = { height: 25, width: 22 };
                 const imageIcon = Actions.currentScene === 'catalogos' || Actions.currentScene === 'lote' ? <Image source={require('../../images/icons/icon-tab-catalogo-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-catalogo-white.png')} style={imageStyle} />;
 
                 return (imageIcon);
@@ -139,8 +139,8 @@ class ConnectedRouter extends Component {
               {...DefaultProps.navbarProps}
             >
               <Scene
-                key='catalogos'
-                title='Catálogo'
+                key="catalogos"
+                title="Catálogo"
                 component={CatalogosContainer}
                 Layout={CatalogosList}
                 renderLeftButton={EmptyNavButton}
@@ -149,20 +149,20 @@ class ConnectedRouter extends Component {
                 onExit={this.props.stopCatalogosCountdown}
               />
               <Scene
-                key='lote'
-                title='Obra'
+                key="lote"
+                title="Obra"
                 component={LotesContainer}
                 Layout={LoteSingle}
-                includeObras={true}
+                includeObras
                 renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
                 onEnter={this.props.startLoteCountdown}
                 onExit={this.props.stopLoteCountdown}
               />
             </Stack>
             <Stack
-              title='Deseos'
+              title="Deseos"
               icon={() => {
-                const imageStyle = {height: 25, width: 18.5};
+                const imageStyle = { height: 25, width: 18.5 };
                 const imageIcon = Actions.currentScene === 'wishlist' ? <Image source={require('../../images/icons/icon-tab-wishlist-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-wishlist-white.png')} style={imageStyle} />;
 
                 return (imageIcon);
@@ -170,8 +170,8 @@ class ConnectedRouter extends Component {
               {...DefaultProps.navbarProps}
             >
               <Scene
-                key='wishlist'
-                title='Deseos'
+                key="wishlist"
+                title="Deseos"
                 component={WishlistContainer}
                 Layout={WishlistList}
                 renderLeftButton={EmptyNavButton}
@@ -181,9 +181,9 @@ class ConnectedRouter extends Component {
               />
             </Stack>
             <Stack
-              title='Directorio'
+              title="Directorio"
               icon={() => {
-                const imageStyle = {height: 25, width: 23.5};
+                const imageStyle = { height: 25, width: 23.5 };
                 const imageIcon = Actions.currentScene === 'artistas' || Actions.currentScene === 'miembros' || Actions.currentScene === 'artista' || Actions.currentScene === 'miembro' || Actions.currentScene === 'options' || Actions.currentScene === 'optionsPage' ? <Image source={require('../../images/icons/icon-tab-directorio-black.png')} style={imageStyle} /> : <Image source={require('../../images/icons/icon-tab-directorio-white.png')} style={imageStyle} />;
 
                 return (imageIcon);
@@ -192,37 +192,37 @@ class ConnectedRouter extends Component {
             >
               <Tabs
                 key="directorio"
-                title='Directorio'
+                title="Directorio"
                 {...DefaultProps.topTabProps}
-                headerMode='none'
-                swipeEnabled={true}
-                backToInitial={true}
+                headerMode="none"
+                swipeEnabled
+                backToInitial
               >
                 <Stack
-                  title='Artistas'
+                  title="Artistas"
                   initial
                 >
                   <Scene
-                    key='artistas'
-                    title='Artistas'
+                    key="artistas"
+                    title="Artistas"
                     component={ArtistasContainer}
                     Layout={ArtistasList}
                   />
                 </Stack>
                 <Stack
-                  title='Miembros'
+                  title="Miembros"
                 >
                   <Scene
-                    key='miembros'
-                    title='Miembros'
+                    key="miembros"
+                    title="Miembros"
                     component={MiembrosContainer}
                     Layout={MiembrosList}
                   />
                 </Stack>
               </Tabs>
               <Scene
-                key='artista'
-                title='Artista'
+                key="artista"
+                title="Artista"
                 component={ArtistasContainer}
                 Layout={ArtistaProfile}
                 renderRightButton={() => <MiembrosContainer Layout={MemberTokens} />}
@@ -230,40 +230,40 @@ class ConnectedRouter extends Component {
                 onExit={this.props.stopArtistaCountdown}
               />
               <Scene
-                key='artistaCv'
-                title='CV'
+                key="artistaCv"
+                title="CV"
                 component={ArtistaCVPage}
                 renderRightButton={EmptyNavButton}
               />
               <Scene
-                key='miembro'
-                title='Miembro'
+                key="miembro"
+                title="Miembro"
                 component={MiembrosContainer}
                 Layout={MiembroProfile}
                 renderRightButton={EmptyNavButton}
               />
               <Scene
-                key='options'
-                title='Opciones'
+                key="options"
+                title="Opciones"
                 component={MiembrosContainer}
                 Layout={MiembroOptions}
                 renderRightButton={EmptyNavButton}
               />
               <Scene
-                key='acercaDeAndamiaje'
-                title={'Acerca de Andamiaje'}
+                key="acercaDeAndamiaje"
+                title="Acerca de Andamiaje"
                 component={MiembroOptionsPage}
                 renderRightButton={EmptyNavButton}
               />
               <Scene
-                key='terminosYCondiciones'
-                title={'Términos y Condiciones'}
+                key="terminosYCondiciones"
+                title="Términos y Condiciones"
                 component={MiembroOptionsPage}
                 renderRightButton={EmptyNavButton}
               />
               <Scene
-                key='politicaDePrivacidad'
-                title={'Política de privacidad'}
+                key="politicaDePrivacidad"
+                title="Política de privacidad"
                 component={MiembroOptionsPage}
                 renderRightButton={EmptyNavButton}
               />
@@ -271,7 +271,7 @@ class ConnectedRouter extends Component {
           </Tabs>
         </Scene>
       </Router>
-    )
+    );
   }
 }
 

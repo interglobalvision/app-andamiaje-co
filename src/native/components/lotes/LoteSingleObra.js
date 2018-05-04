@@ -9,7 +9,7 @@ import CarouselHolder from '../carousel/CarouselHolder';
 import styles from '../../constants/styles';
 
 const LoteSingleObra = ({
-  obra, border
+  obra, border,
 }) => {
   const {
     artista,
@@ -22,7 +22,7 @@ const LoteSingleObra = ({
 
   const onPress = () => Actions.artista({ match: { params: { id: String(obra.artista.id) } } });
 
-  let holderStyle = [styles.paddingBottomMid];
+  const holderStyle = [styles.paddingBottomMid];
   if (border) {
     holderStyle.push(styles.bordered);
   }
@@ -36,7 +36,7 @@ const LoteSingleObra = ({
           style={[
             styles.paddingBottomSmall,
             styles.flexRow,
-            { justifyContent: 'space-between' }
+            { justifyContent: 'space-between' },
           ]}
         >
           <Text style={styles.fontBold}>{artista.name}</Text>

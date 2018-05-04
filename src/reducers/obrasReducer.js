@@ -15,8 +15,8 @@ export default function obraReducer(state = initialState, action) {
 
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        obras = Object.keys(action.data).
-          map(id => {
+        obras = Object.keys(action.data)
+          .map((id) => {
             const {
               title,
               artista,
@@ -36,7 +36,7 @@ export default function obraReducer(state = initialState, action) {
               dimensions,
               materials,
               year,
-            })
+            });
           });
       }
 

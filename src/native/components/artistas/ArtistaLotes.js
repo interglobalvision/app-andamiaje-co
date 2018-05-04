@@ -8,12 +8,12 @@ const ArtistaLotes = ({ lotes, artistaId }) => {
 
   return (
     <View>
-      <SectionHeader title={'Obras'} />
+      <SectionHeader title="Obras" />
       <View>
-        { artistaLotes.map( (item, key) => <WishlistItem key={key} lote={item} />)}
+        { artistaLotes.map((item, key) => <WishlistItem key={key} lote={item} />)}
       </View>
     </View>
   );
-}
+};
 
 export default ArtistaLotes;

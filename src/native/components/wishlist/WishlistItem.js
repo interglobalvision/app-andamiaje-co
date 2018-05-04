@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { getResizedImageUrl } from '../../../lib/utilities';
 
-import LoteHeader from '../lotes/LoteHeader'
+import LoteHeader from '../lotes/LoteHeader';
 import styles from '../../constants/styles';
 import BuyButton from '../BuyButton';
 
@@ -15,7 +15,7 @@ export default class WishlistItem extends Component {
   }
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render = () => {
@@ -24,40 +24,42 @@ export default class WishlistItem extends Component {
     let imageSource = require('../../../images/placeholder.png');
 
     if (lote.obras[0].images !== undefined) {
-      imageSource = {uri: getResizedImageUrl(lote.obras[0].images[0], 350, true)};
+      imageSource = { uri: getResizedImageUrl(lote.obras[0].images[0], 350, true) };
     }
 
-    returnObra = (obra, key) => {
-      return (
-        <View key={key} style={[styles.flexRow, styles.paddingBottomTiny]}>
-          <Text style={{flex: 1, flexWrap: 'wrap'}}>
-            <Text style={[styles.fontFamilyItalic]}>{obra.title}</Text>, {obra.year}
-          </Text>
-        </View>
-      );
-    }
+    returnObra = (obra, key) => (
+      <View key={key} style={[styles.flexRow, styles.paddingBottomTiny]}>
+        <Text style={{ flex: 1, flexWrap: 'wrap' }}>
+          <Text style={[styles.fontFamilyItalic]}>{obra.title}</Text>, {obra.year}
+        </Text>
+      </View>
+    );
 
     const keyExtractor = item => item.id;
 
     const onPress = item => Actions.lote({
       match: {
         params: {
-          id: String(item.id)
-        }
-      }
+          id: String(item.id),
+        },
+      },
     });
 
     return (
       <View style={[
         styles.bordered,
         styles.paddingBottomBasic,
-      ]}>
+      ]}
+      >
         <LoteHeader lote={lote} bordered={false} />
-        <TouchableOpacity onPress={() => {onPress(lote)}} style={[
+        <TouchableOpacity
+          onPress={() => { onPress(lote); }}
+          style={[
           styles.container,
           styles.flexRow,
           styles.paddingBottomBasic,
-        ]}>
+        ]}
+        >
           <View style={styles.wishlistImageHolder}>
             <Image style={styles.wishlistImage} source={imageSource} />
           </View>
@@ -66,7 +68,7 @@ export default class WishlistItem extends Component {
               <Text style={styles.fontBold}>{lote.artista.name}</Text>
             </View>
             <View>
-              { lote.obras.map( (item, key) => returnObra(item, key) )}
+              { lote.obras.map((item, key) => returnObra(item, key))}
             </View>
           </View>
         </TouchableOpacity>

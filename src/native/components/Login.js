@@ -81,112 +81,124 @@ class Login extends React.Component {
 
     return (
       <View>
-      <ScrollView scrollEnabled={false}
-        contentContainerStyle={[
+        <ScrollView
+          scrollEnabled={false}
+          contentContainerStyle={[
           styles.container,
           styles.backgroundWhite,
           styles.fullScreen,
           {
             justifyContent: 'center',
             alignItems: 'center',
-          }
+          },
         ]}
-      >
-        <View style={[
+        >
+          <View style={[
           {
             width: 300,
-          }
-        ]}>
-          <View style={[
+          },
+        ]}
+          >
+            <View style={[
             styles.paddingBottomLarge,
-            styles.flexCenter
-          ]}>
-            <Image source={require('../../images/andamiaje-logo-login.png')} style={{width: 240, height: 50.8}} />
-          </View>
+            styles.flexCenter,
+          ]}
+            >
+              <Image source={require('../../images/andamiaje-logo-login.png')} style={{ width: 240, height: 50.8 }} />
+            </View>
 
-          <View style={[
+            <View style={[
             styles.paddingBottomSmall,
-          ]}>
-            <TextInput
-              placeholder="Email"
-              autoCapitalize="none"
-              value={this.state.email}
-              keyboardType="email-address"
-              style={[
+          ]}
+            >
+              <TextInput
+                placeholder="Email"
+                autoCapitalize="none"
+                value={this.state.email}
+                keyboardType="email-address"
+                style={[
                 styles.paddingTopSmall,
                 styles.paddingBottomSmall,
                 {
                   borderBottomColor: colors.black,
                   borderBottomWidth: 1,
-                }
+                },
               ]}
-              onChangeText={v => this.handleChange('email', v)}
-              underlineColorAndroid={'rgba(0,0,0,0)'}
-            />
-          </View>
-          <View style={[
+                onChangeText={v => this.handleChange('email', v)}
+                underlineColorAndroid="rgba(0,0,0,0)"
+              />
+            </View>
+            <View style={[
             styles.paddingBottomSmall,
             styles.flexNowrap,
             styles.flexRow,
             {
               alignItems: 'center',
-            }
-          ]}>
-            <TextInput
-              placeholder="Contraseña"
-              secureTextEntry={!this.state.showPassword}
-              style={[
+            },
+          ]}
+            >
+              <TextInput
+                placeholder="Contraseña"
+                secureTextEntry={!this.state.showPassword}
+                style={[
                 styles.paddingTopSmall,
                 styles.paddingBottomSmall,
                 {
                   borderBottomColor: colors.black,
                   borderBottomWidth: 1,
                   flexGrow: 1,
-                }
+                },
               ]}
-              onChangeText={v => this.handleChange('password', v)}
-              underlineColorAndroid={'rgba(0,0,0,0)'}
-            />
-            <TouchableOpacity
-              onPress={() => {this.setState(prevState => ({
-                  showPassword: !prevState.showPassword
+                onChangeText={v => this.handleChange('password', v)}
+                underlineColorAndroid="rgba(0,0,0,0)"
+              />
+              <TouchableOpacity
+                onPress={() => {
+ this.setState(prevState => ({
+                  showPassword: !prevState.showPassword,
                 }));
               }}
-              style={[
+                style={[
                 styles.flexCenter,
                 {
                   flexBasis: 50,
-                }
+                },
               ]}
-            >
-              { this.state.showPassword
-                ? <Image source={eyeVisibleSource} style={{width: 34, height: 25}} />
-                : <Image source={eyeHiddenSource} style={{width: 34, height: 25}} />
+              >
+                { this.state.showPassword
+                ? <Image source={eyeVisibleSource} style={{ width: 34, height: 25 }} />
+                : <Image source={eyeHiddenSource} style={{ width: 34, height: 25 }} />
               }
-            </TouchableOpacity>
-          </View>
-          <View style={[
+              </TouchableOpacity>
+            </View>
+            <View style={[
             styles.paddingTopLarge,
             styles.flexCenter,
-          ]}>
-            <TouchableOpacity onPress={this.handleSubmit} style={[
+          ]}
+            >
+              <TouchableOpacity
+                onPress={this.handleSubmit}
+                style={[
               {
                 backgroundColor: colors.black,
                 padding: styleConstants.paddingBasic,
                 borderRadius: 5,
                 width: 240,
-              }
-            ]}>
-              <Text style={{
+              },
+            ]}
+              >
+                <Text style={{
                 textAlign: 'center',
                 color: colors.white,
-              }}>Iniciar sesión</Text>
-            </TouchableOpacity>
+              }}
+                >Iniciar sesión
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        <KeyboardSpacer/>
-      </ScrollView>
-      <Toast />
+          <KeyboardSpacer />
+        </ScrollView>
+        <Toast />
       </View>
     );
   }

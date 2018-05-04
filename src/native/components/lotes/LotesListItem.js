@@ -15,14 +15,13 @@ const LotesListItem = ({
   lote,
   displayOnly,
 }) => {
-
   const keyExtractor = item => item.id;
 
   const onPressArtista = id => Actions.artista({
     match: {
       params: {
-        id: String(id)
-      }
+        id: String(id),
+      },
     },
     onBack: () => {
       Actions.catalogos();
@@ -44,7 +43,7 @@ const LotesListItem = ({
           styles.paddingTopSmall,
           styles.paddingBottomSmall,
           styles.flexRow,
-          { justifyContent: 'space-between' }
+          { justifyContent: 'space-between' },
         ]}
       >
         <Text style={styles.fontBold}>{lote.artista.name}</Text>
@@ -55,22 +54,20 @@ const LotesListItem = ({
         onPress={() => onPressLote(lote.id)}
         style={[
           styles.container,
-          styles.backgroundWhite
+          styles.backgroundWhite,
         ]}
       >
         <View>
-          {lote.obras.map( (item, key) => {
-            return (
-              <LotesListItemObra key={keyExtractor(item)} obra={item}/>
-            )
-          })}
+          {lote.obras.map((item, key) => (
+            <LotesListItemObra key={keyExtractor(item)} obra={item} />
+            ))}
         </View>
-        <View style={[styles.paddingTopSmall,]}>
+        <View style={[styles.paddingTopSmall]}>
           <Text style={[styles.fontSizeSmall, styles.textLink]}>Ver más</Text>
         </View>
       </TouchableOpacity>
 
-    { !displayOnly ? <BuyButton lote={lote} /> : null }
+      { !displayOnly ? <BuyButton lote={lote} /> : null }
     </View>
   );
 };

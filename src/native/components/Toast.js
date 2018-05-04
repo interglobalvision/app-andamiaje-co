@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Text, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
@@ -9,7 +9,7 @@ import styles from '../constants/styles';
 
 class Toast extends Component {
   componentDidUpdate() {
-    if(this.view !== undefined && this.view !== null) {
+    if (this.view !== undefined && this.view !== null) {
       this.animateToast(this.view);
     }
   }
@@ -25,11 +25,11 @@ class Toast extends Component {
 
     if (this.props.message === '' || this.props.message === null) {
       return null;
-    } else {
-      return (
-        <Animatable.View
-          ref={handleViewRef}
-          style={[
+    }
+    return (
+      <Animatable.View
+        ref={handleViewRef}
+        style={[
             styles.container,
             styles.backgroundWhite,
             styles.paddingTopSmall,
@@ -37,11 +37,11 @@ class Toast extends Component {
             styles.flexRow,
             styles.flexCenter,
             styles.toast,
-        ]}>
-          <Text style={[styles.fontSizeSmall, styles.textAlignCenter]}>{this.props.message}</Text>
-        </Animatable.View>
-      );
-    }
+        ]}
+      >
+        <Text style={[styles.fontSizeSmall, styles.textAlignCenter]}>{this.props.message}</Text>
+      </Animatable.View>
+    );
   }
 }
 
@@ -49,7 +49,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  message: state.toast.message
+  message: state.toast.message,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Toast);

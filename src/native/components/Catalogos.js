@@ -32,7 +32,7 @@ const CatalogosList = ({
       borderBottomWidth: 1,
       borderStyle: 'solid',
       borderBottomColor: 'black',
-    }
+    },
   });
 
   /**

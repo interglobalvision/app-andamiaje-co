@@ -17,10 +17,12 @@ export default function miembroReducer(state = initialState, action) {
 
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        miembros = Object.keys(action.data).
-          filter(key => action.data[key].active).  // Only active Miembros
-          map(id => {
-            const { displayName, images, collection, tokens } = action.data[id];
+        miembros = Object.keys(action.data)
+          .filter(key => action.data[key].active) // Only active Miembros
+          .map((id) => {
+            const {
+              displayName, images, collection, tokens,
+            } = action.data[id];
 
             return ({
               id,
@@ -28,7 +30,7 @@ export default function miembroReducer(state = initialState, action) {
               images,
               collection,
               tokens,
-            })
+            });
           });
 
         miembros = orderBy(miembros, ['displayName'], ['asc']);

@@ -27,7 +27,7 @@ class MemberCollectionContainer extends Component {
   }
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentDidMount = () => this.fetchLotesAndObras()
@@ -35,21 +35,19 @@ class MemberCollectionContainer extends Component {
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchLotesAndObras = () => {
-    return this.props.getLotes()
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setLotesError(err);
-      })
-      .then(this.props.getObras)
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setObrasError(err);
-      })
-  }
+  fetchLotesAndObras = () => this.props.getLotes()
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setLotesError(err);
+    })
+    .then(this.props.getObras)
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setObrasError(err);
+    })
 
   render = () => {
-    const { Layout, collection, lotes } =  this.props;
+    const { Layout, collection, lotes } = this.props;
 
     return (
       <Layout

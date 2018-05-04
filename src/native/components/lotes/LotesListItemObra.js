@@ -6,16 +6,13 @@ import { Text } from 'native-base';
 import styles from '../../constants/styles';
 
 const LotesListItemObra = ({
-  obra, border
-}) => {
-
-  return (
-    <View style={styles.paddingBottomSmall}>
-      <Text style={[{color: 'black'}]}><Text style={[styles.fontItalic, {color: 'black'}]}>{obra.title}</Text>, {obra.year}</Text>
-      <Text style={[{color: 'black'}]}>{obra.materials}</Text>
-    </View>
-  );
-};
+  obra, border,
+}) => (
+  <View style={styles.paddingBottomSmall}>
+    <Text style={[{ color: 'black' }]}><Text style={[styles.fontItalic, { color: 'black' }]}>{obra.title}</Text>, {obra.year}</Text>
+    <Text style={[{ color: 'black' }]}>{obra.materials}</Text>
+  </View>
+);
 
 LotesListItemObra.propTypes = {
   obra: PropTypes.object.isRequired,

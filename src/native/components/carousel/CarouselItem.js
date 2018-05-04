@@ -7,7 +7,7 @@ import styles from '../../constants/styles';
 const CarouselItem = ({
   image,
 }) => {
-  let windowWidth = Dimensions.get('window').width;
+  const windowWidth = Dimensions.get('window').width;
 
   const imageSize = getBestImageSize();
   const imageSrc = getResizedImageUrl(image, imageSize);
@@ -18,14 +18,15 @@ const CarouselItem = ({
       scrollEnabled={false}
       minimumZoomScale={1}
       maximumZoomScale={1.000000000000001}
-      bouncesZoom={true}
-      pinchGestureEnabled={true}
-      contentContainerStyle={styles.carouselItem}>
+      bouncesZoom
+      pinchGestureEnabled
+      contentContainerStyle={styles.carouselItem}
+    >
       <Image
         source={{ uri: imageSrc, cache: 'force-cache' }}
         style={{
           width: imageDimensions.width,
-          height: imageDimensions.height
+          height: imageDimensions.height,
         }}
       />
     </ScrollView>

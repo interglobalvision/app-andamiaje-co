@@ -25,10 +25,10 @@ const customStyles = StyleSheet.flatten({
   },
   paragraph: {
     paddingBottom: styleConstants.paddingLarge,
-  }
+  },
 });
 
-const DraftContentRenderer = ({rawContent}) => {
+const DraftContentRenderer = ({ rawContent }) => {
   const contentState = JSON.parse(rawContent);
 
   const params = {
@@ -40,9 +40,9 @@ const DraftContentRenderer = ({rawContent}) => {
 
   return (
     <View>
-    {blocks}
+      {blocks}
     </View>
   );
-}
+};
 
 export default DraftContentRenderer;

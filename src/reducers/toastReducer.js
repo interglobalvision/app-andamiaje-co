@@ -8,8 +8,8 @@ export default function toastReducer(state = initialState, action) {
   switch (type) {
     case 'ADD_TOAST': {
       return {
-        message: message,
-      }
+        message,
+      };
     }
     case 'CLEAR_TOAST': {
       return initialState;

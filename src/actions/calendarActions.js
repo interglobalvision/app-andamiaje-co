@@ -6,5 +6,5 @@ import { Firebase, FirebaseRef } from '../lib/firebase';
 export function toggleCalendar() {
   return {
     type: 'TOGGLE_CALENDAR',
-  }
+  };
 }

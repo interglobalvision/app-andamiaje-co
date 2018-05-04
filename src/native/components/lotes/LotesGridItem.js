@@ -9,7 +9,6 @@ import Spacer from '../Spacer';
 const LotesGridItem = ({
   item,
 }) => {
-
   const keyExtractor = item => item.id;
 
   const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
@@ -26,7 +25,7 @@ const LotesGridItem = ({
 
   return (
     <TouchableOpacity onPress={() => onPress(item)}>
-      <Image source={{ uri: imageSrc, cache: 'force-cache' }} style={{ width: thirdWidth, height: thirdWidth }}/>
+      <Image source={{ uri: imageSrc, cache: 'force-cache' }} style={{ width: thirdWidth, height: thirdWidth }} />
       {item.owner !== undefined &&
         <View style={{
           position: 'absolute',
@@ -36,7 +35,8 @@ const LotesGridItem = ({
           height: '100%',
           overflow: 'hidden',
           backgroundColor: 'rgba(30,30,30,.4)',
-        }}>
+        }}
+        >
           <View style={{
             position: 'absolute',
             width: '150%',
@@ -45,7 +45,8 @@ const LotesGridItem = ({
             borderTopWidth: 2,
             borderTopColor: 'rgba(30,30,30,1)',
             transform: [{ rotate: '25deg' }],
-          }}></View>
+          }}
+          />
         </View>
       }
     </TouchableOpacity>

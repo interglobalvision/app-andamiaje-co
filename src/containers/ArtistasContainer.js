@@ -29,26 +29,24 @@ class ArtistasContainer extends Component {
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchArtistas = () => {
-    return this.props.getArtistas()
-      .then(() => this.fetchCatalogos())
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-  }
+  fetchArtistas = () => this.props.getArtistas()
+    .then(() => this.fetchCatalogos())
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
-  fetchCatalogos = () => {
-    return this.props.getCatalogos()
-      .then(() => this.props.updateCountdown())
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-  }
+  fetchCatalogos = () => this.props.getCatalogos()
+    .then(() => this.props.updateCountdown())
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
   render = () => {
-    const { Layout, artistas, catalogos, countdown, match } = this.props;
+    const {
+      Layout, artistas, catalogos, countdown, match,
+    } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (

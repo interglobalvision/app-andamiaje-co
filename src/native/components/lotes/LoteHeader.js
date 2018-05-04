@@ -25,21 +25,17 @@ class LoteHeader extends Component {
     super(props);
   }
 
-  addWishlistLote = () => {
-    return this.props.addToWishlist(this.props.lote)
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-  }
+  addWishlistLote = () => this.props.addToWishlist(this.props.lote)
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
-  removeWishlistLote = () => {
-    return this.props.removeFromWishlist(this.props.lote)
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-  }
+  removeWishlistLote = () => this.props.removeFromWishlist(this.props.lote)
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
   returnWishlistButton = () => {
     const { wishlist, lote, role } = this.props;
@@ -49,22 +45,22 @@ class LoteHeader extends Component {
     }
 
     // true if wishlist array contains lote ID
-    //const isWishlist = wishlist.find(item => item.id === lote.id);
+    // const isWishlist = wishlist.find(item => item.id === lote.id);
     const isWishlist = _find(wishlist, item => item.id === lote.id);
 
-    const iconImageStyle = {width: 18.5, height: 25};
+    const iconImageStyle = { width: 18.5, height: 25 };
 
     if (isWishlist) {
       // show remove button
       return (
-        <TouchableOpacity onPress={ () => {this.removeWishlistLote()} }>
+        <TouchableOpacity onPress={() => { this.removeWishlistLote(); }}>
           <Image source={require('../../../images/icons/icon-wishlist-check.png')} style={iconImageStyle} />
         </TouchableOpacity>
       );
     }
     return (
       // show add button
-      <TouchableOpacity onPress={ () => {this.addWishlistLote()} }>
+      <TouchableOpacity onPress={() => { this.addWishlistLote(); }}>
         <Image source={require('../../../images/icons/icon-wishlist-plus.png')} style={iconImageStyle} />
       </TouchableOpacity>
     );
@@ -78,7 +74,7 @@ class LoteHeader extends Component {
       obraText = 'Obras';
     }
 
-    return (<Text style={[styles.fontSizeSmall]}>{ obras.length } {obraText}</Text>)
+    return (<Text style={[styles.fontSizeSmall]}>{ obras.length } {obraText}</Text>);
   }
 
   render() {
@@ -103,7 +99,7 @@ class LoteHeader extends Component {
     return (
       <View style={containerStyle}>
         <View>
-          <View style={[styles.flexRow, {alignItems: 'center'}]}>
+          <View style={[styles.flexRow, { alignItems: 'center' }]}>
             {this.renderObrasLength()}
             <TextBullet />
             <Text style={[styles.fontSizeSmall]}>ŧ { lote.price }</Text>
@@ -113,7 +109,7 @@ class LoteHeader extends Component {
       </View>
     );
   }
-};
+}
 
 const mapDispatchToProps = {
   removeFromWishlist,

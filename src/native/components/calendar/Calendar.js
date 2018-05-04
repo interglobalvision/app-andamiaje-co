@@ -15,41 +15,34 @@ import Error from '../Error';
 import CalendarItem from './CalendarItem';
 
 const getDates = (activeCatalogo, futureCatalogos) => {
-
-  const catalogos = [activeCatalogo, ...futureCatalogos]
+  const catalogos = [activeCatalogo, ...futureCatalogos];
 
   // Generate a single array for each date (only startDate and saleDate) in all Catalogos
-  let dates = [].concat.apply([], catalogos.map( catalogo => {
-    return [{
-      date: catalogo.startDate,
-      label: `El Catálogo ${catalogo.title} sale el`
-    }, {
-      date: catalogo.saleDate,
-      label: `La Adquisición ${catalogo.title} es el`,
-      label2: `Y comienza a las ${format(catalogo.saleDate, 'HH:mm')}`,
-    }];
-  }));
+  let dates = [].concat.apply([], catalogos.map(catalogo => [{
+    date: catalogo.startDate,
+    label: `El Catálogo ${catalogo.title} sale el`,
+  }, {
+    date: catalogo.saleDate,
+    label: `La Adquisición ${catalogo.title} es el`,
+    label2: `Y comienza a las ${format(catalogo.saleDate, 'HH:mm')}`,
+  }]));
 
   // Filter past dates
   const now = new Date().getTime();
-  dates = dates.filter( event => {
-    return event.date > now;
-  });
+  dates = dates.filter(event => event.date > now);
 
   // Sort by dates
-  dates = dates.sort( (a,b) => {
-    if(a.date > b.date) {
+  dates = dates.sort((a, b) => {
+    if (a.date > b.date) {
       return 1;
     } else if (a.date < b.date) {
       return -1;
-    } else {
-      return 0;
     }
+    return 0;
   });
 
   return dates;
-
-}
+};
 
 class Calendar extends Component {
   static propTypes = {
@@ -92,7 +85,7 @@ class Calendar extends Component {
         height: toHeight,
       },
       this.dates.length * 200,
-      'ease-in-out'
+      'ease-in-out',
     );
   }
 
@@ -116,7 +109,7 @@ class Calendar extends Component {
     this.dates = getDates(activeCatalogo, futureCatalogos);
 
     // Empty Calendar
-    if(this.dates.length === 0) return null;
+    if (this.dates.length === 0) return null;
 
     const keyExtractor = item => item.date;
 
@@ -125,13 +118,14 @@ class Calendar extends Component {
         ref={this.handleViewRef}
         style={{
         height: this.baseHeight,
-      }}>
+      }}
+      >
         <TouchableOpacity onPress={this.animateCalendar} activeOpacity={0.9}>
           <FlatList
             numColumns={1}
             data={this.dates}
             renderItem={({ item }) => (
-             <CalendarItem item={item} />
+              <CalendarItem item={item} />
             )}
             keyExtractor={keyExtractor}
             refreshControl={
@@ -144,8 +138,8 @@ class Calendar extends Component {
         </TouchableOpacity>
       </Animatable.View>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = state => ({
   show: state.calendar.show || false,

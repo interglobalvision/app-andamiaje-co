@@ -17,10 +17,12 @@ export default function catalogoReducer(state = initialState, action) {
 
       // Get Past Catalogos. Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        pastCatalogos = Object.keys(action.data).
-          filter(key => action.data[key].startDate <= Date.now()).  // Only current & past Catalogos
-          map(id => {
-            const { title, startDate, saleDate, endDate, lotes } = action.data[id];
+        pastCatalogos = Object.keys(action.data)
+          .filter(key => action.data[key].startDate <= Date.now()) // Only current & past Catalogos
+          .map((id) => {
+            const {
+              title, startDate, saleDate, endDate, lotes,
+            } = action.data[id];
 
             return ({
               id,
@@ -29,7 +31,7 @@ export default function catalogoReducer(state = initialState, action) {
               saleDate,
               endDate,
               lotes,
-            })
+            });
           });
 
         // Find if any of the catalogos should be active
@@ -41,10 +43,12 @@ export default function catalogoReducer(state = initialState, action) {
 
       // Get Future Catalogos. Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        futureCatalogos = Object.keys(action.data).
-          filter(key => action.data[key].startDate > Date.now()).  // Only current & past Catalogos
-          map(id => {
-            const { title, startDate, saleDate, endDate, lotes } = action.data[id];
+        futureCatalogos = Object.keys(action.data)
+          .filter(key => action.data[key].startDate > Date.now()) // Only current & past Catalogos
+          .map((id) => {
+            const {
+              title, startDate, saleDate, endDate, lotes,
+            } = action.data[id];
 
             return ({
               id,
@@ -53,11 +57,11 @@ export default function catalogoReducer(state = initialState, action) {
               saleDate,
               endDate,
               lotes,
-            })
+            });
           });
 
         // Remove activeCatalogo from futureCatalogos just in case
-        futureCatalogos = futureCatalogos.filter( catalogo => catalogo.id !== activeCatalogo.id );
+        futureCatalogos = futureCatalogos.filter(catalogo => catalogo.id !== activeCatalogo.id);
       }
 
       return {
@@ -74,7 +78,7 @@ export default function catalogoReducer(state = initialState, action) {
         grid: action.grid,
         filterBy: state.viewSettings.filterBy,
         orderBy: state.viewSettings.orderBy,
-      }
+      };
 
       return {
         ...state,
@@ -86,7 +90,7 @@ export default function catalogoReducer(state = initialState, action) {
         grid: state.viewSettings.grid,
         filterBy: state.viewSettings.filterBy,
         orderBy: action.order,
-      }
+      };
 
       return {
         ...state,
@@ -98,7 +102,7 @@ export default function catalogoReducer(state = initialState, action) {
         grid: state.viewSettings.grid,
         filterBy: action.tecnica,
         orderBy: state.viewSettings.orderBy,
-      }
+      };
 
       return {
         ...state,
@@ -108,6 +112,5 @@ export default function catalogoReducer(state = initialState, action) {
 
     default:
       return state;
-
   }
 }

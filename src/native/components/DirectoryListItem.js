@@ -4,11 +4,13 @@ import { Actions } from 'react-native-router-flux';
 import { getResizedImageUrl } from '../../lib/utilities';
 import styles from '../constants/styles';
 
-const DirectoryListItem = ({ name, images, id, type, currentMember, collection }) => {
+const DirectoryListItem = ({
+  name, images, id, type, currentMember, collection,
+}) => {
   let imageSource = require('../../images/placeholder.png');
 
   if (images !== undefined) {
-    imageSource = {uri: getResizedImageUrl(images[0], 350, true)};
+    imageSource = { uri: getResizedImageUrl(images[0], 350, true) };
   }
 
   let onPress = id => Actions.miembro({ match: { params: { id: String(id) } } });
@@ -19,7 +21,7 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
 
   if (currentMember) {
     const collectionLength = collection !== undefined && collection !== {} ? Object.keys(collection).length : 0;
-    const collectionLengthString = collectionLength === 1 ? '1 obra' : collectionLength.toString() + ' obras';
+    const collectionLengthString = collectionLength === 1 ? '1 obra' : `${collectionLength.toString()} obras`;
 
     return (
       <View style={[
@@ -27,10 +29,14 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
         styles.paddingTopBasic,
         styles.paddingBottomBasic,
         styles.bordered,
-      ]}>
-        <TouchableOpacity onPress={() => onPress(id)} style={[
-          styles.flexRow
-        ]}>
+      ]}
+      >
+        <TouchableOpacity
+          onPress={() => onPress(id)}
+          style={[
+          styles.flexRow,
+        ]}
+        >
           <View>
             <Image source={imageSource} style={[styles.profileAvatarImage]} />
           </View>
@@ -43,7 +49,7 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
           </View>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 
   return (
@@ -51,11 +57,15 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
       styles.container,
       styles.paddingTopSmall,
       styles.paddingBottomSmall,
-    ]}>
-      <TouchableOpacity onPress={() => onPress(id)} style={[
+    ]}
+    >
+      <TouchableOpacity
+        onPress={() => onPress(id)}
+        style={[
         styles.flexRow,
-        {alignItems: 'center'}
-      ]}>
+        { alignItems: 'center' },
+      ]}
+      >
         <View>
           <Image source={imageSource} style={styles.directoryImage} />
         </View>
@@ -64,7 +74,7 @@ const DirectoryListItem = ({ name, images, id, type, currentMember, collection }
         </View>
       </TouchableOpacity>
     </View>
-  )
+  );
 };
 
 export default DirectoryListItem;

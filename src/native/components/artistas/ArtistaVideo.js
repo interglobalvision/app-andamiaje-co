@@ -15,17 +15,18 @@ const ArtistaVideo = ({
   if (hasVideo) {
     return (
       <View>
-        <SectionHeader title={'Video'} />
+        <SectionHeader title="Video" />
         <View style={[
           styles.container,
           styles.paddingTopSmall,
           styles.paddingBottomLarge,
-        ]}>
+        ]}
+        >
           <Thumbnail
             url={video.url}
             imageWidth={containerWidth}
             imageHeight={((containerWidth / 16) * 9)}
-            iconStyle={{width: 25, height: 29}}
+            iconStyle={{ width: 25, height: 29 }}
           />
         </View>
       </View>

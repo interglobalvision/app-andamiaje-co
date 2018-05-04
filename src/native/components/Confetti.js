@@ -17,7 +17,9 @@ const colors = [
   'rgba(183,6,254,.6)',
 ];
 
-const FlippingParticle = ({ back = false, delay, duration = 1000, source, style = {} }) => (
+const FlippingParticle = ({
+  back = false, delay, duration = 1000, source, style = {},
+}) => (
   <Animatable.View
     animation={{
       from: { rotateX: back ? '0deg' : '180deg', rotate: !back ? '180deg' : '0deg' },
@@ -36,7 +38,9 @@ const FlippingParticle = ({ back = false, delay, duration = 1000, source, style 
   />
 );
 
-const Swinging = ({ amplitude, rotation = 7, delay, duration = 700, children }) => (
+const Swinging = ({
+  amplitude, rotation = 7, delay, duration = 700, children,
+}) => (
   <Animatable.View
     animation={{
       0: {
@@ -66,7 +70,9 @@ const Swinging = ({ amplitude, rotation = 7, delay, duration = 700, children }) 
   </Animatable.View>
 );
 
-const Falling = ({ duration, delay, style, children }) => (
+const Falling = ({
+  duration, delay, style, children,
+}) => (
   <Animatable.View
     animation={{
       from: { translateY: -PARTICLE_DIMENSIONS.height - WIGGLE_ROOM },
@@ -85,7 +91,7 @@ const Falling = ({ duration, delay, style, children }) => (
 
 const randomize = max => Math.random() * max;
 
-const range = count => {
+const range = (count) => {
   const array = [];
   for (let i = 0; i < count; i++) {
     array.push(i);
@@ -96,16 +102,19 @@ const range = count => {
 const randomColor = () => colors[Math.floor(randomize(colors.length))];
 
 const Confetti = ({ show, count = 30, duration = 5000 }) => {
-  if(show) {
-    return(
-      <View pointerEvents="none" style={[
+  if (show) {
+    return (
+      <View
+        pointerEvents="none"
+        style={[
         {
           position: 'absolute',
           top: 0,
           width: SCREEN_DIMENSIONS.width,
           height: SCREEN_DIMENSIONS.height,
-        }
-      ]}>
+        },
+      ]}
+      >
         {range(count)
           .map(i => randomize(2000))
           .map((flipDelay, i) => (

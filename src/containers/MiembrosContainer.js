@@ -23,17 +23,16 @@ class MiembrosContainer extends Component {
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchMiembros = () => {
-    return this.props.getMiembros()
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-
-  }
+  fetchMiembros = () => this.props.getMiembros()
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
   render = () => {
-    const { Layout, miembros, member, match, logout } = this.props;
+    const {
+      Layout, miembros, member, match, logout,
+    } = this.props;
     const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
