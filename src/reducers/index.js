@@ -6,6 +6,7 @@ import recipes from './recipes';
 import noticias from './noticiasReducer';
 import catalogos from './catalogosReducer';
 import lotes from './lotesReducer';
+import collection from './collectionReducer';
 import artistas from './artistasReducer';
 import miembros from './miembrosReducer';
 import calendar from './calendarReducer';
@@ -32,6 +33,7 @@ export default {
   noticias,
   catalogos,
   lotes,
+  collection,
   artistas,
   miembros,
   calendar,
