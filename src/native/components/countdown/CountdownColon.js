@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { Text } from 'react-native';
 import styles from '../../constants/styles';
 
-const CountdownColon =() => {
-  return(
-    <Text style={[
+const CountdownColon = () => (
+  <Text style={[
       styles.colorWhite,
       styles.fontFamilyMedium,
       styles.fontSizeMid,
       styles.paddingLeftTiny,
       styles.paddingRightTiny,
-    ]}>:</Text>
-  );
-};
+    ]}
+  >:
+  </Text>
+);
 
 export default CountdownColon;

@@ -28,7 +28,7 @@ export function getCatalogos() {
         data: catalogos,
       });
 
-      dispatch(updateCountdown)
+      dispatch(updateCountdown);
 
       return resolve();
     }))
@@ -39,34 +39,28 @@ export function getCatalogos() {
  * Change Catalogo Layout Setting
  */
 export function changeCatalogoLayout(grid) {
-  return (dispatch) => {
-    return dispatch({
-      type: 'CHANGE_CATALOGO_LAYOUT',
-      grid
-    });
-  }
+  return dispatch => dispatch({
+    type: 'CHANGE_CATALOGO_LAYOUT',
+    grid,
+  });
 }
 
 /*
  * Change Catalogo Ordering
  */
 export function changeCatalogoOrder(order) {
-  return (dispatch) => {
-    return dispatch({
-      type: 'CHANGE_CATALOGO_ORDER',
-      order
-    });
-  }
+  return dispatch => dispatch({
+    type: 'CHANGE_CATALOGO_ORDER',
+    order,
+  });
 }
 
 /*
  * Change Catalogo Filtering
  */
 export function changeCatalogoFilter(tecnica) {
-  return (dispatch) => {
-    return dispatch({
-      type: 'CHANGE_CATALOGO_FILTER',
-      tecnica
-    });
-  }
+  return dispatch => dispatch({
+    type: 'CHANGE_CATALOGO_FILTER',
+    tecnica,
+  });
 }

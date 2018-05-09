@@ -21,18 +21,13 @@ const LoteSingle = ({
   error,
   loading,
 }) => {
-
   // Loading
   if (loading) return <Loading />;
 
   // Error
   if (error) return <Error content={error} />;
 
-  const loteObras = obras.filter( obra => {
-    return lote.obras.some( loteObra => {
-      return loteObra.id === obra.id;
-    });
-  });
+  const loteObras = obras.filter(obra => lote.obras.some(loteObra => loteObra.id === obra.id));
 
   const {
     saleSoon,
@@ -42,32 +37,35 @@ const LoteSingle = ({
   } = countdown;
 
   return (
-    <View style={{flex: 1}}>
-      <ScrollView stickyHeaderIndices={saleSoon || saleStarted ? [1] : [0]} contentContainerStyle={[
+    <View style={{ flex: 1 }}>
+      <ScrollView
+        stickyHeaderIndices={saleSoon || saleStarted ? [1] : [0]}
+        contentContainerStyle={[
         styles.backgroundWhite,
         styles.paddingBottomLarge,
-      ]}>
+      ]}
+      >
 
-      { loteCountdown && (saleSoon || saleStarted || saleEnded) &&
+        { loteCountdown && (saleSoon || saleStarted || saleEnded) &&
         <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
       }
-      { loteCountdown && saleSoon &&
+        { loteCountdown && saleSoon &&
         <CountdownClock countdownTo={activeCatalogo.saleDate} />
       }
-      { loteCountdown && saleStarted &&
+        { loteCountdown && saleStarted &&
         <CountdownClock countdownTo={activeCatalogo.endDate} />
       }
 
         <LoteHeader lote={lote} />
         <View>
-          {loteObras.map( (item, key) => {
+          {loteObras.map((item, key) => {
             let border = true;
-            if (key >= (loteObras.length - 1) ) {
+            if (key >= (loteObras.length - 1)) {
               border = false;
             }
             return (
-              <LoteSingleObra key={key} obra={item} border={border}/>
-            )
+              <LoteSingleObra key={key} obra={item} border={border} />
+            );
           })}
         </View>
 

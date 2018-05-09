@@ -12,7 +12,7 @@ const CarouselHolder = ({
 }) => {
   const keyExtractor = item => item.key;
 
-  let carouselImages = [];
+  const carouselImages = [];
 
   obras.forEach((obra) => {
     obra.images.forEach((image) => {
@@ -20,7 +20,7 @@ const CarouselHolder = ({
     });
   });
 
-  const showBullets = carouselImages.length > 1 ? true : false;
+  const showBullets = carouselImages.length > 1;
   const bulletDiameter = 5;
 
   return (
@@ -35,7 +35,7 @@ const CarouselHolder = ({
         bulletStyle={styles.carouselBulletStyle}
         chosenBulletStyle={styles.carouselChosenBulletStyle}
       >
-        {carouselImages.map(image => <CarouselItem image={image} key={keyExtractor(image)}/>)}
+        {carouselImages.map(image => <CarouselItem image={image} key={keyExtractor(image)} />)}
       </Carousel>
     </View>
   );

@@ -5,16 +5,16 @@ import PortfolioItem from './PortfolioItem';
 import SectionHeader from '../SectionHeader';
 
 const ArtistaPortfolio = ({ portfolio, name }) => {
-  if (portfolio === undefined)  return null;
+  if (portfolio === undefined) return null;
 
   return (
     <View>
-      <SectionHeader title={'Portafolio'} />
+      <SectionHeader title="Portafolio" />
       <View>
-        { portfolio.map( (item, key) => <PortfolioItem key={key} item={item} name={name} />)}
+        { portfolio.map((item, key) => <PortfolioItem key={key} item={item} name={name} />)}
       </View>
     </View>
   );
-}
+};
 
 export default ArtistaPortfolio;

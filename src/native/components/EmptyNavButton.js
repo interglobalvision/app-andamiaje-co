@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import styles from '../constants/styles';
 
 const EmptyNavButton = () => (
-  <View></View>
+  <View />
 );
 
 export default EmptyNavButton;

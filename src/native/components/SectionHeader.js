@@ -8,8 +8,9 @@ const SectionHeader = ({ title }) => (
     styles.container,
     styles.backgroundWhite,
     styles.bordered,
-    styles.sectionHeader
-  ]}>
+    styles.sectionHeader,
+  ]}
+  >
     <Text style={[styles.fontSizeSmall]}>{title}</Text>
   </View>
 );

@@ -25,7 +25,7 @@ class MemberCollectionContainer extends Component {
   }
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentDidMount = () => this.fetchLotesAndObras()

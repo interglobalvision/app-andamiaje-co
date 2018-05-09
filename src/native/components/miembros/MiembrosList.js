@@ -33,7 +33,7 @@ const MiembrosList = ({
 
   let displayCurrentMember = false;
 
-  let miembrosArray = _clone(miembros);
+  const miembrosArray = _clone(miembros);
 
   if (currentMember !== undefined && currentMember !== null) {
     displayCurrentMember = true;
@@ -44,27 +44,31 @@ const MiembrosList = ({
     <ScrollView style={styles.backgroundWhite}>
       <View>
         { displayCurrentMember &&
-          <DirectoryListItem key={currentMember.key} id={currentMember.id} name={currentMember.displayName} images={currentMember.images} collection={currentMember.collection} type={'miembro'} currentMember={true} />
+          <DirectoryListItem key={currentMember.key} id={currentMember.id} name={currentMember.displayName} images={currentMember.images} collection={currentMember.collection} type="miembro" currentMember />
         }
-        { miembrosArray.map( (item, key) => <DirectoryListItem key={key} id={item.id} name={item.displayName} images={item.images} type={'miembro'} />)}
+        { miembrosArray.map((item, key) => <DirectoryListItem key={key} id={item.id} name={item.displayName} images={item.images} type="miembro" />)}
       </View>
       { !displayCurrentMember &&
         <View style={[
           {
             borderTopWidth: 1,
             borderTopColor: colors.lightGrey,
-            alignItems: 'center'
-          }
-        ]}>
-          <TouchableOpacity onPress={() => {Actions.options()}} style={[
+            alignItems: 'center',
+          },
+        ]}
+        >
+          <TouchableOpacity
+            onPress={() => { Actions.options(); }}
+            style={[
             styles.flexRow,
             styles.paddingTopBasic,
             styles.paddingBottomBasic,
             styles.container,
-          ]}>
+          ]}
+          >
             <View style={{ flex: 1 }}><Text>Opciones</Text></View>
             <View>
-              <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+              <Image source={require('../../../images/icons/icon-open-page.png')} style={{ width: 6, height: 12 }} />
             </View>
           </TouchableOpacity>
         </View>

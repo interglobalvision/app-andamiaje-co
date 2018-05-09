@@ -40,17 +40,17 @@ class CountdownClock extends React.Component {
     this.props.updateCountdown(Date.now());
 
     const t = this.props.countdownTo - Date.now();
-    let seconds = ('0' + (Math.floor( (t/1000) % 60 ))).slice(-2);
-    let minutes = ('0' + (Math.floor( (t/1000/60) % 60 ))).slice(-2);
-    let hours = ('0' + (Math.floor( (t/(1000*60*60)) % 24 ))).slice(-2);
-    let days = ('0' + (Math.floor( t/(1000*60*60*24) ))).slice(-2);
+    const seconds = (`0${Math.floor((t / 1000) % 60)}`).slice(-2);
+    const minutes = (`0${Math.floor((t / 1000 / 60) % 60)}`).slice(-2);
+    const hours = (`0${Math.floor((t / (1000 * 60 * 60)) % 24)}`).slice(-2);
+    const days = (`0${Math.floor(t / (1000 * 60 * 60 * 24))}`).slice(-2);
 
     if (t > 0) {
       this.setState({
-        days: days,
-        hours: hours,
-        minutes: minutes,
-        seconds: seconds,
+        days,
+        hours,
+        minutes,
+        seconds,
       });
     } else if (t <= 0) {
       clearRequestInterval(this.timeInterval);
@@ -66,14 +66,15 @@ class CountdownClock extends React.Component {
         styles.flexRow,
         styles.alignStart,
         styles.justifyCenter,
-      ]}>
-          <CountdownNumber number={this.state.days} title={'Días'} />
-          <CountdownColon />
-          <CountdownNumber number={this.state.hours} title={'Horas'} />
-          <CountdownColon />
-          <CountdownNumber number={this.state.minutes} title={'Min'} />
-          <CountdownColon />
-          <CountdownNumber number={this.state.seconds} title={'Seg'} />
+      ]}
+      >
+        <CountdownNumber number={this.state.days} title="Días" />
+        <CountdownColon />
+        <CountdownNumber number={this.state.hours} title="Horas" />
+        <CountdownColon />
+        <CountdownNumber number={this.state.minutes} title="Min" />
+        <CountdownColon />
+        <CountdownNumber number={this.state.seconds} title="Seg" />
       </View>
     );
   }

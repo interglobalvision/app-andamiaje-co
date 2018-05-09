@@ -3,27 +3,30 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import styles from '../../constants/styles';
 
-const CountdownNumber =({
+const CountdownNumber = ({
   number,
   title,
-}) => {
-  return(
-    <View style={[
+}) => (
+  <View style={[
       styles.flexColumn,
       styles.flexCenter,
-    ]}>
-      <Text style={[
+    ]}
+  >
+    <Text style={[
         styles.colorWhite,
         styles.fontFamilyMedium,
         styles.fontSizeMid,
-      ]}>{number}</Text>
-      <Text style={[
+      ]}
+    >{number}
+    </Text>
+    <Text style={[
         styles.colorWhite,
         styles.fontFamilyMedium,
         styles.fontSizeTiny,
-      ]}>{title}</Text>
-    </View>
-  );
-};
+      ]}
+    >{title}
+    </Text>
+  </View>
+);
 
 export default CountdownNumber;

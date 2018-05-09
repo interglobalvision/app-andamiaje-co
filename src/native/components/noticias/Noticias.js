@@ -64,17 +64,17 @@ const Noticias = ({
 
       <CatalogosContainer Layout={Calendar} />
 
-      <SectionHeader title={'Noticias'} />
+      <SectionHeader title="Noticias" />
 
       <View>
-        {noticias.map( (item, key) => {
+        {noticias.map((item, key) => {
           let border = true;
-          if (key >= (noticias.length - 1) ) {
+          if (key >= (noticias.length - 1)) {
             border = false;
           }
           return (
-            <NoticiaItem key={keyExtractor(item)} item={item} border={border}/>
-          )
+            <NoticiaItem key={keyExtractor(item)} item={item} border={border} />
+          );
         })}
       </View>
 

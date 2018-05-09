@@ -45,7 +45,7 @@ const CatalogosList = ({
   } = countdown;
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <ScrollView
         stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
         style={styles.backgroundWhite}

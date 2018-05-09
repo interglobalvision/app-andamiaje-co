@@ -17,10 +17,12 @@ export default function artistaReducer(state = initialState, action) {
 
       // Pick out the props I need
       if (action.data && typeof action.data === 'object') {
-        artistas = Object.keys(action.data).
-          filter(key => action.data[key].active).  // Only active Artistas
-          map(id => {
-            const { name, gallery, galleryUrl, websiteUrl, country, bioRawContent, cvRawContent, images, portfolio, video } = action.data[id];
+        artistas = Object.keys(action.data)
+          .filter(key => action.data[key].active) // Only active Artistas
+          .map((id) => {
+            const {
+              name, gallery, galleryUrl, websiteUrl, country, bioRawContent, cvRawContent, images, portfolio, video,
+            } = action.data[id];
 
             return ({
               id,
@@ -34,7 +36,7 @@ export default function artistaReducer(state = initialState, action) {
               images,
               portfolio,
               video,
-            })
+            });
           });
 
         artistas = orderBy(artistas, ['name'], ['asc']);

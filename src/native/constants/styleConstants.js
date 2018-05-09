@@ -25,23 +25,23 @@ const paddingLarge = paddingBasic * 2.5; // 50
 
 export default styleConstants = {
   // Font famliy:
-  fontFamilyRegular: fontFamilyRegular,
-  fontFamilyItalic: fontFamilyItalic,
-  fontFamilyMedium: fontFamilyMedium,
+  fontFamilyRegular,
+  fontFamilyItalic,
+  fontFamilyMedium,
   // Font weight
-  fontWeightBold: fontWeightBold,
+  fontWeightBold,
   // Line height
-  lineHeightBasic: lineHeightBasic,
+  lineHeightBasic,
   // Font size
-  fontSizeBasic: fontSizeBasic,
-  fontSizeTiny: fontSizeTiny,
-  fontSizeSmall: fontSizeSmall,
-  fontSizeMid: fontSizeMid,
-  fontSizeLarge: fontSizeLarge,
+  fontSizeBasic,
+  fontSizeTiny,
+  fontSizeSmall,
+  fontSizeMid,
+  fontSizeLarge,
   // Padding
-  paddingTiny: paddingTiny,
-  paddingSmall: paddingSmall,
-  paddingBasic: paddingBasic,
-  paddingMid: paddingMid,
-  paddingLarge: paddingLarge,
-}
+  paddingTiny,
+  paddingSmall,
+  paddingBasic,
+  paddingMid,
+  paddingLarge,
+};

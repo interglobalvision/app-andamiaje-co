@@ -45,8 +45,8 @@ export default {
     },
     indicatorStyle: {
       backgroundColor: colors.black,
-      height: 100
-    }
+      height: 100,
+    },
   },
 
   icons: {

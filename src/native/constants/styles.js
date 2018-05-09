@@ -267,10 +267,10 @@ export default styles = StyleSheet.create({
   profileAvatarImage: {
     width: 100,
     height: 100,
-    borderRadius: 50
+    borderRadius: 50,
   },
   profileHeaderTextHolder: {
     paddingLeft: styleConstants.paddingBasic,
     flex: 1,
-  }
+  },
 });

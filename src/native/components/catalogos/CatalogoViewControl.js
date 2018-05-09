@@ -18,12 +18,12 @@ class CatalogoViewControl extends Component {
   }
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   renderGridIcon = () => {
     const { grid } = this.props.viewSettings;
-    const iconImageStyle = {width: 20, height: 20};
+    const iconImageStyle = { width: 20, height: 20 };
     if (grid) {
       return (<Image source={require('../../../images/icons/icon-grid-black.png')} style={iconImageStyle} />);
     }
@@ -32,7 +32,7 @@ class CatalogoViewControl extends Component {
 
   renderListIcon = () => {
     const { grid } = this.props.viewSettings;
-    const iconImageStyle = {width: 21.6, height: 20};
+    const iconImageStyle = { width: 21.6, height: 20 };
     if (grid) {
       return (<Image source={require('../../../images/icons/icon-list-white.png')} style={iconImageStyle} />);
     }
@@ -49,19 +49,21 @@ class CatalogoViewControl extends Component {
         styles.paddingTopBasic,
         styles.paddingBottomBasic,
         styles.bordered,
-      ]}>
+      ]}
+      >
         <View style={[
           styles.flexRow,
           styles.flexCenter,
-        ]}>
+        ]}
+        >
           <TouchableOpacity
             style={[
               styles.flexCenter,
               {
                 flexBasis: '20%',
-              }
+              },
             ]}
-            onPress={() => {this.props.changeCatalogoLayout(false)}}
+            onPress={() => { this.props.changeCatalogoLayout(false); }}
           >
             {this.renderListIcon()}
           </TouchableOpacity>
@@ -70,9 +72,9 @@ class CatalogoViewControl extends Component {
               styles.flexCenter,
               {
                 flexBasis: '20%',
-              }
+              },
             ]}
-            onPress={() => {this.props.changeCatalogoLayout(true)}}
+            onPress={() => { this.props.changeCatalogoLayout(true); }}
           >
             {this.renderGridIcon()}
           </TouchableOpacity>
@@ -94,7 +96,7 @@ class CatalogoViewControl extends Component {
       </View>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   viewSettings: state.catalogos.viewSettings || {},

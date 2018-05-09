@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getUser} from '../actions/member';
+import { getUser } from '../actions/member';
 import { getCatalogos, setError } from '../actions/catalogosActions';
 import { updateCountdown } from '../actions/countdownActions';
 
@@ -25,26 +25,22 @@ class CatalogosContainer extends Component {
     this.fetchUser();
   }
 
-  fetchUser = () => {
-    return this.props.getUser()
-      .then(() => this.fetchCatalogos())
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-  }
+  fetchUser = () => this.props.getUser()
+    .then(() => this.fetchCatalogos())
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchCatalogos = () => {
-    return this.props.getCatalogos()
-      .then(() => this.props.updateCountdown())
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setError(err);
-      });
-  }
+  fetchCatalogos = () => this.props.getCatalogos()
+    .then(() => this.props.updateCountdown())
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setError(err);
+    })
 
   render = () => {
     const { Layout, catalogos, countdown } = this.props;

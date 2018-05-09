@@ -12,17 +12,16 @@ class CountdownTitle extends React.Component {
 
   constructor(props) {
     super(props);
-
   }
 
   render() {
     const { title, saleStarted, saleEnded } = this.props;
 
-    let viewStyle = [
+    const viewStyle = [
       styles.backgroundBlack,
       styles.paddingTopBasic,
       styles.flexCenter,
-    ]
+    ];
 
     let actionString = 'empieza en';
 
@@ -42,7 +41,9 @@ class CountdownTitle extends React.Component {
           styles.textAlignCenter,
           styles.fontSizeSmall,
           styles.fontFamilyMedium,
-        ]}>La Adquisición {title} {actionString}</Text>
+        ]}
+        >La Adquisición {title} {actionString}
+        </Text>
       </View>
     );
   }

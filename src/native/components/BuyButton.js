@@ -24,7 +24,7 @@ class BuyButton extends React.Component {
     this.state = {
       complete: false,
       buttonText: 'Mantener presionado para adquirir',
-    }
+    };
 
     this.resetButton = this.resetButton.bind(this);
   }
@@ -35,24 +35,26 @@ class BuyButton extends React.Component {
 
       this.pressTimeout = setTimeout(this.confirmBuy, duration);
 
-      this.view.transition({
+      this.view.transition(
+        {
           right: 0,
         }, {
           right: containerWidth,
         },
         duration,
-        'ease-in'
+        'ease-in',
       );
     }
   }
 
   onPressOut = () => {
     if (!this.state.complete) {
-      this.view.transitionTo({
+      this.view.transitionTo(
+        {
           right: 0,
         },
         100,
-        'linear'
+        'linear',
       );
 
       clearTimeout(this.pressTimeout);
@@ -62,34 +64,31 @@ class BuyButton extends React.Component {
   onPressOwner = id => Actions.miembro({ match: { params: { id: String(id) } } });
 
   acquireLote = () => {
-
-    const { Firebase, FirebaseRef, showNotification, lote, member } = this.props;
+    const {
+      Firebase, FirebaseRef, showNotification, lote, member,
+    } = this.props;
 
     // acquire lote function url
-    const acquireLoteFunction = CloudFunctionsUrl + '/acquireLote';
+    const acquireLoteFunction = `${CloudFunctionsUrl}/acquireLote`;
 
     Firebase.auth().currentUser.getIdToken()
 
-      .then(idToken => {
+      .then(idToken =>
         // Call acquire lote function
-        return axios.get(acquireLoteFunction, {
+        axios.get(acquireLoteFunction, {
           params: {
             lote: lote.id,
           },
           headers: {
             'Access-Control-Allow-Origin': '*',
-            'Authorization': idToken,
+            Authorization: idToken,
           },
-          mode: 'no-cors'
-        })
+          mode: 'no-cors',
+        }))
 
-      })
-
-      .then(response => {
-
+      .then((response) => {
         if (response.status === 200) {
-
-          if(lote.obras.length === 1) {
+          if (lote.obras.length === 1) {
             showNotification('¡Has adquirido esta obra!');
           } else {
             showNotification('¡Has adquirido estas obras!');
@@ -98,17 +97,17 @@ class BuyButton extends React.Component {
       })
 
 
-      .catch(error => {
+      .catch((error) => {
         // Error
         if (error.response) {
-          if(error.response.data.error) {
+          if (error.response.data.error) {
             switch (error.response.data.error) {
               case 'loteId/undefined':
                 showNotification('ID incorrecto');
                 this.resetButton();
                 break;
               case 'lote/has-owner':
-                if(lote.obras.length === 1) {
+                if (lote.obras.length === 1) {
                   showNotification('Esta obra ya tiene dueño');
                 } else {
                   showNotification('Estas obras ya tienen dueño');
@@ -146,10 +145,9 @@ class BuyButton extends React.Component {
 
         // capture the exception
         Sentry.captureException(new Error(error));
-
       })
 
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
 
         // capture the exception
@@ -159,7 +157,6 @@ class BuyButton extends React.Component {
         showNotification('Ha sucedido un error');
         this.resetButton();
       });
-
   }
 
   confirmBuy = () => {
@@ -167,25 +164,25 @@ class BuyButton extends React.Component {
 
     this.setState({
       complete: true,
-      buttonText: 'Adquiriendo…'
+      buttonText: 'Adquiriendo…',
     });
 
     this.acquireLote();
   }
 
   resetButton = (message = 'Mantener presionado para adquirir') => {
-
     // This horrible check is an ugly fix to avoid trying to
     // transform the button after it has unmounted
-    if(this !== null
+    if (this !== null
       && this.view !== null
       && this.view.transitionTo !== undefined
       && this.view.transitionTo !== null) {
-      this.view.transitionTo({
-        right: 0,
-      },
+      this.view.transitionTo(
+        {
+          right: 0,
+        },
         100,
-        'linear'
+        'linear',
       );
 
       this.setState({
@@ -211,7 +208,7 @@ class BuyButton extends React.Component {
     ];
 
     if (owner !== undefined) {
-      if(saleStarted || saleEnded) {
+      if (saleStarted || saleEnded) {
         // Adquirido
         return (
           <View style={wrapperStyles}>
@@ -225,41 +222,46 @@ class BuyButton extends React.Component {
                 borderWidth: 1,
                 borderColor: colors.lightGrey,
                 width: containerWidth,
-              }
-            ]}>
+              },
+            ]}
+            >
               <Text style={[
                 styles.colorBlack,
                 styles.fontFamilyMedium,
                 styles.textAlignCenter,
-              ]}>Adquirida por { owner.name }</Text>
+              ]}
+              >Adquirida por { owner.name }
+              </Text>
             </View>
           </View>
         );
-      } else {
-        // Coleccion de…
-        return (
-          <TouchableOpacity
-          onPress={() => this.onPressOwner(owner.uid)}
-          style={wrapperStyles}>
-            <Text style={[
-              styles.textLink,
-            ]}>Colección de { owner.name }</Text>
-          </TouchableOpacity>
-        );
       }
-    } else {
-      if(saleStarted) {
-        if(enoughTokens) {
-          // Buy
-          return (
-            <View style={wrapperStyles}>
-              <TouchableWithoutFeedback
-                onPressIn={this.onPressIn}
-                onPressOut={this.onPressOut}
-              >
-                <View style={[]}>
+      // Coleccion de…
+      return (
+        <TouchableOpacity
+          onPress={() => this.onPressOwner(owner.uid)}
+          style={wrapperStyles}
+        >
+          <Text style={[
+              styles.textLink,
+            ]}
+          >Colección de { owner.name }
+          </Text>
+        </TouchableOpacity>
+      );
+    }
+    if (saleStarted) {
+      if (enoughTokens) {
+        // Buy
+        return (
+          <View style={wrapperStyles}>
+            <TouchableWithoutFeedback
+              onPressIn={this.onPressIn}
+              onPressOut={this.onPressOut}
+            >
+              <View style={[]}>
 
-                  <View style={[
+                <View style={[
                     styles.backgroundWhite,
                     styles.paddingTopBasic,
                     styles.paddingBottomBasic,
@@ -269,18 +271,21 @@ class BuyButton extends React.Component {
                       borderWidth: 1,
                       borderColor: colors.lightGrey,
                       width: containerWidth,
-                    }
-                  ]}>
-                    <Text style={[
+                    },
+                  ]}
+                >
+                  <Text style={[
                       styles.colorBlack,
                       styles.fontFamilyMedium,
                       styles.textAlignCenter,
-                    ]}>{this.state.buttonText}</Text>
-                  </View>
+                    ]}
+                  >{this.state.buttonText}
+                  </Text>
+                </View>
 
-                  <Animatable.View
-                    ref={this.handleViewRef}
-                    style={[
+                <Animatable.View
+                  ref={this.handleViewRef}
+                  style={[
                     {
                       position: 'absolute',
                       top: 0,
@@ -289,9 +294,10 @@ class BuyButton extends React.Component {
                       left: 0,
                       overflow: 'hidden',
                       backgroundColor: 'rgba(0,0,0,0)',
-                    }
-                  ]}>
-                    <View style={[
+                    },
+                  ]}
+                >
+                  <View style={[
                       styles.backgroundBlack,
                       styles.flexCenter,
                       styles.paddingTopBasic,
@@ -301,25 +307,28 @@ class BuyButton extends React.Component {
                         borderRadius: 5,
                         borderWidth: 1,
                         borderColor: colors.black,
-                      }
-                    ]}>
-                      <Text style={[
+                      },
+                    ]}
+                  >
+                    <Text style={[
                         styles.colorWhite,
                         styles.fontFamilyMedium,
                         styles.textAlignCenter,
-                      ]}>{this.state.buttonText}</Text>
-                    </View>
-                  </Animatable.View>
+                      ]}
+                    >{this.state.buttonText}
+                    </Text>
+                  </View>
+                </Animatable.View>
 
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          );
-        } else {
-          // Not Enough
-          return (
-            <View style={wrapperStyles}>
-            <View style={[
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        );
+      }
+      // Not Enough
+      return (
+        <View style={wrapperStyles}>
+          <View style={[
               styles.backgroundWhite,
               styles.paddingTopBasic,
               styles.paddingBottomBasic,
@@ -329,19 +338,21 @@ class BuyButton extends React.Component {
                 borderWidth: 1,
                 borderColor: colors.lightGrey,
                 width: containerWidth,
-              }
-            ]}>
+              },
+            ]}
+          >
             <Text style={[
               styles.colorBlack,
               styles.fontFamilyMedium,
               styles.textAlignCenter,
-            ]}>No tienes suficientes tokens</Text>
-            </View>
-            </View>
-          );
-        }
-      }
+            ]}
+            >No tienes suficientes tokens
+            </Text>
+          </View>
+        </View>
+      );
     }
+
 
     return null;
   }
@@ -354,8 +365,8 @@ const mapStateToProps = state => ({
   member: state.member || {},
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  showNotification: (message) => showNotification(dispatch, message),
+const mapDispatchToProps = dispatch => ({
+  showNotification: message => showNotification(dispatch, message),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuyButton);

@@ -17,10 +17,8 @@ export default function noticiaReducer(state = initialState, action) {
       if (action.data && typeof action.data === 'object') {
         noticias = Object.keys(action.data)
           .filter(key => action.data[key].published) // Only published Noticias
-          .sort( (a,b) => {
-            return action.data[b].publishDate - action.data[a].publishDate;
-          })
-          .map(id => {
+          .sort((a, b) => action.data[b].publishDate - action.data[a].publishDate)
+          .map((id) => {
             const {
               title,
               rawContent,
@@ -38,7 +36,7 @@ export default function noticiaReducer(state = initialState, action) {
               images,
               video,
               artista,
-            })
+            });
           });
       }
 

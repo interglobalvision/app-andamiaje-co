@@ -28,7 +28,7 @@ const ArtistasList = ({
         numColumns={1}
         data={artistas}
         renderItem={({ item }) => (
-          <DirectoryListItem id={item.id} name={item.name} images={item.images} type={'artista'} />
+          <DirectoryListItem id={item.id} name={item.name} images={item.images} type="artista" />
         )}
         keyExtractor={keyExtractor}
         refreshControl={

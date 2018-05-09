@@ -9,18 +9,18 @@ import { getResizedImageUrl } from '../../../lib/utilities';
 import styles from '../../constants/styles';
 import Loading from '../Loading';
 import Error from '../Error';
-import WishlistContainer from '../../../containers/WishlistContainer'
-import ArtistaLotes from './ArtistaLotes'
-import ArtistaBio from './ArtistaBio'
+import WishlistContainer from '../../../containers/WishlistContainer';
+import ArtistaLotes from './ArtistaLotes';
+import ArtistaBio from './ArtistaBio';
 import Toast from '../Toast';
 import CountdownTitle from '../countdown/CountdownTitle';
 import CountdownClock from '../countdown/CountdownClock';
 
 const ArtistaProfile = ({
-	error,
+  error,
   loading,
-	artistas,
-	artistaId,
+  artistas,
+  artistaId,
   activeCatalogo,
   countdown,
 }) => {
@@ -60,27 +60,27 @@ const ArtistaProfile = ({
   let imageSource = require('../../../images/placeholder.png');
 
   if (images !== undefined) {
-    imageSource = {uri: getResizedImageUrl(images[0], 350, true)};
+    imageSource = { uri: getResizedImageUrl(images[0], 350, true) };
   }
 
-  const onPressCv = cvRawContent => {
-    Actions.artistaCv({content: cvRawContent})
-  }
+  const onPressCv = (cvRawContent) => {
+    Actions.artistaCv({ content: cvRawContent });
+  };
 
-	return (
-    <View style={{flex: 1}}>
+  return (
+    <View style={{ flex: 1 }}>
       <ScrollView
         stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
         style={[styles.backgroundWhite]}
       >
         { artistaCountdown && (saleSoon || saleStarted || saleEnded) &&
-          <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+        <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
         }
         { artistaCountdown && saleSoon &&
-          <CountdownClock countdownTo={activeCatalogo.saleDate} />
+        <CountdownClock countdownTo={activeCatalogo.saleDate} />
         }
         { artistaCountdown && saleStarted &&
-          <CountdownClock countdownTo={activeCatalogo.endDate} />
+        <CountdownClock countdownTo={activeCatalogo.endDate} />
         }
 
         <View style={[
@@ -89,21 +89,22 @@ const ArtistaProfile = ({
           styles.flexRow,
           styles.paddingTopBasic,
           styles.paddingBottomBasic,
-        ]}>
+        ]}
+        >
           <View>
             <Image source={imageSource} style={[styles.profileAvatarImage]} />
           </View>
           <View style={[styles.profileHeaderTextHolder]}>
-            { name !== 'undefined' ? <View><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View>  : null }
-            { country !== 'undefined' ? <Text style={[styles.fontSizeSmall, styles.paddingBottomSmall]}>{country}</Text>  : null }
+            { name !== 'undefined' ? <View><Text style={[styles.fontBold, styles.fontSizeMid]}>{name}</Text></View> : null }
+            { country !== 'undefined' ? <Text style={[styles.fontSizeSmall, styles.paddingBottomSmall]}>{country}</Text> : null }
             { gallery !== 'undefined' ?
-              <TouchableOpacity onPress={ () => Linking.openURL(galleryUrl) }>
+              <TouchableOpacity onPress={() => Linking.openURL(galleryUrl)}>
                 <Text style={[styles.fontSizeSmall, styles.textLink]}>{gallery}</Text>
               </TouchableOpacity>
             : null }
             { websiteUrl !== 'undefined' ?
-              <TouchableOpacity onPress={ () => Linking.openURL(websiteUrl) }>
-                <Text style={[styles.fontSizeSmall, styles.textLink]} numberOfLines={1} ellipsizeMode={'tail'}>{websiteUrl}</Text>
+              <TouchableOpacity onPress={() => Linking.openURL(websiteUrl)}>
+                <Text style={[styles.fontSizeSmall, styles.textLink]} numberOfLines={1} ellipsizeMode="tail">{websiteUrl}</Text>
               </TouchableOpacity>
             : null }
           </View>
@@ -119,14 +120,14 @@ const ArtistaProfile = ({
             styles.bordered,
             styles.container,
             {
-              alignItems: 'center'
-            }
+              alignItems: 'center',
+            },
           ]}
           onPress={() => onPressCv(cvRawContent)}
         >
           <View style={{ flex: 1 }}><Text>CV</Text></View>
           <View>
-            <Image source={require('../../../images/icons/icon-open-page.png')} style={{width: 6, height: 12}} />
+            <Image source={require('../../../images/icons/icon-open-page.png')} style={{ width: 6, height: 12 }} />
           </View>
         </TouchableOpacity>
 
@@ -138,19 +139,19 @@ const ArtistaProfile = ({
       </ScrollView>
       <Toast />
     </View>
-	);
+  );
 };
 
 ArtistaProfile.propTypes = {
-	error: PropTypes.string,
-	artistaId: PropTypes.string.isRequired,
-	artistas: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  error: PropTypes.string,
+  artistaId: PropTypes.string.isRequired,
+  artistas: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   activeCatalogo: PropTypes.object.isRequired,
   countdown: PropTypes.object.isRequired,
 };
 
 ArtistaProfile.defaultProps = {
-	error: null,
+  error: null,
 };
 
 export default ArtistaProfile;

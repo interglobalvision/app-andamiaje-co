@@ -8,7 +8,7 @@ import Sentry from 'sentry-expo';
 import { StyleProvider } from 'native-base';
 import getTheme from '../../native-base-theme/components';
 import theme from '../../native-base-theme/variables/commonColor';
-import SentryDSN  from '../lib/sentry';
+import SentryDSN from '../lib/sentry';
 
 import Router from './routes/index';
 import Loading from './components/Loading';
@@ -26,12 +26,12 @@ class Root extends Component {
   render() {
     const { store, persistor } = this.props;
 
-    return(
+    return (
       <Provider store={store}>
         <PersistGate
           loading={<Loading />}
           persistor={persistor}
-      >
+        >
           <StyleProvider style={getTheme(theme)}>
             <Router />
           </StyleProvider>

@@ -1,4 +1,5 @@
 import Store from '../store/lotes';
+
 export const initialState = Store;
 
 export default function loteReducer(state = initialState, action) {
@@ -14,12 +15,13 @@ export default function loteReducer(state = initialState, action) {
       let lotes = [];
 
       if (action.data && typeof action.data === 'object' && action.activeLotes !== undefined || action.activeLotes !== '') {
+        lotes = action.activeLotes
+          .map((lote) => {
+            const {
+              title, artista, obras, price, tecnica, owner,
+            } = action.data[lote.id];
 
-        lotes = action.activeLotes.
-          map(lote => {
-            const { title, artista, obras, price, tecnica, owner } = action.data[lote.id];
-
-            return({
+            return ({
               id: lote.id,
               title,
               artista,
@@ -28,7 +30,6 @@ export default function loteReducer(state = initialState, action) {
               tecnica,
               owner,
             });
-
           });
       }
 

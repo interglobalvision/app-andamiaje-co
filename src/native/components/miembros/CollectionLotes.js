@@ -11,7 +11,6 @@ const CollectionLotes = ({
   error,
   lotes,
 }) => {
-
   // Loading
   if (loading) return <Loading />;
 
@@ -27,7 +26,6 @@ const CollectionLotes = ({
       { lotes.map( (item, key) => <LotesListItem key={key} lote={item} displayOnly={true} />) }
     </View>
   );
-
-}
+};
 
 export default CollectionLotes;

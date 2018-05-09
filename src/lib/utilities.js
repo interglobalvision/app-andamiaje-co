@@ -2,17 +2,16 @@ import { Dimensions } from 'react-native';
 import imageSizes from '../native/constants/imageSizes';
 
 export const getResizedImageUrl = (file, size, square) => {
-
-  if(file === undefined) {
+  if (file === undefined) {
     return;
   }
 
   let name = file.name.replace(/\.[^/.]+$/, '');
 
-  let thumbSuffixfix = '_' + size;
+  let thumbSuffixfix = `_${size}`;
 
   if (square) {
-    thumbSuffixfix += 'x' + size;
+    thumbSuffixfix += `x${size}`;
   }
 
   thumbSuffixfix += '_thumb';
@@ -36,7 +35,7 @@ export const getBestImageSize = (containerWidth = Dimensions.get('window').width
   }
 
   return bestImageSize;
-}
+};
 
 export const getScaledImageDimensions = (imageWidth, imageHeight, containerWidth = Dimensions.get('window').width) => {
   let imageDimensions = {};
@@ -46,35 +45,34 @@ export const getScaledImageDimensions = (imageWidth, imageHeight, containerWidth
 
     imageDimensions = {
       height: containerWidth,
-      width: imageStyleWidth
-    }
+      width: imageStyleWidth,
+    };
   } else {
     const imageStyleHeight = (containerWidth / imageWidth) * imageHeight;
 
     imageDimensions = {
       width: containerWidth,
-      height: imageStyleHeight
-    }
+      height: imageStyleHeight,
+    };
   }
 
   return imageDimensions;
-}
+};
 
-export const delay = (ms) => new Promise(resolve =>
-  setTimeout(resolve, ms)
-);
+export const delay = ms => new Promise(resolve =>
+  setTimeout(resolve, ms));
 
 // requestAnimationFrame() shim by Paul Irish
-requestAnimFrame = (function() {
-	return  window.requestAnimationFrame       ||
+requestAnimFrame = (function () {
+  return window.requestAnimationFrame ||
 		window.webkitRequestAnimationFrame ||
-		window.mozRequestAnimationFrame    ||
-		window.oRequestAnimationFrame      ||
-		window.msRequestAnimationFrame     ||
-		function(/* function */ callback, /* DOMElement */ element){
-			window.setTimeout(callback, 1000 / 60);
+		window.mozRequestAnimationFrame ||
+		window.oRequestAnimationFrame ||
+		window.msRequestAnimationFrame ||
+		function (/* function */ callback, /* DOMElement */ element) {
+		  window.setTimeout(callback, 1000 / 60);
 		};
-})();
+}());
 
 /**
  * Behaves the same as setInterval except uses requestAnimationFrame() where possible for better performance
@@ -82,31 +80,30 @@ requestAnimFrame = (function() {
  * @param {int} delay The delay in milliseconds
  */
 export const requestInterval = (fn, delay) => {
-	if( !window.requestAnimationFrame &&
+  if (!window.requestAnimationFrame &&
 	    !window.webkitRequestAnimationFrame &&
 	    !(window.mozRequestAnimationFrame && window.mozCancelRequestAnimationFrame) && // Firefox 5 ships without cancel support
 	    !window.oRequestAnimationFrame &&
-	    !window.msRequestAnimationFrame )
-		return window.setInterval(fn, delay);
+	    !window.msRequestAnimationFrame) { return window.setInterval(fn, delay); }
 
-	var start = new Date().getTime(),
-		handle = new Object();
+  let start = new Date().getTime(),
+    handle = new Object();
 
-	function loop() {
-		var current = new Date().getTime(),
-			delta = current - start;
+  function loop() {
+    let current = new Date().getTime(),
+      delta = current - start;
 
-		if(delta >= delay) {
-			fn.call();
-			start = new Date().getTime();
-		}
+    if (delta >= delay) {
+      fn.call();
+      start = new Date().getTime();
+    }
 
-		handle.value = requestAnimFrame(loop);
-	};
+    handle.value = requestAnimFrame(loop);
+  }
 
-	handle.value = requestAnimFrame(loop);
-	return handle;
-}
+  handle.value = requestAnimFrame(loop);
+  return handle;
+};
 
 /**
  * Behaves the same as clearInterval except uses cancelRequestAnimationFrame() where possible for better performance
@@ -114,10 +111,10 @@ export const requestInterval = (fn, delay) => {
  */
 export const clearRequestInterval = (handle) => {
   window.cancelAnimationFrame ? window.cancelAnimationFrame(handle.value) :
-  window.webkitCancelAnimationFrame ? window.webkitCancelAnimationFrame(handle.value) :
-  window.webkitCancelRequestAnimationFrame ? window.webkitCancelRequestAnimationFrame(handle.value) : /* Support for legacy API */
-  window.mozCancelRequestAnimationFrame ? window.mozCancelRequestAnimationFrame(handle.value) :
-  window.oCancelRequestAnimationFrame	? window.oCancelRequestAnimationFrame(handle.value) :
-  window.msCancelRequestAnimationFrame ? window.msCancelRequestAnimationFrame(handle.value) :
-  clearInterval(handle);
+    window.webkitCancelAnimationFrame ? window.webkitCancelAnimationFrame(handle.value) :
+      window.webkitCancelRequestAnimationFrame ? window.webkitCancelRequestAnimationFrame(handle.value) : /* Support for legacy API */
+        window.mozCancelRequestAnimationFrame ? window.mozCancelRequestAnimationFrame(handle.value) :
+          window.oCancelRequestAnimationFrame	? window.oCancelRequestAnimationFrame(handle.value) :
+            window.msCancelRequestAnimationFrame ? window.msCancelRequestAnimationFrame(handle.value) :
+              clearInterval(handle);
 };

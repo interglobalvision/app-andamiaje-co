@@ -25,7 +25,7 @@ class WishlistContainer extends Component {
   }
 
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentDidMount = () => this.fetchLotesAndCatalogos();
@@ -33,33 +33,32 @@ class WishlistContainer extends Component {
   /**
     * Fetch Data from API, saving to Redux
     */
-  fetchLotesAndCatalogos = () => {
-    return this.props.getLotes()
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setLotesError(err);
-      })
-      .then(this.props.getCatalogos)
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-        return this.props.setCatalogosError(err);
-      });
-
-  }
+  fetchLotesAndCatalogos = () => this.props.getLotes()
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setLotesError(err);
+    })
+    .then(this.props.getCatalogos)
+    .catch((err) => {
+      console.log(`Error: ${err}`);
+      return this.props.setCatalogosError(err);
+    })
 
   render = () => {
-    const { Layout, lotes, wishlist, artistaId, countdown } = this.props;
+    const {
+      Layout, lotes, wishlist, artistaId, countdown,
+    } = this.props;
     const { activeCatalogo } = this.props.catalogos;
 
-    const loading = this.props.lotes.loading || this.props.catalogos.loading ? true : false;
+    const loading = !!(this.props.lotes.loading || this.props.catalogos.loading);
 
     let error = null;
 
-    if(this.props.lotes.error !== null) {
+    if (this.props.lotes.error !== null) {
       error = this.props.lotes.error;
     }
 
-    if(this.props.catalogos.error !== null) {
+    if (this.props.catalogos.error !== null) {
       error = this.props.catalogos.error;
     }
 

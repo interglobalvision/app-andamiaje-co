@@ -40,7 +40,7 @@ export default function userReducer(state = initialState, action) {
       if (action.wishlist) {
         return {
           ...state,
-          wishlist: action.wishlist
+          wishlist: action.wishlist,
         };
       }
       return state;
@@ -57,7 +57,7 @@ export default function userReducer(state = initialState, action) {
 
         return {
           ...state,
-          wishlist
+          wishlist,
         };
       }
       return state;

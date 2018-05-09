@@ -16,12 +16,12 @@ import Spacer from '../Spacer';
 const onPress = id => Actions.artista({
   match: {
     params: {
-      id: String(id) ,
+      id: String(id),
     },
   },
   onBack: () => {
     Actions.popTo('noticias');
-  }
+  },
 });
 
 const customStyles = StyleSheet.flatten({
@@ -44,27 +44,26 @@ const customStyles = StyleSheet.flatten({
   },
   paragraph: {
     paddingBottom: styleConstants.paddingLarge,
-  }
+  },
 });
 
 const renderArtista = (item) => {
   if (item.artista !== undefined) {
     return (
-      <TouchableOpacity onPress={() => onPress(item.artista.id)}  style={styles.paddingBottomMid}>
+      <TouchableOpacity onPress={() => onPress(item.artista.id)} style={styles.paddingBottomMid}>
         <Text style={[styles.textLink, styles.fontSizeSmall]}>Ver el bio de {item.artista.name}</Text>
       </TouchableOpacity>
     );
   }
   return null;
-}
+};
 
-const NoticiaItem = ({item, border}) => {
-
-  let holderStyle = [
+const NoticiaItem = ({ item, border }) => {
+  const holderStyle = [
     styles.container,
     styles.backgroundWhite,
     styles.paddingTopMid,
-    styles.paddingBottomLarge
+    styles.paddingBottomLarge,
   ];
   if (border) {
     holderStyle.push(styles.bordered);
@@ -98,7 +97,7 @@ const NoticiaItem = ({item, border}) => {
     <View style={holderStyle}>
       <View style={styles.paddingBottomBasic}>
         <Text>
-          <Text style={[styles.fontBold, styles.fontSizeMid ]}>{item.title}</Text><TextBullet /><Text style={[styles.fontSizeSmall]}>{distanceInWordsToNow(item.publishDate, { locale: es })}</Text>
+          <Text style={[styles.fontBold, styles.fontSizeMid]}>{item.title}</Text><TextBullet /><Text style={[styles.fontSizeSmall]}>{distanceInWordsToNow(item.publishDate, { locale: es })}</Text>
         </Text>
       </View>
 
@@ -106,18 +105,18 @@ const NoticiaItem = ({item, border}) => {
 
       {renderArtista(item)}
 
-      { hasVideo ? <Thumbnail url={item.video.url} imageWidth={containerWidth} imageHeight={((containerWidth / 16) * 9)} iconStyle={{width: 25, height: 29}} /> : null }
+      { hasVideo ? <Thumbnail url={item.video.url} imageWidth={containerWidth} imageHeight={((containerWidth / 16) * 9)} iconStyle={{ width: 25, height: 29 }} /> : null }
 
       { imageSrc !== null && !hasVideo ?
         <Image
           source={{ uri: imageSrc, cache: 'force-cache' }}
           style={{
             width: imageDimensions.width,
-            height: imageDimensions.height
+            height: imageDimensions.height,
           }}
         /> : null }
     </View>
   );
-}
+};
 
 export default NoticiaItem;
