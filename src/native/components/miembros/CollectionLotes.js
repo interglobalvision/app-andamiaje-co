@@ -10,7 +10,6 @@ const CollectionLotes = ({
   loading,
   error,
   lotes,
-  collection,
 }) => {
 
   // Loading
@@ -19,18 +18,13 @@ const CollectionLotes = ({
   // Error
   if (error) return <Error content={error} />;
 
-  // Filter lotes that are in the collection
-  const collectionLotes = _filter(lotes, lote => {
-    return collection[lote.id] !== undefined ? true : false;
-  });
-
   const keyExtractor = item => item.id;
 
   const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
 
   return (
     <View>
-      { collectionLotes.map( (item, key) => <LotesListItem key={key} lote={item} displayOnly={true} />) }
+      { lotes.map( (item, key) => <LotesListItem key={key} lote={item} displayOnly={true} />) }
     </View>
   );
 
