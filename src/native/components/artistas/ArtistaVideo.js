@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import { List } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import styles, { containerWidth } from '../../constants/styles';
 import SectionHeader from '../SectionHeader';

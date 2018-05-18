@@ -7,7 +7,6 @@ import LotesContainer from '../../containers/LotesContainer';
 
 import Loading from './Loading';
 import Error from './Error';
-import Header from './Header';
 import Spacer from './Spacer';
 
 const CatalogosList = ({

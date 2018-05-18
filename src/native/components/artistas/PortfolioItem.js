@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, View, Text } from 'react-native';
-import { List } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Hyperlink from 'react-native-hyperlink';
 

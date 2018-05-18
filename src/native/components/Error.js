@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Content, Text, H3 } from 'native-base';
+import styles from '../constants/styles';
 
 const Error = ({ title, content }) => (
-  <Container>
-    <Content>
-      <H3>{title}</H3>
-      <Text>{content}</Text>
-    </Content>
-  </Container>
+  <View style={[styles.container, styles.paddingTopBasic]}>
+    <Text style={styles.fontBold}>{title}</Text>
+    <Text style={styles.fontSizeSmall}>{content}</Text>
+  </View>
 );
 
 Error.propTypes = {
