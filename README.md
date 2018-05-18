@@ -69,17 +69,17 @@ The project is _super_ helpful to kick-start your next project, as it provides a
 
 ```bash
 # Clone the repo
-git clone https://github.com/mcnamee/react-native-starter-kit.git
+git clone git@github.com:interglobalvision/app-andamiaje-co.git
 
 # Install dependencies
-npm i
+yarn
 ```
 
 #### 2.1. Run the _React Native_ App
 
 ```bash
 # Start the React Native packager
-npm start
+yarn start
 ```
 
 Instructions are shown in the terminal. You can select to open it in:
