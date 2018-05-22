@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, TouchableOpacity, View, Text, Image } from 'react-native';
-import { Container, Content } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import _pull from 'lodash/pull';
 import _clone from 'lodash/clone';

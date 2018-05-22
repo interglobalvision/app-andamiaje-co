@@ -43,26 +43,10 @@ import MiembroProfile from '../components/miembros/MiembroProfile';
 import MiembroOptions from '../components/miembros/MiembroOptions';
 import MiembroOptionsPage from '../components/miembros/MiembroOptionsPage';
 
-import RecipesContainer from '../../containers/Recipes';
-import RecipesComponent from '../components/Recipes';
-import RecipeViewComponent from '../components/Recipe';
-
-import SignUpContainer from '../../containers/SignUp';
-import SignUpComponent from '../components/SignUp';
-
 import LoginContainer from '../../containers/Login';
 import LoginComponent from '../components/Login';
 
-import ForgotPasswordContainer from '../../containers/ForgotPassword';
-import ForgotPasswordComponent from '../components/ForgotPassword';
-
-import UpdateProfileContainer from '../../containers/UpdateProfile';
-import UpdateProfileComponent from '../components/UpdateProfile';
-
 import AppContainer from '../../containers/App';
-import ProfileComponent from '../components/Profile';
-
-import AboutComponent from '../components/About';
 
 import MemberTokens from '../components/MemberTokens';
 import EmptyNavButton from '../components/EmptyNavButton';

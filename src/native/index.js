@@ -5,9 +5,6 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import Sentry from 'sentry-expo';
 
-import { StyleProvider } from 'native-base';
-import getTheme from '../../native-base-theme/components';
-import theme from '../../native-base-theme/variables/commonColor';
 import SentryDSN from '../lib/sentry';
 
 import Router from './routes/index';
@@ -32,9 +29,7 @@ class Root extends Component {
           loading={<Loading />}
           persistor={persistor}
         >
-          <StyleProvider style={getTheme(theme)}>
-            <Router />
-          </StyleProvider>
+          <Router />
         </PersistGate>
       </Provider>
     );
