@@ -17,16 +17,34 @@ const LotesListItem = ({
 }) => {
   const keyExtractor = item => item.id;
 
-  const onPressArtista = id => Actions.artista({
-    match: {
-      params: {
-        id: String(id),
+  const onPressArtista = (id, backToCollection) => {
+
+    let actionOptions = {
+      match: {
+        params: {
+          id: String(id),
+        },
       },
-    },
-    onBack: () => {
-      Actions.catalogos();
-    },
-  });
+      onBack: () => {
+        Actions.catalogos();
+      },
+    };
+
+
+    if(backToCollection !== undefined) {
+      actionOptions.onBack = () => {
+        Actions.miembro({
+          match: {
+            params: {
+              id: String(backToCollection),
+            },
+          },
+        });
+      }
+    }
+
+    Actions.artista(actionOptions);
+  }
 
   const onPressLote = (id, backToCollection) => {
 
@@ -59,7 +77,7 @@ const LotesListItem = ({
       <CarouselHolder obras={lote.obras} />
 
       <TouchableOpacity
-        onPress={() => onPressArtista(lote.artista.id)}
+        onPress={() => onPressArtista(lote.artista.id, miembroId)}
         style={[
           styles.container,
           styles.backgroundWhite,
