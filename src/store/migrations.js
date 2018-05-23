@@ -26,6 +26,12 @@ export const migrations = {
       ...state,
       countdown: undefined,
       calendar: undefined,
-    }) // reset countdown and calendar
-  ,
+    }), // reset countdown and calendar
+  6: state =>
+    ({
+      ...state,
+      lotes: undefined,
+      obras: undefined,
+      collection: undefined,
+    }), // reset lotes, obras and collection
 };

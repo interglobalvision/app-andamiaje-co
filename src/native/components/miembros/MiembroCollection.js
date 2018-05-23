@@ -22,7 +22,7 @@ const MiembroCollection = ({ miembroId, memberId, collection }) => {
         styles.emptyItemsHeight,
       ]}
       ><Text>{emptyNotice}</Text>
-      </View> : <MemberCollectionContainer collection={collection} Layout={CollectionLotes} /> }
+      </View> : <MemberCollectionContainer collection={collection} Layout={CollectionLotes} miembroId={miembroId} /> }
     </View>
   );
 };

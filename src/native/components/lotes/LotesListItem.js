@@ -13,6 +13,7 @@ import styles from '../../constants/styles';
 const LotesListItem = ({
   lote,
   displayOnly,
+  miembroId,
 }) => {
   const keyExtractor = item => item.id;
 
@@ -27,7 +28,30 @@ const LotesListItem = ({
     },
   });
 
-  const onPressLote = id => Actions.lote({ match: { params: { id: String(id) } } });
+  const onPressLote = (id, backToCollection) => {
+
+    let actionOptions = {
+      match: {
+        params: {
+          id: String(id)
+        }
+      }
+    };
+
+    if(backToCollection !== undefined) {
+      actionOptions.onBack = () => {
+        Actions.miembro({
+          match: {
+            params: {
+              id: String(backToCollection),
+            },
+          },
+        });
+      }
+    }
+
+    Actions.lote(actionOptions);
+  }
 
   return (
     <View style={[styles.bordered, styles.paddingBottomLarge]}>
@@ -50,7 +74,7 @@ const LotesListItem = ({
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => onPressLote(lote.id)}
+        onPress={() => onPressLote(lote.id, miembroId)}
         style={[
           styles.container,
           styles.backgroundWhite,

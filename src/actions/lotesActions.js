@@ -25,9 +25,9 @@ export function getLotes() {
 
   return (dispatch, getState) => {
     // Get active lotes from store state
-    const activeLotes = getState().catalogos.activeCatalogo.lotes || [];
+    const activeLotes = getState().catalogos.activeCatalogo.lotes;
 
-    if (activeLotes === undefined) {
+    if(activeLotes === undefined) {
       resolve => resolve();
     }
 
@@ -40,10 +40,10 @@ export function getLotes() {
           data: lotes,
           activeLotes, // pass activeLotes to loteReducer as action.activeLotes
         }));
-      })).catch((e) => {
-      console.log(e);
-      // capture the exception
-      Sentry.captureException(new Error(e));
-    });
-  };
+      })).catch(e => {
+        console.log(e);
+        // capture the exception
+        Sentry.captureException(new Error(e));
+      });
+  }
 }
