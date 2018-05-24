@@ -30,7 +30,6 @@ const LotesListItem = ({
       },
     };
 
-
     if(backToCollection !== undefined) {
       actionOptions.onBack = () => {
         Actions.miembro({
@@ -38,6 +37,9 @@ const LotesListItem = ({
             params: {
               id: String(backToCollection),
             },
+          },
+          onBack: () => {
+            Actions.popTo('miembros');
           },
         });
       }
@@ -63,6 +65,9 @@ const LotesListItem = ({
             params: {
               id: String(backToCollection),
             },
+          },
+          onBack: () => {
+            Actions.popTo('miembros');
           },
         });
       }
