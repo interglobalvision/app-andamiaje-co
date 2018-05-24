@@ -31,8 +31,8 @@ const WishlistList = ({
 
   const keyExtractor = item => item.id;
 
-  const currentWishlist = lotes.filter(lote => _find(wishlist, item => item.id === lote.id)) // Only lotes that are in the wishlist
-    .filter(lote => _find(activeCatalogo, item => item.id === lote.id)); // Only items that are in the active catalog
+  const currentWishlist = []; // ** UGLY FIX ** to empty the wishlist temporarly
+  //const currentWishlist = lotes.filter(lote => _find(wishlist, item => item.id === lote.id));
 
   const {
     saleSoon,
@@ -43,7 +43,7 @@ const WishlistList = ({
 
   if (currentWishlist.length) {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{flex: 1}}>
         <ScrollView
           stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
           style={styles.backgroundWhite}
@@ -61,7 +61,7 @@ const WishlistList = ({
           <FlatList
             numColumns={1}
             data={currentWishlist}
-            renderItem={({ item }) => (<WishlistItem lote={item} />)}
+            renderItem={({item}) => (<WishlistItem lote={item} />)}
             keyExtractor={keyExtractor}
             refreshControl={
               <RefreshControl
@@ -74,46 +74,42 @@ const WishlistList = ({
         <Toast />
       </View>
     );
-  }
-  return (
-    <View style={{ flex: 1 }}>
-      <ScrollView
-        stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
-        style={styles.backgroundWhite}
-      >
-        {(saleSoon || saleStarted || saleEnded) &&
-        <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
+  } else {
+    return (
+      <View style={{flex: 1}}>
+        <ScrollView
+          stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
+          style={styles.backgroundWhite}
+        >
+          {(saleSoon || saleStarted || saleEnded) &&
+            <CountdownTitle title={activeCatalogo.title} saleStarted={saleStarted} saleEnded={saleEnded} />
           }
-        {saleSoon &&
-        <CountdownClock countdownTo={activeCatalogo.saleDate} />
+          {saleSoon &&
+            <CountdownClock countdownTo={activeCatalogo.saleDate} />
           }
-        {saleStarted &&
-        <CountdownClock countdownTo={activeCatalogo.endDate} />
+          {saleStarted &&
+            <CountdownClock countdownTo={activeCatalogo.endDate} />
           }
-        <View style={[
+          <View style={[
             styles.container,
             styles.flexCenter,
-            styles.emptyItemsHeight,
-          ]}
-        >
-          <Text style={[
-              styles.textAlignCenter,
-            ]}
-          >Parece que tu lista de Deseos está vacía
-          </Text>
-          <View style={[styles.paddingTopBasic, styles.paddingBottomBasic]}>
-            <Image source={require('../../../images/icons/icon-wishlist-empty.png')} style={{ width: 36.5, height: 50 }} />
-          </View>
-          <Text style={[
+            styles.emptyItemsHeight
+          ]}>
+            <Text style={[
+              styles.textAlignCenter
+            ]}>Parece que tu lista de Deseos está vacía</Text>
+            <View style={[styles.paddingTopBasic, styles.paddingBottomBasic]}>
+              <Image source={require('../../../images/icons/icon-wishlist-empty.png')} style={{width: 36.5, height: 50}} />
+            </View>
+            <Text style={[
               styles.textAlignCenter,
               styles.fontSizeSmall,
-            ]}
-          >Agrega Obras para guardar las que más te gustan
-          </Text>
-        </View>
-      </ScrollView>
-    </View>
-  );
+            ]}>Agrega Obras para guardar las que más te gustan</Text>
+          </View>
+        </ScrollView>
+      </View>
+    )
+  }
 };
 
 WishlistList.propTypes = {

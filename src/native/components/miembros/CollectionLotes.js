@@ -10,12 +10,20 @@ const CollectionLotes = ({
   loading,
   error,
   lotes,
+  collection,
+  miembroId,
 }) => {
+
   // Loading
   if (loading) return <Loading />;
 
   // Error
   if (error) return <Error content={error} />;
+
+  // Filter lotes that are in the collection
+  const collectionLotes = _filter(lotes, lote => {
+    return collection[lote.id] !== undefined ? true : false;
+  });
 
   const keyExtractor = item => item.id;
 
@@ -23,9 +31,10 @@ const CollectionLotes = ({
 
   return (
     <View>
-      { lotes.map( (item, key) => <LotesListItem key={key} lote={item} displayOnly={true} />) }
+      { collectionLotes.map( (item, key) => <LotesListItem key={key} lote={item} displayOnly={true} miembroId={miembroId} />) }
     </View>
   );
-};
+
+}
 
 export default CollectionLotes;

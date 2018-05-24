@@ -13,21 +13,68 @@ import styles from '../../constants/styles';
 const LotesListItem = ({
   lote,
   displayOnly,
+  miembroId,
 }) => {
   const keyExtractor = item => item.id;
 
-  const onPressArtista = id => Actions.artista({
-    match: {
-      params: {
-        id: String(id),
-      },
-    },
-    onBack: () => {
-      Actions.catalogos();
-    },
-  });
+  const onPressArtista = (id, backToCollection) => {
 
-  const onPressLote = id => Actions.lote({ match: { params: { id: String(id) } } });
+    let actionOptions = {
+      match: {
+        params: {
+          id: String(id),
+        },
+      },
+      onBack: () => {
+        Actions.catalogos();
+      },
+    };
+
+    if(backToCollection !== undefined) {
+      actionOptions.onBack = () => {
+        Actions.miembro({
+          match: {
+            params: {
+              id: String(backToCollection),
+            },
+          },
+          onBack: () => {
+            Actions.popTo('miembros');
+          },
+        });
+      }
+    }
+
+    Actions.artista(actionOptions);
+  }
+
+  const onPressLote = (id, backToCollection) => {
+
+    let actionOptions = {
+      match: {
+        params: {
+          id: String(id)
+        }
+      }
+    };
+
+    if(backToCollection !== undefined) {
+      actionOptions.onBack = () => {
+        Actions.miembro({
+          match: {
+            params: {
+              id: String(backToCollection),
+            },
+          },
+          onBack: () => {
+            Actions.popTo('miembros');
+          },
+        });
+      }
+    }
+
+    Actions.lote(actionOptions);
+  }
 
   return (
     <View style={[styles.bordered, styles.paddingBottomLarge]}>
@@ -35,7 +82,7 @@ const LotesListItem = ({
       <CarouselHolder obras={lote.obras} />
 
       <TouchableOpacity
-        onPress={() => onPressArtista(lote.artista.id)}
+        onPress={() => onPressArtista(lote.artista.id, miembroId)}
         style={[
           styles.container,
           styles.backgroundWhite,
@@ -50,7 +97,7 @@ const LotesListItem = ({
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => onPressLote(lote.id)}
+        onPress={() => onPressLote(lote.id, miembroId)}
         style={[
           styles.container,
           styles.backgroundWhite,

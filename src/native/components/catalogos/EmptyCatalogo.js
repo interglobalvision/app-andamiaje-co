@@ -20,7 +20,7 @@ const EmptyCatalogo = () => (
         >Aún no hay ningun catálogo para mostrar
         </Text>
         <View style={[styles.paddingTopBasic, styles.paddingBottomBasic]}>
-          <Image source={require('../../../images/icons/icon-tab-catalogo-black.png')} style={{ width: 36.5, height: 50 }} />
+          <Image source={require('../../../images/icons/icon-tab-catalogo-white.png')} style={{ width: 36.5, height: 50 }} />
         </View>
         <Text style={[
           styles.textAlignCenter,

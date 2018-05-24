@@ -22,8 +22,6 @@ const LotesList = ({
 
   const keyExtractor = item => item.id;
 
-  const onPress = item => Actions.lote({ match: { params: { id: String(item.id) } } });
-
   return (
     <FlatList
       numColumns={1}

@@ -29,12 +29,12 @@ const CatalogosList = ({
   // Error
   if (error) return <Error content={error} />;
 
-  // Empty Catalog
-  if (!Object.keys(activeCatalogo).length) return <EmptyCatalogo />;
-
   const keyExtractor = item => item.id;
 
   const onPress = item => Actions.catalogo({ match: { params: { id: String(item.id) } } });
+
+  // ** HARD CODED UGLY FIX ** Empty Catalog
+  return <EmptyCatalogo />;
 
   const {
     saleSoon,
@@ -44,7 +44,7 @@ const CatalogosList = ({
   } = countdown;
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <ScrollView
         stickyHeaderIndices={saleSoon || saleStarted ? [1] : null}
         style={styles.backgroundWhite}

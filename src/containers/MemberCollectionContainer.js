@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _filter from 'lodash/filter';
+import _find from 'lodash/find';
 
-import { getCollectionLotes, setError as setLotesCollectionError } from '../actions/collectionActions';
+import { getLotes, setError as setLotesError } from '../actions/lotesActions';
 import { getObras, setError as setObrasError } from '../actions/obrasActions';
 
 class MemberCollectionContainer extends Component {
@@ -18,14 +20,14 @@ class MemberCollectionContainer extends Component {
       error: PropTypes.string,
       obras: PropTypes.array.isRequired,
     }).isRequired,
-    getCollectionLotes: PropTypes.func.isRequired,
-    setLotesCollectionError: PropTypes.func.isRequired,
+    getLotes: PropTypes.func.isRequired,
+    setLotesError: PropTypes.func.isRequired,
     getObras: PropTypes.func.isRequired,
     setObrasError: PropTypes.func.isRequired,
   }
 
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   componentDidMount = () => this.fetchLotesAndObras()
@@ -34,10 +36,10 @@ class MemberCollectionContainer extends Component {
     * Fetch Data from API, saving to Redux
     */
   fetchLotesAndObras = () => {
-    return this.props.getCollectionLotes(this.props.collection)
+    return this.props.getLotes()
       .catch((err) => {
         console.log(`Error: ${err}`);
-        return this.props.setLotesCollectionError(err);
+        return this.props.setLotesError(err);
       })
       .then(this.props.getObras)
       .catch((err) => {
@@ -47,7 +49,7 @@ class MemberCollectionContainer extends Component {
   }
 
   render = () => {
-    const { Layout, lotes } =  this.props;
+    const { Layout, collection, lotes, miembroId } =  this.props;
 
     return (
       <Layout
@@ -55,20 +57,22 @@ class MemberCollectionContainer extends Component {
         loading={lotes.loading}
         reFetch={() => this.fetchLotesAndObras()}
         lotes={lotes.lotes}
+        collection={collection}
+        miembroId={miembroId}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  lotes: state.collection || {},
+  lotes: state.lotes || {},
   obras: state.obras || [],
   member: state.member || {},
 });
 
 const mapDispatchToProps = {
-  getCollectionLotes,
-  setLotesCollectionError,
+  getLotes,
+  setLotesError,
   getObras,
   setObrasError,
 };
